@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/* ── Brand tokens — "Nordic Spa" light theme ─────────────────────────── */
+@theme {
+  --color-canvas: #faf8f4; /* warm white — page background */
+  --color-oat: #ede6da; /* surface / alternate sections */
+  --color-wood: #b98b5e; /* borders, dividers, small details */
+  --color-pine: #16392e; /* primary text + dark elements */
+  --color-lime: #b8e04a; /* CTAs, active states, small indicators ONLY */
+
+  --radius-card: 1.25rem; /* 20px */
+  --radius-panel: 1.5rem; /* 24px */
+
+  --ease-calm: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme inline {
+  --font-serif: var(--font-sans);
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  /* shadcn/ui semantic tokens mapped onto the brand */
+  --color-background: var(--color-canvas);
+  --color-foreground: var(--color-pine);
+  --color-primary: var(--color-lime);
+  --color-primary-foreground: var(--color-pine);
+  --color-muted: var(--color-oat);
+  --color-muted-foreground: color-mix(in oklab, var(--color-pine) 70%, transparent);
+  --color-border: color-mix(in oklab, var(--color-wood) 35%, transparent);
+  --color-ring: var(--color-pine);
+}
+
+/* Page gutter + max width. 16px gutter at 375px. */
+@utility shell {
+  width: 100%;
+  max-width: 88rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (width >= 48rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 80rem) {
+    padding-inline: 3rem;
+  }
+}
+
+/* Mono spec label: uppercase, letter-spaced */
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html:not(.lenis) {
+      scroll-behavior: smooth;
+    }
+  }
+  body {
+    background: var(--color-canvas);
+    color: var(--color-pine);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--color-lime);
+    color: var(--color-pine);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-pine);
+    outline-offset: 3px;
+  }
+  .on-dark :focus-visible {
+    outline-color: var(--color-lime);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

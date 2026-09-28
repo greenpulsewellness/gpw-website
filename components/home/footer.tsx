@@ -1,11 +1,15 @@
+import { ArrowRight } from "lucide-react";
 import { brand, contact, footer, products, solutions } from "@/data/home";
 import { whatsappUrl } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
 import { InstagramIcon, LinkedInIcon, WhatsAppIcon } from "./icons";
 import { Logo } from "./logo";
 
+const TRENDING_EQUIPMENT_COUNT = 6;
+
 export function Footer() {
   const year = new Date().getFullYear();
+  const trendingEquipment = products.slice(0, TRENDING_EQUIPMENT_COUNT);
   return (
     <footer className="bg-oat pb-[calc(7rem+env(safe-area-inset-bottom,0px))] pt-14 sm:pb-28 sm:pt-16 md:pb-12 md:pt-24">
       <div className="shell">
@@ -34,12 +38,21 @@ export function Footer() {
             ))}
           </FooterList>
 
-          <FooterList title="Equipment" className="lg:col-span-3" twoColsMobile>
-            {products.map((p) => (
+          <FooterList title="Equipment" className="lg:col-span-3">
+            {trendingEquipment.map((p) => (
               <li key={p.id}>
-                <a href="#equipment" className="hover:text-pine">{p.name}</a>
+                <a href="#equipment" className="hover:text-pine transition-colors">{p.name}</a>
               </li>
             ))}
+            <li className="pt-2">
+              <a
+                href="#equipment"
+                className="group inline-flex items-center gap-1.5 rounded-full border border-wood/45 bg-canvas/40 px-3.5 py-1 text-xs font-medium text-pine transition-all hover:border-pine hover:bg-pine hover:text-canvas"
+              >
+                <span>See all</span>
+                <ArrowRight className="size-3 transition-transform group-hover:translate-x-0.5" />
+              </a>
+            </li>
           </FooterList>
 
           <FooterList title="Contact" className="lg:col-span-3">

@@ -48,7 +48,7 @@ export function SuitePackages() {
                           dark ? "border-canvas/20" : "border-wood/30",
                         )}
                       >
-                        <span aria-hidden="true" className={cn("size-1.5 rounded-full", dark ? "bg-lime" : "bg-wood")} />
+                        <span aria-hidden="true" className={cn("size-1.5 rounded-full", dark ? "bg-white" : "bg-wood")} />
                         {productById(id).name}
                       </li>
                     ))}

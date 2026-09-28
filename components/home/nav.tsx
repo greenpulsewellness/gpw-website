@@ -3,29 +3,30 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { brand, contact, nav, solutions } from "@/data/home";
+import { contact, solutions } from "@/data/home";
 import { getLenis, scrollToId } from "@/lib/scroll";
 import { whatsappUrl } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { WhatsAppColorIcon, WhatsAppIcon } from "./icons";
-import { Logo } from "./logo";
+import { WhatsAppColorIcon } from "./icons";
 import { MediaFrame } from "./media-frame";
 
+const NAV_ITEMS = [
+  { label: "About us", href: "#solutions" },
+  { label: "Equipment", href: "#equipment" },
+  { label: "Suites", href: "#packages" },
+  { label: "Who We Equip", href: "#who-we-equip" },
+  { label: "Questions", href: "#how-we-work" },
+  { label: "Contact", href: "#enquiry" },
+];
+
 export function Nav() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const toggleRef = useRef<HTMLButtonElement>(null);
+  const [activeSection, setActiveSection] = useState<string>("solutions");
   const closeRef = useRef<HTMLButtonElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Lock scroll + Escape to close while the mobile menu is open.
+  // Lock scroll + Escape to close while mobile menu is open
   useEffect(() => {
     if (!open) return;
     const lenis = getLenis();
@@ -42,116 +43,117 @@ export function Nav() {
     };
   }, [open]);
 
-  const [activeSection, setActiveSection] = useState<string | null>(null);
-
+  // Track active section on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const sectionIds = ["recover", "agewell", "rehabilitate", "livewell"];
-      const scrollPos = window.scrollY + 260;
-      let current: string | null = null;
-      for (const id of sectionIds) {
+      const ids = ["solutions", "equipment", "packages", "who-we-equip", "how-we-work", "enquiry"];
+      const scrollPos = window.scrollY + 200;
+      for (const id of ids) {
         const el = document.getElementById(id);
         if (el) {
           const top = el.offsetTop;
           const height = el.offsetHeight;
           if (scrollPos >= top && scrollPos < top + height) {
-            current = id;
+            setActiveSection(id);
             break;
           }
         }
       }
-      setActiveSection(current);
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const solid = scrolled;
-
-  // Close first (releases the scroll lock), then scroll to the target.
   const goTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setOpen(false);
     requestAnimationFrame(() => requestAnimationFrame(() => scrollToId(href.slice(1))));
   };
+
   const wa = whatsappUrl(contact.floatingMessage);
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 pointer-events-none transition-colors duration-500 ease-calm">
-        <div className="shell flex h-16 items-center justify-between gap-6 pointer-events-auto md:h-20">
-          <a href="#top" aria-label={`${brand.name} — home`} className="shrink-0">
-            <Logo light={!solid} />
-          </a>
+      {/* ── Notch Navbar (Top Center, Attached to Screen Bezel) ── */}
+      <header className="fixed inset-x-0 top-0 z-50 flex justify-center pointer-events-none">
+        {/* Desktop Notch */}
+        <div className="relative pointer-events-auto hidden md:flex items-center">
+          {/* Left Ear Fillet Curve */}
+          <svg
+            className="absolute -left-4 top-0 h-4 w-4 fill-neutral-950 text-neutral-950 pointer-events-none"
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+          >
+            <path d="M16,0 L0,0 C8.837,0 16,7.163 16,16 L16,0 Z" />
+          </svg>
 
-          <div className="flex items-center gap-3">
-            <nav aria-label="Solutions" className="hidden lg:block">
-              <div
-                className={cn(
-                  "flex items-center rounded-full p-1 transition-all duration-300",
-                  solid
-                    ? "border border-pine/20 bg-pine text-white shadow-[0_4px_20px_rgba(22,57,46,0.3)] backdrop-blur-xl"
-                    : "border border-white/15 bg-black/60 text-white shadow-[0_4px_24px_rgba(0,0,0,0.35)] backdrop-blur-xl",
-                )}
-              >
-                <ul className="flex items-center gap-0.5">
-                  {nav.links.map((link) => {
-                    const isActive = activeSection === link.solutionId;
-                    return (
-                      <li key={link.href}>
-                        <a
-                          href={link.href}
-                          onClick={(e) => {
-                            setActiveSection(link.solutionId);
-                            goTo(e, link.href);
-                          }}
-                          className={cn(
-                            "relative inline-flex items-center justify-center rounded-full px-3 py-1 text-[11px] font-medium uppercase tracking-[0.07em] transition-colors duration-200",
-                            isActive
-                              ? "text-pine font-semibold"
-                              : "text-white/75 hover:text-white hover:bg-white/10",
-                          )}
-                        >
-                          {isActive && (
-                            <motion.span
-                              layoutId="activeNavPill"
-                              className={cn(
-                                "absolute inset-0 rounded-full shadow-sm",
-                                solid ? "bg-lime" : "bg-white",
-                              )}
-                              transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                            />
-                          )}
-                          <span className="relative z-10">{link.label}</span>
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            </nav>
+          {/* Notch Body — Clean, zero border, seamless with outer dark frame */}
+          <nav
+            aria-label="Main Navigation"
+            className="flex items-center gap-6 rounded-b-[20px] bg-neutral-950 px-7 py-2.5 text-[13px] font-normal text-neutral-300 transition-all duration-300"
+          >
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeSection === item.href.slice(1);
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => goTo(e, item.href)}
+                  className={cn(
+                    "text-xs tracking-tight transition-colors duration-200",
+                    isActive
+                      ? "text-white font-medium"
+                      : "text-neutral-400 hover:text-white",
+                  )}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
+          </nav>
 
-            <Button asChild size="sm" className="hidden sm:inline-flex shadow-sm h-8 px-4 text-xs font-semibold">
-              <a href={nav.cta.href}>{nav.cta.label}</a>
-            </Button>
+          {/* Right Ear Fillet Curve */}
+          <svg
+            className="absolute -right-4 top-0 h-4 w-4 fill-neutral-950 text-neutral-950 pointer-events-none scale-x-[-1]"
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+          >
+            <path d="M16,0 L0,0 C8.837,0 16,7.163 16,16 L16,0 Z" />
+          </svg>
+        </div>
 
-            <Button
-              ref={toggleRef}
-              variant={solid ? "outline" : "outline-light"}
-              size="icon"
-              className={cn("lg:hidden", solid && "border-pine/30 text-pine hover:bg-pine hover:text-white")}
-              aria-label="Open menu"
-              aria-expanded={open}
-              aria-controls="mobile-menu"
-              onClick={() => setOpen(true)}
-            >
-              <Menu />
-            </Button>
-          </div>
+        {/* Mobile Notch Button */}
+        <div className="relative pointer-events-auto flex md:hidden items-center">
+          <svg
+            className="absolute -left-2.5 top-0 h-2.5 w-2.5 fill-neutral-950 text-neutral-950 pointer-events-none"
+            viewBox="0 0 10 10"
+            aria-hidden="true"
+          >
+            <path d="M10,0 L0,0 C5.523,0 10,4.477 10,10 L10,0 Z" />
+          </svg>
+
+          <button
+            ref={toggleRef}
+            type="button"
+            onClick={() => setOpen(true)}
+            className="flex items-center gap-2 rounded-b-xl bg-neutral-950 px-4 py-1.5 text-xs font-medium text-neutral-200"
+            aria-label="Open navigation menu"
+          >
+            <span>Navigation</span>
+            <Menu className="size-3.5 text-neutral-400" />
+          </button>
+
+          <svg
+            className="absolute -right-2.5 top-0 h-2.5 w-2.5 fill-neutral-950 text-neutral-950 pointer-events-none scale-x-[-1]"
+            viewBox="0 0 10 10"
+            aria-hidden="true"
+          >
+            <path d="M10,0 L0,0 C5.523,0 10,4.477 10,10 L10,0 Z" />
+          </svg>
         </div>
       </header>
 
+      {/* ── Mobile Full Menu Drawer ── */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -164,10 +166,12 @@ export function Nav() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="shell flex h-16 shrink-0 items-center justify-between md:h-20">
-              <Logo />
+            <div className="shell flex h-16 shrink-0 items-center justify-between border-b border-wood/20">
+              <span className="label-mono text-xs font-semibold tracking-wider text-pine">
+                Navigation
+              </span>
               <Button
                 ref={closeRef}
                 variant="outline"
@@ -179,43 +183,32 @@ export function Nav() {
               </Button>
             </div>
 
-            <nav aria-label="Solutions" className="shell flex-1 pt-6">
-              <p className="label-mono text-wood">Solutions</p>
-              <ul className="mt-4 border-t border-wood/30">
-                {nav.links.map((link, i) => {
-                  const solution = solutions.find((s) => s.id === link.solutionId)!;
-                  return (
-                    <motion.li
-                      key={link.href}
-                      className="border-b border-wood/30"
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.08 + i * 0.05, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            <nav aria-label="Mobile Navigation" className="shell flex-1 pt-6">
+              <ul className="space-y-1">
+                {NAV_ITEMS.map((item, i) => (
+                  <motion.li
+                    key={item.href}
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.05 + i * 0.04 }}
+                  >
+                    <a
+                      href={item.href}
+                      onClick={(e) => goTo(e, item.href)}
+                      className="flex items-center justify-between border-b border-wood/15 py-4 text-2xl font-semibold tracking-tight text-pine hover:text-neutral-600 transition-colors"
                     >
-                      <a
-                        href={link.href}
-                        onClick={(e) => goTo(e, link.href)}
-                        className="group flex items-center gap-4 py-4"
-                      >
-                        <span className="relative h-16 w-20 shrink-0 overflow-hidden rounded-xl md:h-20 md:w-28">
-                          <MediaFrame media={solution.image} sizes="112px" compact />
-                        </span>
-                        <span className="flex-1 min-w-0">
-                          <span className="block text-xl sm:text-2xl font-semibold leading-tight tracking-tight md:text-3xl">{link.label}</span>
-                          <span className="mt-1 block text-xs sm:text-sm text-pine/60 truncate">{solution.audience}</span>
-                        </span>
-                        <ArrowUpRight className="size-5 shrink-0 text-wood transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                      </a>
-                    </motion.li>
-                  );
-                })}
+                      <span>{item.label}</span>
+                      <ArrowUpRight className="size-5 text-wood" />
+                    </a>
+                  </motion.li>
+                ))}
               </ul>
             </nav>
 
             <div className="shell grid shrink-0 gap-3 pb-[calc(2rem+env(safe-area-inset-bottom,0px))] pt-8 sm:grid-cols-2">
               <Button asChild size="lg" className="w-full">
-                <a href={nav.cta.href} onClick={(e) => goTo(e, nav.cta.href)}>
-                  {nav.cta.label}
+                <a href="#enquiry" onClick={(e) => goTo(e, "#enquiry")}>
+                  Enquire Now
                 </a>
               </Button>
               <Button asChild variant="outline" size="lg" className="w-full">

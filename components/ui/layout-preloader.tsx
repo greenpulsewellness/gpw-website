@@ -26,19 +26,19 @@ const STACK_DURATION = 0.8;
 type PreloaderImage = { src: string; alt: string };
 
 const DEFAULT_IMAGES: PreloaderImage[] = [
-  { src: "/recoverandrestore/recoverandrestoremain.png", alt: "Recovery suite" },
-  { src: "/recoverandrestore/rehabilatemain.png", alt: "Rehabilitation studio" },
-  { src: "/recoverandrestore/agewell.png", alt: "Age-well wellness space" },
- 
+  { src: "/vitality.jpg", alt: "Vitality Suite" },
+  { src: "/longivity.png", alt: "Longevity Infrastructure" },
+  { src: "/performance.jpg", alt: "Performance Lab" },
+  { src: "/wellness.jpg", alt: "Wellness Sanctuary" },
 ];
 
 /** Centre window aspect ratio (width / height) — the intro images are 4:3. */
 const WINDOW_RATIO = 4 / 3;
 
-/** Must match the hero video poster so the hand-off is seamless. */
+/** Must match the first hero slide so the hand-off is seamless. */
 const DEFAULT_FINAL: PreloaderImage = {
-  src: "/sauna%20hero.jpg",
-  alt: "Sauna suite",
+  src: "/recoverry.jpg",
+  alt: "Recovery & Cellular Rejuvenation",
 };
 
 /* ------------------------------------------------------------------ */

@@ -10,7 +10,7 @@ const styles: Record<Tier, string> = {
 export function TierBadge({ tier }: { tier: Tier }) {
   return (
     <span className={cn("label-mono inline-flex h-6 items-center gap-1.5 rounded-full px-2.5 !text-[0.625rem]", styles[tier])}>
-      {tier === "Signature" && <span aria-hidden="true" className="size-1.5 rounded-full bg-lime" />}
+      {tier === "Signature" && <span aria-hidden="true" className="size-1.5 rounded-full bg-canvas" />}
       {tier}
     </span>
   );

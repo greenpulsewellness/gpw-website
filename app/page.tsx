@@ -2,7 +2,6 @@ import { EnquiryProvider } from "@/components/home/enquiry-context";
 import { EnquiryForm } from "@/components/home/enquiry-form";
 import { EquipmentRail } from "@/components/home/equipment-rail";
 import { ExperienceIt } from "@/components/home/experience-it";
-import { FloatingWhatsApp } from "@/components/home/floating-whatsapp";
 import { Footer } from "@/components/home/footer";
 import { Hero } from "@/components/home/hero";
 import { Nav } from "@/components/home/nav";
@@ -18,24 +17,11 @@ export default function HomePage() {
     <EnquiryProvider>
       <LayoutPreloader>
         <Nav />
-        <main className="relative bg-pine">
+        <main className="relative bg-neutral-950">
           <Hero />
 
-          {/* Overriding content layer that slides up over the sticky hero */}
-          <div className="relative z-10 bg-canvas shadow-[0_-24px_50px_rgba(0,0,0,0.35)]">
-            {/* Organic curved transition top edge */}
-            <div
-              aria-hidden="true"
-              className="absolute -top-[27px] sm:-top-[39px] md:-top-[55px] lg:-top-[63px] left-0 right-0 z-20 overflow-hidden leading-none pointer-events-none"
-            >
-              <svg
-                className="relative block h-7 w-full text-canvas fill-current sm:h-10 md:h-14 lg:h-16 drop-shadow-[0_-8px_16px_rgba(0,0,0,0.25)]"
-                viewBox="0 0 1440 80"
-                preserveAspectRatio="none"
-              >
-                <path d="M0,60 Q720,15 1440,60 L1440,80 L0,80 Z" />
-              </svg>
-            </div>
+          {/* Overriding content layer that slides up and covers the sticky hero */}
+          <div className="relative z-10 bg-canvas rounded-t-[28px] sm:rounded-t-[38px] md:rounded-t-[48px] shadow-[0_-25px_60px_rgba(0,0,0,0.5)]">
 
             <SolutionsBento />
             <EquipmentRail />
@@ -63,7 +49,6 @@ export default function HomePage() {
         <div className="relative z-10 bg-oat">
           <Footer />
         </div>
-        <FloatingWhatsApp />
       </LayoutPreloader>
     </EnquiryProvider>
   );

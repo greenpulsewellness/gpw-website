@@ -110,7 +110,7 @@ export function WhoWeEquip() {
                           href={whatsappUrl(contact.rentalMessage)}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="label-mono inline-flex shrink-0 items-center gap-1.5 self-start rounded-full bg-lime px-3 py-2 text-pine transition-colors hover:bg-pine hover:text-canvas"
+                          className="label-mono inline-flex shrink-0 items-center gap-1.5 self-start rounded-full bg-pine px-3 py-2 text-canvas transition-colors hover:bg-neutral-800"
                         >
                           {a.cta.label} <ArrowUpRight className="size-3.5" />
                         </a>
@@ -216,7 +216,7 @@ export function WhoWeEquip() {
                         href={whatsappUrl(contact.rentalMessage)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="label-mono inline-flex shrink-0 items-center gap-1.5 self-start rounded-full bg-lime px-3 py-2 text-pine transition-colors hover:bg-pine hover:text-canvas"
+                        className="label-mono inline-flex shrink-0 items-center gap-1.5 self-start rounded-full bg-pine px-3 py-2 text-canvas transition-colors hover:bg-neutral-800"
                       >
                         {a.cta.label} <ArrowUpRight className="size-3.5" />
                       </a>
@@ -305,7 +305,7 @@ export function WhoWeEquip() {
                           href={whatsappUrl(contact.rentalMessage)}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="label-mono inline-flex shrink-0 items-center gap-1.5 self-start rounded-full bg-lime px-3 py-2 text-pine transition-colors hover:bg-pine hover:text-canvas"
+                          className="label-mono inline-flex shrink-0 items-center gap-1.5 self-start rounded-full bg-pine px-3 py-2 text-canvas transition-colors hover:bg-neutral-800"
                         >
                           {a.cta.label} <ArrowUpRight className="size-3.5" />
                         </a>

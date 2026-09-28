@@ -279,7 +279,7 @@ export function EnquiryForm() {
             <p aria-live="polite" className="text-sm text-pine/75 empty:hidden">
               {sentUrl && (
                 <span className="mt-4 flex items-center gap-2">
-                  <span aria-hidden="true" className="size-1.5 rounded-full bg-lime" />
+                  <span aria-hidden="true" className="size-1.5 rounded-full bg-emerald-500" />
                   WhatsApp opened in a new tab.{" "}
                   <a href={sentUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 underline underline-offset-4">
                     Didn&apos;t open? <ArrowUpRight className="size-3.5" />

@@ -2,15 +2,69 @@
 
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "motion/react";
+import MorphGallery, { type MorphItem } from "@/components/ui/morph-gallery";
 import { usePreloaderDone } from "@/components/ui/layout-preloader";
-import { hero } from "@/data/home";
-import { MediaFrame } from "./media-frame";
+
+export type HeroSlide = MorphItem & {
+  word: string;
+  description: string;
+};
+
+/**
+ * Curated wellness & recovery slides for the hero section.
+ * Automatically synchronizes the single-word headline and editorial description
+ * with the background WebGL noise dissolve every 4 seconds.
+ */
+export const HERO_SLIDES: HeroSlide[] = [
+  {
+    word: "Recovery",
+    description:
+      "Advanced contrast therapy, cryo-restoration, and thermal suites engineered to accelerate cellular rejuvenation and deep systemic recovery.",
+    src: "/recoverry.jpg",
+    alt: "Advanced recovery and restoration therapy suite",
+  },
+  {
+    word: "Wellness",
+    description:
+      "Holistic sensory sanctuaries designed to harmonize circadian rhythms, regulate autonomic tone, and cultivate deep restorative tranquility.",
+    src: "/wellness.jpg",
+    alt: "Holistic wellness sanctuary and sensory suite",
+  },
+  {
+    word: "Performance",
+    description:
+      "Clinical-grade bio-stacking equipment and hyperbaric conditioning built for elite athletic preparation, cognitive sharpness, and peak endurance.",
+    src: "/performance.jpg",
+    alt: "Longevity performance and recovery space",
+  },
+  {
+    word: "Longevity",
+    description:
+      "Preventative health infrastructure and biomarker-focused modalities providing turnkey longevity suites for premier clinics, resorts, and private residences.",
+    src: "/longivity.png",
+    alt: "AgeWell active recovery and rehabilitation sanctuary",
+  },
+  {
+    word: "Vitality",
+    description:
+      "Precision physiotherapy, targeted photobiomodulation, and lymphatic drainage technologies crafted for lifetime mobility and sustained vitality.",
+    src: "/vitality.jpg",
+    alt: "Clinical rehabilitation and physiotherapy suite",
+  },
+];
 
 export function Hero() {
+  const introDone = usePreloaderDone();
+  const [activeIndex, setActiveIndex] = useState(0);
   const [vh, setVh] = useState(800);
   const reducedMotion = useReducedMotion();
-  const introDone = usePreloaderDone();
   const { scrollY } = useScroll();
 
   useEffect(() => {
@@ -20,38 +74,18 @@ export function Hero() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // Recessing 3D "step down & go inside" scroll effects:
-  const scale = useTransform(scrollY, [0, vh], [1, reducedMotion ? 1 : 0.90]);
-  const y = useTransform(scrollY, [0, vh], [0, reducedMotion ? 0 : 45]);
-  const opacity = useTransform(scrollY, [0, vh * 0.85, vh], [1, 0.7, 0.35]);
-
-  // Curve corners rapidly in the first 25% of scroll so corners are visibly smooth immediately
-  const rounded = useTransform(
+  // 3D step-down & receding perspective as second section overrides
+  const scale = useTransform(scrollY, [0, vh], [1, reducedMotion ? 1 : 0.92]);
+  const y = useTransform(scrollY, [0, vh], [0, reducedMotion ? 0 : 40]);
+  const opacity = useTransform(scrollY, [0, vh * 0.85, vh], [1, 0.8, 0.35]);
+  const filter = useTransform(
     scrollY,
-    [0, vh * 0.25],
-    ["0px", reducedMotion ? "0px" : "40px"]
-  );
-
-  // Soft depth blur as it steps down into depth to remove harsh side sharpness
-  const blur = useTransform(
-    scrollY,
-    [0, vh * 0.6],
+    [0, vh * 0.7],
     ["blur(0px)", reducedMotion ? "blur(0px)" : "blur(4px)"]
   );
+  const dimOpacity = useTransform(scrollY, [0, vh], [0, reducedMotion ? 0 : 0.5]);
 
-  // Soft ambient depth shadow around the card
-  const shadow = useTransform(
-    scrollY,
-    [0, vh * 0.3],
-    [
-      "0 0 0 rgba(0,0,0,0)",
-      "0 35px 80px -15px rgba(0,0,0,0.7), 0 0 50px rgba(0,0,0,0.4)",
-    ]
-  );
-
-  const dimOpacity = useTransform(scrollY, [0, vh], [0, reducedMotion ? 0 : 0.45]);
-
-  const heroMedia = hero.media ?? hero.video;
+  const currentSlide = HERO_SLIDES[activeIndex] ?? HERO_SLIDES[0];
 
   return (
     <motion.section
@@ -61,78 +95,112 @@ export function Hero() {
         scale,
         y,
         opacity,
-        borderRadius: rounded,
-        filter: blur,
-        boxShadow: shadow,
+        filter,
       }}
-      className="on-dark sticky top-0 z-0 flex min-h-[600px] h-svh w-full flex-col overflow-hidden bg-pine text-white origin-center sm:min-h-[660px] md:min-h-[720px] will-change-transform [isolation:isolate] [-webkit-mask-image:-webkit-radial-gradient(white,black)]"
+      className="sticky top-0 z-0 flex h-[100svh] min-h-[640px] md:min-h-[720px] w-full flex-col bg-neutral-950 p-2 sm:p-3 md:p-4 origin-center will-change-transform overflow-hidden"
     >
-      {/* Video buffers during the entry animation; playback starts on hand-off */}
-      <MediaFrame
-        media={heroMedia}
-        tone="pine"
-        labelPosition="top-right"
-        eager
-        playing={introDone ? undefined : false}
-      />
+      {/* ── Framed Hero Canvas (Helious-inspired Architecture) ── */}
+      <div className="relative flex h-full w-full flex-col justify-between overflow-hidden rounded-[22px] sm:rounded-[30px] md:rounded-[38px] bg-neutral-950 shadow-[0_25px_70px_-20px_rgba(0,0,0,0.6)]">
+        {/* Background Visual: WebGL MorphGallery with 4-second automated loop */}
+        <div className="absolute inset-0 select-none">
+          <MorphGallery
+            items={HERO_SLIDES}
+            height="100%"
+            autoplay={4000}
+            duration={1800}
+            loop={true}
+            arrows={false}
+            thumbnails={false}
+            onIndexChange={setActiveIndex}
+            className="absolute inset-0 h-full w-full"
+          />
 
-      {/* Gradients ensuring strong text contrast on the left while letting media show through */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-r from-pine/95 via-pine/70 to-pine/20 sm:from-pine/90 sm:via-pine/50 sm:to-transparent"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-pine/80 via-transparent to-black/35"
-      />
+          {/* Top Subtle Vignette for Notch Navbar Contrast */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/50 via-black/15 to-transparent pointer-events-none z-[6]"
+          />
 
-      {/* Perimeter edge vignette softening the outer sides */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 shadow-[inset_0_0_80px_rgba(0,0,0,0.5)] z-[1]"
-      />
+          {/* Bottom Atmosphere Gradient — Dark Shade for Cinematic Contrast & Legibility */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 bottom-0 h-[70%] sm:h-[58%] bg-gradient-to-t from-black/95 via-black/55 to-transparent pointer-events-none z-[6]"
+          />
 
-      {/* Dynamic dimming overlay as the hero section steps back into depth */}
-      <motion.div
-        aria-hidden="true"
-        style={{ opacity: dimOpacity }}
-        className="pointer-events-none absolute inset-0 bg-black/60 z-[2]"
-      />
+          {/* Dynamic dimming overlay as the hero steps back into depth on scroll */}
+          <motion.div
+            aria-hidden="true"
+            style={{ opacity: dimOpacity }}
+            className="pointer-events-none absolute inset-0 bg-black/70 z-[7]"
+          />
+        </div>
 
-      <div className="shell relative z-10 flex flex-1 flex-col justify-center pb-20 pt-28 sm:pb-24 sm:pt-32 md:pb-28 md:pt-36">
-        <motion.div
-          className="max-w-xl lg:max-w-2xl"
-          initial={{ opacity: 0, y: 16 }}
-          animate={introDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
-        >
-          {/* Large bold uppercase display headline */}
-          <h1 className="text-4xl font-black uppercase leading-[0.98] tracking-tight text-white sm:text-5xl sm:leading-[0.96] md:text-6xl md:leading-[0.93] lg:text-[4.25rem]">
-            {hero.headline}
-          </h1>
+        {/* Top Spacer for Notch Navbar */}
+        <div className="relative z-10 h-16 w-full pointer-events-none" />
 
-          {/* Clean subtitle paragraph */}
-          <p className="mt-4 max-w-lg text-sm font-normal leading-relaxed text-white/90 sm:mt-5 sm:text-base md:text-lg">
-            {hero.sub}
-          </p>
+        {/* Bottom Content Area: Dynamic Word Headline Left + Dynamic Description & CTA Right */}
+        <div className="relative z-10 px-5 pb-6 sm:px-8 sm:pb-8 md:px-12 md:pb-10 lg:px-14 lg:pb-12">
+          <motion.div
+            className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
+            initial={{ opacity: 0, y: 24 }}
+            animate={introDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+          >
+            {/* Left Column: Dynamic Single Word Headline with Asterisk */}
+            <div className="flex items-start select-none min-h-[3.8rem] sm:min-h-[5.5rem] md:min-h-[7rem] lg:min-h-[8.5rem] xl:min-h-[9.5rem]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentSlide.word}
+                  initial={{ opacity: 0, y: 16, filter: "blur(10px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, y: -16, filter: "blur(10px)" }}
+                  transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex items-start"
+                >
+                  <h1 className="text-4xl font-bold tracking-[-0.04em] text-white sm:text-6xl md:text-7xl lg:text-[6.5rem] xl:text-[8rem] 2xl:text-[9.5rem] leading-[0.88] whitespace-nowrap drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+                    {currentSlide.word}
+                  </h1>
+                  <span
+                    aria-hidden="true"
+                    className="ml-1 text-xl font-light text-white/90 sm:ml-2 sm:text-3xl md:text-4xl lg:text-6xl leading-none select-none drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
+                  >
+                    *
+                  </span>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
-          {/* Hyro-style rounded rectangular CTA buttons */}
-          <div className="mt-7 flex flex-col items-stretch gap-3.5 sm:flex-row sm:items-center sm:gap-4">
-            <a
-              href={hero.primaryCta.href}
-              className="group inline-flex min-h-[48px] items-center justify-center gap-2.5 rounded-xl bg-lime px-7 py-3.5 text-xs font-black uppercase tracking-wider text-pine shadow-xl shadow-black/25 transition-all duration-300 hover:bg-white hover:scale-[1.02] active:scale-[0.98] sm:min-h-[52px] sm:px-8 sm:py-4 sm:text-sm"
-            >
-              <span>{hero.primaryCta.label}</span>
-              <ArrowRight className="h-4 w-4 stroke-[2.75] transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
-            <a
-              href={hero.secondaryCta.href}
-              className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border-2 border-white/35 bg-black/20 px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white hover:text-pine hover:scale-[1.02] active:scale-[0.98] sm:min-h-[52px] sm:px-7 sm:py-4 sm:text-sm"
-            >
-              {hero.secondaryCta.label}
-            </a>
-          </div>
-        </motion.div>
+            {/* Right Column: Dynamic Editorial Paragraph + Pill Action Button */}
+            <div className="flex max-w-sm flex-col items-start gap-4 sm:max-w-md lg:mb-3">
+              <div className="min-h-[4.2rem] sm:min-h-[3.8rem]">
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={currentSlide.word}
+                    initial={{ opacity: 0, y: 10, filter: "blur(6px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    exit={{ opacity: 0, y: -10, filter: "blur(6px)" }}
+                    transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+                    className="text-xs font-medium leading-relaxed text-white/85 sm:text-sm md:text-[0.9375rem] drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]"
+                  >
+                    {currentSlide.description}
+                  </motion.p>
+                </AnimatePresence>
+              </div>
+
+              <div>
+                <a
+                  href="#equipment"
+                  className="group inline-flex items-center gap-3 rounded-full bg-white px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold tracking-wide text-neutral-950 shadow-2xl transition-all duration-300 hover:bg-neutral-100 hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  <span>Explore equipment</span>
+                  <span className="flex size-6 sm:size-7 items-center justify-center rounded-full bg-black/10 transition-transform duration-300 group-hover:translate-x-1">
+                    <ArrowRight className="size-3.5 sm:size-4 stroke-[2.5] text-neutral-950" />
+                  </span>
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </motion.section>
   );

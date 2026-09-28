@@ -103,7 +103,7 @@ export function EquipmentRail() {
                 <span
                   className={cn(
                     "label-mono text-[0.6875rem] tabular-nums",
-                    active ? "text-lime" : "text-pine/50",
+                    active ? "text-canvas/70" : "text-pine/50",
                   )}
                 >
                   {count}
@@ -127,7 +127,7 @@ export function EquipmentRail() {
         ))}
       </ul>
 
-      {/* Progress: wood track, lime indicator */}
+      {/* Progress: wood track, pine indicator */}
       <div className="shell mt-6 flex items-center gap-4 sm:mt-8">
         <span className="label-mono tabular-nums text-pine/60">
           {String(Math.min(filteredProducts.length, Math.round(progress * (filteredProducts.length - 1)) + 1)).padStart(2, "0")}
@@ -136,7 +136,7 @@ export function EquipmentRail() {
         </span>
         <div className="relative h-px flex-1 bg-wood/40">
           <div
-            className="absolute inset-y-[-1px] left-0 bg-lime"
+            className="absolute inset-y-[-1px] left-0 bg-pine"
             style={{ width: `${Math.max(8, progress * 100)}%` }}
           />
         </div>

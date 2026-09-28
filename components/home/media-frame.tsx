@@ -78,7 +78,7 @@ export function MediaFrame({
 
 const tones = {
   oat: { bg: "bg-oat", frame: "border-wood/40", text: "text-pine/55", meta: "text-wood" },
-  wood: { bg: "bg-[#E2D5C1]", frame: "border-wood/55", text: "text-pine/60", meta: "text-pine/45" },
+  wood: { bg: "bg-zinc-200", frame: "border-wood/40", text: "text-pine/60", meta: "text-pine/45" },
   pine: { bg: "bg-pine", frame: "border-wood/35", text: "text-canvas/70", meta: "text-wood" },
 };
 

@@ -12,11 +12,11 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-lime text-pine hover:bg-pine hover:text-canvas",
-        dark: "bg-pine text-canvas hover:bg-lime hover:text-pine",
-        outline: "border border-pine/25 text-pine hover:border-pine hover:bg-pine hover:text-canvas",
-        "outline-light": "border border-white/60 text-white hover:border-white hover:bg-white hover:text-pine",
-        ghost: "text-pine hover:bg-oat",
+        primary: "bg-pine text-canvas hover:bg-neutral-800 hover:text-white shadow-sm [.on-dark_&]:bg-white [.on-dark_&]:text-black [.on-dark_&]:hover:bg-neutral-200",
+        dark: "bg-pine text-canvas hover:bg-neutral-800 hover:text-white shadow-sm [.on-dark_&]:bg-white [.on-dark_&]:text-black [.on-dark_&]:hover:bg-neutral-200",
+        outline: "border border-pine/25 text-pine hover:border-pine hover:bg-pine hover:text-canvas [.on-dark_&]:border-white/40 [.on-dark_&]:text-white [.on-dark_&]:hover:border-white [.on-dark_&]:hover:bg-white [.on-dark_&]:hover:text-black",
+        "outline-light": "border border-white/60 text-white hover:border-white hover:bg-white hover:text-black",
+        ghost: "text-pine hover:bg-oat [.on-dark_&]:text-white [.on-dark_&]:hover:bg-white/10",
       },
       size: {
         sm: "h-9 px-4 text-sm",

@@ -80,7 +80,7 @@ function Tile({ solution }: { solution: Solution }) {
       {/* Caption plate — frosted glassmorphism with blur and slight transparency */}
       <div
         className={cn(
-          "absolute inset-x-2 bottom-2 flex items-end justify-between gap-2.5 rounded-card border border-white/50 bg-canvas/75 shadow-[0_8px_24px_rgba(22,57,46,0.08)] backdrop-blur-md transition-all duration-300 group-hover:bg-canvas/85 md:inset-x-3 md:bottom-3",
+          "absolute inset-x-2 bottom-2 flex items-end justify-between gap-2.5 rounded-card border border-white/50 bg-canvas/75 shadow-[0_8px_24px_rgba(0,0,0,0.06)] backdrop-blur-md transition-all duration-300 group-hover:bg-canvas/85 md:inset-x-3 md:bottom-3",
           small ? "p-3 sm:p-3.5 md:p-3.5" : "p-3.5 sm:p-4 md:p-5",
         )}
       >
@@ -100,7 +100,7 @@ function Tile({ solution }: { solution: Solution }) {
         <span
           aria-hidden="true"
           className={cn(
-            "grid shrink-0 place-items-center rounded-full border border-pine/15 bg-white/60 text-pine shadow-sm backdrop-blur-sm transition-colors duration-300 group-hover:border-lime group-hover:bg-lime",
+            "grid shrink-0 place-items-center rounded-full border border-pine/15 bg-white text-pine shadow-sm backdrop-blur-sm transition-colors duration-300 group-hover:border-pine group-hover:bg-pine group-hover:text-canvas",
             small ? "size-8 md:size-9" : "size-9 md:size-10",
           )}
         >

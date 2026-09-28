@@ -86,7 +86,7 @@ function Benefit({ text, index }: { text: string; index: number }) {
       <span className="label-mono flex shrink-0 items-center gap-2 pt-1 text-wood sm:pt-1.5 lg:pt-0">
         <span
           aria-hidden="true"
-          className={cn("size-1.5 rounded-full transition-colors duration-500", active ? "bg-lime" : "bg-wood/40")}
+          className={cn("size-1.5 rounded-full transition-colors duration-500", active ? "bg-pine" : "bg-wood/40")}
         />
         {String(index + 1).padStart(2, "0")}
       </span>

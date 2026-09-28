@@ -87,6 +87,13 @@ export function Hero() {
 
   const currentSlide = HERO_SLIDES[activeIndex] ?? HERO_SLIDES[0];
 
+  // Keep active index locked to 0 while preloader is active
+  useEffect(() => {
+    if (!introDone) {
+      setActiveIndex(0);
+    }
+  }, [introDone]);
+
   return (
     <motion.section
       id="top"
@@ -101,16 +108,17 @@ export function Hero() {
     >
       {/* ── Framed Hero Canvas (Helious-inspired Architecture) ── */}
       <div className="relative flex h-full w-full flex-col justify-between overflow-hidden rounded-[22px] sm:rounded-[30px] md:rounded-[38px] bg-neutral-950 shadow-[0_25px_70px_-20px_rgba(0,0,0,0.6)]">
-        {/* Background Visual: WebGL MorphGallery with 4-second automated loop */}
+        {/* Background Visual: WebGL MorphGallery with 4-second automated loop (starts AFTER preloader hands off) */}
         <div className="absolute inset-0 select-none">
           <MorphGallery
             items={HERO_SLIDES}
             height="100%"
-            autoplay={4000}
+            autoplay={introDone ? 4000 : 0}
             duration={1800}
             loop={true}
             arrows={false}
             thumbnails={false}
+            index={!introDone ? 0 : undefined}
             onIndexChange={setActiveIndex}
             className="absolute inset-0 h-full w-full"
           />

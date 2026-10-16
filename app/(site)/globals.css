@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+/* ── Brand tokens — Monochrome Luxury Dark Theme (Black & White) ─────────────── */
+@theme {
+  --color-canvas: #000000; /* pure obsidian black */
+  --color-oat: #0d0d0d; /* elevated charcoal card / white-shade accent surface */
+  --color-wood: #86909c; /* muted slate/zinc text, borders, dividers, mono labels */
+  --color-pine: #f4f4f5; /* crisp bright off-white primary text */
+  --color-lime: #ffffff; /* pure white accent (monochrome) */
+
+  --radius-card: 1.25rem; /* 20px */
+  --radius-panel: 1.5rem; /* 24px */
+
+  --ease-calm: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-noise: noise-animation 0.6s steps(6) infinite;
+
+  @keyframes noise-animation {
+    0% { transform: translate(0, 0); }
+    10% { transform: translate(-2%, -3%); }
+    20% { transform: translate(-4%, 2%); }
+    30% { transform: translate(2%, -4%); }
+    40% { transform: translate(-2%, 5%); }
+    50% { transform: translate(-4%, 2%); }
+    60% { transform: translate(3%, 0); }
+    70% { transform: translate(0, 3%); }
+    80% { transform: translate(-3%, 0); }
+    90% { transform: translate(2%, 2%); }
+    100% { transform: translate(1%, 0); }
+  }
+}
+
+@theme inline {
+  --font-serif: var(--font-sans);
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  /* shadcn/ui semantic tokens mapped onto dark monochrome brand */
+  --color-background: var(--color-canvas);
+  --color-foreground: var(--color-pine);
+  --color-primary: #ffffff;
+  --color-primary-foreground: #000000;
+  --color-muted: var(--color-oat);
+  --color-muted-foreground: var(--color-wood);
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-ring: rgba(255, 255, 255, 0.4);
+}
+
+/* Page gutter + max width. 16px gutter at 375px. */
+@utility shell {
+  width: 100%;
+  max-width: 88rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (width >= 48rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 80rem) {
+    padding-inline: 3rem;
+  }
+}
+
+/* Mono spec label: uppercase, letter-spaced */
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+    color-scheme: dark;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html:not(.lenis) {
+      scroll-behavior: smooth;
+    }
+  }
+  body {
+    background-color: #000000;
+    background-image: 
+      radial-gradient(ellipse 90% 60% at 50% -10%, rgba(255, 255, 255, 0.03), transparent 70%),
+      radial-gradient(ellipse 70% 50% at 100% 30%, rgba(255, 255, 255, 0.02), transparent 60%),
+      radial-gradient(ellipse 80% 50% at 0% 70%, rgba(255, 255, 255, 0.02), transparent 70%),
+      radial-gradient(ellipse 90% 50% at 50% 100%, rgba(255, 255, 255, 0.03), transparent 70%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: var(--color-pine);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+  }
+  :focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.6);
+    outline-offset: 3px;
+  }
+  .on-dark :focus-visible {
+    outline-color: #ffffff;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

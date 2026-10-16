@@ -10,7 +10,7 @@ import {
   useTransform,
 } from "motion/react";
 import { brand } from "@/data/home";
-import { getLenis } from "@/lib/scroll";
+import { getLenis, getIsBackNavigation, saveScrollPosition } from "@/lib/scroll";
 
 /* ------------------------------------------------------------------ */
 /* Timeline (seconds)                                                  */
@@ -28,8 +28,8 @@ type PreloaderImage = { src: string; alt: string };
 const DEFAULT_IMAGES: PreloaderImage[] = [
   { src: "/vitality.jpg", alt: "Vitality Suite" },
   { src: "/longivity.png", alt: "Longevity Infrastructure" },
-  { src: "/performance.jpg", alt: "Performance Lab" },
-  { src: "/wellness.jpg", alt: "Wellness Sanctuary" },
+  { src: "/performance.png", alt: "Performance Lab" },
+  { src: "/wellness.png", alt: "Wellness Sanctuary" },
 ];
 
 /** Centre window aspect ratio (width / height) — the intro images are 4:3. */
@@ -37,7 +37,7 @@ const WINDOW_RATIO = 4 / 3;
 
 /** Must match the first hero slide so the hand-off is seamless. */
 const DEFAULT_FINAL: PreloaderImage = {
-  src: "/recoverry.jpg",
+  src: "/recovery.png",
   alt: "Recovery & Cellular Rejuvenation",
 };
 
@@ -84,12 +84,33 @@ export function LayoutPreloader({
   const counter = useTransform(progress, (v) => String(Math.round(v)).padStart(3, "0"));
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // Check if user has reduced motion preference
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
+
+    // Check if this is a browser reload vs in-session navigation
+    let isReload = false;
+    try {
+      const navEntries = performance.getEntriesByType("navigation") as PerformanceNavigationTiming[];
+      if (navEntries.length > 0 && navEntries[0].type === "reload") {
+        isReload = true;
+      }
+    } catch {
+      // ignore
+    }
+
+    const isBack = getIsBackNavigation();
+    const alreadySeen = sessionStorage.getItem("gpw_intro_seen") === "true";
+
+    // If back navigation or already viewed in this session (and not a hard reload), skip preloader
+    if (reduce || isBack || (alreadySeen && !isReload)) {
       setVisible(false);
       setDone(true);
       return;
     }
+
+    sessionStorage.setItem("gpw_intro_seen", "true");
 
     // Centre box size in px so it can animate to the full viewport.
     const W = window.innerWidth;
@@ -103,23 +124,71 @@ export function LayoutPreloader({
     }
     setRect({ x: (W - w) / 2, y: (H - h) / 2, w, h, vw: W, vh: H });
 
-    // Lock scrolling while the intro runs.
+    // Lock scrolling while the intro runs so user gestures don't leak into scrollY
     const lenis = getLenis();
     lenis?.stop();
     document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    document.body.style.overscrollBehavior = "none";
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+
+    // Prevent wheel, touchmove and scroll keyboard keys during animation
+    const preventScroll = (e: Event) => {
+      e.preventDefault();
+      e.stopPropagation();
+    };
+    const preventKeys = (e: KeyboardEvent) => {
+      if (["Space", "ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End"].includes(e.code)) {
+        e.preventDefault();
+      }
+    };
+
+    window.addEventListener("wheel", preventScroll, { passive: false });
+    window.addEventListener("touchmove", preventScroll, { passive: false });
+    window.addEventListener("keydown", preventKeys);
 
     const counterAnim = animate(progress, 100, {
       duration: expandAt,
       ease: [0.45, 0, 0.2, 1],
     });
 
+    const resetToTop = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      const currentLenis = getLenis();
+      if (currentLenis) {
+        currentLenis.scrollTo(0, { immediate: true });
+        currentLenis.resize();
+      }
+      saveScrollPosition("/", 0);
+    };
+
     const tExpand = window.setTimeout(() => setExpanded(true), expandAt * 1000);
     const tDone = window.setTimeout(
       () => {
+        // Enforce scroll top right before unlocking
+        resetToTop();
+
         setDone(true); // hero video starts playing under the overlay
         setVisible(false); // overlay fades out
+
+        // Clean up listeners & unlock scrolling
+        window.removeEventListener("wheel", preventScroll);
+        window.removeEventListener("touchmove", preventScroll);
+        window.removeEventListener("keydown", preventKeys);
+
         document.documentElement.style.overflow = "";
-        getLenis()?.start();
+        document.body.style.overflow = "";
+        document.body.style.overscrollBehavior = "";
+
+        const currentLenis = getLenis();
+        currentLenis?.start();
+
+        // Enforce hero at the top across several frames to eliminate any buffered momentum
+        resetToTop();
+        requestAnimationFrame(resetToTop);
+        setTimeout(resetToTop, 50);
+        setTimeout(resetToTop, 120);
+        setTimeout(resetToTop, 250);
       },
       (expandAt + expandDuration) * 1000,
     );
@@ -128,7 +197,12 @@ export function LayoutPreloader({
       counterAnim.stop();
       window.clearTimeout(tExpand);
       window.clearTimeout(tDone);
+      window.removeEventListener("wheel", preventScroll);
+      window.removeEventListener("touchmove", preventScroll);
+      window.removeEventListener("keydown", preventKeys);
       document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+      document.body.style.overscrollBehavior = "";
       getLenis()?.start();
     };
   }, [expandAt, progress]);
@@ -144,7 +218,7 @@ export function LayoutPreloader({
             aria-hidden="true"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, transition: { duration: 0.7, ease: "easeOut" } }}
-            className="fixed inset-0 z-[100] overflow-hidden bg-pine"
+            className="fixed inset-0 z-[100] overflow-hidden bg-black"
           >
             {/* Film grain */}
             <div className="pointer-events-none absolute -inset-[20%] z-30 animate-noise opacity-[0.07] mix-blend-overlay [background-image:url('data:image/svg+xml;utf8,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%22200%22%20height=%22200%22%3E%3Cfilter%20id=%22n%22%3E%3CfeTurbulence%20type=%22fractalNoise%22%20baseFrequency=%220.9%22%20numOctaves=%223%22%20stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect%20width=%22100%25%22%20height=%22100%25%22%20filter=%22url(%23n)%22/%3E%3C/svg%3E')]" />
@@ -203,13 +277,13 @@ export function LayoutPreloader({
 
             {/* Brand + counter */}
             <motion.div
-              className="label-mono pointer-events-none absolute inset-x-0 bottom-0 z-20 flex items-end justify-between p-5 text-canvas/80 sm:p-8"
+              className="label-mono pointer-events-none absolute inset-x-0 bottom-0 z-20 flex items-end justify-between p-5 text-neutral-400 sm:p-8"
               initial={{ opacity: 0, y: 12 }}
               animate={expanded ? { opacity: 0, y: -12 } : { opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: EASE_OUT }}
             >
-              <span>{brand.name}</span>
-              <span className="text-3xl font-light tabular-nums tracking-normal text-canvas sm:text-5xl">
+              <span className="text-white font-semibold">{brand.name}</span>
+              <span className="text-3xl font-light tabular-nums tracking-normal text-white sm:text-5xl">
                 <motion.span>{counter}</motion.span>
               </span>
             </motion.div>

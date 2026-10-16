@@ -1,112 +1,142 @@
 "use client";
 
-import { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
-import { solutions, solutionsSection, type Solution } from "@/data/home";
+import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { bentoSlides, type BentoSlideTile } from "@/data/home";
 import { cn } from "@/lib/utils";
-import { MediaFrame } from "./media-frame";
-import { Reveal } from "./reveal";
-import { SectionHeader } from "./section-header";
 
 /**
- * Bento grid (Magic UI "Bento Grid" pattern, rebuilt to brand): tiles sized by
- * priority. Pointer devices play a short loop on hover.
+ * Grid mapping per tile span in the Biotastic-inspired asymmetric bento layout:
  *
- *   desktop (12 col × 2 rows)      tablet (6 col)          mobile (2 col)
- *   ┌───────────┬───────┐          ┌───────────────┐       ┌───────────┐
- *   │           │ Age   │          │   Recover     │       │  Recover  │
- *   │  Recover  ├────┬──┤          ├───────┬───────┤       ├───────────┤
- *   │           │Live│Re│          │ Age   │ Live  │       │  AgeWell  │
- *   └───────────┴────┴──┘          │ Well  ├───────┤       ├─────┬─────┤
- *                                  │       │ Rehab │       │Live │Rehab│
- *                                  └───────┴───────┘       └─────┴─────┘
+ * Desktop (12 col × 2 rows):
+ *   Row 1: [Left Top (3)] [Center Top (3)] [Right Top Wide (6)]  = 12 cols
+ *   Row 2: [Left Bottom (3)] [Center Bottom Wide (6)] [Right Bottom (3)] = 12 cols
  */
-const layout: Record<Solution["priority"], string> = {
-  1: "col-span-2 h-[300px] sm:h-[380px] md:col-span-6 md:h-[440px] lg:col-span-6 lg:row-span-2 lg:h-auto",
-  2: "col-span-2 h-[260px] sm:h-[320px] md:col-span-3 md:row-span-2 md:h-auto lg:col-span-6 lg:row-span-1",
-  3: "col-span-2 h-[220px] sm:col-span-1 sm:h-[260px] md:col-span-3 md:h-[260px] lg:col-span-3 lg:h-auto",
-  4: "col-span-2 h-[220px] sm:col-span-1 sm:h-[260px] md:col-span-3 md:h-[260px] lg:col-span-3 lg:h-auto",
+const tileSpans: Record<BentoSlideTile["span"], string> = {
+  "left-top": "col-span-1 lg:col-span-3 lg:row-span-1 h-[170px] sm:h-[220px] md:h-[260px] lg:h-full",
+  "center-top": "col-span-1 lg:col-span-3 lg:row-span-1 h-[170px] sm:h-[220px] md:h-[260px] lg:h-full",
+  "right-top-wide": "col-span-2 lg:col-span-6 lg:row-span-1 h-[190px] sm:h-[240px] md:h-[280px] lg:h-full",
+  "left-bottom": "col-span-1 lg:col-span-3 lg:row-span-1 h-[170px] sm:h-[220px] md:h-[260px] lg:h-full",
+  "center-bottom-wide": "col-span-2 lg:col-span-6 lg:row-span-1 h-[190px] sm:h-[240px] md:h-[280px] lg:h-full",
+  "right-bottom": "col-span-1 lg:col-span-3 lg:row-span-1 h-[170px] sm:h-[220px] md:h-[260px] lg:h-full",
 };
 
+// Cloned first slide appended to the end for seamless right-to-left infinite loop
+const extendedSlides = [...bentoSlides, bentoSlides[0]];
+
 export function SolutionsBento() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const isPausedRef = useRef(false);
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
+
+  // Auto-scroll every 5 seconds (5000ms) moving right-to-left
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (!isPausedRef.current) {
+        setIsTransitioning(true);
+        setActiveIndex((prev) => prev + 1);
+      }
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  // When transition finishes on the cloned slide (index 4), instantaneously snap back to index 0
+  const handleTransitionEnd = () => {
+    if (activeIndex >= bentoSlides.length) {
+      setIsTransitioning(false);
+      setActiveIndex(0);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsTransitioning(true);
+        });
+      });
+    }
+  };
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+    const distance = touchStartX.current - touchEndX.current;
+    if (distance > 50) {
+      // Swiping right-to-left (next)
+      setIsTransitioning(true);
+      setActiveIndex((prev) => prev + 1);
+    } else if (distance < -50 && activeIndex > 0) {
+      // Swiping left-to-right (previous)
+      setIsTransitioning(true);
+      setActiveIndex((prev) => prev - 1);
+    }
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
+
   return (
-    <section id="solutions" className="bg-canvas py-20 md:py-28 lg:py-32">
-      <div className="shell">
-        <SectionHeader index="01" {...solutionsSection} />
-        <div className="mt-12 grid grid-cols-2 gap-3 md:mt-16 md:grid-cols-6 md:gap-4 lg:grid-cols-12 lg:grid-rows-[340px_300px]">
-          {[...solutions]
-            .sort((a, b) => a.priority - b.priority)
-            .map((s, i) => (
-              <Reveal key={s.id} delay={i * 0.06} className={layout[s.priority]}>
-                <Tile solution={s} />
-              </Reveal>
-            ))}
+    <section
+      id="solutions"
+      className="relative w-full overflow-hidden bg-canvas py-4 sm:py-6 md:py-8"
+      onMouseEnter={() => {
+        isPausedRef.current = true;
+      }}
+      onMouseLeave={() => {
+        isPausedRef.current = false;
+      }}
+    >
+      {/* Full Bleed Corner-to-Corner Slider Container - Images Alone */}
+      <div
+        className="relative w-full px-1 sm:px-2 md:px-3 overflow-hidden"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
+        <div
+          onTransitionEnd={handleTransitionEnd}
+          className={cn(
+            "flex",
+            isTransitioning
+              ? "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+              : "transition-none"
+          )}
+          style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+        >
+          {extendedSlides.map((slide, slideIdx) => (
+            <div key={`${slide.id}-${slideIdx}`} className="w-full shrink-0">
+              <div className="grid grid-cols-2 gap-1.5 sm:gap-2 md:gap-2.5 lg:grid-cols-12 lg:grid-rows-[280px_280px] lg:h-[580px] xl:h-[620px]">
+                {slide.tiles.map((tile) => (
+                  <Link
+                    key={`${slideIdx}-${tile.id}`}
+                    href={slide.url}
+                    className={cn(
+                      "group relative block overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl border border-white/10 bg-neutral-900 transition-all duration-300 hover:border-white/30 hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)]",
+                      tileSpans[tile.span]
+                    )}
+                  >
+                    <div className="relative h-full w-full overflow-hidden bg-neutral-950">
+                      <Image
+                        src={tile.src}
+                        alt={tile.alt}
+                        fill
+                        sizes="(min-width: 1280px) 50vw, (min-width: 768px) 60vw, 100vw"
+                        className="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                      />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
-  );
-}
-
-function Tile({ solution }: { solution: Solution }) {
-  const [hover, setHover] = useState(false);
-  const small = solution.priority >= 3;
-
-  return (
-    <a
-      id={solution.id}
-      href="#equipment"
-      className="group relative block h-full overflow-hidden rounded-panel bg-oat"
-      onPointerEnter={(e) => e.pointerType === "mouse" && setHover(true)}
-      onPointerLeave={() => setHover(false)}
-      onFocus={() => setHover(true)}
-      onBlur={() => setHover(false)}
-    >
-      <div className="absolute inset-0 transition-transform duration-[1200ms] ease-calm group-hover:scale-[1.02]">
-        <MediaFrame
-          media={solution.image}
-          sizes="(min-width: 1024px) 58vw, (min-width: 768px) 100vw, 100vw"
-        />
-        {/* Hover loop — only mounted into view on hover */}
-        <div
-          className={cn(
-            "absolute inset-0 transition-opacity duration-500",
-            hover ? "opacity-100" : "opacity-0",
-          )}
-        >
-          <MediaFrame media={solution.hoverVideo} tone="wood" playing={hover} />
-        </div>
-      </div>
-
-      {/* Caption plate — frosted glassmorphism with blur and slight transparency */}
-      <div
-        className={cn(
-          "absolute inset-x-2 bottom-2 flex items-end justify-between gap-2.5 rounded-card border border-white/50 bg-canvas/75 shadow-[0_8px_24px_rgba(0,0,0,0.06)] backdrop-blur-md transition-all duration-300 group-hover:bg-canvas/85 md:inset-x-3 md:bottom-3",
-          small ? "p-3 sm:p-3.5 md:p-3.5" : "p-3.5 sm:p-4 md:p-5",
-        )}
-      >
-        <div className="min-w-0 flex-1">
-          <h3
-            className={cn(
-              "font-semibold leading-tight tracking-tight text-pine",
-              small ? "text-lg sm:text-base md:text-lg lg:text-xl" : "text-xl sm:text-2xl md:text-3xl",
-            )}
-          >
-            {solution.name}
-          </h3>
-          <p className={cn("mt-1 text-pine/75", small ? "text-xs sm:text-xs md:text-xs lg:text-sm" : "text-xs sm:text-sm")}>
-            {solution.audience}
-          </p>
-        </div>
-        <span
-          aria-hidden="true"
-          className={cn(
-            "grid shrink-0 place-items-center rounded-full border border-pine/15 bg-white text-pine shadow-sm backdrop-blur-sm transition-colors duration-300 group-hover:border-pine group-hover:bg-pine group-hover:text-canvas",
-            small ? "size-8 md:size-9" : "size-9 md:size-10",
-          )}
-        >
-          <ArrowUpRight className={cn(small ? "size-3.5" : "size-4")} />
-        </span>
-      </div>
-    </a>
   );
 }

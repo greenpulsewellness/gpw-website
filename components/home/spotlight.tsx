@@ -1,9 +1,11 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { useInView } from "motion/react";
-import { ArrowRight } from "lucide-react";
-import { productById, spotlight, spotlightSection, type SpotlightItem } from "@/data/home";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { spotlight, spotlightSection, type SpotlightItem } from "@/data/home";
+import { useProducts } from "@/components/products-context";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useEnquiry } from "./enquiry-context";
@@ -28,6 +30,7 @@ export function Spotlight() {
 
 function Machine({ item, index }: { item: SpotlightItem; index: number }) {
   const { enquireProduct } = useEnquiry();
+  const { productById } = useProducts();
   const product = productById(item.productId);
   const flip = index % 2 === 1;
 
@@ -36,8 +39,10 @@ function Machine({ item, index }: { item: SpotlightItem; index: number }) {
       {/* Pinned media */}
       <div className={cn("lg:col-span-7", flip && "lg:order-2")}>
         <div className="relative aspect-[4/5] overflow-hidden rounded-panel sm:aspect-[16/11] lg:sticky lg:top-24 lg:my-12 lg:aspect-auto lg:h-[calc(100svh-8rem)]">
-          <MediaFrame media={item.media} sizes="(min-width: 1024px) 58vw, 100vw" />
-          <span className="label-mono absolute left-4 top-4 rounded-full bg-canvas px-3 py-1.5 text-pine md:left-5 md:top-5">
+          <Link href={`/products/${item.productId}`} className="block h-full w-full group/media">
+            <MediaFrame media={item.media} sizes="(min-width: 1024px) 58vw, 100vw" />
+          </Link>
+          <span className="label-mono absolute left-4 top-4 rounded-full bg-black/80 border border-white/15 px-3 py-1.5 text-white backdrop-blur-md md:left-5 md:top-5 shadow-md">
             {String(index + 1).padStart(2, "0")} / {String(spotlight.length).padStart(2, "0")}
           </span>
         </div>
@@ -51,20 +56,31 @@ function Machine({ item, index }: { item: SpotlightItem; index: number }) {
               <TierBadge key={t} tier={t} />
             ))}
           </div>
-          <h2 className="mt-5 font-semibold text-3xl leading-[1.08] tracking-tight md:text-5xl lg:text-6xl">{item.name}</h2>
-          <p className="mt-4 max-w-sm text-pine/70 md:text-lg">{item.line}</p>
+          <h2 className="mt-5 font-semibold text-3xl leading-[1.08] tracking-tight md:text-5xl lg:text-6xl text-white">
+            <Link href={`/products/${item.productId}`} className="hover:text-white/80 transition-colors">
+              {item.name}
+            </Link>
+          </h2>
+          <p className="mt-4 max-w-sm text-neutral-300 md:text-lg">{item.line}</p>
         </Reveal>
 
-        <ol className="mt-8 border-t border-wood/30 lg:mt-0">
+        <ol className="mt-8 border-t border-white/15 lg:mt-0">
           {item.benefits.map((b, i) => (
             <Benefit key={b} text={b} index={i} />
           ))}
         </ol>
 
-        <div className="pt-8 lg:flex lg:min-h-[45svh] lg:items-start lg:pt-12">
-          <Button size="lg" className="w-full sm:w-auto min-h-[44px]" onClick={() => enquireProduct(item.productId)}>
+        <div className="pt-8 lg:flex lg:min-h-[45svh] lg:items-start lg:pt-12 flex flex-col sm:flex-row gap-3">
+          <Button variant="dark" size="lg" className="w-full sm:w-auto min-h-[44px]" onClick={() => enquireProduct(item.productId)}>
             Enquire<span className="sr-only"> about {item.name}</span> <ArrowRight />
           </Button>
+          <Link
+            href={`/products/${item.productId}`}
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:border-white/50 hover:bg-white/10 hover:text-white transition-colors min-h-[44px]"
+          >
+            <span>Explore Full Specs</span>
+            <ArrowUpRight className="size-4" />
+          </Link>
         </div>
       </div>
     </article>
@@ -79,18 +95,18 @@ function Benefit({ text, index }: { text: string; index: number }) {
     <li
       ref={ref}
       className={cn(
-        "flex gap-4 border-b border-wood/30 py-4 transition-opacity duration-500 sm:gap-5 sm:py-5 md:py-6 lg:min-h-[42svh] lg:items-center lg:py-0",
+        "flex gap-4 border-b border-white/15 py-4 transition-opacity duration-500 sm:gap-5 sm:py-5 md:py-6 lg:min-h-[42svh] lg:items-center lg:py-0",
         active ? "lg:opacity-100" : "lg:opacity-30",
       )}
     >
-      <span className="label-mono flex shrink-0 items-center gap-2 pt-1 text-wood sm:pt-1.5 lg:pt-0">
+      <span className="label-mono flex shrink-0 items-center gap-2 pt-1 text-neutral-400 sm:pt-1.5 lg:pt-0">
         <span
           aria-hidden="true"
-          className={cn("size-1.5 rounded-full transition-colors duration-500", active ? "bg-pine" : "bg-wood/40")}
+          className={cn("size-1.5 rounded-full transition-colors duration-500", active ? "bg-white shadow-[0_0_8px_rgba(255,255,255,0.6)]" : "bg-neutral-600")}
         />
         {String(index + 1).padStart(2, "0")}
       </span>
-      <p className="text-base font-medium leading-snug tracking-tight sm:text-xl md:text-2xl lg:text-[1.875rem] lg:leading-tight">{text}</p>
+      <p className="text-base font-medium leading-snug tracking-tight sm:text-xl md:text-2xl lg:text-[1.875rem] lg:leading-tight text-white">{text}</p>
     </li>
   );
 }

@@ -11,6 +11,7 @@ import {
 } from "motion/react";
 import MorphGallery, { type MorphItem } from "@/components/ui/morph-gallery";
 import { usePreloaderDone } from "@/components/ui/layout-preloader";
+import { getLenis } from "@/lib/scroll";
 
 export type HeroSlide = MorphItem & {
   word: string;
@@ -27,21 +28,21 @@ export const HERO_SLIDES: HeroSlide[] = [
     word: "Recovery",
     description:
       "Advanced contrast therapy, cryo-restoration, and thermal suites engineered to accelerate cellular rejuvenation and deep systemic recovery.",
-    src: "/recoverry.jpg",
+    src: "/recovery.png",
     alt: "Advanced recovery and restoration therapy suite",
   },
   {
     word: "Wellness",
     description:
       "Holistic sensory sanctuaries designed to harmonize circadian rhythms, regulate autonomic tone, and cultivate deep restorative tranquility.",
-    src: "/wellness.jpg",
+    src: "/wellness.png",
     alt: "Holistic wellness sanctuary and sensory suite",
   },
   {
     word: "Performance",
     description:
       "Clinical-grade bio-stacking equipment and hyperbaric conditioning built for elite athletic preparation, cognitive sharpness, and peak endurance.",
-    src: "/performance.jpg",
+    src: "/performance.png",
     alt: "Longevity performance and recovery space",
   },
   {
@@ -55,7 +56,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     word: "Vitality",
     description:
       "Precision physiotherapy, targeted photobiomodulation, and lymphatic drainage technologies crafted for lifetime mobility and sustained vitality.",
-    src: "/vitality.jpg",
+    src: "/vitality.png",
     alt: "Clinical rehabilitation and physiotherapy suite",
   },
 ];
@@ -75,22 +76,24 @@ export function Hero() {
   }, []);
 
   // 3D step-down & receding perspective as second section overrides
-  const scale = useTransform(scrollY, [0, vh], [1, reducedMotion ? 1 : 0.92]);
-  const y = useTransform(scrollY, [0, vh], [0, reducedMotion ? 0 : 40]);
-  const opacity = useTransform(scrollY, [0, vh * 0.85, vh], [1, 0.8, 0.35]);
-  const filter = useTransform(
-    scrollY,
-    [0, vh * 0.7],
-    ["blur(0px)", reducedMotion ? "blur(0px)" : "blur(4px)"]
-  );
+  const scale = useTransform(scrollY, [0, vh], [1, reducedMotion ? 1 : 0.94]);
+  const y = useTransform(scrollY, [0, vh], [0, reducedMotion ? 0 : 30]);
+  const opacity = useTransform(scrollY, [0, vh * 0.85, vh], [1, 0.85, 0.4]);
   const dimOpacity = useTransform(scrollY, [0, vh], [0, reducedMotion ? 0 : 0.5]);
 
   const currentSlide = HERO_SLIDES[activeIndex] ?? HERO_SLIDES[0];
 
-  // Keep active index locked to 0 while preloader is active
+  // Keep active index locked to 0 while preloader is active, and ensure hero is at top upon completion
   useEffect(() => {
     if (!introDone) {
       setActiveIndex(0);
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      const lenis = getLenis();
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+        lenis.resize();
+      }
     }
   }, [introDone]);
 
@@ -102,7 +105,6 @@ export function Hero() {
         scale,
         y,
         opacity,
-        filter,
       }}
       className="sticky top-0 z-0 flex h-[100svh] min-h-[640px] md:min-h-[720px] w-full flex-col bg-neutral-950 p-2 sm:p-3 md:p-4 origin-center will-change-transform overflow-hidden"
     >

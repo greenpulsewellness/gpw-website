@@ -1,0 +1,237 @@
+# GreenPulse Wellness — Full Technical Architecture & Hardware Reference
+
+> Comprehensive documentation of hardware specifications, spatial planning requirements, biophysical mechanisms, and operational protocols for GreenPulse Wellness commercial installations across India.
+
+Canonical URL: https://greenpulsewellness.com
+LLM Quick Index: https://greenpulsewellness.com/llms.txt
+Contact: hello@greenpulsewellness.com | WhatsApp: +91 75500 22504
+Headquarters: India (Pan-India delivery, installation, and on-site biomedical AMC servicing)
+
+---
+
+## 1. Company Architecture & Operating Thesis
+
+GreenPulse Wellness is India's premier turnkey commercial wellness, longevity, and rehabilitation technology partner. We bridge global hardware engineering with Indian real estate and healthcare operations.
+
+### Five Turnkey Pillars
+1. **Global Hardware Curation**: Direct procurement from certified ISO 9001, ISO 13485, CE, and RoHS manufacturing facilities across North America, Europe, and Asia.
+2. **Spatial Engineering & Blueprints**: Architectural layout design, CAD/BIM floor plans, electrical load calculations, HVAC heat/humidity mitigation, acoustic isolation, and plumbing/drainage planning.
+3. **White-Glove Commissioning**: Physical delivery, uncrating, mechanical assembly, calibration, electrical safety verification, and operational stress-testing by certified field engineers.
+4. **Staff & Operator Certification**: On-site training for facility personnel covering safe client intake, modality protocols, sanitization cycles, contraindication screening, and emergency shutdown procedures.
+5. **Continuous Biomedical Maintenance (AMC)**: Scheduled quarterly inspections, consumable replacements (ozone cells, UV lamps, HEPA filters, infrared emitters), 24/7 technical helpdesk, and rapid on-site technician dispatch.
+
+---
+
+## 2. Spatial Solutions & Architectural Requirements
+
+### Solution 01: Recover & Restore
+- **Slug**: `/solutions/recover`
+- **Aliases**: `recover-restore`, `recoverandrestore`, `wellness`
+- **Target Environments**: Luxury hotel spas, longevity clubs, urban bathhouses, golf & athletic clubs, private estate wellness pavilions.
+- **Minimum Footprint**: 450 sq.ft (Single contrast suite).
+- **Optimal Footprint**: 1,200 sq.ft (Multi-user high-throughput sanctuary).
+- **Ceiling Height**: Minimum 9.5 ft (recommended 10.5 ft for ventilation clearance).
+- **Electrical Load**: 3-Phase 415V, 32A to 63A dedicated commercial supply (Infrared cabins draw 3.5kW–9kW; chillers draw 1.2kW–3.0kW).
+- **HVAC & Ventilation**: Dedicated fresh air exchange (minimum 8–10 air changes per hour). Dehumidification system maintaining 40%–55% relative humidity. Heat exhaust ducting directly out of sauna plant room.
+- **Acoustics**: STC 55+ rated partition walls; acoustic ceiling baffles; vibration isolation pads under chillers and pumps.
+- **Plumbing & Drainage**: 2-inch floor drains with P-traps adjacent to cold plunge; non-slip R11 rated wet-area ceramic tiles; dedicated cold water inlet for automatic refill.
+- **Workflow Protocol**:
+  1. Hydration & pre-session rinse (5 mins)
+  2. Full-spectrum infrared hyperthermia (25–35 mins @ 55°C–65°C)
+  3. Cool-down transition / air equilibration (2 mins)
+  4. Sub-5°C cold water immersion (2–3 mins)
+  5. Zero-gravity relaxation & lymphatic recovery (15 mins)
+
+### Solution 02: AgeWell
+- **Slug**: `/solutions/agewell`
+- **Aliases**: `longevity`, `vitality`, `healthy-aging`
+- **Target Environments**: Longevity medicine clinics, executive health assessment centres, biohacking suites, premium senior living residences.
+- **Minimum Footprint**: 500 sq.ft.
+- **Optimal Footprint**: 1,500 sq.ft.
+- **Ceiling Height**: Minimum 9.0 ft.
+- **Electrical Load**: Single-Phase 230V or 3-Phase 415V; dedicated clean power with online UPS backup (6kVA–10kVA) to protect sensitive digital control boards and oxygen concentrators.
+- **HVAC & Ventilation**: Dedicated temperature control maintaining 20°C–22°C ambient room temperature; continuous fresh air feed to support oxygen concentrator intake.
+- **Acoustics**: Low-noise environment (<40 dBA ambient sound level); acoustic soundproofing for compressor and oxygen generator enclosures.
+- **Core Hardware**:
+  - Hard-shell mild hyperbaric oxygen chambers (mHBOT, 1.3 to 2.0 ATA)
+  - Full-body photobiomodulation (PBM) LED canopies (660nm & 850nm)
+  - Metabolic and cellular recovery accessories
+
+### Solution 03: Rehabilitate
+- **Slug**: `/solutions/rehabilitate`
+- **Aliases**: `rehab`, `performance`, `physiotherapy`
+- **Target Environments**: Sports medicine centres, orthopaedic rehabilitation wings, high-performance athletic gyms, professional physiotherapy clinics.
+- **Minimum Footprint**: 600 sq.ft.
+- **Optimal Footprint**: 2,000 sq.ft.
+- **Ceiling Height**: Minimum 10.0 ft.
+- **Electrical Load**: Single-Phase 230V, 16A standard dedicated loops; medical-grade earth leakage circuit breakers (ELCB).
+- **Flooring**: Shock-absorbent, high-density non-porous vinyl or sports rubber with 500+ kg load-bearing capacity.
+- **Core Hardware**:
+  - Motorized multi-section electric drop chiropractic tables
+  - Robotic 4D SL-track spinal decompression massage chairs
+  - High-torque targeted percussion massage systems
+  - Multi-chamber sequential pneumatic compression boots and pants
+
+### Solution 04: Live Well
+- **Slug**: `/solutions/live-well`
+- **Aliases**: `livewell`, `homecare`, `clinical-homecare`
+- **Target Environments**: Post-surgical step-down recovery suites, specialized assisted living facilities, palliative care centres, private home convalescence bedrooms.
+- **Minimum Footprint**: 120 sq.ft per patient room.
+- **Electrical Load**: Standard residential 230V, 10A/16A grounded sockets; surge protection.
+- **Mobility Clearance**: Minimum 36-inch doorway and corridor clearance for wheelchair access; zero threshold entry.
+- **Core Hardware**:
+  - Medical zero-gravity therapeutic loungers
+  - Continuous cold compression wrap systems
+  - Carbon-fiber electric folding power wheelchairs
+  - Flexible rental inventory for post-operative patients
+
+---
+
+## 3. Biophysical Modalities & Mechanisms of Action
+
+### A. Full-Spectrum & Far-Infrared Hyperthermia
+- **Wavelengths**: Near-Infrared (780–1,400 nm), Mid-Infrared (1,400–3,000 nm), Far-Infrared (3,000–100,000 nm).
+- **Biophysical Mechanism**: Far-infrared photons penetrate 3–5 cm into subcutaneous tissue, causing resonance vibrations in cellular water molecules. This induces gentle radiant hyperthermia at comfortable ambient temperatures (50°C–65°C), activating heat shock proteins (HSP70, HSP90), stimulating microvascular endothelial nitric oxide release, and driving deep peripheral vasodilation without the stifling respiratory strain of traditional 90°C dry rock saunas.
+
+### B. Cold Water Immersion & Cryotherapy
+- **Operating Range**: 3°C to 10°C (Cold Plunge); -110°C to -140°C (Whole-Body Cryo).
+- **Biophysical Mechanism**: Immediate cold exposure induces rapid peripheral cutaneous vasoconstriction, shunting blood toward the vital thoracic core. Upon exiting the cold medium, vigorous reactive hyperaemia occurs, flushing metabolic waste from distal tissues. Cold shock triggers systemic norepinephrine release (up to 200–300% increase), down-regulates pro-inflammatory cytokines (IL-6, TNF-alpha), and activates brown adipose tissue (BAT) non-shivering thermogenesis.
+
+### C. Mild Hyperbaric Oxygen Therapy (mHBOT)
+- **Pressure Range**: 1.3 to 2.0 ATA (Absolute Atmosphere).
+- **Oxygen Purity**: 93% to 96% medical-grade O2 via molecular sieve PSA concentrators.
+- **Biophysical Mechanism**: Under Henry's Law of gas solubility, elevating environmental pressure directly dissolves oxygen into blood plasma, cerebrospinal fluid, and interstitial lymph, bypassing hemoglobin-saturation limits. This super-oxygenated plasma diffuses deep into hypoxic, compromised, or post-surgical tissues, stimulating fibroblast proliferation, collagen synthesis, and vascular endothelial growth factor (VEGF) driven neoangiogenesis.
+
+### D. Photobiomodulation (PBM / Red & Near-Infrared Light Therapy)
+- **Wavelengths**: 660 nm (Red spectrum, targeted dermal penetration) + 850 nm (Near-infrared spectrum, deep tissue/muscle/joint penetration).
+- **Irradiance**: 100–150 mW/cm² at surface; pulsing frequencies 10Hz to 40Hz.
+- **Biophysical Mechanism**: Photons at 660nm and 850nm are absorbed by Cytochrome c Oxidase (Unit IV of the mitochondrial respiratory electron transport chain). This photo-acceptor activation displaces inhibitory nitric oxide, restores mitochondrial membrane potential, and dramatically accelerates Adenosine Triphosphate (ATP) production, while modulating reactive oxygen species (ROS) and gene expression for cellular repair.
+
+### E. Dynamic Sequential Pneumatic Compression
+- **Pressure Gradient**: 30 to 240 mmHg over 8 independent overlapping chambers.
+- **Biophysical Mechanism**: Replicates the physiologic muscle pump through sequential peristaltic compression cycles progressing from distal (feet) to proximal (groin). This unidirectional pressure wave mobilizes pooled interstitial fluid, promotes lymphatic drainage, accelerates the clearance of blood lactate and metabolic byproducts, and alleviates lower limb venous congestion.
+
+---
+
+## 4. Hardware Catalog & Technical Specifications
+
+### Saunas & Thermal Suites
+1. **Infrared Sauna Single Full-Spectrum (MStar)**
+   - Dimensions: 900 x 900 x 1900 mm
+   - Power: 1,600W, 230V, Single-Phase, 10A socket
+   - Wood: Certified Canadian Hemlock / Western Red Cedar
+   - Heaters: Carbon/Ceramic full-spectrum emitters (Near, Mid, Far IR)
+   - EMF Rating: Ultra-low EMF (<2.0 mG at body contact distance)
+   - Features: Bluetooth audio, chromotherapy LED lighting, digital touch panel
+
+2. **Infrared Sauna Double Full-Spectrum (MStar)**
+   - Dimensions: 1200 x 1050 x 1900 mm
+   - Power: 2,100W, 230V, Single-Phase, 16A socket
+   - Wood: Canadian Hemlock with double-pane tempered glass frontage
+   - Heaters: 7 full-spectrum infrared heating panels
+
+3. **Infrared Sauna Group Full-Spectrum (MStar)**
+   - Dimensions: 1800 x 1500 x 2000 mm (4-to-6 person capacity)
+   - Power: 4,500W, 230V/415V, dedicated 25A line
+   - Ideal For: Commercial wellness centres, boutique athletic studios, resort spas
+
+4. **Infrared Sauna Combination Suites (MStar)**
+   - Hybrid system combining a traditional Finnish volcanic rock electric stove (6.0kW Harvia) with full-spectrum infrared panels in a single cedar cabin.
+
+### Cold Plunge & Cryotherapy Systems
+1. **Cold Plunge Single Round (YG)**
+   - Dimensions: 1200 mm diameter x 750 mm depth
+   - Chiller Unit: 1.0 HP high-efficiency compressor with dual-mode cooling (down to 3°C) and heating (up to 40°C)
+   - Filtration: 20-micron pleated sediment filter + integrated high-output corona-discharge ozone generator
+   - Tub Material: 304/316 marine-grade stainless steel interior with weatherproof exterior wood cladding
+   - Power: 1,150W, 230V Single-Phase
+
+2. **Cold Plunge Tub Commercial Ice Bath**
+   - Dimensions: 1800 x 850 x 750 mm (ergonomic reclined seating for tall athletes)
+   - Chiller Unit: 1.5 HP commercial chiller with continuous flow pump
+   - Power: 1,500W, 230V Single-Phase
+
+3. **Cold Plunge Foldable AirCore**
+   - Material: Ultra-rigid drop-stitch PVC (inflates to 10–12 PSI)
+   - Weight: 12 kg (tub only); portable for travel, sports team touring, and pop-up recovery zones
+
+4. **Cryo Mini (CryoMe)**
+   - Type: Localized cryogenic cold air / nitrogen vapor device
+   - Output Temperature: -110°C to -130°C targeted cold air stream
+   - Application: Targeted joint swelling, acute tendon sprains, facial aesthetic cryo-therapy
+
+### Hyperbaric Oxygen Chambers (mHBOT)
+1. **HBOT Single Cube Chamber**
+   - Design: Rigid aluminum alloy / stainless steel rectangular cabin with large panoramic viewing windows
+   - Operating Pressure: 1.3 to 1.5 ATA (30–50 kPa overpressure)
+   - Oxygen Concentrator: Medical-grade PSA 10L/min @ 93%–96% purity
+   - Safety: Dual internal and external pressure relief valves, emergency manual depressurization valve, internal call button, two-way wireless interphone
+   - Interior: Ergonomic memory-foam recliner, reading light, air conditioning / cooling loop
+
+2. **HBOT Double Cube Chamber**
+   - Dimensions: 2200 x 1400 x 1800 mm
+   - Capacity: 2 persons simultaneously (parent/child, operator-assisted sessions, executive partner therapy)
+   - Operating Pressure: 1.3 to 2.0 ATA configurable
+
+### Photobiomodulation (PBM) Systems
+1. **LED Therapy Full-Body Clam Bed (M6 & M6L)**
+   - Configuration: 360-degree top and bottom light canopy
+   - Diode Count: 28,000+ medical-grade SMD LEDs
+   - Wavelengths: 660nm (Red) + 850nm (Near-Infrared), independently controllable
+   - Irradiance: 120 mW/cm² at body surface
+   - Cooling: Ultra-quiet cross-flow heat dissipation fans ensuring 50,000-hour diode longevity
+   - Dimensions: 2100 x 950 x 1150 mm; Weight: 180 kg; Power: 2,400W, 230V
+
+2. **LED Therapy Full Stand Chamber**
+   - Upright hexagonal or curved vertical panel array for standing 10-minute PBM immersion sessions
+
+### Dynamic Compression Systems
+1. **PulseWave Pro 8 Air Compression System**
+   - Chambers: 8 overlapping air cells per boot
+   - Pressure: 30–240 mmHg adjustable in 5 mmHg increments
+   - Modes: 6 programmed sequential and peristaltic pulse modes
+   - Attachments: Full-leg boots, 8-chamber recovery pants (hips/glutes/lower back), arm sleeves
+
+2. **PulseWave Studio Multi-Unit Rack**
+   - Central commercial compressor station powering up to 4 or 6 athletes simultaneously with individual touchscreen consoles
+
+3. **PulseWave Heat & Glow Wireless Boots**
+   - Battery-powered integrated compressor boots with active heating (40°C–50°C) and built-in red light diodes
+
+### Robotic Massage & Chiropractic Tables
+1. **Massage Chair Elite MS131**
+   - Mechanism: 4D dual-core biomechanical massage rollers with heated silicone heads
+   - Track: 135 cm SL-track contoured to spinal lordosis and sacral curve
+   - Scanning: Optical body detection and acupressure point mapping
+   - Features: Zero-gravity recline (126° and 137° angles), carbon-fiber back heating, Bluetooth surround audio
+
+2. **Dragon Glide Flex Chiropractic Drop Table**
+   - Sections: 4 drop sections (Cervical, Thoracic, Lumbar, Pelvic) with adjustable manual drop tension
+   - Elevation: Smooth hydraulic or motorized height adjustment from 48 cm to 92 cm
+   - Upholstery: Heavy-duty hospital-grade antimicrobial, oil-resistant vinyl
+
+---
+
+## 5. Commercial Procurement & Service Models
+
+1. **Outright Purchase (CapEx)**: Full hardware acquisition with manufacturer warranty, white-glove delivery, and 1-year complimentary AMC service.
+2. **Operational Equipment Leasing (OpEx)**: 24 to 48-month structured commercial lease agreements for corporate wellness centres and private gym operators.
+3. **Clinical & Homecare Rental**: Flexible month-to-month rental models for post-operative recovery hardware (hyperbaric chambers, localized cold compression, zero-g chairs) across urban centres in India.
+4. **Annual Maintenance Contracts (AMC)**:
+   - **Silver AMC**: Semi-annual preventive servicing, electrical safety checks, filter replacements, standard emergency response SLA (within 48 hours).
+   - **Gold AMC**: Quarterly comprehensive preventive maintenance, all consumable replacements included, priority 24-hour breakdown response SLA, complimentary operator refresher training.
+   - **Platinum AMC (Clinical / Hospital)**: Monthly inspections, 12-hour breakdown dispatch, temporary equipment loaners provided if hardware requires workshop overhaul.
+
+---
+
+## 6. Official Policies & Safety Governance
+
+- **Wellness Stance**: All hardware is supplied exclusively for wellness, athletic recovery, relaxation, and physical rehabilitation support. GreenPulse Wellness does not market equipment as medical treatment or disease cure.
+- **Contraindications**:
+  - Infrared Saunas: Severe cardiovascular instability, acute febrile illness, open skin lesions, first-trimester pregnancy.
+  - Cold Plunges: Raynaud's phenomenon, cold urticaria, uncontrolled hypertension, history of cardiac arrhythmia.
+  - Hyperbarics: Untreated pneumothorax, active ear/sinus infections, severe chronic obstructive pulmonary disease (COPD), severe claustrophobia.
+- **Regulatory Contacts**:
+  - Commercial Inquiries: hello@greenpulsewellness.com
+  - Service Desk: +91 75500 22504
+  - Compliance & Grievance Officer: grievance@greenpulsewellness.com

@@ -110,7 +110,7 @@ export function WhoWeEquip() {
                           href={whatsappUrl(contact.rentalMessage)}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="label-mono inline-flex shrink-0 items-center gap-1.5 self-start rounded-full bg-pine px-3 py-2 text-canvas transition-colors hover:bg-neutral-800"
+                          className="label-mono inline-flex shrink-0 items-center gap-1.5 self-start rounded-full bg-white px-3 py-2 text-neutral-950 font-semibold transition-all hover:bg-neutral-200 shadow-[0_0_12px_rgba(255,255,255,0.2)]"
                         >
                           {a.cta.label} <ArrowUpRight className="size-3.5" />
                         </a>
@@ -118,7 +118,7 @@ export function WhoWeEquip() {
                         <button
                           type="button"
                           onClick={() => enquireAs(a.businessType)}
-                          className="label-mono group relative inline-flex shrink-0 items-center gap-1.5 self-start border-b border-wood/50 pb-1 text-pine/70 transition-colors hover:border-pine hover:text-pine mt-1"
+                          className="label-mono group relative inline-flex shrink-0 items-center gap-1.5 self-start border-b border-white/25 pb-1 text-neutral-300 transition-colors hover:border-white hover:text-white mt-1"
                         >
                           {a.cta.label}
                           <span className="sr-only"> as {a.name}</span>
@@ -199,7 +199,7 @@ export function WhoWeEquip() {
           {audiences.map((a) => (
             <li key={a.id} className="w-[82vw] shrink-0 snap-start">
               <div className="flex h-full flex-col">
-                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-card border border-wood/20 bg-oat">
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-card border border-white/10 bg-[#0d0d0d]">
                   <MediaFrame
                     media={a.image}
                     tone="wood"
@@ -208,7 +208,7 @@ export function WhoWeEquip() {
                 </div>
                 <div className="flex flex-1 flex-col gap-2 pt-4">
                   <div className="flex items-start justify-between gap-3">
-                    <h3 className="text-xl font-semibold leading-snug tracking-tight text-pine">
+                    <h3 className="text-xl font-semibold leading-snug tracking-tight text-white">
                       {a.name}
                     </h3>
                     {a.cta.kind === "rental" ? (
@@ -216,7 +216,7 @@ export function WhoWeEquip() {
                         href={whatsappUrl(contact.rentalMessage)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="label-mono inline-flex shrink-0 items-center gap-1.5 self-start rounded-full bg-pine px-3 py-2 text-canvas transition-colors hover:bg-neutral-800"
+                        className="label-mono inline-flex shrink-0 items-center gap-1.5 self-start rounded-full bg-white px-3 py-2 text-neutral-950 font-semibold transition-all hover:bg-neutral-200 shadow-[0_0_12px_rgba(255,255,255,0.2)]"
                       >
                         {a.cta.label} <ArrowUpRight className="size-3.5" />
                       </a>
@@ -224,7 +224,7 @@ export function WhoWeEquip() {
                       <button
                         type="button"
                         onClick={() => enquireAs(a.businessType)}
-                        className="label-mono group relative inline-flex shrink-0 items-center gap-1.5 self-start border-b border-wood/50 pb-1 text-pine/70 transition-colors hover:border-pine hover:text-pine mt-1"
+                        className="label-mono group relative inline-flex shrink-0 items-center gap-1.5 self-start border-b border-white/25 pb-1 text-neutral-300 transition-colors hover:border-white hover:text-white mt-1"
                       >
                         {a.cta.label}
                         <span className="sr-only"> as {a.name}</span>
@@ -288,7 +288,7 @@ export function WhoWeEquip() {
                 className="w-[82vw] shrink-0 sm:w-[46vw] lg:w-[clamp(320px,26vw,400px)]"
               >
                 <div className="flex h-full flex-col">
-                  <div className="relative aspect-[4/5] max-h-[46vh] w-full overflow-hidden rounded-card border border-wood/20 bg-oat transition-transform duration-300 hover:scale-[1.01]">
+                  <div className="relative aspect-[4/5] max-h-[46vh] w-full overflow-hidden rounded-card border border-white/10 bg-[#0d0d0d] transition-transform duration-300 hover:scale-[1.01]">
                     <MediaFrame
                       media={a.image}
                       tone="wood"
@@ -297,7 +297,7 @@ export function WhoWeEquip() {
                   </div>
                   <div className="flex flex-1 flex-col gap-2 pt-4">
                     <div className="flex items-start justify-between gap-3">
-                      <h3 className="text-xl font-semibold leading-snug tracking-tight text-pine md:text-2xl">
+                      <h3 className="text-xl font-semibold leading-snug tracking-tight text-white md:text-2xl">
                         {a.name}
                       </h3>
                       {a.cta.kind === "rental" ? (
@@ -305,7 +305,7 @@ export function WhoWeEquip() {
                           href={whatsappUrl(contact.rentalMessage)}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="label-mono inline-flex shrink-0 items-center gap-1.5 self-start rounded-full bg-pine px-3 py-2 text-canvas transition-colors hover:bg-neutral-800"
+                          className="label-mono inline-flex shrink-0 items-center gap-1.5 self-start rounded-full bg-white px-3 py-2 text-neutral-950 font-semibold transition-all hover:bg-neutral-200 shadow-[0_0_12px_rgba(255,255,255,0.2)]"
                         >
                           {a.cta.label} <ArrowUpRight className="size-3.5" />
                         </a>
@@ -313,7 +313,7 @@ export function WhoWeEquip() {
                         <button
                           type="button"
                           onClick={() => enquireAs(a.businessType)}
-                          className="label-mono group relative inline-flex shrink-0 items-center gap-1.5 self-start border-b border-wood/50 pb-1 text-pine/70 transition-colors hover:border-pine hover:text-pine mt-1"
+                          className="label-mono group relative inline-flex shrink-0 items-center gap-1.5 self-start border-b border-white/25 pb-1 text-neutral-300 transition-colors hover:border-white hover:text-white mt-1"
                         >
                           {a.cta.label}
                           <span className="sr-only"> as {a.name}</span>

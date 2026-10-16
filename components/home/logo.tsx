@@ -3,7 +3,7 @@ import { brand } from "@/data/home";
 import { cn } from "@/lib/utils";
 
 /** /public/logo-horizontal.png — `light` renders it white for dark/video backgrounds. */
-export function Logo({ light = false, className }: { light?: boolean; className?: string }) {
+export function Logo({ light = true, className }: { light?: boolean; className?: string }) {
   return (
     <Image
       src={brand.logo}

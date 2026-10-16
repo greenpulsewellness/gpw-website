@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
@@ -12,16 +14,19 @@ import { WhatsAppColorIcon } from "./icons";
 import { MediaFrame } from "./media-frame";
 
 const NAV_ITEMS = [
-  { label: "About us", href: "#solutions" },
-  { label: "Equipment", href: "#equipment" },
-  { label: "Suites", href: "#packages" },
-  { label: "Who We Equip", href: "#who-we-equip" },
-  { label: "Questions", href: "#how-we-work" },
-  { label: "Contact", href: "#enquiry" },
+  { label: "About us", href: "/about", sectionId: "about" },
+  { label: "Equipment", href: "/#equipment", sectionId: "equipment" },
+  { label: "Suites", href: "/#packages", sectionId: "packages" },
+  { label: "Who We Equip", href: "/#who-we-equip", sectionId: "who-we-equip" },
+  { label: "Blog", href: "/blog", sectionId: "blog" },
+  { label: "Contact", href: "/#enquiry", sectionId: "enquiry" },
 ];
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+  const isHome = pathname === "/";
   const [activeSection, setActiveSection] = useState<string>("solutions");
   const closeRef = useRef<HTMLButtonElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -43,10 +48,11 @@ export function Nav() {
     };
   }, [open]);
 
-  // Track active section on scroll
+  // Track active section on scroll if on home page
   useEffect(() => {
+    if (!isHome) return;
     const handleScroll = () => {
-      const ids = ["solutions", "equipment", "packages", "who-we-equip", "how-we-work", "enquiry"];
+      const ids = ["solutions", "equipment", "packages", "who-we-equip", "enquiry"];
       const scrollPos = window.scrollY + 200;
       for (const id of ids) {
         const el = document.getElementById(id);
@@ -62,12 +68,14 @@ export function Nav() {
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHome]);
 
-  const goTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
+  const goTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string, sectionId: string) => {
     setOpen(false);
-    requestAnimationFrame(() => requestAnimationFrame(() => scrollToId(href.slice(1))));
+    if (href.startsWith("/#") && isHome) {
+      e.preventDefault();
+      requestAnimationFrame(() => requestAnimationFrame(() => scrollToId(sectionId)));
+    }
   };
 
   const wa = whatsappUrl(contact.floatingMessage);
@@ -80,41 +88,49 @@ export function Nav() {
         <div className="relative pointer-events-auto hidden md:flex items-center">
           {/* Left Ear Fillet Curve */}
           <svg
-            className="absolute -left-4 top-0 h-4 w-4 fill-neutral-950 text-neutral-950 pointer-events-none"
+            className="absolute -left-4 top-0 h-4 w-4 fill-white text-white pointer-events-none"
             viewBox="0 0 16 16"
             aria-hidden="true"
           >
             <path d="M16,0 L0,0 C8.837,0 16,7.163 16,16 L16,0 Z" />
           </svg>
 
-          {/* Notch Body — Clean, zero border, seamless with outer dark frame */}
+          {/* Notch Body — White background with black text */}
           <nav
             aria-label="Main Navigation"
-            className="flex items-center gap-6 rounded-b-[20px] bg-neutral-950 px-7 py-2.5 text-[13px] font-normal text-neutral-300 transition-all duration-300"
+            className="flex items-center gap-6 rounded-b-[20px] bg-white px-7 py-2.5 text-[13px] font-normal text-black shadow-[0_4px_24px_rgba(0,0,0,0.25)] transition-all duration-300"
           >
             {NAV_ITEMS.map((item) => {
-              const isActive = activeSection === item.href.slice(1);
+              const isActive = isHome
+                ? activeSection === item.sectionId
+                : item.sectionId === "about"
+                  ? pathname?.startsWith("/about")
+                  : item.sectionId === "blog"
+                    ? pathname?.startsWith("/blog")
+                    : item.sectionId === "equipment"
+                      ? pathname?.startsWith("/products")
+                      : false;
               return (
-                <a
+                <Link
                   key={item.href}
                   href={item.href}
-                  onClick={(e) => goTo(e, item.href)}
+                  onClick={(e) => goTo(e, item.href, item.sectionId)}
                   className={cn(
                     "text-xs tracking-tight transition-colors duration-200",
                     isActive
-                      ? "text-white font-medium"
-                      : "text-neutral-400 hover:text-white",
+                      ? "text-black font-bold"
+                      : "text-neutral-600 hover:text-black font-medium",
                   )}
                 >
                   {item.label}
-                </a>
+                </Link>
               );
             })}
           </nav>
 
           {/* Right Ear Fillet Curve */}
           <svg
-            className="absolute -right-4 top-0 h-4 w-4 fill-neutral-950 text-neutral-950 pointer-events-none scale-x-[-1]"
+            className="absolute -right-4 top-0 h-4 w-4 fill-white text-white pointer-events-none scale-x-[-1]"
             viewBox="0 0 16 16"
             aria-hidden="true"
           >
@@ -125,7 +141,7 @@ export function Nav() {
         {/* Mobile Notch Button */}
         <div className="relative pointer-events-auto flex md:hidden items-center">
           <svg
-            className="absolute -left-2.5 top-0 h-2.5 w-2.5 fill-neutral-950 text-neutral-950 pointer-events-none"
+            className="absolute -left-2.5 top-0 h-2.5 w-2.5 fill-white text-white pointer-events-none"
             viewBox="0 0 10 10"
             aria-hidden="true"
           >
@@ -136,15 +152,15 @@ export function Nav() {
             ref={toggleRef}
             type="button"
             onClick={() => setOpen(true)}
-            className="flex items-center gap-2 rounded-b-xl bg-neutral-950 px-4 py-1.5 text-xs font-medium text-neutral-200"
+            className="flex items-center gap-2 rounded-b-xl bg-white px-4 py-1.5 text-xs font-semibold text-black shadow-md"
             aria-label="Open navigation menu"
           >
             <span>Navigation</span>
-            <Menu className="size-3.5 text-neutral-400" />
+            <Menu className="size-3.5 text-black" />
           </button>
 
           <svg
-            className="absolute -right-2.5 top-0 h-2.5 w-2.5 fill-neutral-950 text-neutral-950 pointer-events-none scale-x-[-1]"
+            className="absolute -right-2.5 top-0 h-2.5 w-2.5 fill-white text-white pointer-events-none scale-x-[-1]"
             viewBox="0 0 10 10"
             aria-hidden="true"
           >
@@ -162,14 +178,14 @@ export function Nav() {
             aria-modal="true"
             aria-label="Menu"
             data-lenis-prevent
-            className="fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-canvas lg:hidden"
+            className="fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-black lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="shell flex h-16 shrink-0 items-center justify-between border-b border-wood/20">
-              <span className="label-mono text-xs font-semibold tracking-wider text-pine">
+            <div className="shell flex h-16 shrink-0 items-center justify-between border-b border-white/10">
+              <span className="label-mono text-xs font-semibold tracking-wider text-white">
                 Navigation
               </span>
               <Button
@@ -192,14 +208,14 @@ export function Nav() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.05 + i * 0.04 }}
                   >
-                    <a
+                    <Link
                       href={item.href}
-                      onClick={(e) => goTo(e, item.href)}
-                      className="flex items-center justify-between border-b border-wood/15 py-4 text-2xl font-semibold tracking-tight text-pine hover:text-neutral-600 transition-colors"
+                      onClick={(e) => goTo(e, item.href, item.sectionId)}
+                      className="flex items-center justify-between border-b border-white/10 py-4 text-2xl font-semibold tracking-tight text-white hover:text-white/70 transition-colors"
                     >
                       <span>{item.label}</span>
-                      <ArrowUpRight className="size-5 text-wood" />
-                    </a>
+                      <ArrowUpRight className="size-5 text-neutral-400" />
+                    </Link>
                   </motion.li>
                 ))}
               </ul>
@@ -207,9 +223,9 @@ export function Nav() {
 
             <div className="shell grid shrink-0 gap-3 pb-[calc(2rem+env(safe-area-inset-bottom,0px))] pt-8 sm:grid-cols-2">
               <Button asChild size="lg" className="w-full">
-                <a href="#enquiry" onClick={(e) => goTo(e, "#enquiry")}>
+                <Link href="/#enquiry" onClick={(e) => goTo(e, "/#enquiry", "enquiry")}>
                   Enquire Now
-                </a>
+                </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="w-full">
                 <a href={wa} target="_blank" rel="noopener noreferrer">

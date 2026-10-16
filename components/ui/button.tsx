@@ -8,15 +8,20 @@ import { cn } from "@/lib/utils";
  * Lime is reserved for primary CTAs — everything else is pine, wood or white.
  */
 const buttonVariants = cva(
-  "relative inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full font-sans font-medium transition-colors duration-300 ease-calm disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0",
+  "relative inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full font-sans font-medium transition-all duration-300 ease-calm disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0 cursor-pointer",
   {
     variants: {
       variant: {
-        primary: "bg-pine text-canvas hover:bg-neutral-800 hover:text-white shadow-sm [.on-dark_&]:bg-white [.on-dark_&]:text-black [.on-dark_&]:hover:bg-neutral-200",
-        dark: "bg-pine text-canvas hover:bg-neutral-800 hover:text-white shadow-sm [.on-dark_&]:bg-white [.on-dark_&]:text-black [.on-dark_&]:hover:bg-neutral-200",
-        outline: "border border-pine/25 text-pine hover:border-pine hover:bg-pine hover:text-canvas [.on-dark_&]:border-white/40 [.on-dark_&]:text-white [.on-dark_&]:hover:border-white [.on-dark_&]:hover:bg-white [.on-dark_&]:hover:text-black",
-        "outline-light": "border border-white/60 text-white hover:border-white hover:bg-white hover:text-black",
-        ghost: "text-pine hover:bg-oat [.on-dark_&]:text-white [.on-dark_&]:hover:bg-white/10",
+        primary:
+          "bg-white text-neutral-950 font-semibold hover:bg-neutral-200 shadow-sm active:scale-[0.98]",
+        dark:
+          "bg-white text-neutral-950 font-semibold hover:bg-neutral-200 shadow-sm active:scale-[0.98]",
+        outline:
+          "border border-white/20 bg-white/5 text-white hover:border-white/50 hover:bg-white/10 hover:text-white active:scale-[0.98]",
+        "outline-light":
+          "border border-white/30 bg-white/5 text-white hover:border-white hover:bg-white hover:text-neutral-950 active:scale-[0.98]",
+        ghost:
+          "text-neutral-300 hover:bg-white/10 hover:text-white active:scale-[0.98]",
       },
       size: {
         sm: "h-9 px-4 text-sm",

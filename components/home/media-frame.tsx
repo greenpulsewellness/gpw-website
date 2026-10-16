@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import type { MediaSlot } from "@/data/home";
 import { cn } from "@/lib/utils";
+import { skipImageOptimization } from "@/lib/sanity/image";
 import { LazyVideo } from "./lazy-video";
 
 type MediaFrameProps = {
@@ -38,7 +39,7 @@ export function MediaFrame({
   playing,
 }: MediaFrameProps) {
   const [imgError, setImgError] = useState(false);
-  const isExternal = Boolean(media.src?.startsWith("http"));
+  const isExternal = skipImageOptimization(media.src);
 
   useEffect(() => {
     setImgError(false);
@@ -77,9 +78,9 @@ export function MediaFrame({
 }
 
 const tones = {
-  oat: { bg: "bg-oat", frame: "border-wood/40", text: "text-pine/55", meta: "text-wood" },
-  wood: { bg: "bg-zinc-200", frame: "border-wood/40", text: "text-pine/60", meta: "text-pine/45" },
-  pine: { bg: "bg-pine", frame: "border-wood/35", text: "text-canvas/70", meta: "text-wood" },
+  oat: { bg: "bg-[#0d0d0d]", frame: "border-white/10", text: "text-neutral-400", meta: "text-neutral-500" },
+  wood: { bg: "bg-[#141414]", frame: "border-white/15", text: "text-neutral-300", meta: "text-neutral-400" },
+  pine: { bg: "bg-black", frame: "border-white/15", text: "text-white/80", meta: "text-neutral-400" },
 };
 
 function MediaPlaceholder({

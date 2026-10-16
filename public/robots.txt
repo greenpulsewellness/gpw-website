@@ -1,0 +1,100 @@
+# ==============================================================================
+# GreenPulse Wellness Robots Directive (https://greenpulsewellness.com)
+# Purpose: Authorize search engine bots and AI retrieval agents to index all pages.
+# ==============================================================================
+
+User-agent: *
+Allow: /
+Disallow: /studio/
+Disallow: /api/
+
+# OpenAI Search & Crawlers
+User-agent: GPTBot
+Allow: /
+Disallow: /studio/
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /studio/
+Disallow: /api/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /studio/
+Disallow: /api/
+
+# Anthropic Claude Crawlers
+User-agent: ClaudeBot
+Allow: /
+Disallow: /studio/
+Disallow: /api/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /studio/
+Disallow: /api/
+
+# Perplexity AI Crawler
+User-agent: PerplexityBot
+Allow: /
+Disallow: /studio/
+Disallow: /api/
+
+# Google Search & Gemini Extended
+User-agent: Googlebot
+Allow: /
+Disallow: /studio/
+Disallow: /api/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /studio/
+Disallow: /api/
+
+# Applebot & Apple Intelligence
+User-agent: Applebot
+Allow: /
+Disallow: /studio/
+Disallow: /api/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /studio/
+Disallow: /api/
+
+# ByteDance / TikTok
+User-agent: Bytespider
+Allow: /
+Disallow: /studio/
+Disallow: /api/
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+Disallow: /studio/
+Disallow: /api/
+
+# Meta / Facebook AI
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /studio/
+Disallow: /api/
+
+User-agent: FacebookBot
+Allow: /
+Disallow: /studio/
+Disallow: /api/
+
+# Common Crawl & Open AI Research
+User-agent: CCBot
+Allow: /
+Disallow: /studio/
+Disallow: /api/
+
+# Sitemaps
+Sitemap: https://greenpulsewellness.com/sitemap.xml
+
+# LLM Standard Documentation (https://llmstxt.org)
+# Core Summary: https://greenpulsewellness.com/llms.txt
+# Full Technical Specifications: https://greenpulsewellness.com/llms-full.txt

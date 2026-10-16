@@ -1,9 +1,7 @@
 import type Lenis from "lenis";
 
-// Anchors land below the fixed nav via `scroll-padding-top` on <html>
-// (globals.css) — Lenis and native scrolling both honour it.
-
 let lenis: Lenis | null = null;
+let isBackNavigation = false;
 
 export function setLenis(instance: Lenis | null) {
   lenis = instance;
@@ -11,6 +9,42 @@ export function setLenis(instance: Lenis | null) {
 
 export function getLenis() {
   return lenis;
+}
+
+export function setIsBackNavigation(val: boolean) {
+  isBackNavigation = val;
+}
+
+export function getIsBackNavigation() {
+  return isBackNavigation;
+}
+
+const STORAGE_KEY = "gpw_scroll_positions_v1";
+
+export function getSavedScrollPositions(): Record<string, number> {
+  if (typeof window === "undefined") return {};
+  try {
+    const data = sessionStorage.getItem(STORAGE_KEY);
+    return data ? JSON.parse(data) : {};
+  } catch {
+    return {};
+  }
+}
+
+export function saveScrollPosition(path: string, y: number) {
+  if (typeof window === "undefined") return;
+  try {
+    const map = getSavedScrollPositions();
+    map[path] = Math.max(0, Math.round(y));
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(map));
+  } catch {
+    // ignore sessionStorage errors
+  }
+}
+
+export function getSavedScrollForPath(path: string): number | undefined {
+  const map = getSavedScrollPositions();
+  return map[path];
 }
 
 /** Smooth-scroll to a section id (Lenis when active, native otherwise). */
@@ -26,3 +60,14 @@ export function scrollToId(id: string) {
     el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
   }
 }
+
+/** Force immediate scroll to top across Lenis and window. */
+export function scrollToTopImmediate() {
+  if (typeof window === "undefined") return;
+  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  if (lenis) {
+    lenis.scrollTo(0, { immediate: true });
+    lenis.resize();
+  }
+}
+

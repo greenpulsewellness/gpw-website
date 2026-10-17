@@ -175,7 +175,7 @@ export const aboutData = {
       description:
         "High-output recovery zones for athletes and fitness enthusiasts. Rapid lactic acid clearance with dynamic air compression, localized cryotherapy, and deep tissue percussive therapy stations.",
       image: "/Target client/audience-gyms.jpg",
-      modalities: ["Normatec 3 Full-Body Compression", "Heavy-Duty Infrared Saunas", "Ice Bath & Contrast Stations", "Percussive Therapy Bars"],
+      modalities: ["PulseWave Compression Systems", "Heavy-Duty Infrared Saunas", "Ice Bath & Contrast Stations", "Percussive Therapy Bars"],
       typicalFootprint: "300 – 1,500 sq.ft open recovery floor",
       outcomes: ["Faster player turnaround", "Reduced soft tissue downtime", "Durable sweat-resistant upholstery"],
     },
@@ -186,7 +186,7 @@ export const aboutData = {
       description:
         "Electric drop and flexion-distraction chiropractic tables, motorized decompression, and target pneumatic compression that amplify manual physical therapy interventions.",
       image: "/Target client/audience-physio.jpg",
-      modalities: ["ProAdjust Chiropractic Tables", "Pneumatic Compression Systems", "Local Red Light Therapy", "Posture Alignment Tools"],
+      modalities: ["Rise Standing Wheelchairs", "Pneumatic Compression Systems", "Local Red Light Therapy", "Posture Alignment Tools"],
       typicalFootprint: "150 – 500 sq.ft per consulting bay",
       outcomes: ["Reduced therapist fatigue", "Quantifiable client progression", "Ergonomic clinical durability"],
     },

@@ -1,4 +1,10 @@
 import { products, type Product, type ProductId } from "./home";
+import { lumaDetails } from "./luma-details";
+import { mobilityDetails } from "./mobility-details";
+import { deviceDetails } from "./device-details";
+import { compressionDetails } from "./compression-details";
+import { massageChairDetails } from "./massage-chair-details";
+import { hbotDetails } from "./hbot-details";
 
 export type ProductFeature = {
   title: string;
@@ -59,6 +65,12 @@ export type ProductDetail = {
 };
 
 export const productDetails: Record<ProductId, ProductDetail> = {
+  ...lumaDetails,
+  ...mobilityDetails,
+  ...deviceDetails,
+  ...compressionDetails,
+  ...massageChairDetails,
+  ...hbotDetails,
   "infrared-sauna-single-full-spectrum-mstar": {
     id: "infrared-sauna-single-full-spectrum-mstar",
     subtitle: "Single-Person Full Spectrum Far Infrared Sauna (Catalog Model: MS-011FS)",
@@ -298,8 +310,8 @@ export const productDetails: Record<ProductId, ProductDetail> = {
     relatedProductIds: [
       "infrared-sauna-double-full-spectrum-mstar",
       "cold-plunge-single-round-yg",
-      "gbuilt-chillybox",
-      "gp-normatec-3-full-body"
+      "cryo-mini-cryome",
+      "pulsewave-pro-8-air-compression-recovery-system-8-chamber",
     ]
   },
 
@@ -548,7 +560,7 @@ export const productDetails: Record<ProductId, ProductDetail> = {
       "infrared-sauna-single-full-spectrum-mstar",
       "infrared-sauna-group-full-spectrum-mstar",
       "cold-plunge-single-round-yg",
-      "gbuilt-chillybox"
+      "cryo-mini-cryome",
     ]
   },
 
@@ -787,7 +799,7 @@ export const productDetails: Record<ProductId, ProductDetail> = {
       "infrared-sauna-double-full-spectrum-mstar",
       "infrared-sauna-group-full-spectrum-mstar",
       "cold-plunge-single-round-yg",
-      "gp-normatec-3-full-body"
+      "pulsewave-pro-8-air-compression-recovery-system-8-chamber",
     ]
   },
 
@@ -1037,7 +1049,7 @@ export const productDetails: Record<ProductId, ProductDetail> = {
       "infrared-sauna-double-full-spectrum-mstar",
       "infrared-sauna-single-full-spectrum-mstar",
       "cold-plunge-single-round-yg",
-      "gbuilt-chillybox"
+      "cryo-mini-cryome",
     ]
   },
 
@@ -1276,1104 +1288,304 @@ export const productDetails: Record<ProductId, ProductDetail> = {
       "infrared-sauna-group-full-spectrum-mstar",
       "infrared-sauna-double-full-spectrum-mstar",
       "cold-plunge-single-round-yg",
-      "gbuilt-chillybox"
+      "cryo-mini-cryome",
     ]
   },
 
-  "halo-2-infrared-wellness-cabin": {
-    id: "halo-2-infrared-wellness-cabin",
-    subtitle: "Turnkey Two-Person Full-Spectrum Thermal Sanctuary",
-    tagline: "Medical-grade infrared photobiomodulation paired with acoustic tranquility in a bespoke cylindrical architecture.",
+
+
+
+
+
+
+
+  "cold-plunge-single-round-yg": {
+    id: "cold-plunge-single-round-yg",
+    subtitle: "Round Single-Person Cold Plunge Ice Bath (Catalog Model: BST-1MDB)",
+    tagline: "A compact round ice bath with a 304 stainless steel tub, built-in 0.8 HP chiller and circulation filtration, cooling to 3 °C for indoor or outdoor spaces.",
     overview: [
-      "The Halo 2 Infrared Wellness Cabin represents a pinnacle of contemporary recovery engineering, crafted specifically for luxury hospitality suites, longevity clinics, and high-performance sports training facilities.",
-      "Engineered with a curved architectural geometry, the Halo 2 distributes therapeutic far-infrared (FIR), mid-infrared (MIR), and near-infrared (NIR) wavelengths uniformly across the occupants' entire physiological surface. Its low-EMF dual-core carbon and ceramic emitters achieve optimal core thermal elevation without harsh surface scorch.",
-      "The interior is milled from sustainably harvested Grade-A Canadian Hemlock, offering non-toxic thermal stability, natural acoustic dampening, and an understated tactile warmth designed to calm the central nervous system.",
+      "The Arctic Ring (Catalog Model BST-1MDB) is a single-person round cold plunge designed for gyms, spas, recovery studios and homes that want a dedicated cold-immersion station without a large footprint. The exterior measures 90 cm across and 75 cm high, with an interior of 82 cm across and 59 cm deep.",
+      "The tub is lined with 304 stainless steel, and a waterproofed fabric cover keeps the water clean between sessions. A built-in 0.8 HP water chiller can bring the water down to 3 °C (37.4 °F), and a circulation and filtration system keeps the water moving.",
+      "It is a plug-and-plunge unit suited to both indoor and outdoor installation. The exterior is finished with vertical panels and regulation barrel hoops, with premium Canadian cedar or hemlock options also offered.",
     ],
     mechanismOfAction: {
-      heading: "Tri-Wave Photobiomodulation & Core Hyperthermia",
-      description: "Infrared waves at 800nm–1000nm penetrate dermal and subcutaneous tissue layers up to 4cm deep, vibrating water clusters and stimulating cellular energy production.",
+      heading: "Chilled, Filtered Water Immersion",
+      description: "The Arctic Ring holds a body of water at a set cold temperature using its built-in chiller, while the circulation and filtration system keeps the water moving and clean between sessions.",
       points: [
-        "Cytochrome c Oxidase activation stimulates mitochondrial ATP synthesis.",
-        "Deep peripheral vasodilation prompts active microcirculation and nitric oxide liberation.",
-        "Systemic passive cardiovascular output mimics moderate aerobic exercise (elevated stroke volume).",
-        "Heat shock protein (HSP70) synthesis supports cellular proteostasis and muscle recovery.",
+        "Built-in 0.8 HP water chiller cools the water down to 3 °C (37.4 °F).",
+        "Circulation filtration keeps water moving through the filter between uses.",
+        "A 304 stainless steel interior gives a smooth, durable, easy-to-clean surface.",
+        "A waterproofed fabric cover protects the water when the tub is not in use.",
       ],
     },
     features: [
-      {
-        title: "Full-Spectrum 360° Emitters",
-        description: "Strategically arrayed ceramic and carbon panel architecture blanketing anterior, posterior, and plantar zones.",
-        iconName: "Flame",
-      },
-      {
-        title: "Ultra-Low EMF Shielding",
-        description: "Independently certified magnetic flux below 1.5 mG at body contact points for clean bio-hacking sessions.",
-        iconName: "ShieldCheck",
-      },
-      {
-        title: "Medical Chromotherapy & Soundscapes",
-        description: "12-mode multi-diode ceiling chromotherapy array integrated with Bluetooth acoustic surround transducers.",
-        iconName: "Sparkles",
-      },
-      {
-        title: "Smart Digital Touch & Remote App",
-        description: "Precision temperature presets, preheating scheduling, and session timing control from inside or concierge desk.",
-        iconName: "Smartphone",
-      },
+      { title: "Temperature Control", description: "Cools the water down to 3 °C (37.4 °F) with the built-in 0.8 HP chiller.", iconName: "ThermometerSnowflake" },
+      { title: "Indoor or Outdoor Use", description: "Suitable for installation indoors in a studio or outdoors in a garden or courtyard.", iconName: "Wind" },
+      { title: "Circulation Filtration", description: "Water circulation and filtration system keeps the water moving.", iconName: "Sparkles" },
+      { title: "Plug & Plunge", description: "Plug-and-use operation with no complicated installation.", iconName: "Zap" },
+      { title: "Long-Lasting Tub", description: "304 stainless steel interior and regulation barrel hoops built for extended use.", iconName: "ShieldCheck" },
+      { title: "Premium Wood Options", description: "Fine Canadian cedar or hemlock options available for the exterior.", iconName: "Trees" },
     ],
     benefits: [
-      {
-        title: "Rapid Cellular Rejuvenation",
-        description: "Accelerates tissue rebuilding and minimizes post-exertion inflammation via mitochondrial stimulation.",
-        metric: "+25% Cellular ATP",
-      },
-      {
-        title: "Deep Parasympathetic Shift",
-        description: "Downregulates sympathetic fight-or-flight stress responses, significantly increasing Heart Rate Variability.",
-        metric: "Lower Resting HR",
-      },
-      {
-        title: "Microvascular Blood Flow",
-        description: "Expands capillary beds, facilitating nutrient transport and efficient metabolic waste clearance.",
-        metric: "3x Vasodilation",
-      },
-      {
-        title: "Natural Detoxification",
-        description: "Induces deep, non-stifling perspiration that assists in heavy metal and persistent chemical expulsion.",
-        metric: "5x Sweat Toxin Ratio",
-      },
+      { title: "Post-Training Recovery Routine", description: "A dedicated cold-immersion station that supports a recovery routine after exercise.", metric: "Cold Immersion" },
+      { title: "Compact Footprint", description: "A 90 × 75 cm round body fits studios, wellness corners and home spaces.", metric: "Ø 90 cm" },
+      { title: "Easy Daily Care", description: "Stainless steel interior and fabric cover make routine cleaning simple.", metric: "304 Stainless" },
     ],
     specGroups: [
       {
-        category: "Dimensions & Capacity",
+        category: "Primary Specifications",
         items: [
-          { label: "Occupancy", value: "2 Persons (Ergonomic contoured seating)" },
-          { label: "Exterior Dimensions", value: "140 cm (W) × 120 cm (D) × 200 cm (H)" },
-          { label: "Interior Dimensions", value: "130 cm (W) × 110 cm (D) × 188 cm (H)" },
-          { label: "Net Unit Weight", value: "235 kg" },
-          { label: "Door Clearance", value: "Tempered 8mm safety glass with magnetic latch" },
+          { label: "Model", value: "BST-1MDB (1 Person Ice Bath)" },
+          { label: "Capacity", value: "1 person" },
+          { label: "Water Chiller", value: "0.8 HP" },
+          { label: "Lowest Water Temperature", value: "3 °C (37.4 °F)" },
+          { label: "Filtration", value: "Circulation filtration system" },
+          { label: "Installation", value: "Indoor or outdoor, plug & plunge" },
         ],
       },
       {
-        category: "Electrical & Power",
+        category: "Dimensions & Build",
         items: [
-          { label: "Input Voltage", value: "220–240 V AC / 50–60 Hz" },
-          { label: "Power Consumption", value: "2,400 Watts (11 Amps)" },
-          { label: "Circuit Requirement", value: "Dedicated 16A isolated grounded line" },
-          { label: "Warm-Up Time", value: "12–18 minutes to reach optimal 55°C–65°C" },
-        ],
-      },
-      {
-        category: "Thermal & Radiation",
-        items: [
-          { label: "Operating Temperature", value: "30°C to 70°C (Digital step regulation)" },
-          { label: "Wavelength Spectrum", value: "Near (0.8–1.5µm), Mid (1.5–5.6µm), Far (5.6–15µm)" },
-          { label: "EMF Safety Level", value: "< 1.2 mG at 5cm contact distance" },
-          { label: "Wood Sourcing", value: "FSC-certified Canadian Hemlock (Non-allergenic)" },
-        ],
-      },
-      {
-        category: "Certifications & Warranty",
-        items: [
-          { label: "Certifications", value: "CE, RoHS, ISO 9001, ETL Electrical Safety" },
-          { label: "Commercial Warranty", value: "3 Years Comprehensive / 5 Years Emitter Core" },
-          { label: "Installation", value: "Turnkey white-glove assembly & commissioning included" },
+          { label: "Exterior Dimensions", value: "90 × 75 cm (diameter × height)" },
+          { label: "Interior Dimensions", value: "82 × 59 cm (diameter × depth)" },
+          { label: "Interior Material", value: "304 stainless steel tub" },
+          { label: "Exterior Material", value: "PS board with regulation barrel hoop (premium Canadian cedar / hemlock options)" },
+          { label: "Cover", value: "Waterproofed fabric cover" },
         ],
       },
     ],
     whatsIncluded: [
-      "Modular prefabricated Hemlock cylindrical cabin shell",
-      "Full set of carbon & ceramic full-spectrum heating modules",
-      "8mm architectural tempered glass door and stainless steel architectural hardware",
-      "Digital touch control console with integrated smartphone remote gateway",
-      "Medical-grade multi-wavelength chromotherapy ceiling panel",
-      "Bluetooth resonance acoustic transducers with ambient amplifier",
-      "Ergonomic contoured backrest supports and non-slip slatted footwell",
-      "Turnkey assembly toolkit and comprehensive commissioning protocol guide",
+      "BST-1MDB round ice bath tub with 304 stainless steel interior",
+      "Built-in 0.8 HP water chiller",
+      "Circulation filtration system",
+      "Waterproofed fabric cover",
     ],
     protocol: {
-      recommendedDuration: "30 to 45 minutes",
-      frequency: "3 to 5 sessions per week",
+      recommendedDuration: "As advised by your wellness professional",
+      frequency: "Per your recovery programme",
       preparation: [
-        "Hydrate thoroughly with 500ml of mineralized water 30 minutes prior to entry.",
-        "Remove all metal jewelry, wristwatches, and optical eyewear.",
-        "Wear minimalist light cotton swimwear or dry sauna towels to maximize direct dermal exposure.",
+        "Check the water level and confirm the chiller has reached the set temperature.",
+        "Make sure the unit is on a level surface with a suitable power supply.",
       ],
       protocolSteps: [
-        { step: "Phase 1: Induction", instruction: "Set cabin to 50°C and settle onto the ergonomic bench for 10 minutes as capillary expansion begins." },
-        { step: "Phase 2: Deep Core Elevation", instruction: "Gradually allow internal temperature to elevate to 60°C–65°C; engage deep nasal breathing and dim lighting." },
-        { step: "Phase 3: Integration & Cool Down", instruction: "Conclude session, towel down without immediate cold shock, rest for 10 minutes, and replenish electrolytes." },
+        { step: "Prepare", instruction: "Fill the tub, switch on the chiller and let the water reach the desired temperature." },
+        { step: "Immerse", instruction: "Enter slowly and stay for the time recommended by your wellness professional." },
+        { step: "Finish", instruction: "Exit carefully, warm up gradually, and cover the tub after use." },
       ],
       contraindications: [
-        "Severe unstable cardiovascular conditions or decompensated heart failure.",
-        "Active febrile infections or acute inflammatory flare-ups.",
-        "Pregnancy (requires written medical clearance from obstetrician).",
+        "Cold-water immersion is not suitable for everyone. Consult a medical professional first, especially if you have a heart or circulation condition.",
       ],
     },
     suitableEnvironments: [
-      { type: "Longevity & Bio-Hacking Centres", description: "Acts as the thermal anchor preceding cold contrast immersions or hyperbaric sessions." },
-      { type: "5-Star Hotel Spas", description: "Elevates private guest wellness suites with a zero-steam, hygienic, high-aesthetic experience." },
-      { type: "Athletic Performance Clubs", description: "Post-workout structural flush, reducing delayed onset muscle soreness (DOMS) for athletes." },
-      { type: "Private Luxury Residences", description: "Compact cylindrical footprint integrates smoothly into residential master suites or home gyms." },
+      { type: "Gyms & Sports Centres", description: "A compact cold station beside training and recovery areas." },
+      { type: "Spas & Wellness Centres", description: "A single-person plunge for contrast and recovery rituals." },
+      { type: "Private Residences", description: "A round, self-contained cold plunge for home use, indoors or outdoors." },
     ],
     faqs: [
-      {
-        question: "Does the Halo 2 require dedicated plumbing or drainage?",
-        answer: "No. The Halo 2 relies purely on dry infrared radiant heat without steam or condensation. No plumbing, drainage, or water lines are required—only a dedicated 230V electrical feed.",
-      },
-      {
-        question: "How does the Halo 2 maintain ultra-low EMF levels?",
-        answer: "Every heating panel uses patented reverse-flow wiring matrices and conductive carbon shielding that cancels out electromagnetic fields at point of generation, verified below 1.5 mG.",
-      },
-      {
-        question: "What maintenance and sanitation is required between commercial guests?",
-        answer: "The non-porous hem-lock interior and glass surface are cleaned with hospital-grade, alcohol-free botanical sanitizing sprays. Towels are placed on seating surfaces, enabling a fast 5-minute guest turnaround.",
-      },
-      {
-        question: "Can GreenPulse configure custom exterior timber stains or finishes?",
-        answer: "Yes. For bespoke architectural installations, our manufacturing studio provides custom timber stains, smoked glass tints, and bespoke handle hardware to harmonize with your interior design.",
-      },
+      { question: "How cold can the water get?", answer: "The built-in 0.8 HP chiller cools the water down to 3 °C (37.4 °F)." },
+      { question: "Can it be used outdoors?", answer: "Yes. The Arctic Ring is suitable for both indoor and outdoor installation." },
+      { question: "How many people can use it at once?", answer: "It is a single-person ice bath." },
     ],
-    relatedProductIds: [
-      "o2-carbon-hyperbaric-chamber",
-      "gbuilt-chillybox",
-      "gp-normatec-3-full-body",
-      "apex-full-body-massage-chair",
-    ],
+    relatedProductIds: ["cold-plunge-tub-new-ice-bath", "cold-plunge-foldable-aircore", "cryo-mini-cryome"],
   },
 
-  "o2-carbon-hyperbaric-chamber": {
-    id: "o2-carbon-hyperbaric-chamber",
-    subtitle: "High-Flow 1.5–2.0 ATA Hard-Shell Carbon Composite Chamber",
-    tagline: "Cellular hyper-oxygenation delivered within an ultra-rigid carbon monocoque with dual-operator internal controls.",
+  "cold-plunge-tub-new-ice-bath": {
+    id: "cold-plunge-tub-new-ice-bath",
+    subtitle: "Full-Size Composite Cold Plunge Tub (FiberCore Flex Ultra)",
+    tagline: "A one-piece CNC-machined composite tub with patented joints, two-stage filtration and a VGB safety-certified drain, paired with a high-power chiller.",
     overview: [
-      "The O2 Carbon Hyperbaric Chamber represents the zenith of non-invasive regenerative medicine and recovery technology. Fabricated from advanced aerospace-grade carbon fibre composite, it delivers absolute structural rigidity and flawless acoustic isolation.",
-      "Operating at variable pressures between 1.5 ATA and 2.0 ATA (Absolute Atmospheres) with an integrated medical-grade 10L/min 95%+ pure oxygen generator, the chamber dissolves gaseous oxygen directly into blood plasma, cerebrospinal fluid, and interstitial tissues.",
-      "Designed for both operator-assisted clinics and independent luxury residential use, the internal cabin features a full digital touchscreen, climate control, internal intercom, wide ergonomic recline, and panoramic observation ports to eliminate claustrophobia.",
+      "The Arctic Tub (FiberCore Flex Ultra) is a full-size cold plunge designed as a flexible, powerful combination paired with the most powerful chiller in the range. The setup is simple and intelligent, built to deliver a smooth, cloud-like ice bath experience.",
+      "The shell is a one-piece, CNC-machined composite tub made with custom-designed parts and full patent coverage. A patented dedicated joint sets the industry standard, and an integrated top filter housing makes filter replacement fast and easy.",
+      "Water circulation is improved by patented water nozzles and return water ports, backed by a two-stage filtration system. The tub integrates a VGB safety-certified drain and bathtub design.",
     ],
     mechanismOfAction: {
-      heading: "Henry's Law & Plasma Oxygen Dissolution",
-      description: "Under elevated atmospheric pressure, oxygen is driven into blood plasma in concentrations up to 10–15 times higher than normal atmospheric breathing, independent of red blood cell hemoglobin saturation.",
+      heading: "Circulated, Two-Stage Filtered Cold Water",
+      description: "The Arctic Tub keeps chilled water circulating through patented nozzles and return ports, and passes it through a two-stage filtration system housed in the top of the unit.",
       points: [
-        "Hyper-saturates hypoxic tissues and poorly vascularized zones (cartilage, tendons, deep brain).",
-        "Triggers massive VEGF-mediated angiogenesis (sprouting of novel capillary micro-vessels).",
-        "Stimulates bone marrow release of CD34+ pluripotent stem cells by up to 800%.",
-        "Downregulates pro-inflammatory cytokines while dramatically enhancing bactericidal white blood cell action.",
+        "Patented water nozzles and return water ports improve circulation through the tub.",
+        "Two-stage filtration keeps the water clean between sessions.",
+        "An integrated top filter housing makes filter changes quick and simple.",
+        "A VGB safety-certified drain is integrated into the tub design.",
       ],
     },
     features: [
-      {
-        title: "Aerospace Carbon Monocoque",
-        description: "Seamless carbon fibre construction rated to 3.0 ATA safety test pressure with zero flex or pressure fatigue.",
-        iconName: "Activity",
-      },
-      {
-        title: "Dual Internal/External Touch Consoles",
-        description: "Both occupant and supervising clinician can monitor real-time pressure curves, O2 concentration, and timer.",
-        iconName: "Monitor",
-      },
-      {
-        title: "High-Flow Medical O2 Concentrator",
-        description: "Oil-free medical PSA molecular sieve delivering 10 L/min of continuous 95% ±3% pharmaceutical-grade oxygen.",
-        iconName: "Wind",
-      },
-      {
-        title: "Active Dehumidification & Climate Loop",
-        description: "Quiet recirculating air conditioning maintains interior temperatures between 18°C and 22°C with zero humidity buildup.",
-        iconName: "ThermometerSnowflake",
-      },
+      { title: "One-Piece Composite Shell", description: "Built from composite material as a one-piece CNC-machined shell.", iconName: "Layers" },
+      { title: "Patented Dedicated Joint", description: "Custom-designed parts with full patent coverage and a patented joint that sets industry standards.", iconName: "ShieldCheck" },
+      { title: "Integrated Top Filter Housing", description: "Fast and easy filter replacement from the top of the unit.", iconName: "Sliders" },
+      { title: "Patented Nozzles & Return Ports", description: "Water nozzles and return water ports are designed to enhance circulation.", iconName: "Wind" },
+      { title: "Two-Stage Filtration", description: "A two-stage filtration system keeps the water clean.", iconName: "Sparkles" },
+      { title: "VGB-Certified Drain", description: "Integrates a VGB safety-certified drain and bathtub design.", iconName: "Award" },
     ],
     benefits: [
-      {
-        title: "Stem Cell Mobilization",
-        description: "Stimulates systemic release of repair stem cells to accelerate post-surgical and athletic healing.",
-        metric: "+800% CD34+ Stem Cells",
-      },
-      {
-        title: "Deep Tissue Oxygenation",
-        description: "Forces dissolved oxygen into deprived micro-vascular areas, accelerating metabolic recovery.",
-        metric: "15x Dissolved Plasma O2",
-      },
-      {
-        title: "Neuro-Cognitive Regeneration",
-        description: "Enhances cerebral oxygen metabolism, reducing cognitive fatigue and promoting neuroplasticity.",
-        metric: "Peak Mental Clarity",
-      },
-      {
-        title: "Angiogenesis Stimulation",
-        description: "Induces the biological formation of new micro-capillaries in recovering musculoskeletal tissues.",
-        metric: "Novel Capillary Growth",
-      },
+      { title: "Roomy Full-Size Tub", description: "Up to 483 litres of capacity in a 170 × 80 cm footprint.", metric: "Up to 483 L" },
+      { title: "Easy Filter Care", description: "Top-mounted filter housing speeds up routine maintenance.", metric: "Quick Swap" },
+      { title: "Built for Commercial Spaces", description: "Composite one-piece shell and certified drain suit gyms, spas and recovery centres.", metric: "Durable Shell" },
     ],
     specGroups: [
       {
-        category: "Chamber Specifications",
+        category: "Tub Options",
         items: [
-          { label: "Working Pressure Range", value: "1.3 ATA to 2.0 ATA (30 kPa to 100 kPa relative)" },
-          { label: "Chamber Shell Material", value: "Toray Aerospace-Grade Carbon Composite Monocoque" },
-          { label: "Length / Outer Diameter", value: "225 cm Length × 90 cm Diameter" },
-          { label: "Total System Weight", value: "165 kg (Chamber) / 85 kg (Auxiliary Support Skid)" },
-          { label: "Entry Window Ports", value: "Triple 20mm optical acrylic observation ports" },
+          { label: "Option 1 Capacity", value: "127.6 gal (483 L)" },
+          { label: "Option 1 Dimensions", value: "170 × 80 × 66 cm (66.9 × 31.1 × 26 in)" },
+          { label: "Option 2 Capacity", value: "111.2 gal (421 L)" },
+          { label: "Option 2 Dimensions", value: "170 × 80 × 60 cm (66.9 × 31.1 × 24 in)" },
+          { label: "Material", value: "Acrylic + fibre + resin composite" },
         ],
       },
       {
-        category: "Oxygen & Air System",
+        category: "Filtration & Safety",
         items: [
-          { label: "Oxygen Delivery System", value: "Integrated 10 L/min 95% ±3% PSA Medical Concentrator" },
-          { label: "Compressor Type", value: "Twin oil-free medical scroll compressors with dual particle filters" },
-          { label: "Pressurization Rate", value: "Variable: 1.0 kPa/min to 5.0 kPa/min (occupant controlled)" },
-          { label: "Emergency Depressurization", value: "Mechanical emergency dump valve opens to atmospheric in < 30s" },
-        ],
-      },
-      {
-        category: "Electrical & Facilities",
-        items: [
-          { label: "Power Supply", value: "220–240 V AC, 50/60 Hz, Single Phase" },
-          { label: "Total Running Load", value: "1,850 Watts during pressurization / 900W continuous" },
-          { label: "Internal Communication", value: "Two-way full duplex hands-free noise-cancelling intercom" },
-          { label: "Cooling & Filtration", value: "Medical HEPA filter with integrated closed-loop air chiller" },
-        ],
-      },
-      {
-        category: "Compliance & Safety",
-        items: [
-          { label: "Certifications", value: "CE Medical Class IIa, ISO 13485, ASME PVHO Pressure Vessel Standards" },
-          { label: "Warranty", value: "3 Years Comprehensive Commercial Warranty on all mechanical systems" },
+          { label: "Filtration", value: "Two-stage filtration system" },
+          { label: "Filter Housing", value: "Integrated top filter housing" },
+          { label: "Circulation", value: "Patented water nozzles and return water ports" },
+          { label: "Drain", value: "VGB safety-certified" },
         ],
       },
     ],
     whatsIncluded: [
-      "Rigid carbon-fibre monocoque hyperbaric chamber with ergonomic memory foam mattress",
-      "Medical-grade 10L/min 95% oxygen concentrator with dual cooling unit",
-      "Oil-free silent air compressor station with sub-micron air filtration cascade",
-      "Internal and external interactive touchscreen control computers with telemetry logging",
-      "Dual non-rebreather oxygen delivery face masks and specialized medical nasal cannulas",
-      "Two-way communications console and emergency quick-release valves",
-      "White-glove delivery, pneumatic calibration, and staff clinical certification course",
+      "FiberCore Flex Ultra one-piece composite tub",
+      "Chiller unit (the most powerful chiller in the range)",
+      "Integrated top filter housing with two-stage filtration",
+      "Patented water nozzles and return water ports",
+      "VGB safety-certified drain",
     ],
     protocol: {
-      recommendedDuration: "60 to 90 minutes",
-      frequency: "3 to 5 sessions per week (Course of 20–40 sessions for deep protocols)",
+      recommendedDuration: "As advised by your wellness professional",
+      frequency: "Per your recovery programme",
       preparation: [
-        "Wear 100% natural cotton clothing; strictly no synthetic polyesters or static-generating fibres.",
-        "Remove all petroleum-based cosmetics, lotions, electronic devices, lighters, or cell phones.",
-        "Practice ear-clearing techniques (Valsalva maneuver or swallowing) prior to pressurization initiation.",
+        "Confirm the water level and that the chiller has reached the set temperature.",
+        "Check the filter housing and make sure the area around the tub is dry and non-slip.",
       ],
       protocolSteps: [
-        { step: "Phase 1: Pressurization", instruction: "Gradually increase pressure over 10–15 minutes to target ATA (1.5–2.0), clearing Eustachian tubes regularly." },
-        { step: "Phase 2: Hyperoxic Plateau", instruction: "Breathe pharmaceutical oxygen via mask for 50–70 minutes while relaxing, listening to audio, or reading." },
-        { step: "Phase 3: Depressurization", instruction: "Smoothly vent chamber over 10 minutes back to atmospheric baseline before unlocking the door." },
+        { step: "Prepare", instruction: "Fill the tub, start the chiller and let the water settle at the desired temperature." },
+        { step: "Immerse", instruction: "Enter slowly and stay for the time recommended by your wellness professional." },
+        { step: "Finish", instruction: "Exit carefully, warm up gradually and let the filtration run as needed." },
       ],
       contraindications: [
-        "Untreated pneumothorax (absolute contraindication).",
-        "Severe acute ear infection or blocked Eustachian tubes.",
-        "High-dose active chemotherapy regimens (e.g. Doxorubicin, Cisplatin) without oncologist clearance.",
+        "Cold-water immersion is not suitable for everyone. Consult a medical professional first, especially if you have a heart or circulation condition.",
       ],
     },
     suitableEnvironments: [
-      { type: "Longevity & Preventive Health Clinics", description: "Flagship biological age reversal, cognitive clarity, and vascular restoration therapy." },
-      { type: "Elite Athletic Training Centres", description: "Drastically shortens soft-tissue recovery timelines and rehabilitates musculoskeletal trauma." },
-      { type: "High-End Residential Estates", description: "Provides private, convenient daily cellular maintenance in executive home wellness suites." },
+      { type: "Gyms & Sports Teams", description: "A full-size plunge for training and recovery blocks." },
+      { type: "Spas & Longevity Centres", description: "A premium contrast-therapy station alongside saunas." },
+      { type: "Private Residences", description: "A durable one-piece tub for dedicated home recovery rooms." },
     ],
     faqs: [
-      {
-        question: "How does this hard-shell carbon chamber differ from soft inflatable bags?",
-        answer: "Inflatable soft chambers cannot exceed 1.3 ATA and cannot deliver true clinical-grade hyperbaric pressures. The O2 Carbon reaches true 2.0 ATA in a rigid, safe shell that ensures maximum Henry's law oxygen dissolution.",
-      },
-      {
-        question: "Can an individual operate the chamber alone safely from the inside?",
-        answer: "Yes. The chamber features dual mirrored controls, meaning all pressurization, ventilation, lighting, and emergency release mechanisms can be managed autonomously from inside or by an outside attendant.",
-      },
-      {
-        question: "What ear sensations occur during pressurization?",
-        answer: "Similar to descending in an airplane, the occupant feels a gentle pressure in the ears. Simple swallowing, yawning, or the Valsalva maneuver equalizes the middle ear effortlessly within seconds.",
-      },
-      {
-        question: "What maintenance is required for commercial daily operation?",
-        answer: "Daily maintenance consists of wipe-down sanitation of masks and mattress. The air filtration system and oxygen concentrator molecular sieves require simple annual filter cartridge replacements.",
-      },
+      { question: "What sizes are available?", answer: "Two tub options: 483 L at 170 × 80 × 66 cm, and 421 L at 170 × 80 × 60 cm." },
+      { question: "What is the tub made of?", answer: "A one-piece, CNC-machined composite shell made from acrylic, fibre and resin." },
+      { question: "How is the water kept clean?", answer: "A two-stage filtration system with an integrated top filter housing makes replacement quick and easy." },
     ],
-    relatedProductIds: [
-      "halo-2-infrared-wellness-cabin",
-      "gbuilt-chillybox",
-      "gp-normatec-3-full-body",
-      "apex-full-body-massage-chair",
-    ],
+    relatedProductIds: ["cold-plunge-single-round-yg", "cold-plunge-foldable-aircore", "cryo-mini-cryome"],
   },
 
-  "gbuilt-chillybox": {
-    id: "gbuilt-chillybox",
-    subtitle: "Whole-Body Electric Cryotherapy Chamber (-110°C to -140°C)",
-    tagline: "True nitrogen-free sub-zero cryogenic shock for systemic anti-inflammatory and endorphin release.",
+  "cryo-mini-cryome": {
+    id: "cryo-mini-cryome",
+    subtitle: "Compact Automated Cryosauna (Cryome Mini)",
+    tagline: "A fully automated cryosauna that needs no assembly, with a 7\" touch screen, a 1 m² footprint and an operating range of −110 to −180 °C.",
     overview: [
-      "The GBuilt Chillybox is an industry-defining electric whole-body cryotherapy (WBC) chamber engineered to replace hazardous liquid-nitrogen tanks with clean, breathable sub-zero chilled air.",
-      "Delivering continuous true chamber temperatures down to -140°C (-220°F), the Chillybox exposes the user's entire body—including the shoulders, neck, and nervous system—to non-convective dry cold.",
-      "This rapid thermal drop triggers profound vasoconstriction, an intense rush of norepinephrine, and systemic downregulation of pro-inflammatory cytokines, followed by deep secondary vasodilation upon exit.",
+      "The Arctic Zero (Cryome Mini) is a compact cryosauna built for centres that want to offer cryotherapy in a small space. It has a footprint of about 1 square metre, with overall dimensions of roughly 176 cm high, 112 cm long and 95 cm wide, and it does not require assembly.",
+      "Operation is fully automated to help prevent human error, controlled from a 7\" touch screen with intuitive operation. An electric elevator adjusts the customer's position in the cabin, and the unit connects over Wi-Fi or LAN for remote maintenance and software updates.",
+      "The Mini runs at −110 to −180 °C with a pre-cooling time of up to 5 minutes, and is supplied with a 3-year warranty. Liquid nitrogen can be supplied from a pressurised tank or a non-pressurised Dewar.",
     ],
     mechanismOfAction: {
-      heading: "Neuro-Vascular Cold Shock Kinetics",
-      description: "Immediate cutaneous thermoreceptor activation stimulates the sympathetic nervous system and triggers a potent fight-or-flight metabolic flush.",
+      heading: "Automated Liquid-Nitrogen Cold Exposure",
+      description: "The cryosauna cools its cabin using liquid nitrogen, pre-cooling in up to 5 minutes and running short sessions under automated control.",
       points: [
-        "Rapid peripheral vasoconstriction shunts blood from extremities to vital central organs.",
-        "Triggers substantial norepinephrine and beta-endorphin release, elevating mood and suppressing pain.",
-        "Post-session rapid re-perfusion delivers oxygen-rich, nutrient-dense blood back to peripheral muscles.",
-        "Suppresses inflammatory markers including TNF-alpha, IL-1beta, and C-reactive protein (CRP).",
+        "Operating temperature range of −110 to −180 °C.",
+        "Pre-cooling to −100 °C uses about 3.25 litres of liquid nitrogen.",
+        "A 3-minute session uses about 2.48 litres of liquid nitrogen.",
+        "Fully automated operation helps prevent human error.",
       ],
     },
     features: [
-      {
-        title: "100% Electric Cooling Cascade",
-        description: "Zero nitrogen tanks, zero asphyxiation risk; uses medical multi-stage refrigeration compressors.",
-        iconName: "Snowflake",
-      },
-      {
-        title: "True Breathable Sub-Zero Air",
-        description: "Occupants breathe pure oxygenated chilled air inside the cabin without needing head-out designs.",
-        iconName: "Wind",
-      },
-      {
-        title: "Heated Multi-Pane Observation Window",
-        description: "Anti-fog condensation-free heated panoramic glass keeps the occupant visible and comfortable.",
-        iconName: "Eye",
-      },
-      {
-        title: "Rapid Pre-Chill & Rapid Turnaround",
-        description: "Reaches full operating temperature in under 45 minutes; ready for back-to-back commercial client sessions.",
-        iconName: "Zap",
-      },
+      { title: "No Assembly Required", description: "Delivered ready to install, with a compact 1 m² footprint.", iconName: "Maximize" },
+      { title: "7\" Touch Screen", description: "Intuitive operation from a 7\" touch screen with Wi-Fi / LAN connectivity.", iconName: "Monitor" },
+      { title: "Fully Automated", description: "Automated operation is designed to prevent human error.", iconName: "Sliders" },
+      { title: "Electric Elevator", description: "An electric elevator adjusts the customer's position in the cabin.", iconName: "Move" },
+      { title: "Remote Support", description: "Remote maintenance and software updates over Wi-Fi / LAN.", iconName: "Smartphone" },
+      { title: "Built-In Safety", description: "Nitrogen overflow and level sensors, open-door sensor, pressure release valve and emergency stop.", iconName: "ShieldCheck" },
     ],
     benefits: [
-      {
-        title: "Intense Pain & Swelling Relief",
-        description: "Dramatically reduces joint inflammation, tendonitis, and acute athletic soreness.",
-        metric: "Instant Analgesia",
-      },
-      {
-        title: "Norepinephrine & Mood Surge",
-        description: "Stimulates neurochemical cascades that boost alertness, energy, and mental clarity.",
-        metric: "+250% Norepinephrine",
-      },
-      {
-        title: "Metabolic Caloric Activation",
-        description: "Stimulates brown adipose tissue (BAT) thermogenesis, increasing basal metabolic calorie expenditure.",
-        metric: "500–800 kcal Burn",
-      },
-      {
-        title: "Immune System Conditioning",
-        description: "Regular sub-zero exposure optimizes white blood cell counts and resilient systemic immunity.",
-        metric: "Enhanced Immunity",
-      },
+      { title: "Small Footprint", description: "Fits a treatment room with a footprint of about 1 m².", metric: "1 m²" },
+      { title: "Quick to Start", description: "Pre-cooling takes 5 minutes at most.", metric: "≤ 5 min" },
+      { title: "Peace of Mind", description: "3-year warranty with operator training provided onsite and through a free online course.", metric: "3-Year Warranty" },
     ],
     specGroups: [
       {
-        category: "Performance & Temperature",
+        category: "Performance & Power",
         items: [
-          { label: "Temperature Range", value: "-110°C to -140°C (-166°F to -220°F)" },
-          { label: "Cooling Medium", value: "Electric multi-stage cascade refrigeration (Eco-friendly refrigerant)" },
-          { label: "Session Duration", value: "2 to 3.5 minutes per session" },
-          { label: "Capacity", value: "Single occupant / Continuous commercial duty cycle" },
+          { label: "Product Type", value: "Cryosauna" },
+          { label: "Operating Temperature", value: "−110 to −180 °C" },
+          { label: "Pre-Cooling Time", value: "5 minutes maximum" },
+          { label: "Power Requirement", value: "1.5 kW" },
+          { label: "Display", value: "7\" touch screen" },
+          { label: "Connectivity", value: "Wi-Fi / LAN" },
+          { label: "Warranty", value: "3 years" },
         ],
       },
       {
-        category: "Dimensions & Footprint",
+        category: "Dimensions",
         items: [
-          { label: "Chamber External", value: "115 cm (W) × 125 cm (D) × 225 cm (H)" },
-          { label: "Machine Unit External", value: "120 cm (W) × 90 cm (D) × 180 cm (H)" },
-          { label: "Total Footprint Needed", value: "Approximately 3.5m × 3m dedicated plant room/space" },
-          { label: "Chamber Weight", value: "380 kg" },
+          { label: "Overall Dimensions", value: "~176 (H) × ~112 (L) × ~95 (W) cm" },
+          { label: "Footprint", value: "1 m²" },
+          { label: "Standard (Medium) Cabin", value: "External 174 H × 100 L × 85 W cm; internal height 160 cm" },
+          { label: "Small (S) Cabin", value: "External 174 H × 90 L × 75 W cm; internal height 160 cm" },
+          { label: "Large (L) Cabin", value: "External 184 H × 100 L × 85 W cm; internal height 170 cm" },
         ],
       },
       {
-        category: "Electrical & Facilities",
+        category: "Liquid Nitrogen",
         items: [
-          { label: "Power Requirement", value: "400 V, 3-Phase, 50 Hz (or 208V 3-Phase 60 Hz)" },
-          { label: "Connected Load", value: "7.5 kW continuous / 9.5 kW peak startup" },
-          { label: "Acoustic Insulation", value: "Heavy-duty thermal acoustic baffling (< 62 dBA operating)" },
-          { label: "Exhaust Requirement", value: "External condenser heat rejection ducting or split water-chilled unit" },
+          { label: "Pre-Cooling to −100 °C", value: "3.25 litres" },
+          { label: "Per 3-Minute Session", value: "2.48 litres" },
+          { label: "Supply Options", value: "Pressurised tank (e.g. CrioLab4, HVM 200 L) or non-pressurised Dewar" },
         ],
       },
       {
-        category: "Safety & Monitoring",
+        category: "Safety Features",
         items: [
-          { label: "Safety Sensor Suite", value: "Dual O2 level sensors, emergency push-to-open door, internal kill-switch" },
-          { label: "Certifications", value: "CE, ISO 9001, UL Electrical Safety Certified" },
-          { label: "Commercial Warranty", value: "2 Years Parts & Compressor / Full remote diagnostic monitoring" },
+          { label: "Sensors", value: "Nitrogen overflow sensor, nitrogen level sensor, open-door sensor" },
+          { label: "Protection", value: "Nitrogen pressure release valve, emergency stop" },
         ],
       },
     ],
     whatsIncluded: [
-      "GBuilt Chillybox insulated whole-body chamber with heated glass entry door",
-      "External multi-stage electric cascade refrigeration module with digital PLC controller",
-      "Operator touchscreen control tablet with client management and session presets",
-      "Protective extremity wear kit (thermal gloves, earmuffs, sub-zero face masks, felt booties)",
-      "Internal emergency release push-bars and audio intercom communication system",
-      "Full turnkey installation, commissioning, and staff operator safety training certification",
+      "Cryome Mini cryosauna (standard Medium cabin; Small and Large sizes available)",
+      "Protective cover and collar for shoulders and upper torso",
+      "Gloves for arm protection",
+      "Footwear",
+      "Elevator pads for customer position adjustment",
+      "Optional: Bluetooth audio system and controllable LED mood lighting under the cabin",
+      "Standard and custom colour options for the outer shell and interior upholstery",
     ],
     protocol: {
-      recommendedDuration: "2.5 to 3.5 minutes",
-      frequency: "2 to 4 sessions per week (Daily for acute sports training blocks)",
+      recommendedDuration: "Sessions of around 3 minutes (as configured by the operator)",
+      frequency: "Per your operator's programme",
       preparation: [
-        "Skin must be 100% dry; no sweat, moisture, lotions, or damp clothing.",
-        "Wear dry wool socks, felt slippers, thermal gloves, headband/earmuffs, and a dry cotton face mask.",
-        "Remove all piercings and metallic jewelry from direct skin contact.",
+        "Operate the unit only with a trained operator, and follow the manufacturer's training and safety procedures.",
+        "Pre-cool the cabin (up to 5 minutes) before the first session.",
       ],
       protocolSteps: [
-        { step: "Pre-Check", instruction: "Operator confirms baseline blood pressure and validates that skin is thoroughly dried." },
-        { step: "Entry & Session", instruction: "Enter the chamber at -120°C. Walk in slow gentle circles, keeping arms relaxed away from torso." },
-        { step: "Exit & Active Re-Warming", instruction: "Exit smoothly, step into ambient room temperature, and perform 5–10 minutes of gentle light mobility or stationary cycling." },
+        { step: "Prepare", instruction: "Fit the protective cover and collar, gloves and footwear, and set the elevator to the guest's height." },
+        { step: "Session", instruction: "Run the automated session from the touch screen for the programmed time." },
+        { step: "Finish", instruction: "Leave the cabin carefully, and check nitrogen level and supply before the next guest." },
       ],
       contraindications: [
-        "Severe hypertension (BP > 160/100 mmHg).",
-        "Raynaud's phenomenon or cold-induced urticaria / allergy.",
-        "Unstable angina, recent myocardial infarction, or deep vein thrombosis (DVT).",
+        "Cryotherapy is not suitable for everyone. Consult a medical professional before use, especially if you have a heart or circulation condition.",
       ],
     },
     suitableEnvironments: [
-      { type: "Elite Sports & Recovery Studios", description: "Immediate reduction of muscular inflammation and post-match soreness." },
-      { type: "Bio-Hacking & Longevity Sanctuaries", description: "Cornerstone element for contrast therapy paired with high-heat infrared saunas." },
-      { type: "Premier Medical Wellness Resorts", description: "Offers guest pain relief without pharmacological intervention or downtime." },
+      { type: "Longevity & Wellness Centres", description: "A small-footprint cryo station for premium recovery menus." },
+      { type: "Gyms & Sports Teams", description: "Quick sessions between training blocks." },
+      { type: "Spas & Clinics", description: "An automated unit that fits a single treatment room." },
     ],
     faqs: [
-      {
-        question: "Why choose electric whole-body cryotherapy over liquid nitrogen chambers?",
-        answer: "Electric chambers use clean, breathable air that immerses the entire body safely including the head and vagus nerve. Liquid nitrogen chambers expose clients to hazardous gas, leave the head outside, and have inconsistent temperatures.",
-      },
-      {
-        question: "Can someone get frostbite during the session?",
-        answer: "No, because the air inside is strictly dehumidified (0% relative humidity). Dry cold transfers heat far more gently than wet cold, ensuring deep skin cooling without cellular freezing when following the 3-minute protocol.",
-      },
-      {
-        question: "How long does the unit take to chill down in the morning?",
-        answer: "The advanced cascade refrigeration system reaches operating temperature in approximately 40–50 minutes, and can be scheduled automatically via the smart scheduler.",
-      },
+      { question: "Does it need assembly?", answer: "No. The Cryome Mini does not require assembly." },
+      { question: "What does it run on?", answer: "It needs a 1.5 kW power supply and liquid nitrogen, from a pressurised tank or a non-pressurised Dewar." },
+      { question: "Is training provided?", answer: "Yes. Onsite operator training and a free online training course are available." },
+      { question: "What warranty does it carry?", answer: "A 3-year warranty." },
     ],
-    relatedProductIds: [
-      "halo-2-infrared-wellness-cabin",
-      "o2-carbon-hyperbaric-chamber",
-      "gp-normatec-3-full-body",
-      "duo-hybrid-sauna",
-    ],
-  },
-
-  "proadjust-chiropractic-table": {
-    id: "proadjust-chiropractic-table",
-    subtitle: "High-Performance Multi-Drop Manual Therapy & Alignment Station",
-    tagline: "Precision electric elevation with high-velocity, low-amplitude multi-segment pneumatic drops for physical therapists and chiropractors.",
-    overview: [
-      "The ProAdjust Chiropractic Table is engineered for uncompromising biomechanical precision in chiropractic, osteopathic, and advanced physiotherapy clinical environments.",
-      "Equipped with quiet medical-grade dual electric linear actuators, the table smoothly traverses from low accessibility heights (50 cm) up to ergonomic treating heights (95 cm), protecting the clinician's spinal posture during heavy clinical caseloads.",
-      "Features independent high-speed drop segments across cervical, thoracic, lumbar, and pelvic regions, calibrated with adjustable tension dials to accommodate pediatric, geriatric, and elite athletic patient profiles.",
-    ],
-    mechanismOfAction: {
-      heading: "HVLA Drop-Assisted Biomechanics",
-      description: "Drop mechanisms collapse a predetermined fraction of an inch at the termination of the clinician's thrust, harnessing momentum to reduce the manual force required to mobilize fixated joints.",
-      points: [
-        "Reduces patient muscular guarding through instantaneous table drop velocity.",
-        "Minimizes clinician musculoskeletal strain by up to 60% compared to static manual tables.",
-        "Facilitates selective directional vertebral subluxation adjustments.",
-        "Allows segmented pelvic flexion-distraction for decompression of lumbar disc herniations.",
-      ],
-    },
-    features: [
-      {
-        title: "Quad-Section Precision Drops",
-        description: "Independent cervical, upper thoracic, lower thoracic/lumbar, and pelvic drops with dual manual cocking handles.",
-        iconName: "Sliders",
-      },
-      {
-        title: "Smooth Foot-Bar Elevation Control",
-        description: "Full-perimeter foot pedal actuation permits hands-free height adjustment from any angle around the patient.",
-        iconName: "Footprints",
-      },
-      {
-        title: "Multi-Directional Headpiece",
-        description: "Tilts, elevates, translates laterally, and spreads for optimal cervical alignment and patient comfort.",
-        iconName: "Move",
-      },
-      {
-        title: "Hospital-Grade Antimicrobial Vinyl",
-        description: "High-density multi-layered foam upholstered in bleach-resistant, disinfectant-impervious medical vinyl.",
-        iconName: "Shield",
-      },
-    ],
-    benefits: [
-      {
-        title: "Superior Joint Mobilization",
-        description: "Achieves clean joint cavitation and motion restoration with minimal patient discomfort.",
-        metric: "Precision Drop Velocity",
-      },
-      {
-        title: "Practitioner Ergonomic Protection",
-        description: "Electric height positioning prevents lower back and shoulder fatigue for high-volume doctors.",
-        metric: "-60% Joint Strain",
-      },
-      {
-        title: "Spinal Disc Decompression",
-        description: "Flexion-distraction capability relieves nerve root impingement and promotes disc rehydration.",
-        metric: "Axial Traction",
-      },
-      {
-        title: "Uncompromising Patient Comfort",
-        description: "Contoured multi-density foam cradles facial, thoracic, and pelvic contours comfortably.",
-        metric: "Zero Pressure Hotspots",
-      },
-    ],
-    specGroups: [
-      {
-        category: "Dimensions & Capacities",
-        items: [
-          { label: "Table Length", value: "190 cm to 215 cm (Extendable ankle rest)" },
-          { label: "Table Width", value: "58 cm (Body cushions) / 66 cm (Total base footprint)" },
-          { label: "Height Adjustment", value: "52 cm to 96 cm (Continuous electric lift)" },
-          { label: "Safe Working Load", value: "250 kg (550 lbs)" },
-          { label: "Table Net Weight", value: "135 kg" },
-        ],
-      },
-      {
-        category: "Drop Mechanics & Adjustability",
-        items: [
-          { label: "Drop Mechanisms", value: "Cervical, Thoracic, Lumbar, Pelvic (Tension adjustable)" },
-          { label: "Headpiece Range", value: "Tilt (-30° to +30°), Elevation (15 cm), Lateral shift (15°)" },
-          { label: "Chest / Pelvic Break", value: "Manual thoracic breakaway with lock and release lever" },
-          { label: "Ankle Rest", value: "Pneumatic gas-spring extension (up to 25 cm extension)" },
-        ],
-      },
-      {
-        category: "Electrical & Build",
-        items: [
-          { label: "Actuator Motor", value: "Linak® Medical Grade low-noise electric actuator (Made in Denmark)" },
-          { label: "Input Voltage", value: "110–240 V AC, 50/60 Hz universal power" },
-          { label: "Frame Material", value: "Heavy-gauge robotic welded cold-rolled tubular steel" },
-          { label: "Upholstery", value: "Med-Grade flame retardant, antimicrobial PU leather" },
-        ],
-      },
-      {
-        category: "Warranty & Support",
-        items: [
-          { label: "Frame Warranty", value: "10 Years Structural Frame Guarantee" },
-          { label: "Actuators & Electronics", value: "3 Years Comprehensive Commercial Replacement" },
-          { label: "Regulatory Compliance", value: "CE Medical Device Class I, ISO 13485" },
-        ],
-      },
-    ],
-    whatsIncluded: [
-      "ProAdjust Chiropractic Table fully assembled with quad-drop assembly",
-      "Dual bilateral foot-bar elevation actuation rings",
-      "Ergonomic cervical paper dispenser and integrated tear-off bar",
-      "Comprehensive calibration manual and drop-tension maintenance toolkit",
-      "Commercial clinical warranty registration and validation certificate",
-    ],
-    protocol: {
-      recommendedDuration: "15 to 30 minutes per adjustment session",
-      frequency: "As clinically prescribed in patient rehabilitation plan",
-      preparation: [
-        "Instruct patient to remove heavy belts, shoes, and hard pocket items.",
-        "Set table height to match practitioner's standing metacarpophalangeal joint level.",
-        "Calibrate drop-tension dials to match patient's body mass before applying thrust.",
-      ],
-      protocolSteps: [
-        { step: "Patient Positioning", instruction: "Assist patient onto table prone; adjust headpiece width and extend ankle rest to alleviate pelvic tilt." },
-        { step: "Assessment & Pre-Drop", instruction: "Perform static palpation and motion testing; cock appropriate drop section and dial in desired spring resistance." },
-        { step: "HVLA Adjustment", instruction: "Deliver high-velocity low-amplitude thrust in line of drive; verify joint cavitation and post-adjustment motion." },
-      ],
-      contraindications: [
-        "Severe acute bone fracture or acute spinal cord compression.",
-        "Advanced osteopenia/osteoporosis without gentle low-force mobilization protocols.",
-        "Suspected vertebral artery dissection or severe unmanaged myelopathy.",
-      ],
-    },
-    suitableEnvironments: [
-      { type: "Chiropractic Clinics", description: "The daily workhorse table for high-volume spinal care and adjustment protocols." },
-      { type: "Physiotherapy & Physical Rehabilitation", description: "Assists in manual spinal mobilization, facet unweighting, and post-injury realignment." },
-      { type: "Elite Sports Team Training Rooms", description: "Rapid pre-game spinal tune-ups and post-match musculoskeletal alignment for pro athletes." },
-    ],
-    faqs: [
-      {
-        question: "Can the drop tension be adjusted for lighter or pediatric patients?",
-        answer: "Yes. Every drop segment features individual micro-adjusting tension knobs that allow the doctor to tune resistance seamlessly from featherlight releases up to heavyweight athletic settings.",
-      },
-      {
-        question: "How quiet is the electric elevation motor during patient treatment?",
-        answer: "The table utilizes premium Danish Linak® medical actuators operating below 45 dB, enabling whisper-quiet height transitions that never startle anxious patients.",
-      },
-      {
-        question: "What maintenance do the mechanical drops require?",
-        answer: "The drop mechanisms are self-lubricating sealed assemblies. A simple annual visual inspection and light silicone wipe ensure decades of crisp, flawless mechanical action.",
-      },
-    ],
-    relatedProductIds: [
-      "flexadjust-chiropractic-table",
-      "upright-rehabilitation-tilt-table",
-      "gp-normatec-3-full-body",
-      "apex-full-body-massage-chair",
-    ],
-  },
-
-  "gp-normatec-3-full-body": {
-    id: "gp-normatec-3-full-body",
-    subtitle: "Turnkey Dynamic Air Compression System (Legs, Hips & Arms)",
-    tagline: "Biomimetic sequential pulse compression designed to accelerate venous return, flush metabolic waste, and reduce DOMS.",
-    overview: [
-      "The GreenPulse Normatec 3 Full Body is an elite dynamic pneumatic compression system trusted globally by Olympic athletes, premier physical therapy clinics, and luxury recovery lounges.",
-      "Featuring precision overlapping compression chambers that encase the full legs, hips/lower torso, and both arms, the system replicates the body's natural venous muscle pumps to dramatically enhance lymphatic drainage and circulatory fluid return.",
-      "With 7 customizable pressure intensity tiers, ZoneBoost™ targeted pressure holding, and Bluetooth mobile app integration, users receive medical-grade sequential compression tailored to their fatigue levels.",
-    ],
-    mechanismOfAction: {
-      heading: "Sequential Biomimetic Pulse Technology",
-      description: "Unlike static compression that squeezes the whole limb simultaneously, Normatec pulses sequentially along the limb, holding pressure to prevent fluid backflow before releasing.",
-      points: [
-        "Pulsing action mimics the muscle pump mechanism of the calves, mobilizing fluid.",
-        "Gradient holding prevents backflow of interstitial lymphatic fluid toward distal limbs.",
-        "Cyclic release allows normal vascular refill between successive compression waves.",
-        "Significantly decreases systemic blood lactate levels and muscle stiffness within 20 minutes.",
-      ],
-    },
-    features: [
-      {
-        title: "Full-Body Tri-Limb Configuration",
-        description: "Includes pair of 5-chamber leg boots, contoured hip/pelvic attachment, and dual full-arm sleeves.",
-        iconName: "Layers",
-      },
-      {
-        title: "ZoneBoost™ Targeted Therapy",
-        description: "Adds an extra 60 seconds of localized maximum pressure to specific fatigued muscle zones.",
-        iconName: "Target",
-      },
-      {
-        title: "Hyper-Quiet Digital Compressor",
-        description: "Whisper-quiet pneumatic pump delivers rapid, smooth air displacement without intrusive buzzing.",
-        iconName: "VolumeX",
-      },
-      {
-        title: "Smart Bluetooth Connected App",
-        description: "Save custom recovery protocols, track session analytics, and adjust pressure chambers via iOS/Android.",
-        iconName: "Smartphone",
-      },
-    ],
-    benefits: [
-      {
-        title: "Accelerated Fluid Clearance",
-        description: "Mobilizes interstitial fluid pooling, drastically reducing edema and leg heaviness.",
-        metric: "2x Lymphatic Flow",
-      },
-      {
-        title: "Substantial DOMS Reduction",
-        description: "Flushes exercise-induced metabolic by-products, restoring muscle suppleness quickly.",
-        metric: "-45% Muscle Soreness",
-      },
-      {
-        title: "Improved Joint Range of Motion",
-        description: "Softens tight myofascial tissues, restoring hip, knee, and ankle mobility immediately.",
-        metric: "+15% Active ROM",
-      },
-      {
-        title: "Passive Relaxing Recovery",
-        description: "Permits restorative downtime in recovery lounges while treatment takes place automatically.",
-        metric: "Hands-Free Therapy",
-      },
-    ],
-    specGroups: [
-      {
-        category: "Technical Parameters",
-        items: [
-          { label: "Compression Pressure Range", value: "30 mmHg to 110 mmHg (7 calibrated intensity levels)" },
-          { label: "Chamber Architecture", value: "5 overlapping pneumatic zones per limb with seamless interior" },
-          { label: "Battery Life", value: "Up to 3 hours continuous cordless operation per charge" },
-          { label: "Recharge Time", value: "Approx. 2 hours to 100% capacity" },
-        ],
-      },
-      {
-        category: "Attachments & Sizing",
-        items: [
-          { label: "Leg Boots", value: "Standard size fits individuals 5'4\" to 6'3\" (Tall sizes available)" },
-          { label: "Arm Attachments", value: "Pair of full-arm sleeves with contoured shoulder harnesses" },
-          { label: "Hip Attachment", value: "Dual-zone pelvic/lower back adjustable belt with heavy-duty zippers" },
-          { label: "Hose Connectors", value: "Quick-snap airtight snaplock pneumatic couplings" },
-        ],
-      },
-      {
-        category: "Weight & Portability",
-        items: [
-          { label: "Base Unit Weight", value: "1.45 kg (Ultra-portable control console)" },
-          { label: "Total Package Weight", value: "6.8 kg (Including all attachments and charging unit)" },
-          { label: "Power Supply", value: "Universal 100–240 V, 50/60 Hz switching power adapter" },
-          { label: "TSA Compliant", value: "Approved for carry-on airline travel with battery safeguards" },
-        ],
-      },
-      {
-        category: "Warranty & Support",
-        items: [
-          { label: "Warranty", value: "2 Years Manufacturer Commercial Warranty on pump & attachments" },
-          { label: "Certifications", value: "FDA Class II Medical Device cleared, CE certified" },
-        ],
-      },
-    ],
-    whatsIncluded: [
-      "Normatec 3 compact digital compression control unit",
-      "Pair of 5-chamber dynamic compression leg boots",
-      "Pair of dynamic compression full-arm attachments",
-      "Dynamic compression hip/pelvic lower-back attachment",
-      "High-pressure flexible pneumatic connector hosing",
-      "Worldwide universal power adapter with regional plug kit",
-      "Quick start reference protocol manual and travel storage duffel",
-    ],
-    protocol: {
-      recommendedDuration: "20 to 45 minutes",
-      frequency: "Daily post-exercise, or 3 times per week for general circulatory wellness",
-      preparation: [
-        "Wear clean, dry athletic compression leggings or breathable socks.",
-        "Ensure hose connectors click firmly into the base unit until latch engages.",
-        "Recline comfortably in a lounge chair or on a therapy mat with legs level or elevated.",
-      ],
-      protocolSteps: [
-        { step: "Calibration", instruction: "System runs a 60-second diagnostic inflation to map limb volume and contour precisely." },
-        { step: "Sequential Pulsing", instruction: "Chambers inflate from foot upward, pulsing rhythmically before venting sequentially." },
-        { step: "Completion", instruction: "Zippers unlock effortlessly upon completion for instant sensation of light, refreshed limbs." },
-      ],
-      contraindications: [
-        "Suspected or acute Deep Vein Thrombosis (DVT) or phlebothrombosis.",
-        "Active acute pulmonary edema or severe congestive cardiac failure.",
-        "Open wounds, active infected lesions, or fresh surgical incisions on limbs.",
-      ],
-    },
-    suitableEnvironments: [
-      { type: "Commercial Recovery Lounges", description: "High-throughput, plug-and-play recovery station yielding high customer satisfaction." },
-      { type: "Gyms & CrossFit Boxes", description: "Immediate athlete post-workout recovery zone for quick turnarounds between training sessions." },
-      { type: "Physical Therapy & Orthopedic Clinics", description: "Post-operative lymphatic drainage, swelling management, and joint mobilization." },
-    ],
-    faqs: [
-      {
-        question: "Can multiple attachments be used at the same time?",
-        answer: "The base console powers one set of attachments at a time (e.g., both legs, both arms, or the hip piece) to guarantee consistent high-pressure pneumatic delivery to each chamber.",
-      },
-      {
-        question: "How loud is the pump when relaxing or reading?",
-        answer: "Normatec 3 is engineered with acoustic dampening that keeps noise under 48 dBA—comparable to a gentle refrigerator hum, making it ideal for quiet spa recovery rooms.",
-      },
-      {
-        question: "Can the fabric be sanitized between gym or clinic guests?",
-        answer: "Yes. The interior and exterior are crafted from medical-grade ballistic nylon with wipedown-ready laminates compatible with standard alcohol-free surface sanitizing wipes.",
-      },
-    ],
-    relatedProductIds: [
-      "gpulse-normatec-elite-legs",
-      "gsoft-compression-calf",
-      "halo-2-infrared-wellness-cabin",
-      "apex-full-body-massage-chair",
-    ],
-  },
-
-  "apex-full-body-massage-chair": {
-    id: "apex-full-body-massage-chair",
-    subtitle: "Flagship 4D Dual-Core AI Zero-Gravity Massage Chair",
-    tagline: "Biometric optical body scanning, zero-gravity weightlessness, and heated multi-axis quad-roller deep tissue release.",
-    overview: [
-      "The Apex Full-Body Massage Chair is our flagship robotic restorative seating system, bridging the gap between clinical physical therapy and opulent executive relaxation.",
-      "Driven by an advanced AI micro-processor and optical acupressure sensors, the chair dynamically maps the occupant's spinal curvature, shoulder height, and muscular tension points in 30 seconds prior to initiating massage programs.",
-      "An extended 138 cm hyper-curved SL-track guides heated quad-rollers from the base of the cranium all the way down through the gluteal muscles and hamstrings, while 64 dual-layer airbags deliver rhythmic compression to arms, hips, calves, and feet.",
-    ],
-    mechanismOfAction: {
-      heading: "4D Mechanical Myofascial Release & Zero-G Decompression",
-      description: "Combining 4-dimensional roller articulation with 165° NASA-inspired zero-gravity tilt positions the knees above the heart, eliminating axial spinal compression.",
-      points: [
-        "Zero-gravity angle reduces gravitational pressure on intervertebral discs to near zero.",
-        "Deep 4D silicone rollers knead, tap, roll, and perform shiatsu down to 12cm into deep myofascia.",
-        "Carbon-fibre graphene lumbar and calf heating elevates local tissue elasticity.",
-        "Triple-stage enclosed foot rollers stimulate plantar reflexology zones and venous return.",
-      ],
-    },
-    features: [
-      {
-        title: "Extended 138cm Hyper-SL Track",
-        description: "Seamless roller travel extending from cervical vertebrae through lumbar spine down to lower hamstrings.",
-        iconName: "Compass",
-      },
-      {
-        title: "Dual-Stage Zero-Gravity Incline",
-        description: "Two clinical zero-gravity tilt stages distributing total body weight evenly across the entire frame.",
-        iconName: "Maximize",
-      },
-      {
-        title: "64 Airbag Compression Array",
-        description: "Envelops shoulders, forearms, hips, calves, and feet in rhythmic cyclical air pressure waves.",
-        iconName: "ShieldCheck",
-      },
-      {
-        title: "Graphene Rapid Thermal Heat",
-        description: "Instantaneous far-infrared heat across the lower back and calves enhances muscle relaxation.",
-        iconName: "Flame",
-      },
-    ],
-    benefits: [
-      {
-        title: "Spinal Decompression & Alignment",
-        description: "Relieves chronic lumbar compressive fatigue caused by prolonged sitting or intense training.",
-        metric: "Zero-G Relief",
-      },
-      {
-        title: "Targeted Trigger Point Relief",
-        description: "Dissolves stubborn myofascial knots along the cervical, levator scapulae, and piriformis muscles.",
-        metric: "12cm Roller Depth",
-      },
-      {
-        title: "Stress & Cortisol Reduction",
-        description: "Induces deep autonomic relaxation, significantly lowering salivary cortisol and systolic tension.",
-        metric: "-35% Stress Index",
-      },
-      {
-        title: "Circulatory & Plantar Rejuvenation",
-        description: "Triple foot rollers and calf kneading relieve tired, swollen feet and restore plantar vitality.",
-        metric: "Full Plantar Reflexology",
-      },
-    ],
-    specGroups: [
-      {
-        category: "Dimensions & Spatial Requirements",
-        items: [
-          { label: "Upright Dimensions", value: "155 cm (L) × 82 cm (W) × 124 cm (H)" },
-          { label: "Reclined Dimensions", value: "192 cm (L) × 82 cm (W) × 98 cm (H)" },
-          { label: "Zero-Wall Clearance", value: "Requires only 5 cm clearance from rear wall (Space-saving slide)" },
-          { label: "Net Chair Weight", value: "128 kg" },
-          { label: "Maximum User Weight", value: "160 kg (350 lbs)" },
-        ],
-      },
-      {
-        category: "Massage Mechanics & Programs",
-        items: [
-          { label: "Track Architecture", value: "138 cm Ergonomic SL-Track (High-tensile alloy rail)" },
-          { label: "Roller Mechanism", value: "4D Quad-head heated silicone roller mechanism with 6 speed levels" },
-          { label: "Airbag Count", value: "64 Full-body dual-layer TPU compression airbags" },
-          { label: "Auto Programs", value: "24 Curated clinical programs (Recovery, Deep Tissue, Thai Stretch, etc.)" },
-        ],
-      },
-      {
-        category: "Electronics & Audio",
-        items: [
-          { label: "Control System", value: "7-inch HD touchscreen tablet + Quick armrest dial + Voice control" },
-          { label: "Sound System", value: "Hi-Fi Bluetooth stereo speakers embedded into headrest surround" },
-          { label: "Device Charging", value: "Wireless Qi fast-charging pad on armrest + USB charging port" },
-          { label: "Power Draw", value: "220–240 V AC, 50/60 Hz, 220 Watts operating" },
-        ],
-      },
-      {
-        category: "Materials & Warranty",
-        items: [
-          { label: "Upholstery", value: "Breathable, wear-resistant medical-grade Eco-Microfiber Leather" },
-          { label: "Warranty", value: "3 Years Full Commercial Replacement Warranty on motors & chassis" },
-          { label: "Certifications", value: "CE, RoHS, FCC, ISO 9001" },
-        ],
-      },
-    ],
-    whatsIncluded: [
-      "Apex Full-Body 4D Massage Chair with integrated retractable footrest",
-      "7-inch touch control console with articulated aluminum mounting arm",
-      "Dedicated wireless smartphone charging deck and quick-dial armrest knob",
-      "Hi-Fi headrest Bluetooth surround sound system",
-      "Detachable head cushion and lumbar support comfort padding",
-      "Heavy-duty power cable, surge protection module, and user protocol manual",
-    ],
-    protocol: {
-      recommendedDuration: "15 to 30 minutes",
-      frequency: "Daily for stress relief, or 3 times per week for deep musculoskeletal recovery",
-      preparation: [
-        "Wear comfortable, non-restrictive clothing without sharp studs, buttons, or metal zippers.",
-        "Empty pockets and remove jewelry, watches, and bulky neckwear.",
-        "Settle into the chair so the lower back is flush against the lumbar backrest.",
-      ],
-      protocolSteps: [
-        { step: "Optical Scan", instruction: "Hold still for 30 seconds as the optical sensor determines shoulder height and spine curve." },
-        { step: "Zero-G Initiation", instruction: "Select desired preset program; chair reclines to zero-gravity and commences rhythmic kneading." },
-        { step: "Completion", instruction: "Chair automatically returns to gentle upright exit position at the end of the session." },
-      ],
-      contraindications: [
-        "Unstable acute spinal fractures, acute herniations, or recent spinal fusion (< 6 months).",
-        "Implanted cardiac pacemaker (maintain distance from magnetic speaker drivers).",
-        "Severe deep vein thrombosis (DVT) or active unexplained calf inflammation.",
-      ],
-    },
-    suitableEnvironments: [
-      { type: "Executive Corporate Suites", description: "Rapid 15-minute mental reset and muscular decongestion for high-performance leaders." },
-      { type: "Luxury Hotel Spas & Lounges", description: "Self-service premium amenity that delights guests without requiring therapist labor." },
-      { type: "Elite Athletic Training Facilities", description: "Unweights spine and releases tightness in gluteals, quads, and calves post-session." },
-    ],
-    faqs: [
-      {
-        question: "Does the chair need a lot of space behind it to recline?",
-        answer: "No. Apex is engineered with a Zero-Wall sliding pivot chassis that slides forward as it reclines, requiring only 5 cm of clearance between the backrest and the wall.",
-      },
-      {
-        question: "Can the roller intensity be reduced for sensitive users?",
-        answer: "Yes. The 4D mechanism provides 6 micro-adjustable depth stages, and additional removable buffer pads are included to soften intensity for gentler restorative sessions.",
-      },
-      {
-        question: "How tall or short of a person can use the chair comfortably?",
-        answer: "The automatic motorized footrest extends up to 20 cm, comfortably accommodating individuals ranging from 150 cm (4'11\") to 198 cm (6'6\").",
-      },
-    ],
-    relatedProductIds: [
-      "vector-sl-massage-chair",
-      "elevate-massage-recliner",
-      "halo-2-infrared-wellness-cabin",
-      "gp-normatec-3-full-body",
-    ],
-  },
-
-  "gp-juvo-b4-power-wheelchair": {
-    id: "gp-juvo-b4-power-wheelchair",
-    subtitle: "Configurable Rear-Wheel Drive Everyday Mobility Platform",
-    tagline: "Engineered German-inspired stability, modular ergonomic seating, and outdoor/indoor multi-terrain agility.",
-    overview: [
-      "The GP Juvo B4 Power Wheelchair is an exceptionally reliable motorized mobility platform designed to deliver dignified, effortless daily independence across domestic, clinical, and outdoor environments.",
-      "Engineered with a modular chassis and low centre of gravity, the Juvo B4 effortlessly negotiates threshold transitions, outdoor curb ramps, cobblestones, and tight indoor doorways with predictable stability.",
-      "Equipped with advanced programmable electronics, customizable seating widths, adjustable backrest angles, and high-torque low-maintenance motors, it adapts seamlessly to degenerative neuromuscular and orthopedic mobility needs.",
-    ],
-    mechanismOfAction: {
-      heading: "Low-Center-of-Gravity Chassis & Drive Dynamics",
-      description: "Rear-wheel drive configuration paired with drive-wheel suspension dampens road vibrations, ensuring smooth traction and consistent directional tracking.",
-      points: [
-        "Rear-wheel drive provides superior directional stability and intuitive steering on slopes.",
-        "Drive-wheel swing axle suspension absorbs shock from uneven terrain.",
-        "Programmable joystick control allows micro-tuning of acceleration curves and turning sensitivity.",
-        "Automatic electromagnetic failsafe brakes engage instantly whenever joystick is released.",
-      ],
-    },
-    features: [
-      {
-        title: "Multi-Terrain Rear-Wheel Drive",
-        description: "14-inch pneumatic drive wheels with puncture-proof front casters handle grass, gravel, and urban curbs.",
-        iconName: "Compass",
-      },
-      {
-        title: "Modular Ergonomic Seating",
-        description: "Seat width, depth, back angle, and armrest heights adjust without requiring replacement components.",
-        iconName: "Sliders",
-      },
-      {
-        title: "Extended Driving Range",
-        description: "Heavy-duty 53 Ah or 63 Ah gel batteries offer up to 35 km of daily driving independence on a single charge.",
-        iconName: "BatteryCharging",
-      },
-      {
-        title: "Precision Programmable Joystick",
-        description: "Intuitive VR2 controller with diagnostic LCD, battery indicator, and multiple drive speed profiles.",
-        iconName: "Crosshair",
-      },
-    ],
-    benefits: [
-      {
-        title: "Unrestricted Personal Autonomy",
-        description: "Empowers users to navigate indoor living spaces and outdoor communities without external assistance.",
-        metric: "35 km Range",
-      },
-      {
-        title: "Postural & Pressure Management",
-        description: "Anatomical seat contours and pressure-relieving cushions prevent pressure ulcer formation.",
-        metric: "Ergonomic Positioning",
-      },
-      {
-        title: "Effortless Threshold Crossing",
-        description: "Overcomes curbs up to 50 mm without tipping hazard, keeping the user level and secure.",
-        metric: "50mm Curb Clearance",
-      },
-      {
-        title: "Smooth Urban Navigation",
-        description: "Tight 85 cm turning radius permits effortless rotation inside standard elevators and tight hallways.",
-        metric: "85cm Turning Radius",
-      },
-    ],
-    specGroups: [
-      {
-        category: "Drive & Performance",
-        items: [
-          { label: "Drive Configuration", value: "Rear-Wheel Drive (RWD) with dual 250W motors" },
-          { label: "Maximum Speed", value: "6 km/h (Standard) or 10 km/h (High-speed option)" },
-          { label: "Operating Range", value: "Up to 35 km (Depending on user weight and terrain)" },
-          { label: "Max Obstacle / Curb Height", value: "50 mm (60 mm with optional curb climber)" },
-          { label: "Max Incline Capability", value: "8° (14% grade) safe slope rating" },
-        ],
-      },
-      {
-        category: "Dimensions & Weight",
-        items: [
-          { label: "Overall Width", value: "59.5 cm to 64 cm (Slim enough for standard 70cm doors)" },
-          { label: "Overall Length", value: "107 cm (Including footplates)" },
-          { label: "Turning Radius", value: "85 cm" },
-          { label: "Seat Width Range", value: "38 cm to 54 cm (Adjustable in 2cm increments)" },
-          { label: "Seat Depth Range", value: "40 cm to 50 cm" },
-          { label: "Maximum User Weight", value: "140 kg (308 lbs) / Heavy-duty option up to 160 kg" },
-        ],
-      },
-      {
-        category: "Electrical & Battery",
-        items: [
-          { label: "Battery Chemistry", value: "Dual 12V 53Ah Sealed Maintenance-Free AGM Gel Batteries" },
-          { label: "Charger", value: "Off-board 8A smart charger with automatic shutoff" },
-          { label: "Braking System", value: "Intelligent regenerative braking + fail-safe electromagnetic park brake" },
-          { label: "Crash Test Compliance", value: "ISO 7176-19 crash-tested for occupied transport in motor vehicles" },
-        ],
-      },
-      {
-        category: "Warranty & Certification",
-        items: [
-          { label: "Chassis Guarantee", value: "5 Years Structural Chassis Warranty" },
-          { label: "Electronics & Motors", value: "2 Years Commercial Warranty" },
-          { label: "Medical Device Class", value: "CE Medical Class I, MDR Compliant" },
-        ],
-      },
-    ],
-    whatsIncluded: [
-      "GP Juvo B4 base chassis with dual high-torque German drive motors",
-      "Ergonomic adjustable seating system with contoured backrest cushion",
-      "Swing-away VR2 joystick controller mount (ambidextrous configuration)",
-      "Height and angle adjustable flip-back armrests with soft PU pads",
-      "Split individual swing-away, height-adjustable composite footplates",
-      "High-output automatic smart battery charger and safety lap belt",
-      "Comprehensive operator handbook and clinical adjustment toolkit",
-    ],
-    protocol: {
-      recommendedDuration: "All-day mobility support",
-      frequency: "Daily usage as primary personal transit",
-      preparation: [
-        "Charge battery overnight using the supplied 8A smart charger until the green LED illuminates.",
-        "Adjust seat belt and armrest height to guarantee relaxed 90-degree elbow flexion at the joystick.",
-        "Ensure tires are inspected for correct pneumatic pressure (approx. 35 PSI).",
-      ],
-      protocolSteps: [
-        { step: "Power On", instruction: "Depress power switch; observe battery gauge and select appropriate indoor/outdoor speed profile (1–5)." },
-        { step: "Navigation", instruction: "Gently deflect joystick in desired travel direction; speed scales proportionally with joystick deflection." },
-        { step: "Stopping", instruction: "Release joystick to centre position; regenerative braking decelerates smoothly before park brake snaps locked." },
-      ],
-      contraindications: [
-        "Severe cognitive impairment preventing safe directional control.",
-        "Operating on gradients exceeding 8 degrees or near uncurbed open water.",
-        "Driving across deep loose sand or soft mud exceeding caster radius.",
-      ],
-    },
-    suitableEnvironments: [
-      { type: "Senior Living Residences", description: "Compact dimensions facilitate smooth apartment and dining hall navigation." },
-      { type: "Hospitals & Rehabilitation Facilities", description: "Configurable patient discharge platform promoting autonomous mobility." },
-      { type: "Independent Homecare", description: "Durable, low-maintenance outdoor/indoor wheelchair for active daily routines." },
-    ],
-    faqs: [
-      {
-        question: "Can this wheelchair be transported in an accessible van or taxi?",
-        answer: "Yes. The Juvo B4 is fully crash-tested and certified under ISO 7176-19, equipped with four integrated tie-down eyelets for secure vehicle transit while occupied.",
-      },
-      {
-        question: "Can the joystick controller be moved to the left hand?",
-        answer: "Yes. The swing-away controller mounting arm can be switched between right and left armrests in less than 5 minutes using the included hex key.",
-      },
-      {
-        question: "What happens if the battery runs out while away from home?",
-        answer: "Both drive motors feature manual freewheel disengage levers located above the rear wheels, allowing an attendant to push the wheelchair easily in neutral mode.",
-      },
-    ],
-    relatedProductIds: [
-      "gpw-movelite-d25-power-wheelchair",
-      "gpw-comfortride-d26-power-wheelchair",
-      "gpw-heavy-duty-d60-power-wheelchair",
-      "elevate-massage-recliner",
-    ],
+    relatedProductIds: ["cold-plunge-tub-new-ice-bath", "cold-plunge-single-round-yg", "cold-plunge-foldable-aircore"],
   },
 };
 

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "import:content": "sanity exec scripts/import-content.ts --with-user-token"
+    "import:content": "sanity exec scripts/import-content.ts --with-user-token",
+    "sanity:webhook": "node scripts/create-revalidate-webhook.mjs"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.3.3",

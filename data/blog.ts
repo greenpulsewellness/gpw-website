@@ -135,12 +135,12 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
     relatedEquipment: [
       {
-        name: "Halo 2 Infrared Wellness Cabin",
-        category: "Wellness & Recovery Technology",
-        image: "/product/Halo 2 Infrared Wellness Cabin.png",
-        link: "/products/halo-2-infrared-wellness-cabin",
+        name: "Halo 2 Infrared Sauna (2 Person, Full Spectrum)",
+        category: "Heat & Thermal Therapy",
+        image: "/GPW Product mockup/Heat/Halo 2 Infrared Sauna (2 Person, Full Spectrum)/halo 2.png",
+        link: "/products/infrared-sauna-double-full-spectrum-mstar",
         description:
-          "Full-spectrum carbon/ceramic heating system with built-in chromotherapy, Bluetooth audio, and ultra-low EMF shielding.",
+          "Two-person full-spectrum infrared sauna with Canadian hemlock, tourmaline stones, oxygen ionizer and Bluetooth sound.",
       },
     ],
   },
@@ -198,20 +198,20 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
     relatedEquipment: [
       {
-        name: "Carbon Hyperbaric Chamber",
-        category: "Wellness & Recovery Technology",
-        image: "/product/Carbon Hyperbaric Chamber.png",
-        link: "/products/o2-carbon-hyperbaric-chamber",
+        name: "Oxa Cube Duo Hyperbaric Oxygen Chamber (HBOT, Double)",
+        category: "Oxygen & Hyperbaric (Air)",
+        image: "/GPW Product mockup/Air/Oxa Cube Duo Hyperbaric Oxygen Chamber (HBOT, Double)/34D447C1-0498-4EA8-AC53-7FE942251360.png",
+        link: "/products/hbot-double-cube-chamber",
         description:
-          "Engineered with aerospace-grade carbon shell, dual-operator monitoring, and whisper-quiet air delivery for premium suites.",
+          "Two-user 2.0 ATA steel-cabin chamber with an integrated oxygen generator, installed and operated by a trained operator.",
       },
       {
-        name: "GreenPulse Normatec 3 Full Body",
-        category: "Rehabilitation & Physical Therapy",
-        image: "/product/GreenPulse Normatec 3 Full Body.png",
-        link: "/products/gp-normatec-3-full-body",
+        name: "PulseWave Go Wireless Air Compression Boots",
+        category: "Active Recovery & Massage (Relax)",
+        image: "/GPW Product mockup/Compression/PulseWave Go Wireless Air Compression Boots/PulseWave Go.png",
+        link: "/products/compression-boots-dj-sets",
         description:
-          "Dynamic air compression system with Biomimicry pulse technology for rapid lower-body and full-body lymphatic drainage.",
+          "Cordless air-compression boots with an on-boot LED controller, Bluetooth sync and five overlapping chambers.",
       },
     ],
   },
@@ -269,12 +269,12 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
     relatedEquipment: [
       {
-        name: "Carbon Hyperbaric Chamber",
-        category: "Wellness & Recovery Technology",
-        image: "/product/Carbon Hyperbaric Chamber.png",
-        link: "/products/o2-carbon-hyperbaric-chamber",
+        name: "Oxa Cube Duo Hyperbaric Oxygen Chamber (HBOT, Double)",
+        category: "Oxygen & Hyperbaric (Air)",
+        image: "/GPW Product mockup/Air/Oxa Cube Duo Hyperbaric Oxygen Chamber (HBOT, Double)/34D447C1-0498-4EA8-AC53-7FE942251360.png",
+        link: "/products/hbot-double-cube-chamber",
         description:
-          "Engineered with aerospace-grade carbon shell, dual-operator monitoring, and whisper-quiet air delivery.",
+          "Two-user 2.0 ATA steel-cabin chamber with an integrated oxygen generator, installed and operated by a trained operator.",
       },
     ],
   },
@@ -371,12 +371,12 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
     relatedEquipment: [
       {
-        name: "GreenPulse Normatec 3 Full Body",
-        category: "Rehabilitation & Physical Therapy",
-        image: "/product/GreenPulse Normatec 3 Full Body.png",
-        link: "/products/gp-normatec-3-full-body",
+        name: "PulseWave Go Wireless Air Compression Boots",
+        category: "Active Recovery & Massage (Relax)",
+        image: "/GPW Product mockup/Compression/PulseWave Go Wireless Air Compression Boots/PulseWave Go.png",
+        link: "/products/compression-boots-dj-sets",
         description:
-          "Dynamic air compression system with Biomimicry pulse technology for rapid lower-body and full-body lymphatic drainage.",
+          "Cordless air-compression boots with an on-boot LED controller, Bluetooth sync and five overlapping chambers.",
       },
     ],
   },

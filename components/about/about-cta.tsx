@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "motion/react";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { aboutData } from "@/data/about";
 import { whatsappUrl } from "@/lib/whatsapp";
@@ -17,7 +20,13 @@ export function AboutCta() {
         className="pointer-events-none absolute inset-x-0 bottom-0 h-96 bg-[radial-gradient(ellipse_70%_60%_at_50%_100%,rgba(255,255,255,0.18),transparent_70%)]"
       />
 
-      <div className="shell relative z-10 max-w-4xl mx-auto text-center">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.6 }}
+        className="shell relative z-10 max-w-4xl mx-auto text-center"
+      >
         <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-mono text-white backdrop-blur-md mb-6 shadow-[0_0_20px_rgba(255,255,255,0.15)]">
           <Sparkles className="size-3.5" />
           <span>{cta.eyebrow}</span>
@@ -66,7 +75,7 @@ export function AboutCta() {
           <span className="size-1 rounded-full bg-neutral-600" />
           <span>Direct Engineer Support</span>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -21,7 +21,9 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
 const token = process.env.SANITY_API_WRITE_TOKEN;
 const secret = process.env.SANITY_REVALIDATE_SECRET;
 const NAME = "GPW revalidate (products, posts, authors)";
+// Create with the 2021-06-07 payload shape; list/delete with a newer version, which is the one that returns "document" webhooks.
 const api = `https://api.sanity.io/v2021-06-07/hooks/projects/${projectId}`;
+const listApi = `https://api.sanity.io/v2021-10-04/hooks/projects/${projectId}`;
 
 const args = process.argv.slice(2);
 const origin = args.find((a) => a.startsWith("http"));
@@ -39,7 +41,7 @@ async function call(method, url, body) {
 
 if (!projectId || !token) throw new Error("Set NEXT_PUBLIC_SANITY_PROJECT_ID and SANITY_API_WRITE_TOKEN in .env.local");
 
-const hooks = await call("GET", api);
+const hooks = await call("GET", listApi);
 
 if (args.includes("--list")) {
   console.log(hooks.length ? hooks.map((h) => `${h.id}  ${h.name}  ${h.url}  ${h.isDisabled ? "(disabled)" : ""}`).join("\n") : "No webhooks.");
@@ -67,6 +69,6 @@ const hook = {
 
 // Re-running replaces the existing webhook so the URL / secret always match.
 const existing = hooks.find((h) => h.name === NAME);
-if (existing) await call("DELETE", `${api}/${existing.id}`);
+if (existing) await call("DELETE", `${listApi}/${existing.id}`);
 const result = await call("POST", api, hook);
 console.log(`${existing ? "Replaced" : "Created"} webhook ${result.id} → ${hook.url}`);

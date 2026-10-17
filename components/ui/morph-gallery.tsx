@@ -46,6 +46,8 @@ export type MorphGalleryProps = {
   loop?: boolean;
   /** Milliseconds between automatic advances. 0 (default) is off. */
   autoplay?: number;
+  /** When false the GL loop stops drawing and autoplay holds (e.g. off-screen). Default true. */
+  playing?: boolean;
   arrows?: boolean;
   thumbnails?: boolean;
   /** Controlled index. Omit for uncontrolled. */
@@ -254,6 +256,7 @@ export default function MorphGallery({
   drift = 0.5,
   loop = true,
   autoplay = 0,
+  playing = true,
   arrows = true,
   thumbnails = true,
   index,
@@ -294,6 +297,8 @@ export default function MorphGallery({
   // never tears down the GL context.
   const tuning = React.useRef({ duration, noiseScale, edge, drift, reduced });
   tuning.current = { duration, noiseScale, edge, drift, reduced };
+  const playingRef = React.useRef(playing);
+  playingRef.current = playing;
 
   // A transition is requested by index changes and consumed by the loop.
   const request = React.useRef<{ from: number; to: number } | null>(null);
@@ -416,7 +421,7 @@ export default function MorphGallery({
     };
 
     const frame = () => {
-      draw();
+      if (playingRef.current) draw();
       raf = requestAnimationFrame(frame);
     };
 
@@ -498,10 +503,10 @@ export default function MorphGallery({
 
   // ---- autoplay ------------------------------------------------------------
   React.useEffect(() => {
-    if (!autoplay || reduced || paused || items.length < 2) return;
+    if (!autoplay || !playing || reduced || paused || items.length < 2) return;
     const id = window.setInterval(() => go(active + 1), Math.max(autoplay, 600));
     return () => window.clearInterval(id)
-  }, [autoplay, reduced, paused, active, go, items.length]);
+  }, [autoplay, playing, reduced, paused, active, go, items.length]);
 
   React.useEffect(() => {
     const sync = () => setPaused(document.hidden);

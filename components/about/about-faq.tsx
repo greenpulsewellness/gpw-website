@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, HelpCircle } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { Plus } from "lucide-react";
 import { aboutData } from "@/data/about";
 
 export function AboutFaq() {
@@ -15,7 +16,13 @@ export function AboutFaq() {
   return (
     <section className="relative overflow-hidden py-20 sm:py-28 bg-black">
       <div className="shell relative z-10 max-w-4xl mx-auto">
-        <div className="text-center mb-12 sm:mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12 sm:mb-16"
+        >
           <span className="label-mono text-white font-semibold tracking-wider">
             Commercial Procurement
           </span>
@@ -25,40 +32,50 @@ export function AboutFaq() {
           <p className="mt-3 text-sm sm:text-base text-neutral-400 font-light max-w-xl mx-auto">
             Essential answers on lead times, Indian customs, warranty protocols, and turnkey installation support.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="space-y-4">
+        <div className="divide-y divide-white/10 border-t border-white/10">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
 
             return (
-              <div
-                key={faq.question}
-                className="rounded-2xl border border-white/10 bg-white/[0.02] transition-colors duration-200 overflow-hidden hover:border-white/20"
-              >
+              <div key={faq.question}>
                 <button
                   type="button"
                   onClick={() => toggle(index)}
-                  className="w-full text-left p-6 sm:p-7 flex items-center justify-between gap-4 cursor-pointer"
+                  className="w-full text-left py-6 sm:py-7 flex items-center justify-between gap-4 cursor-pointer group"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-base sm:text-lg font-semibold text-white tracking-tight">
-                    {faq.question}
+                  <span className="flex items-baseline gap-4">
+                    <span className="font-mono text-xs text-neutral-500">{String(index + 1).padStart(2, "0")}</span>
+                    <span className="text-base sm:text-lg font-semibold text-white tracking-tight group-hover:text-white/80 transition-colors">
+                      {faq.question}
+                    </span>
                   </span>
-                  <div
-                    className={`size-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center shrink-0 transition-transform duration-300 text-neutral-300 ${
-                      isOpen ? "rotate-180 text-white border-white/30" : ""
-                    }`}
+                  <motion.div
+                    animate={{ rotate: isOpen ? 45 : 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="size-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center shrink-0 text-neutral-300 group-hover:border-white/30 group-hover:text-white"
                   >
-                    <ChevronDown className="size-4" />
-                  </div>
+                    <Plus className="size-4" />
+                  </motion.div>
                 </button>
 
-                {isOpen && (
-                  <div className="px-6 pb-6 sm:px-7 sm:pb-7 pt-0 text-sm sm:text-base text-neutral-300 font-light leading-relaxed border-t border-white/5 pt-4">
-                    {faq.answer}
-                  </div>
-                )}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pb-6 sm:pb-7 pl-10 text-sm sm:text-base text-neutral-300 font-light leading-relaxed max-w-2xl">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}

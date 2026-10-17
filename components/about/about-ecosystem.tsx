@@ -3,8 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, ChevronRight, Building2, Sparkles, MapPin } from "lucide-react";
-import { aboutData, type EcosystemSector } from "@/data/about";
+import { AnimatePresence, motion } from "motion/react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { aboutData } from "@/data/about";
 import { Button } from "@/components/ui/button";
 
 export function AboutEcosystem() {
@@ -22,7 +23,13 @@ export function AboutEcosystem() {
       />
 
       <div className="shell relative z-10">
-        <div className="max-w-3xl mb-12 sm:mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5 }}
+          className="max-w-3xl mb-12 sm:mb-16"
+        >
           <span className="label-mono text-white font-semibold tracking-wider">
             Spaces We Transform
           </span>
@@ -32,7 +39,7 @@ export function AboutEcosystem() {
           <p className="mt-4 text-base sm:text-lg text-neutral-300 font-light leading-relaxed">
             From multi-floor clinical longevity destinations to private residential penthouses, our hardware bundles and spatial plans are tailored to your exact operational requirements.
           </p>
-        </div>
+        </motion.div>
 
         {/* Desktop Vertical Selector Buttons */}
         <div className="flex flex-wrap gap-2 sm:gap-2.5 pb-8 border-b border-white/10">
@@ -57,8 +64,15 @@ export function AboutEcosystem() {
         </div>
 
         {/* Selected Sector Card Layout */}
-        <div className="mt-8 rounded-2xl sm:rounded-3xl border border-white/10 bg-white/[0.02] p-6 sm:p-10 backdrop-blur-md">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="mt-8 rounded-2xl sm:rounded-3xl border border-white/10 bg-white/[0.02] p-6 sm:p-10 backdrop-blur-md overflow-hidden">
+          <AnimatePresence mode="wait">
+          <motion.div
+            key={activeSector.id}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.3 }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6">
               <div>
@@ -149,7 +163,8 @@ export function AboutEcosystem() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>

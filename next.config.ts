@@ -1,5 +1,8 @@
 import type { NextConfig } from "next";
 
+// Keep in sync with sanity/env.ts so Sanity images are always allowed for the active project
+const sanityProjectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "fn9p8ovy";
+
 const nextConfig: NextConfig = {
   allowedDevOrigins: [
     "*.trycloudflare.com",
@@ -24,7 +27,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "cdn.sanity.io",
-        pathname: "/images/0rv3p2wk/**",
+        pathname: `/images/${sanityProjectId}/**`,
       },
     ],
   },

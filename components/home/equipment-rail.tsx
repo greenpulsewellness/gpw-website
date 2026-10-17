@@ -15,6 +15,7 @@ export function EquipmentRail() {
           index="02"
           eyebrow={equipmentSection.eyebrow}
           title={equipmentSection.title}
+          align="center"
         />
 
         <div className="mt-10 md:mt-14">

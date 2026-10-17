@@ -1,4 +1,6 @@
-import { ShieldCheck, Zap, Gauge, Award, Check } from "lucide-react";
+"use client";
+
+import { motion } from "motion/react";
 import { aboutData } from "@/data/about";
 
 export function AboutStandards() {
@@ -7,7 +9,13 @@ export function AboutStandards() {
   return (
     <section className="relative overflow-hidden py-20 sm:py-28 bg-[#060606] border-y border-white/5">
       <div className="shell relative z-10">
-        <div className="max-w-3xl mb-14 sm:mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5 }}
+          className="max-w-3xl mb-14 sm:mb-16"
+        >
           <span className="label-mono text-white font-semibold tracking-wider">
             Material & Engineering Standards
           </span>
@@ -17,28 +25,38 @@ export function AboutStandards() {
           <p className="mt-4 text-base sm:text-lg text-neutral-400 font-light leading-relaxed">
             Every material that touches a human body or radiates thermal energy is tested against strict biocompatibility and electromagnetic benchmarks.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {standards.map((standard) => (
-            <div
+        {/* Horizontal rows instead of a repeated card grid — number, text, metrics side by side */}
+        <div className="divide-y divide-white/10 border-y border-white/10">
+          {standards.map((standard, i) => (
+            <motion.div
               key={standard.category}
-              className="rounded-2xl sm:rounded-3xl border border-white/10 bg-white/[0.02] p-7 sm:p-9 transition-all hover:border-white/20 hover:bg-white/[0.04]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+              className="grid grid-cols-1 md:grid-cols-12 gap-6 py-8 sm:py-10 items-start"
             >
-              <span className="text-xs font-mono uppercase tracking-widest text-white font-semibold">
-                {standard.category}
-              </span>
-              <h3 className="mt-2 text-xl sm:text-2xl font-bold text-white tracking-tight">
-                {standard.headline}
-              </h3>
-              <p className="mt-3 text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
-                {standard.description}
-              </p>
+              <div className="md:col-span-1">
+                <span className="font-mono text-2xl font-bold text-white/30">0{i + 1}</span>
+              </div>
 
-              {/* Metrics Grid */}
-              <div className="mt-6 pt-6 border-t border-white/10 grid grid-cols-3 gap-3">
+              <div className="md:col-span-6">
+                <span className="text-xs font-mono uppercase tracking-widest text-white font-semibold">
+                  {standard.category}
+                </span>
+                <h3 className="mt-2 text-xl sm:text-2xl font-bold text-white tracking-tight">
+                  {standard.headline}
+                </h3>
+                <p className="mt-3 text-sm sm:text-base text-neutral-300 font-light leading-relaxed max-w-xl">
+                  {standard.description}
+                </p>
+              </div>
+
+              <div className="md:col-span-5 grid grid-cols-3 gap-3">
                 {standard.metrics.map((m) => (
-                  <div key={m.label} className="rounded-xl bg-black/40 border border-white/5 p-3 text-center">
+                  <div key={m.label} className="rounded-xl bg-white/[0.02] border border-white/5 p-3 text-center">
                     <span className="text-[10px] font-mono uppercase text-neutral-400 block line-clamp-1">
                       {m.label}
                     </span>
@@ -48,12 +66,18 @@ export function AboutStandards() {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Global Compliance Badges Banner */}
-        <div className="mt-12 rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5 }}
+          className="mt-12 rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6"
+        >
           <div className="space-y-1 text-center md:text-left">
             <h4 className="text-base font-bold text-white">
               Full Spectrum Commercial Certification
@@ -77,7 +101,7 @@ export function AboutStandards() {
               Low-EMF &lt; 0.2 mG
             </span>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

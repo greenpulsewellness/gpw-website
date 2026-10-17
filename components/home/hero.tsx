@@ -6,12 +6,14 @@ import {
   AnimatePresence,
   motion,
   useReducedMotion,
+  useMotionValueEvent,
   useScroll,
   useTransform,
 } from "motion/react";
 import MorphGallery, { type MorphItem } from "@/components/ui/morph-gallery";
 import { usePreloaderDone } from "@/components/ui/layout-preloader";
 import { getLenis } from "@/lib/scroll";
+import { hero } from "@/data/home";
 
 export type HeroSlide = MorphItem & {
   word: string;
@@ -65,6 +67,9 @@ export function Hero() {
   const introDone = usePreloaderDone();
   const [activeIndex, setActiveIndex] = useState(0);
   const [vh, setVh] = useState(800);
+  // The hero is sticky, so it never leaves the viewport geometrically; it is
+  // "off screen" once the content layer has slid up and fully covered it.
+  const [inView, setInView] = useState(true);
   const reducedMotion = useReducedMotion();
   const { scrollY } = useScroll();
 
@@ -80,6 +85,8 @@ export function Hero() {
   const y = useTransform(scrollY, [0, vh], [0, reducedMotion ? 0 : 30]);
   const opacity = useTransform(scrollY, [0, vh * 0.85, vh], [1, 0.85, 0.4]);
   const dimOpacity = useTransform(scrollY, [0, vh], [0, reducedMotion ? 0 : 0.5]);
+
+  useMotionValueEvent(scrollY, "change", (y) => setInView(y < vh * 0.95));
 
   const currentSlide = HERO_SLIDES[activeIndex] ?? HERO_SLIDES[0];
 
@@ -115,7 +122,8 @@ export function Hero() {
           <MorphGallery
             items={HERO_SLIDES}
             height="100%"
-            autoplay={introDone ? 4000 : 0}
+            autoplay={introDone && inView ? 4000 : 0}
+            playing={inView}
             duration={1800}
             loop={true}
             arrows={false}
@@ -145,6 +153,9 @@ export function Hero() {
           />
         </div>
 
+        {/* Fixed page heading for search engines and screen readers. The animated word below is decorative. */}
+        <h1 className="sr-only">{hero.seoHeading}</h1>
+
         {/* Top Spacer for Notch Navbar */}
         <div className="relative z-10 h-16 w-full pointer-events-none" />
 
@@ -167,9 +178,9 @@ export function Hero() {
                   transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
                   className="flex items-start"
                 >
-                  <h1 className="text-4xl font-bold tracking-[-0.04em] text-white sm:text-6xl md:text-7xl lg:text-[6.5rem] xl:text-[8rem] 2xl:text-[9.5rem] leading-[0.88] whitespace-nowrap drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+                  <p aria-hidden="true" className="text-4xl font-bold tracking-[-0.04em] text-white sm:text-6xl md:text-7xl lg:text-[6.5rem] xl:text-[8rem] 2xl:text-[9.5rem] leading-[0.88] whitespace-nowrap drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
                     {currentSlide.word}
-                  </h1>
+                  </p>
                   <span
                     aria-hidden="true"
                     className="ml-1 text-xl font-light text-white/90 sm:ml-2 sm:text-3xl md:text-4xl lg:text-6xl leading-none select-none drop-shadow-[0_4px_20px_rgba(0,0,0,0.5)]"

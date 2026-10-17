@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { contact, solutions } from "@/data/home";
+import { brand, contact } from "@/data/home";
 import { getLenis, scrollToId } from "@/lib/scroll";
 import { whatsappUrl } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
@@ -16,7 +16,7 @@ import { MediaFrame } from "./media-frame";
 const NAV_ITEMS = [
   { label: "About us", href: "/about", sectionId: "about" },
   { label: "Equipment", href: "/#equipment", sectionId: "equipment" },
-  { label: "Suites", href: "/#packages", sectionId: "packages" },
+  { label: "Combos", href: "/combos", sectionId: "combos" },
   { label: "Who We Equip", href: "/#who-we-equip", sectionId: "who-we-equip" },
   { label: "Blog", href: "/blog", sectionId: "blog" },
   { label: "Contact", href: "/#enquiry", sectionId: "enquiry" },
@@ -30,6 +30,19 @@ export function Nav() {
   const [activeSection, setActiveSection] = useState<string>("solutions");
   const closeRef = useRef<HTMLButtonElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  // Desktop notch alternates between the links and the brand name. Hover or
+  // keyboard focus on the notch holds the links; otherwise it flips every 5s.
+  const [engaged, setEngaged] = useState(false);
+  const [showBrand, setShowBrand] = useState(false);
+
+  useEffect(() => {
+    if (engaged) {
+      setShowBrand(false);
+      return;
+    }
+    const t = window.setTimeout(() => setShowBrand((b) => !b), 5000);
+    return () => window.clearTimeout(t);
+  }, [engaged, showBrand]);
 
   // Lock scroll + Escape to close while mobile menu is open
   useEffect(() => {
@@ -98,8 +111,20 @@ export function Nav() {
           {/* Notch Body — White background with black text */}
           <nav
             aria-label="Main Navigation"
-            className="flex items-center gap-6 rounded-b-[20px] bg-white px-7 py-2.5 text-[13px] font-normal text-black shadow-[0_4px_24px_rgba(0,0,0,0.25)] transition-all duration-300"
+            onMouseEnter={() => setEngaged(true)}
+            onMouseLeave={() => setEngaged(false)}
+            onFocus={() => setEngaged(true)}
+            onBlur={(e) => {
+              if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setEngaged(false);
+            }}
+            className="grid items-center rounded-b-[20px] bg-white px-7 py-2.5 text-[13px] font-normal text-black shadow-[0_4px_24px_rgba(0,0,0,0.25)]"
           >
+            <div
+              className={cn(
+                "col-start-1 row-start-1 flex items-center gap-6 transition-all duration-700 ease-out motion-reduce:transition-opacity",
+                showBrand ? "translate-y-2 opacity-0 blur-[3px]" : "translate-y-0 opacity-100 blur-0",
+              )}
+            >
             {NAV_ITEMS.map((item) => {
               const isActive = isHome
                 ? activeSection === item.sectionId
@@ -126,6 +151,18 @@ export function Nav() {
                 </Link>
               );
             })}
+            </div>
+
+            {/* Brand name: decorative duplicate of the site name, never intercepts clicks */}
+            <span
+              aria-hidden="true"
+              className={cn(
+                "pointer-events-none col-start-1 row-start-1 flex items-center justify-center gap-2 text-[13px] font-semibold tracking-tight text-black transition-all duration-700 ease-out motion-reduce:transition-opacity",
+                showBrand ? "translate-y-0 opacity-100 blur-0" : "-translate-y-2 opacity-0 blur-[3px]",
+              )}
+            >
+              {brand.name}
+            </span>
           </nav>
 
           {/* Right Ear Fillet Curve */}
@@ -229,7 +266,7 @@ export function Nav() {
               </Button>
               <Button asChild variant="outline" size="lg" className="w-full">
                 <a href={wa} target="_blank" rel="noopener noreferrer">
-                  <WhatsAppColorIcon className="size-5 shrink-0" size={20} /> {contact.whatsappDisplay}
+                  <WhatsAppColorIcon className="size-5 shrink-0" size={20} /> {contact.phone}
                 </a>
               </Button>
             </div>

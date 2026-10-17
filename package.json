@@ -10,6 +10,7 @@
     "sanity:webhook": "node scripts/create-revalidate-webhook.mjs"
   },
   "dependencies": {
+    "@paper-design/shaders-react": "^0.0.81",
     "@radix-ui/react-slot": "^1.3.3",
     "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^6.18.0",

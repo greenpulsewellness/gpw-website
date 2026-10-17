@@ -105,16 +105,6 @@ export type Audience = {
 
 export type Step = { number: string; title: string; line: string };
 
-export type PackageId = "starter" | "studio" | "centre";
-
-export type SuitePackage = {
-  id: PackageId;
-  name: string;
-  line: string;
-  /** TODO: confirm bundles with the supply team */
-  bundle: ProductId[];
-  featured?: boolean;
-};
 
 /* ------------------------------------------------------------------ */
 /* Brand & contact                                                     */
@@ -129,13 +119,13 @@ export const brand = {
 export const contact = {
   /** wa.me format: country code + number, digits only */
   whatsappNumber: "917550022504",
-  whatsappDisplay: "+91 75500 22504",
+  
   phone: "+91 75500 22504",
   phoneRaw: "+917550022504",
   email: "hello@greenpulsewellness.com", // TODO: placeholder — confirm
   address: "TODO: Studio address, City, State, PIN", // TODO: placeholder
-  instagram: "https://instagram.com/", // TODO: placeholder link
-  linkedin: "https://linkedin.com/", // TODO: placeholder link
+  instagram: "https://www.instagram.com/greenpulse.wellness",
+  linkedin: "https://www.linkedin.com/in/arsheenbukhari/",
   floatingMessage: "Hi GreenPulse Wellness, I'd like to know more.",
   rentalMessage:
     "Hi GreenPulse Wellness, I'd like to enquire about equipment rental for a hospital / homecare setting.",
@@ -160,22 +150,11 @@ export const nav = {
 /* ------------------------------------------------------------------ */
 
 export const hero = {
-  headline: "Built for bodies that keep going.",
-  sub: "Advanced wellness technology for recovery, rehabilitation & performance.",
+  /** Fixed, visually hidden page heading (the on-screen word rotates and is decorative). */
+  seoHeading:
+    "GreenPulse Wellness: commercial wellness, recovery and rehabilitation equipment in India, supplied, installed and serviced",
   primaryCta: { label: "Explore Equipment", href: "#equipment" },
   secondaryCta: { label: "Book a Demo", href: "#enquiry" },
-  media: {
-    id: "hero-loop",
-    kind: "video",
-    label: "Hero background video",
-    aspect: "16:9",
-    alt: "Wellness equipment and sauna suite in action",
-    src: "/herovideo.mp4",
-    poster: "/sauna%20hero.jpg",
-  } satisfies MediaSlot,
-  get video(): MediaSlot {
-    return this.media;
-  },
 };
 
 /* ------------------------------------------------------------------ */
@@ -183,9 +162,35 @@ export const hero = {
 /* ------------------------------------------------------------------ */
 
 export const solutionsSection = {
-  eyebrow: "Solutions",
-  title: "Four ways we equip a space.",
-  line: "Pick a focus — we curate, install and look after the machines.",
+  eyebrow: "What we do",
+  title: "One partner for every recovery space, from floor plan to first session.",
+  line: "GreenPulse Wellness supplies commercial wellness, recovery and rehabilitation equipment across India. We help you choose the right machines, bring them in, install them, train your team and keep everything running.",
+  proof: [
+    { title: "Import handled", line: "Freight, customs, insurance and delivery, end to end." },
+    { title: "Installed & commissioned", line: "On-site assembly, electrical safety checks and team training." },
+    { title: "Pan-India AMC", line: "Scheduled servicing, spares and fast technician visits." },
+    { title: "Buy, lease or rent", line: "Leasing for gyms and spas, monthly rentals for clinics and homecare." },
+  ],
+  suitesLabel: "Four suites",
+  /** TODO: confirm highlights with the supply team */
+  suites: {
+    recover: {
+      summary: "Contrast therapy, infrared heat and cold immersion for busy recovery floors.",
+      highlights: ["Infrared saunas", "Cold plunges", "Compression"],
+    },
+    agewell: {
+      summary: "Mobility, comfort and longevity equipment for senior living residences.",
+      highlights: ["Standing wheelchairs", "Massage chairs", "Hyperbaric chambers"],
+    },
+    rehabilitate: {
+      summary: "Drop tables, decompression loungers and recovery tools for physio and chiro practices.",
+      highlights: ["Chiropractic tables", "Spinal decompression", "Percussion"],
+    },
+    livewell: {
+      summary: "Recovery chairs, cold therapy and flexible rentals for hospitals, clinics and homecare.",
+      highlights: ["Zero-gravity chairs", "Cold therapy", "Monthly rentals"],
+    },
+  } satisfies Record<SolutionId, { summary: string; highlights: string[] }>,
 };
 
 export type BentoSlideTile = {
@@ -197,7 +202,7 @@ export type BentoSlideTile = {
 };
 
 export type BentoSlide = {
-  id: SolutionId;
+  id: SolutionId | string;
   name: string;
   audience: string;
   url: string;
@@ -206,50 +211,50 @@ export type BentoSlide = {
 
 export const bentoSlides: BentoSlide[] = [
   {
-    id: "recover",
-    name: "Recover & Restore",
-    audience: "Wellness & longevity centres, hotel spas, fitness",
-    url: "/solutions/recover",
+    id: "heat",
+    name: "Heat Therapy",
+    audience: "Full-spectrum infrared saunas & thermal therapy",
+    url: "/products?category=heat",
     tiles: [
       {
-        id: "recover-1",
-        src: "/catalog-images/icepod-plunge-setup.jpg",
-        alt: "Cold plunge pool sanctuary with towels and ambient lighting",
+        id: "heat-1",
+        src: "/home page/stack image/heat/1.png",
+        alt: "Heat therapy sanctuary - 1",
         span: "left-top",
         fit: "cover",
       },
       {
-        id: "recover-2",
-        src: "/Target client/audience-hotel.jpg",
-        alt: "Luxury wellness resort spa and thermal plunge suite",
+        id: "heat-2",
+        src: "/home page/stack image/heat/2.png",
+        alt: "Heat therapy sanctuary - 2",
         span: "center-top",
         fit: "cover",
       },
       {
-        id: "recover-3",
-        src: "/recoverandrestore/recoverandrestoremain.png",
-        alt: "Panoramic recovery suite with infrared sauna and ambient wood",
+        id: "heat-3",
+        src: "/home page/stack image/heat/3.png",
+        alt: "Heat therapy sanctuary - 3",
         span: "right-top-wide",
         fit: "cover",
       },
       {
-        id: "recover-4",
-        src: "/Target client/audience-longevity.png",
-        alt: "Longevity studio recovery suite",
+        id: "heat-4",
+        src: "/home page/stack image/heat/4.png",
+        alt: "Heat therapy sanctuary - 4",
         span: "left-bottom",
         fit: "cover",
       },
       {
-        id: "recover-5",
-        src: "/hero-wellness-sanctuary.jpg",
-        alt: "Holistic wellness therapy sanctuary room",
+        id: "heat-5",
+        src: "/home page/stack image/heat/5.png",
+        alt: "Heat therapy sanctuary - 5",
         span: "center-bottom-wide",
         fit: "cover",
       },
       {
-        id: "recover-6",
-        src: "/recovery.png",
-        alt: "Contrast therapy and cryo relaxation suite",
+        id: "heat-6",
+        src: "/home page/stack image/heat/6.png",
+        alt: "Heat therapy sanctuary - 6",
         span: "right-bottom",
         fit: "cover",
       },
@@ -1676,7 +1681,7 @@ export const audiences: Audience[] = [
     image: audienceImage(
       "longevity",
       "Longevity centre",
-      "/Target%20client/audience-longevity.png",
+      "/Target%20client/audience-longevity.webp",
     ),
   },
   {
@@ -1762,46 +1767,11 @@ export const packagesSection = {
   eyebrow: "Recovery suites",
   title: "Recovery suites, bundled.",
   line: "Starting points for a complete recovery floor — every suite is tailored.",
-  cta: "Build my suite",
+  cta: "Get a quote",
+  allLink: "Explore all 30 combos",
 };
+// Combos themselves live in data/combos.ts
 
-export const packages: SuitePackage[] = [
-  {
-    id: "starter",
-    name: "Starter",
-    line: "For gyms and studios adding a recovery corner.",
-    bundle: [
-      "pulsewave-pro-8-air-compression-recovery-system-8-chamber",
-      "massage-chair-elite-ms131",
-      "percussion-massager-jm003",
-    ],
-  },
-  {
-    id: "studio",
-    name: "Studio",
-    line: "For dedicated recovery studios and hotel spas.",
-    bundle: [
-      "infrared-sauna-double-full-spectrum-mstar",
-      "cryo-mini-cryome",
-      "pulsewave-pro-8-air-compression-recovery-system-8-chamber",
-      "massage-chair-elite-ms131",
-    ],
-    featured: true,
-  },
-  {
-    id: "centre",
-    name: "Centre",
-    line: "For longevity centres building a full protocol floor.",
-    bundle: [
-      "hbot-double-cube-chamber",
-      "cryo-mini-cryome",
-      "infrared-sauna-group-combination-mstar",
-      "rise-2-standing-wheelchair",
-      "pulsewave-pro-8-air-compression-recovery-system-8-chamber",
-      "massage-chair-elite-ms131",
-    ],
-  },
-];
 
 /* ------------------------------------------------------------------ */
 /* 9. Experience it                                                    */
@@ -1809,9 +1779,9 @@ export const packages: SuitePackage[] = [
 
 export const experience = {
   eyebrow: "Experience it",
-  title: "See it in person.",
-  line: "Try the equipment first-hand before you commit.",
-  event: "IHFC Mumbai — dates coming soon",
+  title: "Our experience store is coming soon.",
+  line: "A dedicated space to try the equipment first-hand before you commit.",
+  event: "Experience Store — opening soon",
   cta: { label: "Book a Demo", href: "#enquiry" },
   video: {
     id: "experience-loop",
@@ -1824,24 +1794,18 @@ export const experience = {
 };
 
 /* ------------------------------------------------------------------ */
-/* 10. Rental strip                                                    */
-/* ------------------------------------------------------------------ */
-
-export const rental = {
-  eyebrow: "Rental",
-  line: "Equipment rental for hospitals and homecare.",
-  cta: "Enquire on WhatsApp",
-};
-
-/* ------------------------------------------------------------------ */
 /* 11. Enquiry form                                                    */
 /* ------------------------------------------------------------------ */
 
 export const enquiry = {
   eyebrow: "Enquire",
   title: "Tell us what you're building.",
-  line: "Your enquiry goes straight to our team on WhatsApp.",
-  submit: "Send on WhatsApp",
+  line: "Share a few details about your space and our team will get in touch to plan the right setup.",
+  submit: "Submit enquiry",
+  success: {
+    title: "Thank you for your submission.",
+    line: "Our team will contact you soon.",
+  },
   businessTypes: [
     "Wellness/Longevity Centre",
     "Hotel Spa",
@@ -1854,6 +1818,11 @@ export const enquiry = {
   ] satisfies BusinessType[],
   /** Label used for the "Package" chip */
   packageLabel: "Package",
+  nextSteps: [
+    { title: "We review your space", line: "Your space, clients and goals, first." },
+    { title: "You get a shortlist", line: "Equipment matched to your use case and budget." },
+    { title: "We handle the rest", line: "Import, installation, training and service." },
+  ],
 };
 
 /* ------------------------------------------------------------------ */

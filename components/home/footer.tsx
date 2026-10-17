@@ -191,27 +191,16 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="inline-flex size-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-neutral-300 hover:border-white/40 hover:bg-white/10 hover:text-white transition-all shadow-xs"
+              className="inline-flex size-8 items-center justify-center rounded-full bg-[#0A66C2] text-white hover:opacity-80 transition-opacity shadow-xs"
             >
               <LinkedInIcon className="size-3.5" />
-            </a>
-            <a
-              href="https://x.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="X (Twitter)"
-              className="inline-flex size-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-neutral-300 hover:border-white/40 hover:bg-white/10 hover:text-white transition-all shadow-xs"
-            >
-              <svg className="size-3.5 fill-currentColor" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
             </a>
             <a
               href={contact.instagram}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="inline-flex size-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-neutral-300 hover:border-white/40 hover:bg-white/10 hover:text-white transition-all shadow-xs"
+              className="inline-flex size-8 items-center justify-center rounded-full bg-[linear-gradient(45deg,#F58529,#DD2A7B,#8134AF,#515BD4)] text-white hover:opacity-80 transition-opacity shadow-xs"
             >
               <InstagramIcon className="size-3.5" />
             </a>
@@ -220,7 +209,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
-              className="inline-flex size-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-neutral-300 hover:border-white/40 hover:bg-white/10 hover:text-white transition-all shadow-xs"
+              className="inline-flex size-8 items-center justify-center rounded-full bg-[#25D366] text-white hover:opacity-80 transition-opacity shadow-xs"
             >
               <WhatsAppIcon className="size-3.5" />
             </a>

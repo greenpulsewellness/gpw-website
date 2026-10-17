@@ -1,11 +1,10 @@
 import { EnquiryProvider } from "@/components/home/enquiry-context";
 import { EnquiryForm } from "@/components/home/enquiry-form";
 import { EquipmentRail } from "@/components/home/equipment-rail";
-import { ExperienceIt } from "@/components/home/experience-it";
 import { Hero } from "@/components/home/hero";
+import { HowWeWork } from "@/components/home/how-we-work";
 import { Nav } from "@/components/home/nav";
-import { RentalStrip } from "@/components/home/rental-strip";
-import { SolutionsBento } from "@/components/home/solutions-bento";
+import { SolutionsIntro } from "@/components/home/solutions-intro";
 import { SuitePackages } from "@/components/home/suite-packages";
 import { WhoWeEquip } from "@/components/home/who-we-equip";
 import { LayoutPreloader } from "@/components/ui/layout-preloader";
@@ -20,7 +19,6 @@ const homeJsonLd = {
       image: "https://greenpulsewellness.com/logo-horizontal.png",
       url: "https://greenpulsewellness.com",
       telephone: "+91 75500 22504",
-      priceRange: "$$$$",
       address: {
         "@type": "PostalAddress",
         addressCountry: "IN",
@@ -117,7 +115,7 @@ export default function HomePage() {
           {/* Overriding content layer that slides up and covers the sticky hero */}
           <div className="relative z-10 bg-canvas rounded-t-[28px] sm:rounded-t-[38px] md:rounded-t-[48px] shadow-[0_-25px_60px_rgba(0,0,0,0.8)] border-t border-white/10">
 
-            <SolutionsBento />
+            <SolutionsIntro />
             <EquipmentRail />
             <WhoWeEquip />
 
@@ -134,8 +132,12 @@ export default function HomePage() {
               language only — no medical or treatment outcomes).
             */}
 
-            <ExperienceIt />
-            <RentalStrip />
+            <HowWeWork />
+
+            {/*
+              HIDDEN — Experience store section (components/home/experience-it.tsx).
+              Re-enable when the store opens and there is a real booking route.
+            */}
             <EnquiryForm />
           </div>
         </main>

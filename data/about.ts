@@ -50,9 +50,9 @@ export const aboutData = {
   hero: {
     badge: "About GreenPulse Wellness",
     subBadge: "Established 2024 · Pan-India & Global Procurement",
-    title: "Pioneering the Infrastructure of Modern Human Longevity",
+    title: "Wellness-Led Design, Purpose-Built Technology",
     lead:
-      "GreenPulse Wellness curates, imports, engineers, and services the world's most advanced recovery, rehabilitation, and regenerative hardware for clinical sanctuaries, luxury destinations, elite athletic clubs, and discerning private residences.",
+      "Green Pulse curates advanced technology and products designed to support better recovery, rehabilitation, mobility, independent living and wellness — for clinical sanctuaries, luxury destinations, elite athletic clubs, and discerning private residences.",
     stats: [
       {
         value: "50+",
@@ -78,30 +78,30 @@ export const aboutData = {
   },
 
   story: {
-    eyebrow: "Our Founding Thesis",
-    headline: "Bridging the Chasm Between Clinical Rigor and Architectural Sanctuary",
+    eyebrow: "Why Green Pulse Exists",
+    headline: "Equipment as Part of the Experience, Not a Line on a Spec Sheet",
     narrative1:
-      "For decades, wellness hardware was caught between two unsatisfying extremes: fragile consumer gadgets lacking physiological calibration, or sterile, intimidating hospital apparatus that clashed violently with architectural luxury.",
+      "Green Pulse Wellness was created around a simple idea: equipment should be considered part of the experience of a space, not merely an item on a specification list.",
     narrative2:
-      "GreenPulse Wellness was founded to establish a third category: Architectural Wellness Technology. We believe that recovery hardware should perform with unwavering commercial durability, respect strict biophysical parameters, and integrate seamlessly into refined, restorative spaces.",
+      "Bringing a design-led perspective to health and wellness technology, we curate advanced solutions across recovery, rehabilitation, mobility, wellness, longevity and care — evaluated through the people, environments and outcomes they're meant to support, not just a catalogue of products.",
     narrative3:
       "Headquartered in Bengaluru with a nationwide deployment footprint, our team partners directly with developers, hospitality directors, clinical specialists, sports franchises, and private clients to create turnkey recovery spaces that elevate human performance and everyday vitality.",
     quote: {
-      text: "True longevity is not about fighting the clock; it is about restoring cellular vitality, optimizing recovery velocity, and equipping the human body to operate at its highest potential through every decade.",
-      author: "GreenPulse Wellness Engineering & Clinical Advisory",
+      text: "Founded from a design and architectural perspective, Green Pulse Wellness approaches equipment sourcing with an understanding that every product ultimately sits within a larger human environment.",
+      author: "Green Pulse Wellness",
     },
     highlights: [
       {
-        title: "No Pseudoscience, No Gimmicks",
-        desc: "Every modality in our collection is grounded in published photobiology, thermoregulation science, baric kinetics, or neuromuscular restoration.",
+        title: "People First",
+        desc: "Begin with the people who will use the environment.",
       },
       {
-        title: "Commercial-Duty Engineering",
-        desc: "Designed for continuous 12+ hour daily operation in high-traffic hotels, athletic centers, and multi-specialty wellness studios.",
+        title: "Space Matters",
+        desc: "Consider equipment in relation to movement, layout, accessibility and experience.",
       },
       {
-        title: "Single-Source Accountability",
-        desc: "No third-party shipping brokers or disconnected electricians. We handle global sourcing, customs clearance, on-site commissioning, and ongoing preventive maintenance.",
+        title: "Thoughtful Sourcing",
+        desc: "Evaluate equipment options around project needs rather than a one-size-fits-all catalogue.",
       },
     ],
   },

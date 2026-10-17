@@ -1,7 +1,8 @@
 "use client";
 
 import { createContext, useCallback, useContext, useMemo, useState } from "react";
-import type { BusinessType, PackageId, ProductId } from "@/data/home";
+import type { BusinessType, ProductId } from "@/data/home";
+import type { ComboId as PackageId } from "@/data/combos";
 import { scrollToId } from "@/lib/scroll";
 
 export type InterestId = ProductId | "package";

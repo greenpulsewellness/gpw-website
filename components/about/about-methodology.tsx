@@ -1,13 +1,29 @@
-import { CheckCircle2, ChevronRight, FileCheck, Layers, Settings, Wrench, ShieldAlert, Cpu } from "lucide-react";
+"use client";
+
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { CheckCircle2 } from "lucide-react";
 import { aboutData } from "@/data/about";
 
 export function AboutMethodology() {
   const { methodology } = aboutData;
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 0.2", "end 0.8"],
+  });
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <section className="relative overflow-hidden py-20 sm:py-28 bg-black">
       <div className="shell relative z-10">
-        <div className="max-w-3xl mb-14 sm:mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5 }}
+          className="max-w-3xl mb-14 sm:mb-16"
+        >
           <span className="label-mono text-white font-semibold tracking-wider">
             Our Turnkey Methodology
           </span>
@@ -17,51 +33,57 @@ export function AboutMethodology() {
           <p className="mt-4 text-base sm:text-lg text-neutral-400 font-light leading-relaxed">
             We operate as an integrated equipment partner rather than a transactional vendor. Here is our six-phase turnkey execution methodology.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {methodology.map((step) => (
-            <div
-              key={step.number}
-              className="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-7 sm:p-8 transition-all duration-300 hover:border-white/30 hover:bg-white/[0.05] flex flex-col justify-between"
-            >
-              <div>
-                {/* Header with step number & phase label */}
-                <div className="flex items-center justify-between pb-4 border-b border-white/10">
-                  <span className="font-mono text-2xl font-bold text-white group-hover:scale-110 transition-transform">
-                    {step.number}
-                  </span>
+        {/* Vertical timeline with scroll-progress line */}
+        <div ref={containerRef} className="relative">
+          <div className="absolute left-[27px] sm:left-[31px] top-0 bottom-0 w-px bg-white/10" aria-hidden="true" />
+          <motion.div
+            style={{ height: lineHeight }}
+            className="absolute left-[27px] sm:left-[31px] top-0 w-px bg-white"
+            aria-hidden="true"
+          />
+
+          <div className="space-y-10 sm:space-y-14">
+            {methodology.map((step) => (
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, x: -16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: 0.05 }}
+                className="relative pl-16 sm:pl-20"
+              >
+                <div className="absolute left-0 top-0 flex size-14 sm:size-16 items-center justify-center rounded-full border border-white/20 bg-black font-mono text-lg sm:text-xl font-bold text-white">
+                  {step.number}
+                </div>
+
+                <div className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 transition-all duration-300 hover:border-white/30 hover:bg-white/[0.05]">
                   <span className="text-xs font-mono uppercase tracking-wider text-neutral-400">
                     {step.phase}
                   </span>
+                  <h3 className="mt-2 text-xl font-bold text-white tracking-tight group-hover:text-white/80 transition-colors">
+                    {step.title}
+                  </h3>
+                  <p className="mt-3 text-sm text-neutral-300 font-light leading-relaxed max-w-2xl">
+                    {step.description}
+                  </p>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {step.deliverables.map((d) => (
+                      <span
+                        key={d}
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-mono text-neutral-300"
+                      >
+                        <CheckCircle2 className="size-3 text-white shrink-0" />
+                        <span>{d}</span>
+                      </span>
+                    ))}
+                  </div>
                 </div>
-
-                <h3 className="mt-5 text-xl font-bold text-white tracking-tight group-hover:text-white/80 transition-colors">
-                  {step.title}
-                </h3>
-
-                <p className="mt-3 text-sm text-neutral-300 font-light leading-relaxed">
-                  {step.description}
-                </p>
-              </div>
-
-              {/* Deliverables checklist */}
-              <div className="mt-6 pt-5 border-t border-white/10 space-y-2">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-400 font-semibold block">
-                  Phase Deliverables
-                </span>
-                <ul className="space-y-1.5 text-xs text-neutral-300 font-light">
-                  {step.deliverables.map((d) => (
-                    <li key={d} className="flex items-start gap-2">
-                      <CheckCircle2 className="size-3.5 text-white shrink-0 mt-0.5" />
-                      <span>{d}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

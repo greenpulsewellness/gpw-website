@@ -17,37 +17,37 @@ export const MODALITIES: ModalityItem[] = [
     id: "heat",
     number: "01",
     name: "Heat",
-    url: "/catalog-images/modality/heat-sauna-real.jpg",
+    url: "/home page/heat.webp",
   },
   {
     id: "cold",
     number: "02",
     name: "Cold",
-    url: "/catalog-images/modality/cold-plunge-real.jpg",
+    url: "/home page/cold.webp",
   },
   {
     id: "light",
     number: "03",
     name: "Light",
-    url: "/catalog-images/modality/light-therapy-real.jpg",
+    url: "/home page/light.webp",
   },
   {
     id: "air",
     number: "04",
     name: "Air",
-    url: "/catalog-images/modality/air-hbot-real.jpg",
+    url: "/home page/air.webp",
   },
   {
     id: "relax",
     number: "05",
     name: "Relax",
-    url: "/catalog-images/modality/relax-chair-real.jpg",
+    url: "/home page/relax.webp",
   },
   {
     id: "mobility",
     number: "06",
     name: "Mobility",
-    url: "/catalog-images/modality/mobility-rehab-real.jpg",
+    url: "/home page/mobility.webp",
   },
 ];
 
@@ -101,20 +101,16 @@ export default function GalleryModalAccordion() {
               {/* ── IDLE STATE: Vertical Bold Label (Hides smoothly on hover) ── */}
               <div
                 className={cn(
-                  "absolute inset-0 flex flex-col justify-between items-center py-8 z-10 transition-all duration-300 pointer-events-none",
+                  "absolute inset-0 flex items-center justify-center z-10 transition-all duration-300 pointer-events-none",
                   isActive ? "opacity-0 scale-95" : "opacity-100 scale-100",
                 )}
               >
-                <span className="label-mono text-xs font-semibold text-white/70 drop-shadow-md">
-                  {item.number}
-                </span>
                 <span
                   style={{ writingMode: "vertical-rl" }}
                   className="rotate-180 uppercase tracking-[0.28em] text-lg lg:text-xl font-bold text-white whitespace-nowrap drop-shadow-lg"
                 >
                   {item.name}
                 </span>
-                <span className="size-1.5 rounded-full bg-white/60 shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
               </div>
 
               {/* ── HOVERED STATE: Clean image only, NO text inside image ── */}
@@ -140,7 +136,6 @@ export default function GalleryModalAccordion() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-3.5 flex flex-col">
-              <span className="label-mono text-[10px] text-white/50">{item.number}</span>
               <span className="font-bold text-sm text-white uppercase tracking-wider">
                 {item.name}
               </span>

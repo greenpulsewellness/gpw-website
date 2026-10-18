@@ -61,8 +61,8 @@ export function WhoWeEquip() {
 
   if (reducedMotion) {
     return (
-      <section id="who-we-equip" className="bg-oat py-20 md:py-28 lg:py-32">
-        <div className="shell">
+      <section id="who-we-equip" className="relative py-20 md:py-28 lg:py-32">
+        <div className="shell relative z-10">
           <SectionHeader index="04" {...audienceSection} align="center" />
           <ul className="no-scrollbar mt-12 flex gap-4 overflow-x-auto pb-4 md:mt-16 md:gap-6">
             {audiences.map((a) => (
@@ -117,12 +117,12 @@ export function WhoWeEquip() {
       <section
         id="who-we-equip"
         ref={targetRef}
-        className="relative bg-oat"
+        className="relative"
         style={{ height: isMobile && maxScroll > 0 ? `calc(100svh + ${maxScroll}px)` : "280vh" }}
       >
-      <div className="sticky top-0 flex h-svh w-full flex-col justify-between overflow-hidden py-10 md:h-screen md:py-14">
+      <div className="sticky top-0 flex h-svh w-full flex-col justify-between py-10 md:h-screen md:py-14">
         {/* Header */}
-        <div className="shell shrink-0">
+        <div className="shell shrink-0 relative z-10">
           <SectionHeader
             index="04"
             {...audienceSection}
@@ -131,7 +131,7 @@ export function WhoWeEquip() {
         </div>
 
         {/* Horizontal moving cards rail */}
-        <div className="my-auto w-full overflow-hidden py-2">
+        <div className="my-auto w-full py-2">
           <motion.ul
             ref={trackRef}
             style={{ x }}

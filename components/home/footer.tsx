@@ -3,28 +3,19 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { brand, contact, solutions } from "@/data/home";
+import { PRODUCT_TYPES } from "@/data/product-types";
 import { useProducts } from "@/components/products-context";
 import { whatsappUrl } from "@/lib/whatsapp";
 import { LinkedInIcon, InstagramIcon, WhatsAppIcon } from "./icons";
-
-const TRENDING_EQUIPMENT_COUNT = 5;
+import { AmbientBackground } from "@/components/ui/ambient-background";
 
 export function Footer() {
   const year = new Date().getFullYear();
   const { products } = useProducts();
-  const trendingEquipment = products.slice(0, TRENDING_EQUIPMENT_COUNT);
 
   return (
-    <footer className="relative overflow-hidden bg-black text-neutral-300 pt-16 sm:pt-20">
-      {/* ── Subtle Ambient Gradient Glow ── */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-96 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(255,255,255,0.03),transparent_70%)]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-20 right-1/4 h-80 w-80 rounded-full bg-white/[0.02] blur-3xl"
-      />
+    <footer className="relative overflow-hidden bg-[#060907] text-neutral-300 pt-16 sm:pt-20 rounded-t-[28px] sm:rounded-t-[38px] md:rounded-t-[48px] border-t border-white/10 shadow-[0_-25px_60px_rgba(0,0,0,0.8)]">
+      <AmbientBackground />
 
       <div className="shell relative z-10">
         {/* ── Top Link Columns ── */}
@@ -57,10 +48,10 @@ export function Footer() {
                 Equipment
               </h3>
               <ul className="space-y-3 text-sm font-normal text-neutral-200">
-                {trendingEquipment.map((p) => (
-                  <li key={p.id}>
-                    <Link href={`/products/${p.id}`} className="hover:text-white transition-colors line-clamp-1">
-                      {p.name}
+                {PRODUCT_TYPES.map((t) => (
+                  <li key={t.id}>
+                    <Link href={`/products?type=${t.id}`} className="hover:text-white transition-colors line-clamp-1">
+                      {t.label}
                     </Link>
                   </li>
                 ))}
@@ -168,8 +159,8 @@ export function Footer() {
                   </a>
                 </li>
                 <li>
-                  <Link href="/#enquiry" className="inline-flex items-center gap-1 text-white hover:text-white/70 transition-colors">
-                    <span>Book a Demo</span>
+                  <Link href="/contact" className="inline-flex items-center gap-1 text-white hover:text-white/70 transition-colors">
+                    <span>Contact & Demo</span>
                     <ArrowUpRight className="size-3" />
                   </Link>
                 </li>

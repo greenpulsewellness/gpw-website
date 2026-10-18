@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { brand, contact } from "@/data/home";
-import { Nav } from "@/components/home/nav";
 import { LegalPageLayout, LegalSection } from "@/components/legal/legal-page-layout";
 import { Cookie, Settings, ShieldCheck, ToggleLeft } from "lucide-react";
 
@@ -28,7 +27,6 @@ const SECTIONS: LegalSection[] = [
 export default function CookiesPage() {
   return (
     <>
-      <Nav />
       <main>
         <LegalPageLayout
           title="Cookie Policy"

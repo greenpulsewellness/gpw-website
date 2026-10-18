@@ -6,7 +6,6 @@ import {
   getSolutionBySlug,
   type SolutionDetail,
 } from "@/data/solutions-data";
-import { Nav } from "@/components/home/nav";
 import { SolutionProvider } from "@/components/solution/solution-context";
 import { SolutionHero } from "@/components/solution/solution-hero";
 import { SpaceBlueprint } from "@/components/solution/space-blueprint";
@@ -146,7 +145,6 @@ export default async function SolutionDetailPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Nav />
       <main className="min-h-screen bg-black">
         <SolutionHero solution={solution} />
         <SpaceBlueprint solution={solution} />

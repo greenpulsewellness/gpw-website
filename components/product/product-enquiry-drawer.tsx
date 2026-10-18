@@ -16,6 +16,7 @@ interface ProductEnquiryDrawerProps {
 
 export function ProductEnquiryDrawer({
   productName,
+  productId,
   category,
   isOpen,
   onClose,
@@ -46,9 +47,32 @@ export function ProductEnquiryDrawer({
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+
+    try {
+      await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          business: formData.businessType,
+          interest: `${productName} (${category})`,
+          message: [
+            formData.timeline ? `Timeline: ${formData.timeline}` : null,
+            formData.notes ? `Notes: ${formData.notes}` : null,
+          ]
+            .filter(Boolean)
+            .join("\n"),
+          source: typeof window !== "undefined" ? window.location.pathname : `/products/${productId}`,
+        }),
+      });
+    } catch (err) {
+      console.error("[product-enquiry] delivery error", err);
+    }
   };
 
   const whatsappMessage = `Hi GreenPulse Wellness, I would like to request commercial pricing and technical specifications for the ${productName} (${category}). My organization type is ${formData.businessType}.`;

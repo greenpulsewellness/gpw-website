@@ -12,8 +12,8 @@ const homeCombos = homeComboIds.map(comboById).filter((c): c is Combo => !!c);
 
 export function SuitePackages() {
   return (
-    <section id="packages" className="bg-black py-20 md:py-28 lg:py-32">
-      <div className="shell">
+    <section id="packages" className="relative py-20 md:py-28 lg:py-32">
+      <div className="shell relative z-10">
         <SectionHeader
           index="06"
           eyebrow={packagesSection.eyebrow}

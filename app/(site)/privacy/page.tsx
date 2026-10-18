@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { brand, contact } from "@/data/home";
-import { Nav } from "@/components/home/nav";
 import { LegalPageLayout, LegalSection } from "@/components/legal/legal-page-layout";
 import { ShieldCheck, Lock, Eye, Database, UserCheck, Mail } from "lucide-react";
 import Link from "next/link";
@@ -32,7 +31,6 @@ const SECTIONS: LegalSection[] = [
 export default function PrivacyPage() {
   return (
     <>
-      <Nav />
       <main>
         <LegalPageLayout
           title="Privacy Policy"

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { brand, contact } from "@/data/home";
-import { Nav } from "@/components/home/nav";
 import { LegalPageLayout, LegalSection } from "@/components/legal/legal-page-layout";
 import { AlertCircle, CheckCircle, ShieldAlert, FileText } from "lucide-react";
 
@@ -32,7 +31,6 @@ const SECTIONS: LegalSection[] = [
 export default function TermsPage() {
   return (
     <>
-      <Nav />
       <main>
         <LegalPageLayout
           title="Terms & Conditions of Service"

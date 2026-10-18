@@ -9,8 +9,8 @@ import GalleryModalAccordion from "@/components/ui/gallery-modal-accordion";
  */
 export function EquipmentRail() {
   return (
-    <section id="equipment" className="overflow-hidden bg-black py-20 md:py-28 lg:py-32">
-      <div className="shell">
+    <section id="equipment" className="relative py-20 md:py-28 lg:py-32">
+      <div className="shell relative z-10">
         <SectionHeader
           index="02"
           eyebrow={equipmentSection.eyebrow}

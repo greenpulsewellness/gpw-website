@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getPost, getPosts, getRelatedPosts } from "@/lib/blog";
 import { brand } from "@/data/home";
-import { Nav } from "@/components/home/nav";
 import { ArticleContent } from "@/components/blog/article-content";
 
 interface PageProps {
@@ -90,7 +89,6 @@ export default async function BlogPostPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Nav />
       <main className="min-h-screen bg-canvas pt-10 sm:pt-12">
         <div className="shell">
           <ArticleContent post={post} relatedPosts={relatedPosts} />

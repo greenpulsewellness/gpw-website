@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { brand, contact } from "@/data/home";
-import { Nav } from "@/components/home/nav";
 import { LegalPageLayout, LegalSection } from "@/components/legal/legal-page-layout";
 import { ShieldCheck, AlertTriangle, CheckCircle, HeartPulse, FileText, Info } from "lucide-react";
 
@@ -28,7 +27,6 @@ const SECTIONS: LegalSection[] = [
 export default function CompliancePage() {
   return (
     <>
-      <Nav />
       <main>
         <LegalPageLayout
           title="Regulatory Compliance & Safety Guidelines"

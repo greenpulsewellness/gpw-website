@@ -37,8 +37,9 @@ const suiteCards: ShaderCardItem[] = solutions.map((solution) => ({
 /** Text-led intro after the hero: what we do, why us, and the four suites. */
 export function SolutionsIntro() {
   return (
-    <section id="solutions" className="bg-canvas py-14 sm:py-20 md:py-28 lg:py-32">
-      <div className="shell">
+    <section id="solutions" className="relative py-14 sm:py-20 md:py-28 lg:py-32">
+
+      <div className="shell relative z-10">
         {/* Statement + supporting copy */}
         <div className="grid gap-6 sm:gap-10 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-7">

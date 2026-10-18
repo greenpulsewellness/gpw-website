@@ -43,9 +43,35 @@ export function SolutionEnquiryModal({ solutionTitle }: SolutionEnquiryModalProp
 
   if (!isModalOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+
+    try {
+      await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          business: formData.businessName
+            ? `${formData.businessName} (${formData.businessType})`
+            : formData.businessType,
+          city: formData.city,
+          phone: formData.phone,
+          interest: activeSubject,
+          message: [
+            formData.spaceArea ? `Target space: ${formData.spaceArea}` : null,
+            formData.timeline ? `Timeline: ${formData.timeline}` : null,
+            formData.notes ? `Notes: ${formData.notes}` : null,
+          ]
+            .filter(Boolean)
+            .join("\n"),
+          source: typeof window !== "undefined" ? window.location.pathname : `/solutions`,
+        }),
+      });
+    } catch (err) {
+      console.error("[solution-enquiry] delivery error", err);
+    }
   };
 
   const activeSubject = modalSource || `Space Planning Consultation: ${solutionTitle}`;

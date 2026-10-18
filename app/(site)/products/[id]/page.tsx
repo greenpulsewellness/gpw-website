@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { brand } from "@/data/home";
 import { getProductWithDetail, getProducts } from "@/lib/products";
-import { Nav } from "@/components/home/nav";
 import { EnquiryProvider } from "@/components/home/enquiry-context";
 import { ProductDetailView } from "@/components/product/product-detail-view";
 
@@ -106,7 +105,6 @@ export default async function ProductDetailPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Nav />
       <main className="min-h-screen bg-canvas pt-12 sm:pt-14">
         <div className="shell">
           <ProductDetailView

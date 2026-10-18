@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { brand, contact } from "@/data/home";
-import { Nav } from "@/components/home/nav";
 import { LegalPageLayout, LegalSection } from "@/components/legal/legal-page-layout";
 import { AlertCircle, Clock, ShieldAlert, PhoneCall, Mail, CheckCircle2, UserCheck, Layers } from "lucide-react";
 import { whatsappUrl } from "@/lib/whatsapp";
@@ -29,7 +28,6 @@ const SECTIONS: LegalSection[] = [
 export default function ComplaintsPage() {
   return (
     <>
-      <Nav />
       <main>
         <LegalPageLayout
           title="Complaints & Grievance Redressal Policy"

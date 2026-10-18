@@ -14,12 +14,12 @@ import { WhatsAppColorIcon } from "./icons";
 import { MediaFrame } from "./media-frame";
 
 const NAV_ITEMS = [
+  { label: "Home", href: "/", sectionId: "home" },
   { label: "About us", href: "/about", sectionId: "about" },
-  { label: "Equipment", href: "/#equipment", sectionId: "equipment" },
+  { label: "Products", href: "/products", sectionId: "products" },
   { label: "Combos", href: "/combos", sectionId: "combos" },
-  { label: "Who We Equip", href: "/#who-we-equip", sectionId: "who-we-equip" },
   { label: "Blog", href: "/blog", sectionId: "blog" },
-  { label: "Contact", href: "/#enquiry", sectionId: "enquiry" },
+  { label: "Contact", href: "/contact", sectionId: "contact" },
 ];
 
 export function Nav() {
@@ -27,7 +27,7 @@ export function Nav() {
   const pathname = usePathname();
   const router = useRouter();
   const isHome = pathname === "/";
-  const [activeSection, setActiveSection] = useState<string>("solutions");
+  const [activeSection, setActiveSection] = useState<string>("home");
   const closeRef = useRef<HTMLButtonElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   // Desktop notch alternates between the links and the brand name. Hover or
@@ -65,20 +65,19 @@ export function Nav() {
   useEffect(() => {
     if (!isHome) return;
     const handleScroll = () => {
-      const ids = ["solutions", "equipment", "packages", "who-we-equip", "enquiry"];
-      const scrollPos = window.scrollY + 200;
-      for (const id of ids) {
-        const el = document.getElementById(id);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(id);
-            break;
-          }
+      const enquiryEl = document.getElementById("enquiry");
+      if (enquiryEl) {
+        const top = enquiryEl.offsetTop;
+        const height = enquiryEl.offsetHeight;
+        const scrollPos = window.scrollY + 300;
+        if (scrollPos >= top && scrollPos < top + height) {
+          setActiveSection("enquiry");
+          return;
         }
       }
+      setActiveSection("home");
     };
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isHome]);
@@ -88,6 +87,14 @@ export function Nav() {
     if (href.startsWith("/#") && isHome) {
       e.preventDefault();
       requestAnimationFrame(() => requestAnimationFrame(() => scrollToId(sectionId)));
+    } else if (href === "/" && isHome) {
+      e.preventDefault();
+      const lenis = getLenis();
+      if (lenis) {
+        lenis.scrollTo(0);
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
     }
   };
 
@@ -96,7 +103,7 @@ export function Nav() {
   return (
     <>
       {/* ── Notch Navbar (Top Center, Attached to Screen Bezel) ── */}
-      <header className="fixed inset-x-0 top-0 z-50 flex justify-center pointer-events-none">
+      <header className="site-nav fixed inset-x-0 top-0 z-50 flex justify-center pointer-events-none transition-opacity duration-500">
         {/* Desktop Notch */}
         <div className="relative pointer-events-auto hidden md:flex items-center">
           {/* Left Ear Fillet Curve */}
@@ -128,13 +135,19 @@ export function Nav() {
             {NAV_ITEMS.map((item) => {
               const isActive = isHome
                 ? activeSection === item.sectionId
-                : item.sectionId === "about"
-                  ? pathname?.startsWith("/about")
-                  : item.sectionId === "blog"
-                    ? pathname?.startsWith("/blog")
-                    : item.sectionId === "equipment"
+                : item.sectionId === "home"
+                  ? pathname === "/"
+                  : item.sectionId === "about"
+                    ? pathname?.startsWith("/about")
+                    : item.sectionId === "products"
                       ? pathname?.startsWith("/products")
-                      : false;
+                      : item.sectionId === "combos"
+                        ? pathname?.startsWith("/combos")
+                        : item.sectionId === "blog"
+                          ? pathname?.startsWith("/blog")
+                          : item.sectionId === "contact"
+                            ? pathname?.startsWith("/contact")
+                            : false;
               return (
                 <Link
                   key={item.href}
@@ -152,6 +165,7 @@ export function Nav() {
               );
             })}
             </div>
+
 
             {/* Brand name: decorative duplicate of the site name, never intercepts clicks */}
             <span
@@ -260,7 +274,7 @@ export function Nav() {
 
             <div className="shell grid shrink-0 gap-3 pb-[calc(2rem+env(safe-area-inset-bottom,0px))] pt-8 sm:grid-cols-2">
               <Button asChild size="lg" className="w-full">
-                <Link href="/#enquiry" onClick={(e) => goTo(e, "/#enquiry", "enquiry")}>
+                <Link href="/contact" onClick={() => setOpen(false)}>
                   Enquire Now
                 </Link>
               </Button>

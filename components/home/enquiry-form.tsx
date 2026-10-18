@@ -108,8 +108,8 @@ export function EnquiryForm() {
   };
 
   return (
-    <section id={ENQUIRY_SECTION_ID} className="bg-canvas py-20 md:py-28 lg:py-32">
-      <div className="shell grid gap-12 lg:grid-cols-12 lg:gap-16">
+    <section id={ENQUIRY_SECTION_ID} className="relative py-20 md:py-28 lg:py-32">
+      <div className="shell relative z-10 grid gap-12 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-5">
           <p className="label-mono inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-3 py-1.5 text-white/70">
             <span className="size-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.9)]" aria-hidden />

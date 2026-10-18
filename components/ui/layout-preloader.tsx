@@ -211,6 +211,10 @@ export function LayoutPreloader({
     <PreloaderContext.Provider value={done}>
       {children}
 
+      {/* The nav lives in the root layout, outside this overlay's stacking
+          context, so hide it while the intro runs. */}
+      {visible && <style>{".site-nav{opacity:0;pointer-events:none!important}"}</style>}
+
       <AnimatePresence>
         {visible && (
           <motion.div

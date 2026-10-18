@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { getAllCategories } from "@/data/blog";
 import { getPosts } from "@/lib/blog";
 import { brand } from "@/data/home";
-import { Nav } from "@/components/home/nav";
 import { BlogHero } from "@/components/blog/blog-hero";
 import { BlogGrid } from "@/components/blog/blog-grid";
 
@@ -53,7 +52,6 @@ export default async function BlogIndexPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
       />
-      <Nav />
       <main className="min-h-screen bg-canvas pt-12 sm:pt-14">
         <div className="shell">
           <BlogHero />

@@ -4,6 +4,8 @@ import "lenis/dist/lenis.css";
 import "./globals.css";
 import { SmoothScroll } from "@/components/home/smooth-scroll";
 import { Footer } from "@/components/home/footer";
+import { FooterStage } from "@/components/home/footer-stage";
+import { Nav } from "@/components/home/nav";
 import { ProductsProvider } from "@/components/products-context";
 import { brand, contact } from "@/data/home";
 import { getProducts } from "@/lib/products";
@@ -163,8 +165,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body>
         <ProductsProvider products={products}>
           <SmoothScroll>
-            {children}
-            <Footer />
+            <Nav />
+            <FooterStage footer={<Footer />}>{children}</FooterStage>
           </SmoothScroll>
         </ProductsProvider>
       </body>

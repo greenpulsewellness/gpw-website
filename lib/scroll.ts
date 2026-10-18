@@ -54,11 +54,26 @@ export function scrollToId(id: string) {
   if (lenis) {
     // Page height changes as media and reveals settle — refresh Lenis's cached limit first.
     lenis.resize();
-    lenis.scrollTo(el);
+  }
+  // While the footer stage has the page body pinned, element rects are shifted
+  // down by the pinned distance; subtract it to get the element's resting offset.
+  const y = el.getBoundingClientRect().top + window.scrollY - pinnedShift();
+  if (lenis) {
+    lenis.scrollTo(y);
   } else {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    window.scrollTo({ top: y, behavior: reduce ? "auto" : "smooth" });
   }
+}
+
+/** How far the footer stage's sticky page body is currently displaced from its resting spot. */
+function pinnedShift() {
+  const content = document.querySelector<HTMLElement>("[data-stage-content]");
+  const stage = content?.parentElement;
+  if (!content || !stage) return 0;
+  const stageTop = stage.getBoundingClientRect().top + window.scrollY;
+  const stuckTop = parseFloat(content.style.top) || 0;
+  return Math.max(0, window.scrollY + stuckTop - stageTop);
 }
 
 /** Force immediate scroll to top across Lenis and window. */

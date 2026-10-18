@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { brand } from "@/data/home";
 import { combos, comboSafetyNote, comboSegments, comboTiers, type ComboTier } from "@/data/combos";
-import { Nav } from "@/components/home/nav";
 import { EnquiryProvider } from "@/components/home/enquiry-context";
 import { EnquiryForm } from "@/components/home/enquiry-form";
 import { ComboExplorer } from "@/components/combos/combo-explorer";
@@ -56,7 +55,6 @@ export default function CombosPage() {
   return (
     <EnquiryProvider>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Nav />
       <main className="relative min-h-screen overflow-x-clip bg-canvas">
         {/* Hero */}
         <section className="relative overflow-hidden pt-28 pb-14 sm:pt-36 md:pb-20">

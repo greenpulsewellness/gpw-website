@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { brand } from "@/data/home";
-import { Nav } from "@/components/home/nav";
 import { ProductCatalog } from "@/components/product/product-catalog";
+import { ProductPromotionalBanner } from "@/components/product/product-promotional-banner";
 
 export const metadata: Metadata = {
   title: `Commercial Wellness & Longevity Equipment Catalog | ${brand.name}`,
@@ -74,20 +74,11 @@ export default function ProductsIndexPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogJsonLd) }}
       />
-      <Nav />
-      <main className="min-h-screen bg-canvas pt-12 sm:pt-16">
-        <div className="shell">
-          {/* Header */}
-          <div className="mb-10 sm:mb-14 max-w-3xl">
-            <span className="label-mono text-wood text-[0.6875rem]">The Hardware Collection</span>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-pine mt-1 leading-[1.15]">
-              Commercial Recovery & Rehabilitation Equipment
-            </h1>
-            <p className="mt-3.5 text-base sm:text-lg text-wood leading-relaxed">
-              Curated, medically-calibrated technology for longevity centres, luxury hotel spas, athletic training clubs, physical therapy practices, and private estates.
-            </p>
-          </div>
+      <main className="min-h-screen bg-canvas">
+        {/* Full-width edge-to-edge horizontal banner strip */}
+        <ProductPromotionalBanner />
 
+        <div className="shell pt-8 sm:pt-10">
           {/* Catalog Filter & Grid */}
           <div className="pb-24">
             <Suspense

@@ -10,15 +10,9 @@ export function HowWeWork() {
   return (
     <section
       id="how-we-work"
-      className="relative overflow-hidden border-t border-white/10 bg-canvas py-20 md:py-28 lg:py-32"
+      className="relative py-20 md:py-28 lg:py-32"
     >
-      {/* soft top glow so the section reads as its own band */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(60%_100%_at_50%_0%,rgba(255,255,255,0.06),transparent)]"
-      />
-
-      <div className="shell relative">
+      <div className="shell relative z-10">
         <SectionHeader eyebrow={processSection.eyebrow} title={processSection.title} line={processSection.line} align="center" />
 
         <div className="relative mt-12 md:mt-16 lg:mt-20">

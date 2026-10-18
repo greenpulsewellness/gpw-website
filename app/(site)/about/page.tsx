@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { brand } from "@/data/home";
-import { Nav } from "@/components/home/nav";
 import { AboutHero } from "@/components/about/about-hero";
 import { AboutStory } from "@/components/about/about-story";
 import { AboutPillars } from "@/components/about/about-pillars";
@@ -48,7 +47,6 @@ export default function AboutPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }}
       />
-      <Nav />
       <main className="min-h-screen bg-canvas">
         <AboutHero />
         <AboutStory />

@@ -3,13 +3,15 @@
  */
 
 export type EnquiryField = "name" | "business" | "city" | "phone";
-export type EnquiryErrors = Partial<Record<EnquiryField, string>>;
+export type EnquiryErrors = Partial<Record<EnquiryField | "email" | "message", string>>;
 
 export type EnquiryPayload = {
   name: string;
   business: string;
-  city: string;
+  city?: string;
   phone: string;
+  email?: string;
+  message?: string;
   /** Human-readable product or combo the visitor is interested in */
   interest?: string;
   /** Page the enquiry was sent from */
@@ -18,11 +20,13 @@ export type EnquiryPayload = {
   company?: string;
 };
 
-export function validateEnquiry(v: Pick<EnquiryPayload, EnquiryField>): EnquiryErrors {
+export function validateEnquiry(v: Partial<EnquiryPayload>): EnquiryErrors {
   const errors: EnquiryErrors = {};
   if ((v.name ?? "").trim().length < 2) errors.name = "Please enter your name.";
   if (!v.business) errors.business = "Please choose a business type.";
-  if ((v.city ?? "").trim().length < 2) errors.city = "Please enter your city.";
+  if (v.city !== undefined && v.city !== "" && (v.city ?? "").trim().length < 2) {
+    errors.city = "Please enter your city.";
+  }
   const phone = (v.phone ?? "").trim();
   const digits = phone.replace(/\D/g, "");
   if (!phone) errors.phone = "Please enter a phone number.";
@@ -36,10 +40,12 @@ export function formatEnquiry(e: EnquiryPayload): string {
   return [
     "New enquiry — GreenPulse Wellness",
     `Name: ${e.name.trim()}`,
+    e.email ? `Email: ${e.email.trim()}` : null,
     `Business: ${e.business}`,
     `Interested in: ${e.interest?.trim() || "Not specified"}`,
-    `City: ${e.city.trim()}`,
+    e.city ? `City: ${e.city.trim()}` : null,
     `Phone: ${e.phone.trim()}`,
+    e.message ? `Message: ${e.message.trim()}` : null,
     e.source ? `Page: ${e.source}` : null,
   ]
     .filter(Boolean)

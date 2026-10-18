@@ -3,10 +3,10 @@ import { EnquiryForm } from "@/components/home/enquiry-form";
 import { EquipmentRail } from "@/components/home/equipment-rail";
 import { Hero } from "@/components/home/hero";
 import { HowWeWork } from "@/components/home/how-we-work";
-import { Nav } from "@/components/home/nav";
 import { SolutionsIntro } from "@/components/home/solutions-intro";
 import { SuitePackages } from "@/components/home/suite-packages";
 import { WhoWeEquip } from "@/components/home/who-we-equip";
+import { AmbientBackground } from "@/components/ui/ambient-background";
 import { LayoutPreloader } from "@/components/ui/layout-preloader";
 import { brand } from "@/data/home";
 
@@ -108,12 +108,12 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
       />
       <LayoutPreloader>
-        <Nav />
         <main className="relative bg-neutral-950">
           <Hero />
 
           {/* Overriding content layer that slides up and covers the sticky hero */}
-          <div className="relative z-10 bg-canvas rounded-t-[28px] sm:rounded-t-[38px] md:rounded-t-[48px] shadow-[0_-25px_60px_rgba(0,0,0,0.8)] border-t border-white/10">
+          <div className="relative z-10 bg-[#060907] rounded-t-[28px] sm:rounded-t-[38px] md:rounded-t-[48px] shadow-[0_-25px_60px_rgba(0,0,0,0.8)] border-t border-white/10">
+            <AmbientBackground className="-z-10 rounded-t-[inherit]" />
 
             <SolutionsIntro />
             <EquipmentRail />

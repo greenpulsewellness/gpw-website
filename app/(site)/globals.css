@@ -8,6 +8,14 @@
   --color-pine: #f4f4f5; /* crisp bright off-white primary text */
   --color-lime: #ffffff; /* pure white accent (monochrome) */
 
+  /* "The Loop" logo colours — used by the logo and the loop ribbon art only */
+  --color-cyan: #29a8e0;
+  --color-royal: #2b4ba0;
+  --color-indigo: #2e3a8c;
+  --color-teal: #1fb8a0;
+  --color-leaf: #4cb84a;
+  --color-sprout: #b5d334;
+
   --radius-card: 1.25rem; /* 20px */
   --radius-panel: 1.5rem; /* 24px */
 
@@ -31,8 +39,9 @@
 }
 
 @theme inline {
-  --font-serif: var(--font-sans);
-  --font-sans: var(--font-geist), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-outfit), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-display);
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
 
   /* shadcn/ui semantic tokens mapped onto dark monochrome brand */
@@ -60,9 +69,10 @@
   }
 }
 
-/* Mono spec label: uppercase, letter-spaced */
+/* Eyebrow label: uppercase, letter-spaced (brand "OPTION 05" style) */
 @utility label-mono {
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
+  font-weight: 600;
   font-size: 0.6875rem;
   line-height: 1rem;
   letter-spacing: 0.14em;
@@ -89,7 +99,7 @@
   }
   body {
     background-color: #000000;
-    background-image: 
+    background-image:
       radial-gradient(ellipse 90% 60% at 50% -10%, rgba(255, 255, 255, 0.03), transparent 70%),
       radial-gradient(ellipse 70% 50% at 100% 30%, rgba(255, 255, 255, 0.02), transparent 60%),
       radial-gradient(ellipse 80% 50% at 0% 70%, rgba(255, 255, 255, 0.02), transparent 70%),
@@ -100,6 +110,12 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
   }
   ::selection {
     background: rgba(255, 255, 255, 0.25);

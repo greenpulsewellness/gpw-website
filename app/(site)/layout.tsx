@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { DM_Sans, Geist_Mono, Outfit } from "next/font/google";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 import { SmoothScroll } from "@/components/home/smooth-scroll";
@@ -10,7 +10,8 @@ import { ProductsProvider } from "@/components/products-context";
 import { brand, contact } from "@/data/home";
 import { getProducts } from "@/lib/products";
 
-const sans = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
+const display = Outfit({ subsets: ["latin"], variable: "--font-outfit", display: "swap" });
+const sans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display: "swap" });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
 
 const SITE_URL = "https://greenpulsewellness.com";
@@ -84,7 +85,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  icons: { icon: brand.logo },
+  icons: { icon: "/loop-mark.svg" },
 };
 
 export const viewport: Viewport = {
@@ -155,7 +156,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const products = await getProducts();
 
   return (
-    <html lang="en" className={`dark ${sans.variable} ${mono.variable}`}>
+    <html lang="en" className={`dark ${display.variable} ${sans.variable} ${mono.variable}`}>
       <head>
         <script
           type="application/ld+json"

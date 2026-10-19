@@ -6,6 +6,7 @@ import { Printer, Shield, ArrowUpRight, Clock, Calendar, CheckCircle2, MessageSq
 import { brand, contact } from "@/data/home";
 import { whatsappUrl } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
+import { AmbientBackground } from "@/components/ui/ambient-background";
 
 export interface LegalSection {
   id: string;
@@ -74,9 +75,11 @@ export function LegalPageLayout({
   };
 
   return (
-    <div className="min-h-screen bg-canvas pt-12 sm:pt-16 md:pt-20">
+    <div className="relative isolate min-h-screen bg-[#060907] pt-12 sm:pt-16 md:pt-20">
+      <AmbientBackground className="-z-10" />
+
       {/* ── Document Hero ── */}
-      <section className="border-b border-white/10 bg-gradient-to-b from-white/[0.03] via-black to-black pb-10 pt-4 sm:pb-14 sm:pt-6">
+      <section className="border-b border-white/10 bg-gradient-to-b from-emerald-500/[0.07] via-emerald-500/[0.02] to-transparent pb-10 pt-4 sm:pb-14 sm:pt-6">
         <div className="shell">
           <div className="flex flex-wrap items-center gap-2 text-xs text-neutral-400">
             <Link href="/" className="hover:text-white transition-colors">
@@ -173,7 +176,7 @@ export function LegalPageLayout({
           <aside className="lg:col-span-4 print:hidden">
             <div className="sticky top-20 space-y-6">
               {/* Table of contents card */}
-              <div className="rounded-2xl border border-white/10 bg-[#0d0d0d]/90 p-5 backdrop-blur-md">
+              <div className="rounded-2xl border border-white/10 bg-[#0a0f0c]/80 p-5 backdrop-blur-md">
                 <h2 className="label-mono text-white text-[11px] mb-3 font-semibold">Table of Contents</h2>
                 <nav className="space-y-1 text-sm max-h-[50vh] overflow-y-auto no-scrollbar">
                   {sections.map((sec, idx) => (
@@ -192,7 +195,7 @@ export function LegalPageLayout({
               </div>
 
               {/* Legal Assistance Box */}
-              <div className="rounded-2xl border border-white/15 bg-gradient-to-b from-white/[0.02] to-[#0d0d0d] p-5 shadow-sm">
+              <div className="rounded-2xl border border-white/15 bg-gradient-to-b from-white/[0.02] to-[#0a0f0c] p-5 shadow-sm">
                 <h3 className="text-sm font-semibold text-white">Need Clarification?</h3>
                 <p className="mt-1.5 text-xs text-neutral-300 leading-relaxed">
                   For formal legal notices, tender compliance queries, or commercial purchase agreements:
@@ -224,7 +227,7 @@ export function LegalPageLayout({
             {children}
 
             {/* Bottom Cross-Links */}
-            <div className="mt-16 rounded-2xl border border-white/10 bg-[#0d0d0d]/90 p-6 sm:p-8 print:hidden">
+            <div className="mt-16 rounded-2xl border border-white/10 bg-[#0a0f0c]/80 p-6 sm:p-8 print:hidden">
               <h3 className="text-sm font-semibold text-white">Related Policies & Standards</h3>
               <p className="mt-1 text-xs text-neutral-400">
                 Review complementary documentation governing your interactions with {brand.name}.
@@ -234,7 +237,7 @@ export function LegalPageLayout({
                   <Link
                     key={p.href}
                     href={p.href}
-                    className="group rounded-xl border border-white/10 bg-black p-3.5 transition-all hover:border-white/30 hover:shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
+                    className="group rounded-xl border border-white/10 bg-black/40 p-3.5 transition-all hover:border-white/30 hover:shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
                   >
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-semibold text-white group-hover:text-white/80 transition-colors">

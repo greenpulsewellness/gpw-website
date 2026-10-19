@@ -9,6 +9,7 @@ import { validateEnquiry, type EnquiryErrors, type EnquiryField } from "@/lib/en
 import { useProducts } from "@/components/products-context";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { LoopArt } from "@/components/ui/loop-art";
 import { ENQUIRY_FIRST_FIELD_ID, ENQUIRY_SECTION_ID, useEnquiry, type InterestId } from "./enquiry-context";
 import { Reveal } from "./reveal";
 
@@ -143,8 +144,9 @@ export function EnquiryForm() {
         </Reveal>
 
         <Reveal delay={0.08} className="lg:col-span-7">
-          <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-b from-[#141414] to-[#0a0a0a] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.7)] sm:p-7 md:rounded-[32px] lg:p-10">
+          <div className="relative isolate overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-b from-[#141414] to-[#0a0a0a] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.7)] sm:p-7 md:rounded-[32px] lg:p-10">
             <div aria-hidden className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+            <LoopArt variant="wave-glow" frameClassName="-z-10" className="-bottom-[38%] -right-[36%] w-[520px] opacity-20 sm:w-[640px]" />
 
             <AnimatePresence mode="wait" initial={false}>
               {status === "success" ? (

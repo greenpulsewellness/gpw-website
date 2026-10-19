@@ -8,6 +8,7 @@ import { useProducts } from "@/components/products-context";
 import { whatsappUrl } from "@/lib/whatsapp";
 import { LinkedInIcon, InstagramIcon, WhatsAppIcon } from "./icons";
 import { AmbientBackground } from "@/components/ui/ambient-background";
+import { LoopArt } from "@/components/ui/loop-art";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -16,6 +17,7 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-[#060907] text-neutral-300 pt-16 sm:pt-20 rounded-t-[28px] sm:rounded-t-[38px] md:rounded-t-[48px] border-t border-white/10 shadow-[0_-25px_60px_rgba(0,0,0,0.8)]">
       <AmbientBackground />
+      <LoopArt variant="wave-glow" className="-bottom-[10%] -right-[12%] w-[min(140vw,1100px)] opacity-[0.14]" />
 
       <div className="shell relative z-10">
         {/* ── Top Link Columns ── */}

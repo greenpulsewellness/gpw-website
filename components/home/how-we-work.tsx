@@ -2,6 +2,7 @@ import { ArrowRight, LifeBuoy, ListChecks, MessagesSquare, Ship, Wrench } from "
 import { processSection, steps } from "@/data/home";
 import { Reveal } from "./reveal";
 import { SectionHeader } from "./section-header";
+import { LoopArt } from "@/components/ui/loop-art";
 
 const stepIcons = [MessagesSquare, ListChecks, Ship, Wrench, LifeBuoy];
 
@@ -12,6 +13,10 @@ export function HowWeWork() {
       id="how-we-work"
       className="relative py-20 md:py-28 lg:py-32"
     >
+      <LoopArt
+        variant="band-line"
+        frameClassName="[mask-image:linear-gradient(to_bottom,transparent_55%,black_80%,transparent)]"
+        className="left-1/2 top-[calc(100%-120px)] w-[1600px] -translate-x-1/2 opacity-60 md:top-[calc(100%-150px)] lg:w-[2200px]" />
       <div className="shell relative z-10">
         <SectionHeader eyebrow={processSection.eyebrow} title={processSection.title} line={processSection.line} align="center" />
 

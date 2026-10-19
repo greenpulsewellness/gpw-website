@@ -7,12 +7,14 @@ import { comboById, featuredComboId, homeComboIds, type Combo } from "@/data/com
 import { ComboCard } from "@/components/combos/combo-card";
 import { Reveal } from "./reveal";
 import { SectionHeader } from "./section-header";
+import { LoopArt } from "@/components/ui/loop-art";
 
 const homeCombos = homeComboIds.map(comboById).filter((c): c is Combo => !!c);
 
 export function SuitePackages() {
   return (
     <section id="packages" className="relative py-20 md:py-28 lg:py-32">
+      <LoopArt variant="band" className="left-1/2 top-1/2 w-[2000px] -translate-x-1/2 -translate-y-[35%] opacity-[0.07] md:w-[2600px]" />
       <div className="shell relative z-10">
         <SectionHeader
           index="06"

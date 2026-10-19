@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Accessibility, ArrowUpRight, Bone, HeartPulse, ThermometerSnowflake } from "lucide-react";
 import FeatureShaderCards, { type ShaderCardItem } from "@/components/ui/feature-shader-cards";
+import { LoopArt } from "@/components/ui/loop-art";
 import { solutions, solutionsSection, type SolutionId } from "@/data/home";
 import { Reveal } from "./reveal";
 
@@ -38,6 +39,7 @@ const suiteCards: ShaderCardItem[] = solutions.map((solution) => ({
 export function SolutionsIntro() {
   return (
     <section id="solutions" className="relative py-14 sm:py-20 md:py-28 lg:py-32">
+      <LoopArt variant="wave-outline" frameClassName="hidden lg:block" className="-left-[12%] top-[30%] w-[720px] opacity-40" />
 
       <div className="shell relative z-10">
         {/* Statement + supporting copy */}

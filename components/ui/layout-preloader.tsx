@@ -9,7 +9,7 @@ import {
   useMotionValue,
   useTransform,
 } from "motion/react";
-import { brand } from "@/data/home";
+import { Logo } from "@/components/home/logo";
 import { getLenis, getIsBackNavigation, saveScrollPosition } from "@/lib/scroll";
 
 /* ------------------------------------------------------------------ */
@@ -286,7 +286,7 @@ export function LayoutPreloader({
               animate={expanded ? { opacity: 0, y: -12 } : { opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: EASE_OUT }}
             >
-              <span className="text-white font-semibold">{brand.name}</span>
+              <Logo tone="light" className="text-3xl normal-case tracking-[-0.02em] sm:text-4xl" />
               <span className="text-3xl font-light tabular-nums tracking-normal text-white sm:text-5xl">
                 <motion.span>{counter}</motion.span>
               </span>

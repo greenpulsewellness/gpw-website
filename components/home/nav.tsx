@@ -5,12 +5,13 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { brand, contact } from "@/data/home";
+import { contact } from "@/data/home";
 import { getLenis, scrollToId } from "@/lib/scroll";
 import { whatsappUrl } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { WhatsAppColorIcon } from "./icons";
+import { Logo } from "./logo";
 import { MediaFrame } from "./media-frame";
 
 const NAV_ITEMS = [
@@ -30,19 +31,20 @@ export function Nav() {
   const [activeSection, setActiveSection] = useState<string>("home");
   const closeRef = useRef<HTMLButtonElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
-  // Desktop notch alternates between the links and the brand name. Hover or
-  // keyboard focus on the notch holds the links; otherwise it flips every 5s.
+  // The notch (desktop and mobile) alternates between the links/menu button and the
+  // logo. Hover, keyboard focus or an open mobile menu holds the links; otherwise it
+  // flips every 5s.
   const [engaged, setEngaged] = useState(false);
   const [showBrand, setShowBrand] = useState(false);
 
   useEffect(() => {
-    if (engaged) {
+    if (engaged || open) {
       setShowBrand(false);
       return;
     }
     const t = window.setTimeout(() => setShowBrand((b) => !b), 5000);
     return () => window.clearTimeout(t);
-  }, [engaged, showBrand]);
+  }, [engaged, open, showBrand]);
 
   // Lock scroll + Escape to close while mobile menu is open
   useEffect(() => {
@@ -175,7 +177,7 @@ export function Nav() {
                 showBrand ? "translate-y-0 opacity-100 blur-0" : "-translate-y-2 opacity-0 blur-[3px]",
               )}
             >
-              {brand.name}
+              <Logo tagline={false} className="text-[22px]" />
             </span>
           </nav>
 
@@ -203,11 +205,27 @@ export function Nav() {
             ref={toggleRef}
             type="button"
             onClick={() => setOpen(true)}
-            className="flex items-center gap-2 rounded-b-xl bg-white px-4 py-1.5 text-xs font-semibold text-black shadow-md"
+            className="grid items-center justify-items-center rounded-b-xl bg-white px-4 py-1.5 text-xs font-semibold text-black shadow-md"
             aria-label="Open navigation menu"
           >
-            <span>Navigation</span>
-            <Menu className="size-3.5 text-black" />
+            <span
+              className={cn(
+                "col-start-1 row-start-1 flex items-center gap-2 transition-all duration-700 ease-out motion-reduce:transition-opacity",
+                showBrand ? "translate-y-2 opacity-0 blur-[3px]" : "translate-y-0 opacity-100 blur-0",
+              )}
+            >
+              <span>Navigation</span>
+              <Menu className="size-3.5 text-black" />
+            </span>
+            <span
+              aria-hidden="true"
+              className={cn(
+                "col-start-1 row-start-1 flex items-center justify-center transition-all duration-700 ease-out motion-reduce:transition-opacity",
+                showBrand ? "translate-y-0 opacity-100 blur-0" : "-translate-y-2 opacity-0 blur-[3px]",
+              )}
+            >
+              <Logo tagline={false} className="text-[19px]" />
+            </span>
           </button>
 
           <svg
@@ -236,9 +254,7 @@ export function Nav() {
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="shell flex h-16 shrink-0 items-center justify-between border-b border-white/10">
-              <span className="label-mono text-xs font-semibold tracking-wider text-white">
-                Navigation
-              </span>
+              <Logo tone="light" tagline={false} className="text-2xl" />
               <Button
                 ref={closeRef}
                 variant="outline"

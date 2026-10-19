@@ -30,10 +30,8 @@ export type ModalityMeta = {
   label: string;
   icon: typeof Flame;
   subtitle?: string;
-  solidBg: string;
-  hoverBg: string;
-  textColor: string;
-  activeRing: string;
+  /** Tailwind text colour for the chip icon — the only place category colour appears. */
+  accent: string;
 };
 
 const MODALITIES: ModalityMeta[] = [
@@ -42,70 +40,49 @@ const MODALITIES: ModalityMeta[] = [
     label: "All Equipment",
     icon: Sparkles,
     subtitle: "Complete Commercial Longevity & Wellness Fleet",
-    solidBg: "bg-white",
-    hoverBg: "hover:bg-neutral-100",
-    textColor: "text-neutral-950 font-bold",
-    activeRing: "ring-2 ring-white ring-offset-2 ring-offset-[#050505] scale-[1.04] shadow-md shadow-white/30",
+    accent: "text-white",
   },
   {
     id: "heat",
     label: "Heat",
     icon: Flame,
     subtitle: "Full-Spectrum Infrared Saunas & Thermal Suites",
-    solidBg: "bg-orange-600",
-    hoverBg: "hover:bg-orange-500",
-    textColor: "text-white font-semibold",
-    activeRing: "ring-2 ring-white ring-offset-2 ring-offset-[#050505] scale-[1.04] shadow-lg shadow-orange-600/50 brightness-110",
+    accent: "text-orange-400",
   },
   {
     id: "cold",
     label: "Cold",
     icon: Snowflake,
     subtitle: "Commercial Ice Plunge Tubs & Cryo Chambers",
-    solidBg: "bg-sky-600",
-    hoverBg: "hover:bg-sky-500",
-    textColor: "text-white font-semibold",
-    activeRing: "ring-2 ring-white ring-offset-2 ring-offset-[#050505] scale-[1.04] shadow-lg shadow-sky-600/50 brightness-110",
+    accent: "text-sky-400",
   },
   {
     id: "light",
     label: "Light",
     icon: SunMedium,
     subtitle: "Medical Photobiomodulation (PBM) & Red Light Panels",
-    solidBg: "bg-rose-600",
-    hoverBg: "hover:bg-rose-500",
-    textColor: "text-white font-semibold",
-    activeRing: "ring-2 ring-white ring-offset-2 ring-offset-[#050505] scale-[1.04] shadow-lg shadow-rose-600/50 brightness-110",
+    accent: "text-rose-400",
   },
   {
     id: "air",
     label: "Air",
     icon: Wind,
     subtitle: "Hard-Shell Hyperbaric Oxygen Chambers (HBOT)",
-    solidBg: "bg-teal-600",
-    hoverBg: "hover:bg-teal-500",
-    textColor: "text-white font-semibold",
-    activeRing: "ring-2 ring-white ring-offset-2 ring-offset-[#050505] scale-[1.04] shadow-lg shadow-teal-600/50 brightness-110",
+    accent: "text-teal-400",
   },
   {
     id: "relax",
     label: "Relax",
     icon: Activity,
     subtitle: "Robotic 4D Massage & Compression Therapy Systems",
-    solidBg: "bg-purple-600",
-    hoverBg: "hover:bg-purple-500",
-    textColor: "text-white font-semibold",
-    activeRing: "ring-2 ring-white ring-offset-2 ring-offset-[#050505] scale-[1.04] shadow-lg shadow-purple-600/50 brightness-110",
+    accent: "text-purple-400",
   },
   {
     id: "mobility",
     label: "Mobility",
     icon: Accessibility,
     subtitle: "Chiropractic Drop Tables & Assisted Rehabilitation",
-    solidBg: "bg-emerald-600",
-    hoverBg: "hover:bg-emerald-500",
-    textColor: "text-white font-semibold",
-    activeRing: "ring-2 ring-white ring-offset-2 ring-offset-[#050505] scale-[1.04] shadow-lg shadow-emerald-600/50 brightness-110",
+    accent: "text-emerald-400",
   },
 ];
 
@@ -348,120 +325,127 @@ export function ProductCatalog() {
 
   return (
     <div className="space-y-6 sm:space-y-8">
-      {/* ── Category Filter Bar & Search ────────────────────────────── */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4">
-        {/* Modality Selector Tabs */}
-        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0">
-          {MODALITIES.map((modality) => {
-            const Icon = modality.icon;
-            const isSelected = selectedModality === modality.id;
-            return (
-              <button
-                key={modality.id}
-                type="button"
-                onClick={() => handleModalityChange(modality.id)}
-                className={`group flex items-center gap-1.5 sm:gap-2 rounded-md px-3 sm:px-3.5 py-1.5 sm:py-2 text-xs transition-all duration-200 shrink-0 cursor-pointer shadow-xs ${
-                  isSelected
-                    ? `${modality.solidBg} ${modality.textColor} ${modality.activeRing}`
-                    : `${
-                        modality.id === "all"
-                          ? "bg-[#222226] text-neutral-300 hover:bg-[#2c2d33] hover:text-white"
-                          : `${modality.solidBg} ${modality.textColor} ${modality.hoverBg} opacity-85 hover:opacity-100 hover:scale-[1.02]`
-                      }`
-                }`}
-              >
-                <Icon className="size-3.5 shrink-0" />
-                <span className="tracking-tight">{modality.label}</span>
-              </button>
-            );
-          })}
-        </div>
+      {/* ── Filter panel: search + view, category chips, product-type chips ── */}
+      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-3 backdrop-blur-md sm:p-4 lg:p-5">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between lg:gap-6">
+          {/* Search & view switcher — first on mobile, right-aligned on desktop */}
+          <div className="flex items-center gap-2 lg:order-2 lg:w-auto">
+            <div className="relative min-w-0 flex-1 lg:w-80 lg:flex-none">
+              <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-neutral-400" />
+              <input
+                type="search"
+                inputMode="search"
+                aria-label="Search products"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="h-10 w-full rounded-full border border-white/10 bg-black/40 pl-10 pr-9 text-sm text-white outline-none transition-colors placeholder:text-neutral-500 focus:border-white/40 focus:bg-black/60 [&::-webkit-search-cancel-button]:hidden"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-neutral-400 hover:text-white"
+                  aria-label="Clear search"
+                >
+                  <X className="size-3.5" />
+                </button>
+              )}
+            </div>
 
-        {/* Search & View Switcher */}
-        <div className="flex items-center gap-2 w-full md:w-auto">
-          {/* Search Input */}
-          <div className="relative flex-1 md:w-72 shrink-0">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400" />
-            <input
-              type="text"
-              placeholder="Search products..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-md border border-white/15 bg-[#0d0d0d] pl-10 pr-9 py-2 text-xs text-white placeholder:text-neutral-500 outline-none focus:border-white transition-all"
-            />
-            {searchQuery && (
-              <button
-                type="button"
-                onClick={() => setSearchQuery("")}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-white"
-                aria-label="Clear search"
-              >
-                <X className="size-3.5" />
-              </button>
+            {/* Strip vs grid (only while browsing everything) */}
+            {isBrowsingAllWithoutSearch && (
+              <div className="flex h-10 shrink-0 items-center gap-0.5 rounded-full border border-white/10 bg-black/40 p-1" role="group" aria-label="Layout">
+                {(
+                  [
+                    ["strip", Rows3, "Categorized rows"],
+                    ["grid", LayoutGrid, "Compact grid"],
+                  ] as const
+                ).map(([mode, ModeIcon, label]) => (
+                  <button
+                    key={mode}
+                    type="button"
+                    onClick={() => setViewMode(mode)}
+                    title={label}
+                    aria-label={label}
+                    aria-pressed={viewMode === mode}
+                    className={`flex size-8 cursor-pointer items-center justify-center rounded-full transition-colors ${
+                      viewMode === mode ? "bg-white text-neutral-950" : "text-neutral-400 hover:text-white"
+                    }`}
+                  >
+                    <ModeIcon className="size-4" />
+                  </button>
+                ))}
+              </div>
             )}
           </div>
 
-          {/* Strip vs Grid View Mode Toggle (Active when browsing All Equipment) */}
-          {isBrowsingAllWithoutSearch && (
-            <div className="flex items-center rounded-md border border-white/10 bg-[#0d0d0d] p-0.5 shrink-0">
-              <button
-                type="button"
-                onClick={() => setViewMode("strip")}
-                title="Categorized Strip View"
-                className={`p-1.5 rounded transition-colors ${
-                  viewMode === "strip"
-                    ? "bg-white text-black font-semibold shadow-xs"
-                    : "text-neutral-400 hover:text-white"
-                }`}
-              >
-                <Rows3 className="size-4" />
-              </button>
-              <button
-                type="button"
-                onClick={() => setViewMode("grid")}
-                title="Compact Grid View"
-                className={`p-1.5 rounded transition-colors ${
-                  viewMode === "grid"
-                    ? "bg-white text-black font-semibold shadow-xs"
-                    : "text-neutral-400 hover:text-white"
-                }`}
-              >
-                <LayoutGrid className="size-4" />
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* ── Product type chips (footer links land here) ─────────────── */}
-      <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
-        {PRODUCT_TYPES.map((t) => {
-          const active = t.id === selectedTypeId;
-          return (
-            <button
-              key={t.id}
-              type="button"
-              onClick={() => handleTypeChange(active ? null : t.id)}
-              aria-pressed={active}
-              className={`shrink-0 cursor-pointer rounded-full border px-3 py-1.5 text-xs transition-colors ${
-                active
-                  ? "border-white bg-white font-semibold text-neutral-950"
-                  : "border-white/15 text-neutral-300 hover:border-white/40 hover:text-white"
-              }`}
-            >
-              {t.label}
-            </button>
-          );
-        })}
-        {selectedType && (
-          <button
-            type="button"
-            onClick={() => handleTypeChange(null)}
-            className="ml-1 flex shrink-0 cursor-pointer items-center gap-1 text-xs text-neutral-400 hover:text-white"
+          {/* Category chips: scroll sideways on mobile, wrap on desktop */}
+          <div
+            role="group"
+            aria-label="Equipment category"
+            className="no-scrollbar -mx-3 flex items-center gap-2 overflow-x-auto px-3 [mask-image:linear-gradient(to_right,transparent,black_12px,black_calc(100%-24px),transparent)] sm:-mx-4 sm:px-4 lg:order-1 lg:mx-0 lg:flex-wrap lg:overflow-visible lg:px-0 lg:[mask-image:none]"
           >
-            <X className="size-3.5" /> Clear
-          </button>
-        )}
+            {MODALITIES.map((modality) => {
+              const Icon = modality.icon;
+              const isSelected = selectedModality === modality.id;
+              return (
+                <button
+                  key={modality.id}
+                  type="button"
+                  onClick={() => handleModalityChange(modality.id)}
+                  aria-pressed={isSelected}
+                  className={`flex h-10 shrink-0 cursor-pointer items-center gap-2 rounded-full border px-4 text-[13px] font-medium tracking-tight transition-all duration-200 ${
+                    isSelected
+                      ? "border-white bg-white text-neutral-950 shadow-[0_0_24px_rgba(255,255,255,0.18)]"
+                      : "border-white/10 bg-white/[0.04] text-neutral-200 hover:border-white/30 hover:bg-white/[0.09] hover:text-white"
+                  }`}
+                >
+                  <Icon className={`size-4 shrink-0 ${isSelected ? "text-neutral-950" : modality.accent}`} />
+                  {modality.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Product-type chips (footer links land here) */}
+        <div className="mt-3 flex items-center gap-3 border-t border-white/10 pt-3 sm:mt-4 sm:pt-4">
+          <span className="label-mono hidden shrink-0 text-neutral-500 sm:block">Type</span>
+          <div
+            role="group"
+            aria-label="Product type"
+            className="no-scrollbar -mx-3 flex min-w-0 flex-1 items-center gap-1.5 overflow-x-auto px-3 [mask-image:linear-gradient(to_right,transparent,black_12px,black_calc(100%-24px),transparent)] sm:mx-0 sm:px-0 sm:[mask-image:none] lg:flex-wrap lg:overflow-visible"
+          >
+            {PRODUCT_TYPES.map((t) => {
+              const active = t.id === selectedTypeId;
+              return (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => handleTypeChange(active ? null : t.id)}
+                  aria-pressed={active}
+                  className={`h-8 shrink-0 cursor-pointer rounded-full border px-3.5 text-xs transition-colors ${
+                    active
+                      ? "border-leaf/60 bg-leaf/15 font-semibold text-white"
+                      : "border-white/10 text-neutral-300 hover:border-white/30 hover:text-white"
+                  }`}
+                >
+                  {t.label}
+                </button>
+              );
+            })}
+            {selectedType && (
+              <button
+                type="button"
+                onClick={() => handleTypeChange(null)}
+                className="ml-1 flex h-8 shrink-0 cursor-pointer items-center gap-1 px-1 text-xs text-neutral-400 hover:text-white"
+              >
+                <X className="size-3.5" /> Clear
+              </button>
+            )}
+          </div>
+        </div>
       </div>
 
       {/* ── Product Display Section ────────────────────────────── */}

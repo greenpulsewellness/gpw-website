@@ -5,7 +5,7 @@ import { AlertCircle, Clock, ShieldAlert, PhoneCall, Mail, CheckCircle2, UserChe
 import { whatsappUrl } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
-  title: `Complaints & Grievance Redressal Policy | ${brand.name}`,
+  title: `Complaints & Grievance Redressal Policy`,
   description:
     "Official Grievance Redressal & Complaint Handling Policy for GreenPulse Wellness. Escalation tiers, technical breakdown reporting, SLAs, and Grievance Officer contact details.",
   openGraph: {

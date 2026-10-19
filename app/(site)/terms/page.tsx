@@ -4,7 +4,7 @@ import { LegalPageLayout, LegalSection } from "@/components/legal/legal-page-lay
 import { AlertCircle, CheckCircle, ShieldAlert, FileText } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: `Terms & Conditions of Service | ${brand.name}`,
+  title: `Terms & Conditions of Service`,
   description:
     "Review the terms and conditions governing commercial equipment sales, clinical rentals, white-glove installation, warranty coverage, and user guidelines for GreenPulse Wellness.",
   openGraph: {

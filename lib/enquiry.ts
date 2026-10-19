@@ -20,6 +20,8 @@ export type EnquiryPayload = {
   company?: string;
 };
 
+export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export function validateEnquiry(v: Partial<EnquiryPayload>): EnquiryErrors {
   const errors: EnquiryErrors = {};
   if ((v.name ?? "").trim().length < 2) errors.name = "Please enter your name.";
@@ -27,6 +29,7 @@ export function validateEnquiry(v: Partial<EnquiryPayload>): EnquiryErrors {
   if (v.city !== undefined && v.city !== "" && (v.city ?? "").trim().length < 2) {
     errors.city = "Please enter your city.";
   }
+  if (v.email && !EMAIL_RE.test(v.email.trim())) errors.email = "Please enter a valid email address.";
   const phone = (v.phone ?? "").trim();
   const digits = phone.replace(/\D/g, "");
   if (!phone) errors.phone = "Please enter a phone number.";

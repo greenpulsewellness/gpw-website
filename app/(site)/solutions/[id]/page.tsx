@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { brand } from "@/data/home";
 import {
   getAllSolutions,
@@ -15,6 +15,8 @@ import { WorkflowProtocol } from "@/components/solution/workflow-protocol";
 import { SolutionFaq } from "@/components/solution/solution-faq";
 import { SolutionCrossNav } from "@/components/solution/solution-cross-nav";
 import { SolutionEnquiryModal } from "@/components/solution/solution-enquiry-modal";
+import { JsonLd } from "@/components/seo/json-ld";
+import { faqSchema } from "@/lib/schema";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -40,7 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!solution) {
     return {
-      title: `Solution Not Found — ${brand.name}`,
+      title: "Solution Not Found",
     };
   }
 
@@ -48,7 +50,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const canonicalUrl = `${siteUrl}/solutions/${solution.slug}`;
 
   return {
-    title: `${solution.title} Commercial Equipment & Space Architecture | ${brand.name}`,
+    title: `${solution.title} Commercial Equipment & Space Architecture`,
     description: `${solution.headline}. ${solution.tagline} Curated for ${solution.audience}.`,
     alternates: {
       canonical: canonicalUrl,
@@ -89,6 +91,11 @@ export default async function SolutionDetailPage({ params }: PageProps) {
 
   if (!solution) {
     notFound();
+  }
+
+  // Aliases (e.g. /solutions/wellness) resolve to the one canonical URL so there is no duplicate content.
+  if (id !== solution.slug) {
+    permanentRedirect(`/solutions/${solution.slug}`);
   }
 
   const siteUrl = "https://greenpulsewellness.com";
@@ -136,15 +143,13 @@ export default async function SolutionDetailPage({ params }: PageProps) {
           audienceType: solution.audience,
         },
       },
+      ...(solution.faqs?.length ? [faqSchema(solution.faqs)] : []),
     ],
   };
 
   return (
     <SolutionProvider>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       <main className="min-h-screen bg-black">
         <SolutionHero solution={solution} />
         <SpaceBlueprint solution={solution} />

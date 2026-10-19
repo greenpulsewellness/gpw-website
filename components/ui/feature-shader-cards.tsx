@@ -2,10 +2,14 @@
 
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { Warp, type WarpParams } from "@paper-design/shaders-react";
+import type { WarpParams } from "@paper-design/shaders-react";
 import { cn } from "@/lib/utils";
+
+// The WebGL shader is decorative and sits below the fold: load it in its own chunk, after the text renders.
+const Warp = dynamic(() => import("@paper-design/shaders-react").then((m) => m.Warp), { ssr: false });
 
 export type ShaderCardItem = {
   id: string;

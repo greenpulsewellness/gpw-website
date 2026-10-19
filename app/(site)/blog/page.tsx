@@ -4,9 +4,10 @@ import { getPosts } from "@/lib/blog";
 import { brand } from "@/data/home";
 import { BlogHero } from "@/components/blog/blog-hero";
 import { BlogGrid } from "@/components/blog/blog-grid";
+import { JsonLd } from "@/components/seo/json-ld";
 
 export const metadata: Metadata = {
-  title: `The Journal — Recovery & Longevity Tech Insights | ${brand.name}`,
+  title: `The Journal — Recovery & Longevity Tech Insights`,
   description:
     "Curated perspectives on photobiomodulation, mild hyperbaric kinetics, pneumatic compression, and commercial wellness architecture for clinics, spas, and athletic clubs.",
   openGraph: {
@@ -48,10 +49,7 @@ export default async function BlogIndexPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
-      />
+      <JsonLd data={blogJsonLd} />
       <main className="min-h-screen bg-canvas pt-12 sm:pt-14">
         <div className="shell">
           <BlogHero />

@@ -26,6 +26,8 @@ export function SolutionEnquiryModal({ solutionTitle }: SolutionEnquiryModalProp
     notes: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -45,10 +47,12 @@ export function SolutionEnquiryModal({ solutionTitle }: SolutionEnquiryModalProp
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (submitting) return;
+    setSubmitting(true);
+    setSubmitError("");
 
     try {
-      await fetch("/api/enquiry", {
+      const res = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -69,8 +73,17 @@ export function SolutionEnquiryModal({ solutionTitle }: SolutionEnquiryModalProp
           source: typeof window !== "undefined" ? window.location.pathname : `/solutions`,
         }),
       });
+      if (res.status === 422) {
+        setSubmitError("Please check your name, business type and phone number and try again.");
+        return;
+      }
+      if (!res.ok) throw new Error(String(res.status));
+      setSubmitted(true);
     } catch (err) {
       console.error("[solution-enquiry] delivery error", err);
+      setSubmitError("We couldn't send your request. Please try again, or message us on WhatsApp.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -268,11 +281,17 @@ export function SolutionEnquiryModal({ solutionTitle }: SolutionEnquiryModalProp
               <div className="pt-2">
                 <Button
                   type="submit"
+                  disabled={submitting}
                   className="w-full bg-white text-neutral-950 font-bold hover:bg-neutral-200 py-3.5 rounded-full shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all flex items-center justify-center gap-2"
                 >
                   <Send className="size-4" />
-                  <span>Submit Consultation Request</span>
+                  <span>{submitting ? "Sending…" : "Submit Consultation Request"}</span>
                 </Button>
+                {submitError && (
+                  <p role="alert" className="mt-3 text-center text-xs text-red-300">
+                    {submitError}
+                  </p>
+                )}
               </div>
 
               <div className="flex items-center justify-center gap-2 text-[0.6875rem] text-neutral-400 font-mono pt-1">

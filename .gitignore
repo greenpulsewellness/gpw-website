@@ -41,3 +41,16 @@ yarn-error.log*
 next-env.d.ts
 .vscode
 .env.local
+
+# Sensitive / internal material — supplier docs, cost sheets, internal planning.
+# Keep these outside the repo (or here locally) and never under public/ (it is served on the web).
+/public/LIBRARY/
+/public/GREENPULSE_MASTER_CONTEXT.md
+/public/GreenPulse_Combo_Master*.csv
+GPW_SENSITIVE_FILES/
+*.pages
+
+# Env files: never commit real values
+.env
+.env.*
+!.env.example

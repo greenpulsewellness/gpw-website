@@ -9,6 +9,7 @@ import { WhoWeEquip } from "@/components/home/who-we-equip";
 import { AmbientBackground } from "@/components/ui/ambient-background";
 import { LayoutPreloader } from "@/components/ui/layout-preloader";
 import { brand } from "@/data/home";
+import { JsonLd } from "@/components/seo/json-ld";
 
 const homeJsonLd = {
   "@context": "https://schema.org",
@@ -103,10 +104,7 @@ const homeJsonLd = {
 export default function HomePage() {
   return (
     <EnquiryProvider>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
-      />
+      <JsonLd data={homeJsonLd} />
       <LayoutPreloader>
         <main className="relative bg-neutral-950">
           <Hero />

@@ -4,7 +4,7 @@ import { LegalPageLayout, LegalSection } from "@/components/legal/legal-page-lay
 import { Cookie, Settings, ShieldCheck, ToggleLeft } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: `Cookie Policy | ${brand.name}`,
+  title: `Cookie Policy`,
   description:
     "Understand how GreenPulse Wellness uses cookies, local storage, and tracking technologies to optimize website responsiveness, hardware catalog filtering, and digital performance.",
   openGraph: {

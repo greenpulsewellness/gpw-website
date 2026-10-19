@@ -30,6 +30,8 @@ export function ProductEnquiryDrawer({
     notes: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -49,10 +51,12 @@ export function ProductEnquiryDrawer({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (submitting) return;
+    setSubmitting(true);
+    setSubmitError("");
 
     try {
-      await fetch("/api/enquiry", {
+      const res = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -70,8 +74,17 @@ export function ProductEnquiryDrawer({
           source: typeof window !== "undefined" ? window.location.pathname : `/products/${productId}`,
         }),
       });
+      if (res.status === 422) {
+        setSubmitError("Please check your name and phone number and try again.");
+        return;
+      }
+      if (!res.ok) throw new Error(String(res.status));
+      setSubmitted(true);
     } catch (err) {
       console.error("[product-enquiry] delivery error", err);
+      setSubmitError("We couldn't send your request. Please try again, or message us on WhatsApp.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -230,12 +243,17 @@ export function ProductEnquiryDrawer({
                     <WhatsAppColorIcon className="size-4" />
                   </a>
 
-                  <Button type="submit" variant="dark" size="md" className="flex-1 sm:flex-initial rounded-md min-h-[40px] text-xs">
+                  <Button type="submit" variant="dark" size="md" disabled={submitting} className="flex-1 sm:flex-initial rounded-md min-h-[40px] text-xs">
                     <Send className="size-3.5" />
-                    <span>Submit Request</span>
+                    <span>{submitting ? "Sending…" : "Submit Request"}</span>
                   </Button>
                 </div>
               </div>
+              {submitError && (
+                <p role="alert" className="text-xs text-red-300">
+                  {submitError}
+                </p>
+              )}
             </form>
           </div>
         )}

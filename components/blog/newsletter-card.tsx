@@ -5,15 +5,37 @@ import { Button } from "@/components/ui/button";
 
 export function NewsletterCard() {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
+  const [company, setCompany] = useState(""); // honeypot
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !email.includes("@")) return;
+    if (status === "loading") return;
     setStatus("loading");
-    setTimeout(() => {
+    setErrorMessage("");
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim(), company }),
+      });
+      if (res.status === 422) {
+        setErrorMessage("Please enter a valid email address.");
+        setStatus("error");
+        return;
+      }
+      if (res.status === 429) {
+        setErrorMessage("Too many attempts. Please try again in a few minutes.");
+        setStatus("error");
+        return;
+      }
+      if (!res.ok) throw new Error(String(res.status));
       setStatus("success");
-    }, 600);
+    } catch {
+      setErrorMessage("Something went wrong. Please try again.");
+      setStatus("error");
+    }
   };
 
   return (
@@ -42,6 +64,9 @@ export function NewsletterCard() {
         ) : (
           <form onSubmit={handleSubmit} className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row">
             <div className="relative flex-1">
+              <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+                <input tabIndex={-1} autoComplete="off" name="company" value={company} onChange={(e) => setCompany(e.target.value)} />
+              </div>
               <input
                 type="email"
                 required
@@ -61,6 +86,12 @@ export function NewsletterCard() {
               {status === "loading" ? "Subscribing..." : "Subscribe"}
             </Button>
           </form>
+        )}
+
+        {status === "error" && (
+          <p role="alert" className="mt-3 text-sm text-red-300">
+            {errorMessage}
+          </p>
         )}
 
         <p className="mt-3 text-xs text-neutral-500">

@@ -4,6 +4,8 @@ import { brand } from "@/data/home";
 import { getProductWithDetail, getProducts } from "@/lib/products";
 import { EnquiryProvider } from "@/components/home/enquiry-context";
 import { ProductDetailView } from "@/components/product/product-detail-view";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbSchema, faqSchema, SITE_URL } from "@/lib/schema";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -22,14 +24,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!data) {
     return {
-      title: `Product Not Found — ${brand.name}`,
+      title: "Product Not Found",
     };
   }
 
   const { product, detail } = data;
 
   return {
-    title: `${product.name} — Full Specifications & Commercial Pricing | ${brand.name}`,
+    title: `${product.name} — Specifications & Enquiry`,
     description: `${product.description} ${detail.tagline}`,
     keywords: [
       product.name,
@@ -40,10 +42,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       "GreenPulse Wellness",
       "rehabilitation hardware",
     ],
+    alternates: { canonical: `/products/${product.id}` },
     openGraph: {
       title: `${product.name} — ${brand.name}`,
       description: product.description,
       type: "website",
+      url: `/products/${product.id}`,
       images: product.image.src
         ? [
             {
@@ -76,35 +80,36 @@ export default async function ProductDetailPage({ params }: PageProps) {
     .map((relId) => products.find((p) => p.id === relId))
     .filter((p): p is typeof products[0] => Boolean(p));
 
-  // JSON-LD structured data for Google Product Rich Snippets
+  // Structured data: Product (no price is published, so no Offer), FAQ and breadcrumbs.
+  const productUrl = `${SITE_URL}/products/${product.id}`;
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.name,
-    image: product.image.src ? [product.image.src] : undefined,
-    description: product.description,
-    brand: {
-      "@type": "Brand",
-      name: product.brand || brand.name,
-    },
-    category: product.category,
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "INR",
-      availability: "https://schema.org/InStock",
-      seller: {
-        "@type": "Organization",
-        name: brand.name,
+    "@graph": [
+      {
+        "@type": "Product",
+        "@id": `${productUrl}#product`,
+        url: productUrl,
+        name: product.name,
+        image: product.image.src ? [product.image.src] : undefined,
+        description: product.description,
+        brand: {
+          "@type": "Brand",
+          name: product.brand || brand.name,
+        },
+        category: product.category,
       },
-    },
+      breadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: "Products", path: "/products" },
+        { name: product.name, path: `/products/${product.id}` },
+      ]),
+      ...(detail.faqs?.length ? [faqSchema(detail.faqs)] : []),
+    ],
   };
 
   return (
     <EnquiryProvider>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       <main className="min-h-screen bg-canvas pt-12 sm:pt-14">
         <div className="shell">
           <ProductDetailView

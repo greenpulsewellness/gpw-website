@@ -4,7 +4,7 @@ import { LegalPageLayout, LegalSection } from "@/components/legal/legal-page-lay
 import { ShieldCheck, AlertTriangle, CheckCircle, HeartPulse, FileText, Info } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: `Regulatory Compliance & Wellness Safety Standards | ${brand.name}`,
+  title: `Regulatory Compliance & Wellness Safety Standards`,
   description:
     "Official regulatory guidelines, equipment safety standards, contraindication protocols, and wellness classification disclaimers for GreenPulse Wellness hardware.",
   openGraph: {

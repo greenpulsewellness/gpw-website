@@ -6,6 +6,7 @@ import { EnquiryProvider } from "@/components/home/enquiry-context";
 import { EnquiryForm } from "@/components/home/enquiry-form";
 import { ComboExplorer } from "@/components/combos/combo-explorer";
 import { TierPill } from "@/components/combos/combo-card";
+import { JsonLd } from "@/components/seo/json-ld";
 
 const SITE_URL = "https://greenpulsewellness.com";
 
@@ -54,7 +55,7 @@ const stats = [
 export default function CombosPage() {
   return (
     <EnquiryProvider>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={jsonLd} />
       <main className="relative min-h-screen overflow-x-clip bg-canvas">
         {/* Hero */}
         <section className="relative overflow-hidden pt-28 pb-14 sm:pt-36 md:pb-20">

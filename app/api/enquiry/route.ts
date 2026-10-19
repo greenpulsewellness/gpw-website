@@ -3,13 +3,29 @@ import { enquiry as enquiryCopy } from "@/data/home";
 import { validateEnquiry, type EnquiryPayload } from "@/lib/enquiry";
 import { saveEnquiry } from "@/lib/enquiry-store";
 import { notifyTeam } from "@/lib/notify";
+import { clientIp, isCrossSite, isRateLimited } from "@/lib/request-guard";
 
 const str = (v: unknown, max = 300) => (typeof v === "string" ? v.slice(0, max) : "");
 
+// 5 enquiries per IP per 10 minutes
+const RATE_LIMIT = 5;
+const RATE_WINDOW_MS = 10 * 60 * 1000;
+
 export async function POST(req: Request) {
+  if (isCrossSite(req)) {
+    return NextResponse.json({ ok: false, error: "Forbidden" }, { status: 403 });
+  }
+  if (isRateLimited(`enquiry:${clientIp(req)}`, RATE_LIMIT, RATE_WINDOW_MS)) {
+    return NextResponse.json(
+      { ok: false, error: "Too many requests. Please try again in a few minutes." },
+      { status: 429, headers: { "Retry-After": "600" } },
+    );
+  }
+
   let body: Record<string, unknown>;
   try {
     body = await req.json();
+    if (!body || typeof body !== "object" || Array.isArray(body)) throw new Error("bad body");
   } catch {
     return NextResponse.json({ ok: false, error: "Invalid request" }, { status: 400 });
   }

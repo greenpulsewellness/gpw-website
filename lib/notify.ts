@@ -43,6 +43,7 @@ async function sendTelegramNotification(enquiry: EnquiryPayload): Promise<boolea
     const res = await fetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      signal: AbortSignal.timeout(8000),
       body: JSON.stringify({
         chat_id: chatId,
         text: formatTelegramHtml(enquiry),
@@ -59,6 +60,7 @@ async function sendTelegramNotification(enquiry: EnquiryPayload): Promise<boolea
     const retryRes = await fetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      signal: AbortSignal.timeout(8000),
       body: JSON.stringify({
         chat_id: chatId,
         text: plainText,
@@ -73,7 +75,8 @@ async function sendTelegramNotification(enquiry: EnquiryPayload): Promise<boolea
     console.error("[telegram] delivery failed:", retryRes.status, errText);
     return false;
   } catch (error) {
-    console.error("[telegram] network error:", error);
+    // Log the error type only: the request URL contains the bot token.
+    console.error("[telegram] network error:", error instanceof Error ? error.name : "unknown");
     return false;
   }
 }
@@ -83,8 +86,8 @@ async function sendTelegramNotification(enquiry: EnquiryPayload): Promise<boolea
  * Dispatches to Telegram and logs to console.
  */
 export async function notifyTeam(enquiry: EnquiryPayload): Promise<void> {
-  const text = formatEnquiry(enquiry);
-  console.info(`[enquiry received]\n${text}`);
+  // Log metadata only: names, phone numbers and messages must not end up in platform logs.
+  console.info("[enquiry received]", { source: enquiry.source || "unknown", business: enquiry.business });
 
   const hasTelegram =
     Boolean(process.env.TELEGRAM_BOT_TOKEN?.trim()) &&
@@ -108,3 +111,30 @@ export async function notifyTeam(enquiry: EnquiryPayload): Promise<void> {
   throw new Error("Enquiry delivery is not configured (missing TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID)");
 }
 
+
+/**
+ * Newsletter sign-up alert. Delivered to the same Telegram chat until a mailing-list
+ * provider is connected. Returns false when delivery isn't configured or fails.
+ */
+export async function notifyNewsletterSignup(email: string): Promise<boolean> {
+  const token = process.env.TELEGRAM_BOT_TOKEN?.trim();
+  const chatId = process.env.TELEGRAM_CHAT_ID?.trim();
+  if (!token || !chatId) return false;
+
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      signal: AbortSignal.timeout(8000),
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: `📬 <b>Newsletter sign-up — GreenPulse Wellness</b>\n\n✉️ ${escapeHtml(email.trim())}`,
+        parse_mode: "HTML",
+      }),
+    });
+    return res.ok;
+  } catch (error) {
+    console.error("[telegram] newsletter error:", error instanceof Error ? error.name : "unknown");
+    return false;
+  }
+}

@@ -9,6 +9,7 @@ import { Nav } from "@/components/home/nav";
 import { ProductsProvider } from "@/components/products-context";
 import { brand, contact } from "@/data/home";
 import { getProducts } from "@/lib/products";
+import { JsonLd } from "@/components/seo/json-ld";
 
 const display = Outfit({ subsets: ["latin"], variable: "--font-outfit", display: "swap" });
 const sans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display: "swap" });
@@ -158,10 +159,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" className={`dark ${display.variable} ${sans.variable} ${mono.variable}`}>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(globalJsonLd) }}
-        />
+        <JsonLd data={globalJsonLd} />
       </head>
       <body>
         <ProductsProvider products={products}>

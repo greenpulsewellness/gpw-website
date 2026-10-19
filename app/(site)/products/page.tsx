@@ -4,9 +4,10 @@ import { brand } from "@/data/home";
 import { ProductCatalog } from "@/components/product/product-catalog";
 import { ProductPromotionalBanner } from "@/components/product/product-promotional-banner";
 import { LoopArt } from "@/components/ui/loop-art";
+import { JsonLd } from "@/components/seo/json-ld";
 
 export const metadata: Metadata = {
-  title: `Commercial Wellness & Longevity Equipment Catalog | ${brand.name}`,
+  title: `Commercial Wellness & Longevity Equipment Catalog`,
   description:
     "Explore our complete range of certified full-spectrum infrared saunas, hard-shell hyperbaric oxygen chambers, whole-body cryotherapy, robotic 4D massage chairs, chiropractic tables, and assistive mobility hardware.",
   openGraph: {
@@ -71,10 +72,7 @@ const catalogJsonLd = {
 export default function ProductsIndexPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogJsonLd) }}
-      />
+      <JsonLd data={catalogJsonLd} />
       <main className="relative isolate min-h-screen bg-canvas">
         {/* Dark base washed with brand greens + Loop ribbons drifting through the catalog */}
         <div

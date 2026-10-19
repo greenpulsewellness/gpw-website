@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { contact } from "@/data/home";
+import { WhatsAppColorIcon } from "@/components/home/icons";
 import { whatsappUrl } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
 
@@ -34,14 +35,7 @@ export function FloatingWhatsApp() {
         hide && "pointer-events-none translate-y-16 opacity-0 md:pointer-events-auto md:translate-y-0 md:opacity-100",
       )}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="https://img.icons8.com/color/480/whatsapp--v1.png"
-        alt="WhatsApp"
-        width={48}
-        height={48}
-        className="size-11 md:size-12 object-contain"
-      />
+      <WhatsAppColorIcon size={48} className="size-11 md:size-12" />
     </a>
   );
 }

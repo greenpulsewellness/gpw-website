@@ -24,6 +24,25 @@ Scope: read-only. No source code was modified. No secret values are printed; env
 | 5 | **`npm audit`: 21 vulnerabilities** (11 high, 10 moderate, 0 critical) | Direct: `next` 16.3.6 (high), `sharp` (high, via next), `sanity` / `next-sanity` / `@sanity/vision` (moderate). Detail in Section 10. |
 | 6 | **Terms document and code disagree** | The maintenance terms say "31 product pages" and that the admin dashboard, database and enquiry alerts are not delivered. The code has 62 products, a Sanity Studio admin at `/studio`, Telegram enquiry alerts, and dormant Supabase wiring. See Section 14. |
 
+### 0a. Fixes applied after this audit (2026-10-19)
+
+The findings above were written before these changes. `next build` and `tsc --noEmit` pass; the production server was tested with curl.
+
+| Area | Change |
+|---|---|
+| Sensitive files | `public/LIBRARY/`, the combo CSV and the master-context `.md` moved out of the repo; paths added to `.gitignore` (plus `.env*` except `.env.example`). They remain in git history. |
+| Route conflicts | Deleted `public/robots.txt` and the `llms.txt` / `llms-full.txt` route handlers. `app/robots.ts` and the static `public/llms*.txt` files are now the single sources. All return 200. |
+| Forms | Product drawer and solution modal now check the API response, show an error and disable the button while sending. Newsletter posts to a new `/api/subscribe` (Telegram alert) instead of faking success. |
+| Enquiry API | Cross-site Origin check (403), per-IP rate limit (429, in-memory per instance), server-side email validation, non-object bodies rejected, Telegram requests time out after 8 s, personal data no longer logged. |
+| Dependencies | `next` 16.4.2, `react` / `react-dom` 19.3.1, `sharp` 0.35.5, `sanity` 6.19. `npm audit`: 21 → 16 (8 high, 8 moderate, 0 critical). The remaining 16 are all inside the Sanity CLI/codegen toolchain (`braces`, `js-yaml`, `sprintf-js`, `micromatch`, `fast-glob`, `globby`, `chokidar`, `@sanity/cli`…). npm reports no patched release for several of them and the only offered fix is a downgrade to `sanity@5.14.1`. None of this code is in the deployed site bundle. |
+| Headers | `next.config.ts` adds `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `X-Frame-Options`, and in production HSTS and a CSP (no inline-script nonce; `script-src 'self' 'unsafe-inline'`). `/studio` gets only the basic headers. `X-Powered-By` removed. CSP was checked statically (no external resources, no `eval`) but not in a browser. |
+| SEO | Duplicate "\| GreenPulse Wellness" removed from titles; "Commercial Pricing" wording removed; invalid `AggregateOffer` removed; `FAQPage` added to product, solution and about pages; `BreadcrumbList` added to products and posts; product and post canonicals; sitemap no longer reports "now" as `lastModified`; JSON-LD now escapes `<`; web manifest added; solution aliases 308-redirect to the canonical URL. |
+| Reliability | `not-found.tsx` and `error.tsx` added; posts dated in the future stay hidden until their date. |
+| Performance | WhatsApp icon is now a local SVG (was a third-party image on every page); shader library loads in its own chunk; image cache TTL set to 7 days; 38 oversized catalog PNGs downscaled to ≤2400 px or recompressed losslessly (299 MB → 150 MB of images checked; originals are in `GPW_IMAGE_ORIGINALS_BACKUP/` outside the repo). |
+| Tooling | `typecheck` script, `engines.node >= 20.9`. |
+
+Not changed: product slugs that contain supplier names (e.g. `…-mstar`); contact placeholders (address, email); 28 products without images; Supabase activation; GA4 / Meta Pixel; ESLint and tests. The per-instance rate limiter is not a hard limit on serverless hosting; add a Cloudflare rate-limit rule on `/api/*` for that.
+
 ---
 
 ## 1. Stack

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { brand, contact } from "@/data/home";
 import { ContactFormCard } from "@/components/contact/contact-form-card";
+import { JsonLd } from "@/components/seo/json-ld";
 
 const SITE_URL = "https://greenpulsewellness.com";
 
 export const metadata: Metadata = {
-  title: `Contact & Commercial Project Consultation | ${brand.name}`,
+  title: `Contact & Commercial Project Consultation`,
   description:
     "Connect with GreenPulse Wellness for turnkey wellness, recovery, and longevity hardware consultation, spatial architecture, white-glove commissioning, and preventive maintenance across India.",
   alternates: { canonical: "/contact" },
@@ -43,10 +44,7 @@ const contactJsonLd = {
 export default function ContactPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactJsonLd) }}
-      />
+      <JsonLd data={contactJsonLd} />
       <main className="relative min-h-screen bg-[#060907] text-white pt-24 sm:pt-32 md:pt-36 pb-16 sm:pb-24 overflow-hidden">
         {/* ── Ambient Pastel Green & Emerald Ambient Gradients ── */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">

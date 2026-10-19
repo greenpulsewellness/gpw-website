@@ -8,7 +8,8 @@
     "start": "next start",
     "import:content": "sanity exec scripts/import-content.ts --with-user-token",
     "sanity:webhook": "node scripts/create-revalidate-webhook.mjs",
-    "seed:supabase": "tsx --env-file=.env.local scripts/seed-supabase.ts"
+    "seed:supabase": "tsx --env-file=.env.local scripts/seed-supabase.ts",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@paper-design/shaders-react": "^0.0.81",
@@ -39,5 +40,16 @@
     "tailwindcss": "^4.3.3",
     "tsx": "^4.23.15",
     "typescript": "^5.9.3"
+  },
+  "overrides": {
+    "typeid-js": {
+      "uuid": "^11.1.1"
+    },
+    "@vercel/frameworks": {
+      "smol-toml": "^1.9.1"
+    }
+  },
+  "engines": {
+    "node": ">=20.9.0"
   }
 }

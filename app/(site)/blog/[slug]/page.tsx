@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { getPost, getPosts, getRelatedPosts } from "@/lib/blog";
 import { brand } from "@/data/home";
 import { ArticleContent } from "@/components/blog/article-content";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbSchema, SITE_URL } from "@/lib/schema";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -21,13 +23,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!post) {
     return {
-      title: `Article Not Found — ${brand.name}`,
+      title: "Article Not Found",
     };
   }
 
   return {
-    title: `${post.title} — ${brand.name} Journal`,
+    title: post.title,
     description: post.excerpt,
+    alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       title: `${post.title} — ${brand.name}`,
       description: post.excerpt,
@@ -61,34 +64,43 @@ export default async function BlogPostPage({ params }: PageProps) {
   const relatedPosts = await getRelatedPosts(post.slug, 3);
 
   // JSON-LD structured data for article SEO
+  const postUrl = `${SITE_URL}/blog/${post.slug}`;
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.excerpt,
-    image: post.coverImage,
-    datePublished: post.publishedAtISO ?? post.publishedAt,
-    author: {
-      "@type": "Person",
-      name: post.author.name,
-      jobTitle: post.author.role,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: brand.name,
-      logo: {
-        "@type": "ImageObject",
-        url: brand.logo,
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `${postUrl}#article`,
+        mainEntityOfPage: postUrl,
+        headline: post.title,
+        description: post.excerpt,
+        image: post.coverImage,
+        datePublished: post.publishedAtISO ?? post.publishedAt,
+        author: {
+          "@type": "Person",
+          name: post.author.name,
+          jobTitle: post.author.role,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: brand.name,
+          logo: {
+            "@type": "ImageObject",
+            url: `${SITE_URL}${brand.logo}`,
+          },
+        },
       },
-    },
+      breadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: "Journal", path: "/blog" },
+        { name: post.title, path: `/blog/${post.slug}` },
+      ]),
+    ],
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       <main className="min-h-screen bg-canvas pt-10 sm:pt-12">
         <div className="shell">
           <ArticleContent post={post} relatedPosts={relatedPosts} />

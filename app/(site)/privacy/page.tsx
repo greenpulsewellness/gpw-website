@@ -5,7 +5,7 @@ import { ShieldCheck, Lock, Eye, Database, UserCheck, Mail } from "lucide-react"
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: `Privacy Policy | ${brand.name}`,
+  title: `Privacy Policy`,
   description:
     "Learn how GreenPulse Wellness collects, protects, processes, and safeguards personal and commercial data across our website, consultation desks, and after-sales support.",
   openGraph: {

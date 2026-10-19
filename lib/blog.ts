@@ -15,8 +15,9 @@ type SanityPost = Omit<BlogPost, "publishedAt" | "publishedAtISO" | "author" | "
   relatedEquipment: NonNullable<BlogPost["relatedEquipment"]> | null;
 };
 
+// Posts dated in the future stay hidden until their publish date (checked on each revalidation).
 const POSTS_QUERY = defineQuery(`
-  *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
+  *[_type == "post" && defined(slug.current) && publishedAt <= string::split(string(now()), "T")[0]] | order(publishedAt desc) {
     "slug": slug.current,
     title, excerpt, category, publishedAt,
     "readTime": coalesce(readTime, ""),

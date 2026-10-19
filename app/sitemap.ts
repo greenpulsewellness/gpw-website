@@ -6,71 +6,61 @@ import { getAllSolutions } from "@/data/solutions-data";
 /**
  * Dynamic Next.js Sitemap
  * Generates https://greenpulsewellness.com/sitemap.xml
+ * lastModified is only set for blog posts (real publish dates); other pages omit it rather than report "now".
  * Enumerates all static landing pages, dynamic solution suites, equipment catalog items, and journal articles.
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://greenpulsewellness.com";
-  const now = new Date();
 
   // Core static pages
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}`,
-      lastModified: now,
       changeFrequency: "daily",
       priority: 1.0,
     },
     {
       url: `${baseUrl}/products`,
-      lastModified: now,
       changeFrequency: "daily",
       priority: 0.95,
     },
     {
       url: `${baseUrl}/combos`,
-      lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.85,
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified: now,
       changeFrequency: "daily",
       priority: 0.85,
     },
     {
       url: `${baseUrl}/compliance`,
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
       url: `${baseUrl}/privacy`,
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.4,
     },
     {
       url: `${baseUrl}/terms`,
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.4,
     },
     {
       url: `${baseUrl}/cookies`,
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.3,
     },
     {
       url: `${baseUrl}/complaints`,
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.4,
     },
@@ -80,7 +70,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const solutions = getAllSolutions();
   const solutionRoutes: MetadataRoute.Sitemap = solutions.map((sol) => ({
     url: `${baseUrl}/solutions/${sol.slug}`,
-    lastModified: now,
     changeFrequency: "weekly",
     priority: 0.9,
   }));
@@ -91,7 +80,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const products = await getProducts();
     productRoutes = products.map((prod) => ({
       url: `${baseUrl}/products/${prod.id}`,
-      lastModified: now,
       changeFrequency: "weekly",
       priority: 0.85,
     }));
@@ -105,7 +93,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const posts = await getPosts();
     blogRoutes = posts.map((post) => ({
       url: `${baseUrl}/blog/${post.slug}`,
-      lastModified: post.publishedAtISO ? new Date(post.publishedAtISO) : now,
+      lastModified: post.publishedAtISO ? new Date(post.publishedAtISO) : undefined,
       changeFrequency: "monthly",
       priority: 0.75,
     }));

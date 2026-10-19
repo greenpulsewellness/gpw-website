@@ -30,7 +30,7 @@ export function SpaceBlueprint({ solution }: SpaceBlueprintProps) {
   const plan = solution.spacePlanning;
 
   return (
-    <section id="space-blueprint" className="py-20 md:py-28 bg-[#060606] border-y border-white/10 relative overflow-hidden">
+    <section id="space-blueprint" className="py-20 md:py-28 border-y border-white/10 relative overflow-hidden">
       {/* Background glow */}
       <div
         aria-hidden="true"

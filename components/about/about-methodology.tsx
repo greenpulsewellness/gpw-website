@@ -15,7 +15,7 @@ export function AboutMethodology() {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section className="relative overflow-hidden py-20 sm:py-28 bg-black">
+    <section className="relative overflow-hidden py-20 sm:py-28">
       <div className="shell relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

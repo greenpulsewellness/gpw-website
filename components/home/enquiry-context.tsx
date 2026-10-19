@@ -3,7 +3,7 @@
 import { createContext, useCallback, useContext, useMemo, useState } from "react";
 import type { BusinessType, ProductId } from "@/data/home";
 import type { ComboId as PackageId } from "@/data/combos";
-import { scrollToId } from "@/lib/scroll";
+import { useRouter } from "next/navigation";
 
 export type InterestId = ProductId | "package";
 
@@ -15,11 +15,11 @@ type EnquiryContextValue = {
   setPackageId: (p: PackageId | null) => void;
   toggleInterest: (id: InterestId) => void;
   setInterests: (interests: InterestId[]) => void;
-  /** Preselect a product, then scroll to the form */
+  /** Preselect a product, then go to the contact page */
   enquireProduct: (id: ProductId) => void;
-  /** Preselect a suite package, then scroll to the form */
+  /** Preselect a suite package, then go to the contact page */
   enquirePackage: (id: PackageId) => void;
-  /** Preselect a business type, then scroll to the form */
+  /** Preselect a business type, then go to the contact page */
   enquireAs: (b: BusinessType) => void;
 };
 
@@ -28,15 +28,9 @@ const EnquiryContext = createContext<EnquiryContextValue | null>(null);
 export const ENQUIRY_SECTION_ID = "enquiry";
 export const ENQUIRY_FIRST_FIELD_ID = "enquiry-name";
 
-function goToForm() {
-  scrollToId(ENQUIRY_SECTION_ID);
-  // Move focus once the scroll has settled, without a second jump.
-  window.setTimeout(() => {
-    document.getElementById(ENQUIRY_FIRST_FIELD_ID)?.focus({ preventScroll: true });
-  }, 1100);
-}
-
 export function EnquiryProvider({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+  const goToForm = useCallback(() => router.push("/contact"), [router]);
   const [interests, setInterests] = useState<InterestId[]>([]);
   const [packageId, setPackageId] = useState<PackageId | null>(null);
   const [business, setBusiness] = useState<BusinessType | "">("");
@@ -69,7 +63,7 @@ export function EnquiryProvider({ children }: { children: React.ReactNode }) {
         goToForm();
       },
     }),
-    [interests, packageId, business, toggleInterest],
+    [interests, packageId, business, toggleInterest, goToForm],
   );
 
   return <EnquiryContext.Provider value={value}>{children}</EnquiryContext.Provider>;

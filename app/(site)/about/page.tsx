@@ -8,6 +8,7 @@ import { AboutMethodology } from "@/components/about/about-methodology";
 import { AboutStandards } from "@/components/about/about-standards";
 import { AboutFaq } from "@/components/about/about-faq";
 import { AboutCta } from "@/components/about/about-cta";
+import { AmbientBackground } from "@/components/ui/ambient-background";
 import { JsonLd } from "@/components/seo/json-ld";
 import { aboutData } from "@/data/about";
 import { faqSchema } from "@/lib/schema";
@@ -52,7 +53,8 @@ export default function AboutPage() {
   return (
     <>
       <JsonLd data={aboutJsonLd} />
-      <main className="min-h-screen bg-canvas">
+      <main className="relative isolate min-h-screen bg-[#060907]">
+        <AmbientBackground className="-z-10" />
         <AboutHero />
         <AboutStory />
         <AboutPillars />

@@ -12,7 +12,7 @@ export function SolutionFaq({ solution }: SolutionFaqProps) {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
-    <section className="py-20 md:py-28 bg-[#060606] border-t border-white/10">
+    <section className="py-20 md:py-28 border-t border-white/10">
       <div className="shell max-w-4xl">
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3.5 py-1 text-xs font-mono text-white mb-3">

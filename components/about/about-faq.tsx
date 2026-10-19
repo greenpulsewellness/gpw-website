@@ -14,7 +14,7 @@ export function AboutFaq() {
   };
 
   return (
-    <section className="relative overflow-hidden py-20 sm:py-28 bg-black">
+    <section className="relative overflow-hidden py-20 sm:py-28">
       <div className="shell relative z-10 max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

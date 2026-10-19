@@ -1,13 +1,17 @@
 import "server-only";
 import { cache } from "react";
 import { defineQuery } from "next-sanity";
-import { BLOG_POSTS, type BlogPost } from "@/data/blog";
+import { BLOG_POSTS, getPillarPost, pickRelatedPosts, type BlogPost } from "@/data/blog";
 import { BLOG_TAG, PRODUCTS_REVALIDATE, PRODUCTS_TAG, sanityClient } from "@/lib/sanity/client";
 
 /**
- * Blog data source. Reads from Sanity; falls back to the local posts in data/blog.ts
- * if Sanity is unreachable or has no posts yet.
+ * Blog data source.
+ *
+ * For now the blog lives in code (data/blog-posts/*), so Sanity is NOT read. When the posts have been moved to the
+ * database (`npm run import:content`), flip USE_SANITY_BLOG to true: posts are then read from Sanity, falling back
+ * to the local posts if Sanity is unreachable or has no posts yet.
  */
+const USE_SANITY_BLOG = false;
 
 type SanityPost = Omit<BlogPost, "publishedAt" | "publishedAtISO" | "author" | "relatedEquipment"> & {
   publishedAt: string;
@@ -74,6 +78,7 @@ function toPost(doc: SanityPost): BlogPost {
 
 /** All posts, newest first. Deduped per request. */
 export const getPosts = cache(async (): Promise<BlogPost[]> => {
+  if (!USE_SANITY_BLOG) return BLOG_POSTS;
   try {
     const docs = await sanityClient.fetch<SanityPost[]>(POSTS_QUERY, {}, fetchOptions);
     if (docs?.length) return docs.map(toPost);
@@ -87,11 +92,12 @@ export async function getPost(slug: string): Promise<BlogPost | undefined> {
   return (await getPosts()).find((p) => p.slug === slug);
 }
 
-/** Other posts, same category first. */
+/** Hand-picked related posts first, then same cluster / category. */
 export async function getRelatedPosts(slug: string, count = 3): Promise<BlogPost[]> {
-  const posts = await getPosts();
-  const current = posts.find((p) => p.slug === slug);
-  const others = posts.filter((p) => p.slug !== slug);
-  if (!current) return others.slice(0, count);
-  return [...others.filter((p) => p.category === current.category), ...others.filter((p) => p.category !== current.category)].slice(0, count);
+  return pickRelatedPosts(await getPosts(), slug, count);
+}
+
+/** The pillar guide for a post's topic cluster, if it has one. */
+export async function getPillar(post: BlogPost): Promise<BlogPost | undefined> {
+  return getPillarPost(post, await getPosts());
 }

@@ -14,21 +14,7 @@ export function SolutionHero({ solution }: SolutionHeroProps) {
   const { openEnquiryModal } = useSolutionEnquiry();
 
   return (
-    <section className="relative overflow-hidden pt-24 sm:pt-28 md:pt-32 pb-16 md:pb-20 bg-black">
-      {/* ── Ambient Radial Atmosphere ── */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 -top-40 h-[600px] bg-[radial-gradient(ellipse_75%_55%_at_50%_0%,rgba(255,255,255,0.12),transparent_75%)]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-40 top-1/4 h-96 w-96 rounded-full bg-white/[0.02] blur-3xl"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-40 top-1/2 h-96 w-96 rounded-full bg-white/[0.02] blur-3xl"
-      />
-
+    <section className="relative overflow-hidden pt-24 sm:pt-28 md:pt-32 pb-16 md:pb-20">
       <div className="shell relative z-10">
         {/* Breadcrumb Bar */}
         <nav aria-label="Breadcrumbs" className="mb-6 sm:mb-8 flex items-center gap-2 text-xs font-mono text-neutral-400">

@@ -9,7 +9,7 @@ interface WorkflowProtocolProps {
 
 export function WorkflowProtocol({ solution }: WorkflowProtocolProps) {
   return (
-    <section className="py-20 md:py-28 bg-black border-t border-white/10 relative">
+    <section className="py-20 md:py-28 border-t border-white/10 relative">
       <div className="shell">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Workflow Protocol Timeline */}

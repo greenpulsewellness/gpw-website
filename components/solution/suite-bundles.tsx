@@ -13,7 +13,7 @@ export function SuiteBundles({ solution }: SuiteBundlesProps) {
   const { openEnquiryModal } = useSolutionEnquiry();
 
   return (
-    <section id="turnkey-suites" className="py-20 md:py-28 bg-[#060606] border-t border-white/10 relative">
+    <section id="turnkey-suites" className="py-20 md:py-28 border-t border-white/10 relative">
       <div className="shell">
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">

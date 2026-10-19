@@ -1,16 +1,30 @@
 import React from "react";
+import Link from "next/link";
 
 /**
- * Parses markdown bold (**text**) and returns styled React nodes.
+ * Parses inline markdown: **bold** and internal links [anchor](/path).
+ * Only site-relative links are rendered as links; anything else is shown as plain text.
  */
-function parseInlineBold(text: string): React.ReactNode {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+function parseInline(text: string): React.ReactNode {
+  const parts = text.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\(\/[^)\s]*\))/g);
   return parts.map((part, index) => {
     if (part.startsWith("**") && part.endsWith("**")) {
       return (
         <strong key={index} className="font-semibold text-pine">
-          {part.slice(2, -2)}
+          {parseInline(part.slice(2, -2))}
         </strong>
+      );
+    }
+    const link = part.match(/^\[([^\]]+)\]\((\/[^)\s]*)\)$/);
+    if (link) {
+      return (
+        <Link
+          key={index}
+          href={link[2]}
+          className="font-medium text-pine underline decoration-pine/40 underline-offset-4 transition-colors hover:decoration-pine"
+        >
+          {link[1]}
+        </Link>
       );
     }
     return part;
@@ -41,7 +55,7 @@ export function RichText({ text }: { text: string }) {
     return (
       <div className="flex items-start gap-3 my-1.5 pl-1 text-base sm:text-[17px] leading-relaxed text-pine/85">
         <span className="mt-2.5 size-1.5 shrink-0 rounded-full bg-pine/70" />
-        <span className="flex-1">{parseInlineBold(content)}</span>
+        <span className="flex-1">{parseInline(content)}</span>
       </div>
     );
   }
@@ -56,10 +70,10 @@ export function RichText({ text }: { text: string }) {
         <span className="font-mono text-xs font-semibold text-wood shrink-0 pt-1">
           {num}.
         </span>
-        <span className="flex-1">{parseInlineBold(content)}</span>
+        <span className="flex-1">{parseInline(content)}</span>
       </div>
     );
   }
 
-  return <p className="leading-relaxed">{parseInlineBold(text)}</p>;
+  return <p className="leading-relaxed">{parseInline(text)}</p>;
 }

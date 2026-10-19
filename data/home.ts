@@ -142,7 +142,7 @@ export const nav = {
     { label: "Rehabilitate", href: "#rehabilitate", solutionId: "rehabilitate" },
     { label: "Live Well", href: "#livewell", solutionId: "livewell" },
   ] satisfies { label: string; href: string; solutionId: SolutionId }[],
-  cta: { label: "Book a Demo", href: "#enquiry" },
+  cta: { label: "Book a Demo", href: "/contact" },
 };
 
 /* ------------------------------------------------------------------ */
@@ -154,7 +154,7 @@ export const hero = {
   seoHeading:
     "GreenPulse Wellness: commercial wellness, recovery and rehabilitation equipment in India, supplied, installed and serviced",
   primaryCta: { label: "Explore Equipment", href: "#equipment" },
-  secondaryCta: { label: "Book a Demo", href: "#enquiry" },
+  secondaryCta: { label: "Book a Demo", href: "/contact" },
 };
 
 /* ------------------------------------------------------------------ */
@@ -1782,7 +1782,7 @@ export const experience = {
   title: "Our experience store is coming soon.",
   line: "A dedicated space to try the equipment first-hand before you commit.",
   event: "Experience Store — opening soon",
-  cta: { label: "Book a Demo", href: "#enquiry" },
+  cta: { label: "Book a Demo", href: "/contact" },
   video: {
     id: "experience-loop",
     kind: "video",

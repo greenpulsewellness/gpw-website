@@ -15,7 +15,7 @@ export function AboutEcosystem() {
   const activeSector = ecosystem.find((s) => s.id === activeId) || ecosystem[0];
 
   return (
-    <section className="relative overflow-hidden py-20 sm:py-28 bg-[#060606] border-y border-white/5">
+    <section className="relative overflow-hidden py-20 sm:py-28 border-y border-white/5">
       {/* Glow */}
       <div
         aria-hidden="true"

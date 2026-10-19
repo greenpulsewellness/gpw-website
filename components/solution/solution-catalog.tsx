@@ -42,7 +42,7 @@ export function SolutionCatalog({ solution }: SolutionCatalogProps) {
   }, [allCurated, selectedTier, searchQuery]);
 
   return (
-    <section id="curated-hardware" className="py-20 md:py-28 bg-black">
+    <section id="curated-hardware" className="py-20 md:py-28">
       <div className="shell">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">

@@ -13,7 +13,7 @@ export function AboutCta() {
   const wa = whatsappUrl(cta.secondaryCta.whatsappMessage);
 
   return (
-    <section className="relative overflow-hidden py-24 sm:py-32 bg-black border-t border-white/15">
+    <section className="relative overflow-hidden py-24 sm:py-32 border-t border-white/15">
       {/* Radiant glow background */}
       <div
         aria-hidden="true"

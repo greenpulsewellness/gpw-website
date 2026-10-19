@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getPost, getPosts, getRelatedPosts } from "@/lib/blog";
+import { getPillar, getPost, getPosts, getRelatedPosts } from "@/lib/blog";
 import { brand } from "@/data/home";
 import { ArticleContent } from "@/components/blog/article-content";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: post.title,
     description: post.excerpt,
+    keywords: post.keywords?.length ? post.keywords : post.tags,
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       title: `${post.title} — ${brand.name}`,
@@ -61,7 +62,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound();
   }
 
-  const relatedPosts = await getRelatedPosts(post.slug, 3);
+  const [relatedPosts, pillarPost] = await Promise.all([getRelatedPosts(post.slug, 3), getPillar(post)]);
 
   // JSON-LD structured data for article SEO
   const postUrl = `${SITE_URL}/blog/${post.slug}`;
@@ -74,8 +75,13 @@ export default async function BlogPostPage({ params }: PageProps) {
         mainEntityOfPage: postUrl,
         headline: post.title,
         description: post.excerpt,
-        image: post.coverImage,
+        image: post.coverImage.startsWith("http") ? post.coverImage : `${SITE_URL}${post.coverImage}`,
         datePublished: post.publishedAtISO ?? post.publishedAt,
+        dateModified: post.publishedAtISO ?? post.publishedAt,
+        articleSection: post.category,
+        keywords: (post.keywords?.length ? post.keywords : post.tags).join(", "),
+        wordCount: post.sections.reduce((n, s) => n + s.content.join(" ").split(/\s+/).length, 0),
+        ...(pillarPost ? { isPartOf: { "@type": "BlogPosting", "@id": `${SITE_URL}/blog/${pillarPost.slug}#article` } } : {}),
         author: {
           "@type": "Person",
           name: post.author.name,
@@ -90,6 +96,19 @@ export default async function BlogPostPage({ params }: PageProps) {
           },
         },
       },
+      ...(post.faqs?.length
+        ? [
+            {
+              "@type": "FAQPage",
+              "@id": `${postUrl}#faq`,
+              mainEntity: post.faqs.map((f) => ({
+                "@type": "Question",
+                name: f.question,
+                acceptedAnswer: { "@type": "Answer", text: f.answer.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/\*\*/g, "") },
+              })),
+            },
+          ]
+        : []),
       breadcrumbSchema([
         { name: "Home", path: "/" },
         { name: "Journal", path: "/blog" },
@@ -103,7 +122,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       <JsonLd data={jsonLd} />
       <main className="min-h-screen bg-canvas pt-10 sm:pt-12">
         <div className="shell">
-          <ArticleContent post={post} relatedPosts={relatedPosts} />
+          <ArticleContent post={post} relatedPosts={relatedPosts} pillarPost={pillarPost} />
         </div>
       </main>
     </>

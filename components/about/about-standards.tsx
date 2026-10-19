@@ -7,7 +7,7 @@ export function AboutStandards() {
   const { standards } = aboutData;
 
   return (
-    <section className="relative overflow-hidden py-20 sm:py-28 bg-[#060606] border-y border-white/5">
+    <section className="relative overflow-hidden py-20 sm:py-28 border-y border-white/5">
       <div className="shell relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

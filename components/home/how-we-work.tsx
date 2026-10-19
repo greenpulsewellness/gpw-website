@@ -67,7 +67,7 @@ export function HowWeWork() {
 
         <Reveal className="mt-10 flex justify-center md:mt-14">
           <a
-            href="#enquiry"
+            href="/contact"
             className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-white transition-colors hover:border-white/40 hover:bg-white/10"
           >
             Start with a consultation

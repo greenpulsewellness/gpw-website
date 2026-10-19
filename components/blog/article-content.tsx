@@ -11,9 +11,11 @@ import { RichText } from "./rich-text";
 interface ArticleContentProps {
   post: BlogPost;
   relatedPosts: BlogPost[];
+  /** The pillar guide for this post's topic cluster (not set on the pillar itself). */
+  pillarPost?: BlogPost;
 }
 
-export function ArticleContent({ post, relatedPosts }: ArticleContentProps) {
+export function ArticleContent({ post, relatedPosts, pillarPost }: ArticleContentProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState<string>(
     post.sections[0]?.id || ""
@@ -213,6 +215,20 @@ export function ArticleContent({ post, relatedPosts }: ArticleContentProps) {
           )}
         </div>
 
+        {/* ── Pillar guide banner (topic cluster) ── */}
+        {pillarPost && (
+          <Link
+            href={`/blog/${pillarPost.slug}`}
+            className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-white/15 bg-[#0d0d0d]/90 px-5 py-4 transition-colors hover:border-white/30"
+          >
+            <span className="text-xs text-neutral-400">
+              <span className="label-mono mr-2 text-[10px] font-semibold tracking-wider text-white">Part of the guide</span>
+              {pillarPost.title}
+            </span>
+            <span className="text-xs font-semibold text-white">Read the full guide →</span>
+          </Link>
+        )}
+
         {/* ── Article Layout: Sticky Nav + Body ── */}
         <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-14">
           {/* Left Column: Table of Contents & Quick Action (Sticky) */}
@@ -256,7 +272,7 @@ export function ArticleContent({ post, relatedPosts }: ArticleContentProps) {
                   Our specialists consult on space ergonomics, turnkey equipment delivery, and preventative maintenance.
                 </p>
                 <Button asChild variant="dark" size="sm" className="mt-4 w-full rounded-full text-xs">
-                  <Link href="/#enquiry">Consult a Specialist</Link>
+                  <Link href="/contact">Consult a Specialist</Link>
                 </Button>
               </div>
             </div>
@@ -306,7 +322,7 @@ export function ArticleContent({ post, relatedPosts }: ArticleContentProps) {
                     {section.callout.type === "tip" && (
                       <div>
                         <span className="label-mono text-[10px] font-semibold text-pine block mb-1">
-                          Architecture & Facility Protocol
+                          Practical Tip
                         </span>
                         <p className="text-xs sm:text-sm text-pine/80 leading-relaxed font-normal">
                           {section.callout.text}
@@ -317,6 +333,26 @@ export function ArticleContent({ post, relatedPosts }: ArticleContentProps) {
                 )}
               </section>
             ))}
+
+            {/* ── FAQ ── */}
+            {post.faqs && post.faqs.length > 0 && (
+              <section id="faq" className="scroll-mt-24 space-y-4">
+                <h2 className="text-2xl font-bold tracking-tight text-pine sm:text-3xl">Frequently asked questions</h2>
+                <div className="divide-y divide-wood/15 rounded-2xl border border-wood/20 bg-oat/40">
+                  {post.faqs.map((faq) => (
+                    <details key={faq.question} className="group px-5 py-4 sm:px-6">
+                      <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-base font-semibold text-pine [&::-webkit-details-marker]:hidden">
+                        {faq.question}
+                        <span aria-hidden="true" className="mt-0.5 shrink-0 font-mono text-wood transition-transform group-open:rotate-45">+</span>
+                      </summary>
+                      <div className="mt-3 text-[15px] leading-relaxed text-pine/80">
+                        <RichText text={faq.answer} />
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* ── Equipment in Focus Highlight ── */}
             {post.relatedEquipment && post.relatedEquipment.length > 0 && (
@@ -391,7 +427,7 @@ export function ArticleContent({ post, relatedPosts }: ArticleContentProps) {
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Button asChild variant="dark" size="md">
-                  <Link href="/#enquiry">Request Facility Proposal</Link>
+                  <Link href="/contact">Request Facility Proposal</Link>
                 </Button>
                 <Button asChild variant="outline" size="md">
                   <Link href="/blog">Browse More Insights</Link>

@@ -86,7 +86,7 @@ export default function CombosPage() {
                 <ArrowDown className="size-4" aria-hidden />
               </a>
               <a
-                href="#enquiry"
+                href="/contact"
                 className="inline-flex h-12 items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 text-sm font-medium text-white transition-colors hover:border-white/50 hover:bg-white/10"
               >
                 Talk to our team
@@ -142,7 +142,7 @@ export default function CombosPage() {
               Every combo is a starting point. We&apos;ll map your space, clients and budget, and build the right mix.
             </p>
             <a
-              href="#enquiry"
+              href="/contact"
               className="relative mt-8 inline-flex h-12 items-center gap-2 rounded-full bg-white px-7 text-sm font-semibold text-neutral-950 transition-colors hover:bg-neutral-200"
             >
               Build my combo

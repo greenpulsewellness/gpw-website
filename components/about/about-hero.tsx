@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useInView } from "motion/react";
-import { ArrowRight, ChevronRight, ShieldCheck, Sparkles, Award } from "lucide-react";
+import { ArrowRight, ChevronRight, ShieldCheck, Award } from "lucide-react";
 import { aboutData } from "@/data/about";
 import { whatsappUrl } from "@/lib/whatsapp";
 import { WhatsAppColorIcon } from "@/components/home/icons";
@@ -65,20 +65,7 @@ export function AboutHero() {
   const imgY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
 
   return (
-    <section className="relative overflow-hidden pt-28 sm:pt-32 md:pt-36 pb-16 md:pb-24 bg-black">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 -top-40 h-[650px] bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(255,255,255,0.15),transparent_75%)]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-48 top-1/4 h-[420px] w-[420px] rounded-full bg-white/[0.02] blur-3xl"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-48 top-1/2 h-[420px] w-[420px] rounded-full bg-white/[0.02] blur-3xl"
-      />
-
+    <section className="relative overflow-hidden pt-28 sm:pt-32 md:pt-36 pb-16 md:pb-24">
       <div className="shell relative z-10">
         <nav aria-label="Breadcrumbs" className="mb-6 sm:mb-8 flex items-center gap-2 text-xs font-mono text-neutral-400">
           <Link href="/" className="hover:text-white transition-colors">
@@ -95,13 +82,6 @@ export function AboutHero() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-7 flex flex-col items-start"
           >
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-xs font-mono text-white backdrop-blur-md mb-5 shadow-[0_0_20px_rgba(255,255,255,0.15)]">
-              <Sparkles className="size-3.5" />
-              <span>{hero.badge}</span>
-              <span className="hidden sm:inline text-white/80">|</span>
-              <span className="hidden sm:inline text-neutral-300">{hero.subBadge}</span>
-            </div>
-
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.12]">
               {hero.title}
             </h1>

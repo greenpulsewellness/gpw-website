@@ -357,7 +357,7 @@ export const aboutData = {
       "Whether you are blueprinting a flagship longevity sanctuary, upgrading a resort spa, or outfitting an elite athletic facility, our wellness engineers are ready to assist with spatial design and equipment selection.",
     primaryCta: {
       label: "Schedule a Consultation",
-      href: "/#enquiry",
+      href: "/contact",
     },
     secondaryCta: {
       label: "Chat with an Engineer",

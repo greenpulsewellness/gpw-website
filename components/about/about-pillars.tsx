@@ -15,7 +15,7 @@ export function AboutPillars() {
   const { pillars } = aboutData;
 
   return (
-    <section className="relative overflow-hidden py-20 sm:py-28 bg-black">
+    <section className="relative overflow-hidden py-20 sm:py-28">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 -top-24 -translate-x-1/2 h-96 w-[700px] bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(255,255,255,0.08),transparent_70%)]"

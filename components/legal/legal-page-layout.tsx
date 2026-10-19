@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Printer, Shield, ArrowUpRight, Clock, Calendar, CheckCircle2, MessageSquare, Mail } from "lucide-react";
+import { Printer, ArrowUpRight, Clock, Calendar, CheckCircle2, MessageSquare, Mail } from "lucide-react";
 import { brand, contact } from "@/data/home";
 import { whatsappUrl } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
@@ -75,27 +75,15 @@ export function LegalPageLayout({
   };
 
   return (
-    <div className="relative isolate min-h-screen bg-[#060907] pt-12 sm:pt-16 md:pt-20">
+    <div className="relative isolate min-h-screen bg-[#060907]">
       <AmbientBackground className="-z-10" />
 
       {/* ── Document Hero ── */}
-      <section className="border-b border-white/10 bg-gradient-to-b from-emerald-500/[0.07] via-emerald-500/[0.02] to-transparent pb-10 pt-4 sm:pb-14 sm:pt-6">
+      <section className="border-b border-white/10 bg-gradient-to-b from-emerald-500/[0.07] via-emerald-500/[0.02] to-transparent pb-10 pt-24 sm:pb-14 sm:pt-28">
         <div className="shell">
-          <div className="flex flex-wrap items-center gap-2 text-xs text-neutral-400">
-            <Link href="/" className="hover:text-white transition-colors">
-              Home
-            </Link>
-            <span>/</span>
-            <span className="text-white font-medium">Trust & Legal Directory</span>
-          </div>
-
-          <div className="mt-4 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-mono uppercase tracking-wider text-white">
-                <Shield className="size-3 text-white" />
-                <span>{brand.name} Legal Governance</span>
-              </div>
-              <h1 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl leading-[1.15]">
+              <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl leading-[1.15]">
                 {title}
               </h1>
               <p className="mt-3 text-base text-neutral-300 sm:text-lg leading-relaxed">

@@ -12,6 +12,12 @@ import {
 import { Logo } from "@/components/home/logo";
 import { getLenis, getIsBackNavigation, saveScrollPosition } from "@/lib/scroll";
 
+declare global {
+  interface Window {
+    __gpwIntroDone?: boolean;
+  }
+}
+
 /* ------------------------------------------------------------------ */
 /* Timeline (seconds)                                                  */
 /* ------------------------------------------------------------------ */
@@ -206,6 +212,16 @@ export function LayoutPreloader({
       getLenis()?.start();
     };
   }, [expandAt, progress]);
+
+  // Let other components (e.g. the cookie banner) know the intro has finished.
+  useEffect(() => {
+    if (!done) return;
+    window.__gpwIntroDone = true;
+    window.dispatchEvent(new Event("gpw:intro-done"));
+    return () => {
+      window.__gpwIntroDone = false;
+    };
+  }, [done]);
 
   return (
     <PreloaderContext.Provider value={done}>

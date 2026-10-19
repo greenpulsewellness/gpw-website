@@ -13,7 +13,7 @@ export function SolutionCrossNav({ currentSolutionId }: SolutionCrossNavProps) {
   const otherSolutions = getAllSolutions().filter((s) => s.id !== currentSolutionId);
 
   return (
-    <section className="py-20 md:py-28 bg-black border-t border-white/10 relative overflow-hidden">
+    <section className="py-20 md:py-28 border-t border-white/10 relative overflow-hidden">
       <div className="shell">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-12">
           <div>

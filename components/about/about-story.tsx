@@ -16,7 +16,7 @@ export function AboutStory() {
   const { story } = aboutData;
 
   return (
-    <section className="relative overflow-hidden py-20 sm:py-28 bg-[#060606] border-y border-white/5">
+    <section className="relative overflow-hidden py-20 sm:py-28 border-y border-white/5">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute right-0 top-1/3 h-96 w-96 rounded-full bg-white/[0.02] blur-3xl"

@@ -131,7 +131,7 @@ export function WhoWeEquip() {
         </div>
 
         {/* Horizontal moving cards rail */}
-        <div className="my-auto w-full py-2">
+        <div className="my-auto w-full overflow-x-clip py-2">
           <motion.ul
             ref={trackRef}
             style={{ x }}

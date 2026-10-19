@@ -9,6 +9,7 @@ import { Nav } from "@/components/home/nav";
 import { ProductsProvider } from "@/components/products-context";
 import { brand, contact } from "@/data/home";
 import { getProducts } from "@/lib/products";
+import { CookieBanner } from "@/components/ui/cookie-banner";
 import { JsonLd } from "@/components/seo/json-ld";
 
 const display = Outfit({ subsets: ["latin"], variable: "--font-outfit", display: "swap" });
@@ -167,6 +168,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <Nav />
             <FooterStage footer={<Footer />}>{children}</FooterStage>
           </SmoothScroll>
+          <CookieBanner />
         </ProductsProvider>
       </body>
     </html>

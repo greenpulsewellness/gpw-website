@@ -8,7 +8,6 @@ import { useProducts } from "@/components/products-context";
 import { whatsappUrl } from "@/lib/whatsapp";
 import { LinkedInIcon, InstagramIcon, WhatsAppIcon } from "./icons";
 import { AmbientBackground } from "@/components/ui/ambient-background";
-import { LoopArt } from "@/components/ui/loop-art";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -17,11 +16,10 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-[#060907] text-neutral-300 pt-16 sm:pt-20 rounded-t-[28px] sm:rounded-t-[38px] md:rounded-t-[48px] border-t border-white/10 shadow-[0_-25px_60px_rgba(0,0,0,0.8)]">
       <AmbientBackground />
-      <LoopArt variant="wave-glow" className="-bottom-[10%] -right-[12%] w-[min(140vw,1100px)] opacity-[0.14]" />
 
       <div className="shell relative z-10">
         {/* ── Top Link Columns ── */}
-        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 md:grid-cols-5 lg:gap-x-10">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:gap-x-10">
             {/* Column 1: Solutions */}
             <div>
               <h3 className="text-xs font-normal tracking-wide text-neutral-400 mb-4 sm:mb-5">
@@ -100,40 +98,6 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Column 4: Policies & Trust */}
-            <div>
-              <h3 className="text-xs font-normal tracking-wide text-neutral-400 mb-4 sm:mb-5">
-                Policies & Trust
-              </h3>
-              <ul className="space-y-3 text-sm font-normal text-neutral-200">
-                <li>
-                  <Link href="/terms" className="hover:text-white transition-colors">
-                    Terms & Conditions
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/privacy" className="hover:text-white transition-colors">
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/cookies" className="hover:text-white transition-colors">
-                    Cookie Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/complaints" className="hover:text-white transition-colors">
-                    Grievance & Complaints
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/compliance" className="hover:text-white transition-colors">
-                    Safety & Compliance
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
             {/* Column 5: Company & Contact */}
             <div>
               <h3 className="text-xs font-normal tracking-wide text-neutral-400 mb-4 sm:mb-5">
@@ -151,12 +115,7 @@ export function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href={whatsappUrl(contact.floatingMessage)} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                    WhatsApp Desk
-                  </a>
-                </li>
-                <li>
-                  <a href={`mailto:${contact.email}`} className="hover:text-white transition-colors truncate block">
+                  <a href={`mailto:${contact.email}`} className="hover:text-white transition-colors block break-all">
                     {contact.email}
                   </a>
                 </li>
@@ -178,6 +137,15 @@ export function Footer() {
           <span className="text-neutral-400">
             © {year} {brand.name}. All rights reserved.
           </span>
+          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-5 text-neutral-300">
+            <Link href="/terms" className="hover:text-white transition-colors">
+              Terms
+            </Link>
+            <Link href="/privacy" className="hover:text-white transition-colors">
+              Privacy
+            </Link>
+          </div>
           <div className="flex items-center gap-2.5 text-neutral-300">
             <a
               href={contact.linkedin}
@@ -206,6 +174,7 @@ export function Footer() {
             >
               <WhatsAppIcon className="size-3.5" />
             </a>
+          </div>
           </div>
         </div>
       </div>

@@ -6,10 +6,13 @@ import { defineArrayMember, defineField, defineType } from "sanity";
  */
 
 export const BLOG_CATEGORIES = [
-  "Longevity & Tech",
-  "Recovery & Biohacking",
-  "Commercial Suites & Spas",
-  "Science & Modalities",
+  "Heat & Infrared",
+  "Cold & Contrast",
+  "Red Light & Photobiomodulation",
+  "Oxygen & Hyperbaric",
+  "Compression & Massage",
+  "Business & Facility Design",
+  "Healthy Ageing & Mobility",
 ];
 
 export const postType = defineType({

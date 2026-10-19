@@ -7,6 +7,7 @@ import {
   type SolutionDetail,
 } from "@/data/solutions-data";
 import { SolutionProvider } from "@/components/solution/solution-context";
+import { AmbientBackground } from "@/components/ui/ambient-background";
 import { SolutionHero } from "@/components/solution/solution-hero";
 import { SpaceBlueprint } from "@/components/solution/space-blueprint";
 import { SolutionCatalog } from "@/components/solution/solution-catalog";
@@ -150,7 +151,8 @@ export default async function SolutionDetailPage({ params }: PageProps) {
   return (
     <SolutionProvider>
       <JsonLd data={jsonLd} />
-      <main className="min-h-screen bg-black">
+      <main className="relative isolate min-h-screen bg-[#060907]">
+        <AmbientBackground className="-z-10" />
         <SolutionHero solution={solution} />
         <SpaceBlueprint solution={solution} />
         <SolutionCatalog solution={solution} />

@@ -8,7 +8,7 @@ const SITE_URL = "https://greenpulsewellness.com";
 export const metadata: Metadata = {
   title: `Contact & Commercial Project Consultation`,
   description:
-    "Connect with GreenPulse Wellness for turnkey wellness, recovery, and longevity hardware consultation, spatial architecture, white-glove commissioning, and preventive maintenance across India.",
+    "Talk to GreenPulse Wellness about designing, equipping and launching your recovery or wellness space across India.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: `Contact & Commercial Consultation — ${brand.name}`,

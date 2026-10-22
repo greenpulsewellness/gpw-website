@@ -18,13 +18,13 @@ export function SuiteBundles({ solution }: SuiteBundlesProps) {
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">
           <span className="text-xs font-mono uppercase tracking-widest text-white block mb-2">
-            Turnkey Procurement & Fitouts
+            Complete Suites & Fitouts
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-[1.15]">
             Pre-Configured Commercial Suites
           </h2>
           <p className="mt-4 text-base sm:text-lg text-neutral-300 leading-relaxed">
-            Eliminate vendor fragmentation. Our turnkey bundles combine complementary modalities into harmonious, revenue-generating packages delivered with single-source warranty accountability.
+            Our suites combine complementary products into one planned space, with a single point of contact from layout to opening.
           </p>
         </div>
 

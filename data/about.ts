@@ -1,11 +1,5 @@
 import { contact } from "./home";
 
-export type AboutStat = {
-  value: string;
-  label: string;
-  subtext: string;
-};
-
 export type AboutPillar = {
   number: string;
   title: string;
@@ -41,6 +35,12 @@ export type StandardItem = {
   metrics: { label: string; value: string }[];
 };
 
+export type ComparisonRow = {
+  topic: string;
+  greenpulse: string;
+  typical: string;
+};
+
 export type AboutFaqItem = {
   question: string;
   answer: string;
@@ -49,59 +49,37 @@ export type AboutFaqItem = {
 export const aboutData = {
   hero: {
     badge: "About GreenPulse Wellness",
-    subBadge: "Established 2024 · Pan-India & Global Procurement",
-    title: "Wellness-Led Design, Purpose-Built Technology",
+    subBadge: "Designed. Equipped. Launched.",
+    title: "Recovery Spaces, Designed Before They Are Built",
     lead:
-      "Green Pulse curates advanced technology and products designed to support better recovery, rehabilitation, mobility, independent living and wellness — for clinical sanctuaries, luxury destinations, elite athletic clubs, and discerning private residences.",
-    stats: [
-      {
-        value: "50+",
-        label: "Commercial Systems",
-        subtext: "Curated across thermal, pressure, light & mechanical modalities",
-      },
-      {
-        value: "100%",
-        label: "Low-EMF & Certified",
-        subtext: "CE, ISO 9001/13485 compliant manufacturing with verified testing",
-      },
-      {
-        value: "6",
-        label: "Industry Verticals",
-        subtext: "From hospital rehabilitation suites to 5-star hotel spas",
-      },
-      {
-        value: "360°",
-        label: "Turnkey Integration",
-        subtext: "Consultation, spatial layout, customs clearance, install & maintenance",
-      },
-    ] satisfies AboutStat[],
+      "GreenPulse helps businesses build recovery and wellness spaces that work. We design them, equip them and launch them, for wellness centres, gyms, clinics, hotels, senior living and homes.",
   },
 
   story: {
-    eyebrow: "Why Green Pulse Exists",
-    headline: "Equipment as Part of the Experience, Not a Line on a Spec Sheet",
+    eyebrow: "Why GreenPulse Exists",
+    headline: "A Recovery Space Should Be Planned Like a Space, Not Ordered Like a Machine",
     narrative1:
-      "Green Pulse Wellness was created around a simple idea: equipment should be considered part of the experience of a space, not merely an item on a specification list.",
+      "GreenPulse started with a simple idea: equipment is part of the experience of a space, not a line on a specification list.",
     narrative2:
-      "Bringing a design-led perspective to health and wellness technology, we curate advanced solutions across recovery, rehabilitation, mobility, wellness, longevity and care — evaluated through the people, environments and outcomes they're meant to support, not just a catalogue of products.",
+      "Our founder comes from architecture and design, so we start with the room: how people move through it, where the power and water come in, and how it feels to walk in. Then we choose the heat, cold, light and relaxation products that belong there, from one catalogue.",
     narrative3:
-      "Headquartered in Bengaluru with a nationwide deployment footprint, our team partners directly with developers, hospitality directors, clinical specialists, sports franchises, and private clients to create turnkey recovery spaces that elevate human performance and everyday vitality.",
+      "We work directly with owners, architects and operators to plan the whole space around the business. Unlike a supplier who ships a machine and leaves, we stay with you through installation, training and opening.",
     quote: {
-      text: "Founded from a design and architectural perspective, Green Pulse Wellness approaches equipment sourcing with an understanding that every product ultimately sits within a larger human environment.",
-      author: "Green Pulse Wellness",
+      text: "Our vision is to make recovery and wellness part of everyday life in India, in every gym, clinic, hotel, home and care setting.",
+      author: "GreenPulse Wellness",
     },
     highlights: [
       {
-        title: "People First",
-        desc: "Begin with the people who will use the environment.",
+        title: "Purpose Before Product",
+        desc: "Every product has to earn its place in a space. We do not add something just because it sells.",
       },
       {
-        title: "Space Matters",
-        desc: "Consider equipment in relation to movement, layout, accessibility and experience.",
+        title: "Design in Every Detail",
+        desc: "Layouts, finishes, images and words should all look as premium as the space itself.",
       },
       {
-        title: "Thoughtful Sourcing",
-        desc: "Evaluate equipment options around project needs rather than a one-size-fits-all catalogue.",
+        title: "Honest Claims",
+        desc: "We say what a product is and what it does, and stop there.",
       },
     ],
   },
@@ -109,262 +87,325 @@ export const aboutData = {
   pillars: [
     {
       number: "01",
-      title: "Biomechanical & Biophysical Rigor",
-      tagline: "Calibrated wavelengths, verified pressure curves & therapeutic precision.",
+      title: "Design",
+      tagline: "We plan the whole space.",
       description:
-        "We reject uncalibrated novelty gear. Our photobiomodulation beds feature clinically established 660nm and 850nm dual wavelengths with tested milliwatt irradiance. Our hyperbaric chambers maintain precise 1.3 to 1.5 ATA baric plateaus with redundant mechanical safety reliefs. Every machine delivers real, repeatable physiological stimulus.",
-      specs: ["Dual 660nm/850nm Irradiance", "1.3–1.5 ATA Baric Stability", "True SL-Track Biomechanics"],
+        "Every project starts with the room. We look at the floor plan, ceiling heights, power, water, drainage and ventilation, then draw a layout that fits your business. You see where each product sits and how people move between them.",
+      specs: ["2D / 3D Layouts", "Power & Drainage Checklist", "Flow & Spacing Plan"],
       icon: "Atom",
     },
     {
       number: "02",
-      title: "Material Nobility & Zero-EMF Shielding",
-      tagline: "Natural FSC-certified woods, aerospace alloy & zero toxic outgassing.",
+      title: "Equip",
+      tagline: "Heat, cold, light and relax from one catalogue.",
       description:
-        "The environment inside a wellness chamber must be pure. We build using hypoallergenic, untreated Canadian Hemlock and Western Red Cedar, food-grade silicone seals, and aerospace carbon composites. Every heating element is shielded to produce near-zero electromagnetic radiation (EMF/ELF < 0.2 mG at contact).",
-      specs: ["FSC Canadian Hemlock & Cedar", "< 0.2 mG Ultra-Low EMF", "Zero-VOC Non-Toxic Adhesives"],
-      icon: "ShieldCheck",
-    },
-    {
-      number: "03",
-      title: "Full-Lifecycle White-Glove Execution",
-      tagline: "From electrical blueprints to customs clearance and staff certification.",
-      description:
-        "Purchasing commercial hardware should never mean receiving a palette at the kerb. Our engineers review your single-line electrical diagrams, structural floor loads, and acoustic isolation before dispatch. We manage international freight, customs clearance, on-site installation, and staff operating certification.",
-      specs: ["Electrical & HVAC Blueprinting", "Door-to-Room Commissioning", "Staff SOP Certification"],
+        "Our product families are built to work together: Halo saunas, Arctic cold plunges, Luma light devices, Serene massage chairs and PulseWave compression. Each one comes with a standard spec sheet covering size, weight, power and placement needs.",
+      specs: ["One Catalogue, One Look", "Standard Spec Sheets", "Matched to Your Space"],
       icon: "Truck",
     },
     {
-      number: "04",
-      title: "Transparent Ethics & Safety Governance",
-      tagline: "Responsible wellness classification with clear contraindication screening.",
+      number: "03",
+      title: "Launch",
+      tagline: "We help you open it and fill it.",
       description:
-        "We maintain uncompromising ethical boundaries. Our systems are classified as general wellness, physical conditioning, and restorative recovery equipment. We equip operators with comprehensive client screening protocols, contraindication matrices, and emergency egress protocols so every session is safe.",
-      specs: ["Standardized Client Waivers", "Contraindication Protocols", "Redundant Emergency Egress"],
+        "A space is only finished when people are using it. We install and test every product, train your team, and help you plan your session menu so you open with confidence.",
+      specs: ["Installation & Testing", "Team Training", "Session Menu Planning"],
       icon: "HeartPulse",
+    },
+    {
+      number: "04",
+      title: "Honest Claims & Safety",
+      tagline: "Clear information, careful wording.",
+      description:
+        "We describe products by what they are and how they fit a space, never by health outcomes. Safety guidance, user screening and operator training are part of every project, and we ask customers to consult a doctor for any medical question.",
+      specs: ["Plain-Language Specs", "User Screening Guidance", "Operator Training"],
+      icon: "ShieldCheck",
     },
   ] satisfies AboutPillar[],
 
   ecosystem: [
     {
-      id: "longevity",
-      title: "Longevity & Biohacking Centers",
-      tagline: "Multi-modality protocols for cellular restoration and biological rejuvenation.",
+      id: "wellness-centres",
+      title: "Wellness & Longevity Centres",
+      tagline: "Recovery spaces that look as premium as your brand.",
       description:
-        "Turnkey treatment suites combining mild hyperbarics (mHBOT), full-body red light photobiomodulation, whole-body cryotherapy, and lymphatic drainage. Designed for high throughput with rapid turnaround between appointments.",
+        "Recovery studios and longevity centres combining heat, cold, light and relaxation in one planned floor. We design the flow between rooms so every session feels considered.",
       image: "/Target client/audience-longevity.png",
-      modalities: ["Mild Hyperbaric Chambers", "Full-Body Red Light Beds", "Dynamic Pneumatic Boots", "Cryo Recovery Systems"],
-      typicalFootprint: "400 – 1,200 sq.ft across 3–5 treatment rooms",
-      outcomes: ["Increased client retention", "Premium protocol ticket sizes", "12-hour commercial duty cycles"],
-    },
-    {
-      id: "hotel-spa",
-      title: "Luxury Hotel & Resort Spas",
-      tagline: "Architectural wellness hardware that elevates five-star guest experiences.",
-      description:
-        "Infrared sauna suites, zero-gravity SL-track robotic massage lounges, and contrast therapy circuits designed with warm timber finishes that harmonize with five-star hospitality aesthetics.",
-      image: "/Target client/audience-hotel.jpg",
-      modalities: ["Halo Infrared Wellness Cabins", "4D Robotic Massage Chairs", "Hybrid Saunas", "Restorative Hydrotherapy"],
-      typicalFootprint: "250 – 800 sq.ft suite or private cabanas",
-      outcomes: ["Touchless wellness revenue", "High guest satisfaction", "Quiet operation below 45 dB"],
+      modalities: ["Halo Infrared Cabins", "Arctic Cold Plunges", "Luma Light Devices", "Serene Massage Chairs"],
+      typicalFootprint: "400 – 1,200 sq.ft across 3–5 rooms",
+      outcomes: ["A complete multi-therapy floor", "Consistent look across rooms", "Clear layout before installation"],
     },
     {
       id: "sports-clubs",
-      title: "Elite Athletic Clubs & Performance Gyms",
-      tagline: "Accelerating muscular recovery velocity and post-training regeneration.",
+      title: "Premium Gyms & Sports Centres",
+      tagline: "Give members a reason to stay.",
       description:
-        "High-output recovery zones for athletes and fitness enthusiasts. Rapid lactic acid clearance with dynamic air compression, localized cryotherapy, and deep tissue percussive therapy stations.",
+        "A recovery zone beside the training floor, built for steady daily use. Durable finishes and a layout that keeps members moving between stations.",
       image: "/Target client/audience-gyms.jpg",
-      modalities: ["PulseWave Compression Systems", "Heavy-Duty Infrared Saunas", "Ice Bath & Contrast Stations", "Percussive Therapy Bars"],
-      typicalFootprint: "300 – 1,500 sq.ft open recovery floor",
-      outcomes: ["Faster player turnaround", "Reduced soft tissue downtime", "Durable sweat-resistant upholstery"],
+      modalities: ["PulseWave Compression", "Halo Saunas", "Arctic Cold Plunges", "Serene Massage Chairs"],
+      typicalFootprint: "300 – 1,500 sq.ft recovery floor",
+      outcomes: ["A clear member-facing offer", "Easy-to-clean, durable finishes", "Room to grow the zone later"],
     },
     {
       id: "clinics",
-      title: "Physiotherapy & Chiropractic Practices",
-      tagline: "Precision motorized biomechanics and targeted neuromuscular relief.",
+      title: "Physio & Chiropractic Practices",
+      tagline: "Comfortable, practical equipment for your bays.",
       description:
-        "Electric drop and flexion-distraction chiropractic tables, motorized decompression, and target pneumatic compression that amplify manual physical therapy interventions.",
+        "Compact recovery products that fit consulting bays and waiting areas. Your clinic decides how it uses them; our material makes no treatment claims.",
       image: "/Target client/audience-physio.jpg",
-      modalities: ["Rise Standing Wheelchairs", "Pneumatic Compression Systems", "Local Red Light Therapy", "Posture Alignment Tools"],
-      typicalFootprint: "150 – 500 sq.ft per consulting bay",
-      outcomes: ["Reduced therapist fatigue", "Quantifiable client progression", "Ergonomic clinical durability"],
+      modalities: ["Rise Standing Chairs", "PulseWave Compression", "Luma Light Devices", "Glide Mobility Aids"],
+      typicalFootprint: "150 – 500 sq.ft per bay",
+      outcomes: ["Compact footprints", "Simple controls for staff", "Durable clinical finishes"],
+    },
+    {
+      id: "hotel-spa",
+      title: "Hotel Spas & Residential Wellness",
+      tagline: "Wellness that suits a five-star setting.",
+      description:
+        "Infrared and hybrid saunas, massage lounges and cold plunges finished in warm timber, planned with architects and interior designers to match the property.",
+      image: "/Target client/audience-hotel.jpg",
+      modalities: ["Halo Infrared Cabins", "Halo Hybrid Saunas", "Serene Massage Chairs", "Arctic Cold Plunges"],
+      typicalFootprint: "250 – 800 sq.ft suite or private cabana",
+      outcomes: ["Fits the property's design language", "Quiet, guest-friendly operation", "A planned guest journey"],
     },
     {
       id: "senior-living",
-      title: "Assisted Living & Senior Communities",
-      tagline: "Gentle mobility assistance, joint circulation, and restful pain relief.",
+      title: "Senior Living & Care Settings",
+      tagline: "Comfort, accessibility and dignity.",
       description:
-        "Ergonomically contoured electric recliner massage chairs, gentle thermal leg circulation devices, and foldable electric assistive chairs that protect resident dignity and independence.",
+        "Comfortable seating and mobility products for shared lounges and care settings, with simple controls and layouts that keep movement easy.",
       image: "/Target client/audience-seniorliving.jpg",
-      modalities: ["Gentle SL Zero-Gravity Massage", "Thermal Knee & Joint Heaters", "Foldable Assistive Wheelchairs", "Low-Entry Saunas"],
-      typicalFootprint: "200 – 600 sq.ft communal wellness lounges",
-      outcomes: ["Fall prevention support", "Gentle non-invasive circulation", "Simple single-touch interfaces"],
+      modalities: ["Serene Lounge Chairs", "Glide Mobility Aids", "Rise Standing Chairs", "Low-Entry Saunas"],
+      typicalFootprint: "200 – 600 sq.ft shared lounge",
+      outcomes: ["Accessible layouts", "Simple single-touch controls", "Comfort-first finishes"],
     },
     {
       id: "homecare",
-      title: "Private Sanctuaries & Homecare",
-      tagline: "Bespoke residential recovery sanctuaries tailored to private estates.",
+      title: "Private Homes",
+      tagline: "A recovery room designed for your home.",
       description:
-        "Custom-installed private wellness suites designed for private residences. Compact footprints, ultra-silent compressors, smart residential power compatibility, and discrete home aesthetic styling.",
+        "Compact private wellness rooms planned around your home's power, space and style, with quiet products and discreet finishes.",
       image: "/hero-wellness-sanctuary.jpg",
-      modalities: ["Halo 2 Infrared Cabins", "Softshell/Hardshell mHBOT", "Lounge SL Chairs", "Full-Spectrum Portable Mats"],
-      typicalFootprint: "100 – 400 sq.ft bedroom or dedicated room",
-      outcomes: ["Daily therapeutic convenience", "Quiet residential operation", "Plug-and-play single-phase power"],
+      modalities: ["Halo 2 Infrared Cabins", "Serene Lounge Chairs", "Luma Light Devices", "Portable Heat Mats"],
+      typicalFootprint: "100 – 400 sq.ft room",
+      outcomes: ["Compact footprints", "Quiet residential operation", "Standard single-phase power"],
     },
   ] satisfies EcosystemSector[],
+
+  comparison: {
+    eyebrow: "GreenPulse vs. Equipment-Only Suppliers",
+    headline: "What You Get With GreenPulse, and What You Usually Don't",
+    intro:
+      "Many suppliers ship a machine and leave. GreenPulse designs, equips and launches the whole recovery space. Here is how the two approaches compare.",
+    columns: {
+      topic: "What matters",
+      greenpulse: "GreenPulse Wellness",
+      typical: "Typical equipment-only supplier",
+    },
+    caption:
+      "Comparison of GreenPulse Wellness with a typical equipment-only supplier across planning, products, information, installation, training, launch and support.",
+    rows: [
+      {
+        topic: "Space planning",
+        greenpulse: "We plan the whole room: layout, power, drainage and ventilation notes, drawn before you build.",
+        typical: "You receive a machine and work out the room yourself.",
+      },
+      {
+        topic: "Product range",
+        greenpulse: "Heat, cold, light and relax products from one catalogue, in one consistent look.",
+        typical: "One or two product types, or a mixed list of unrelated items.",
+      },
+      {
+        topic: "Product information",
+        greenpulse: "A standard spec sheet for every product: size, weight, power, placement needs and what is included.",
+        typical: "A short brochure with missing or inconsistent specifications.",
+      },
+      {
+        topic: "Design quality",
+        greenpulse: "Architect-led design: finishes, layouts, images and wording all look premium.",
+        typical: "Equipment chosen from a price list, with no design input.",
+      },
+      {
+        topic: "Claims",
+        greenpulse: "Plain descriptions of what a product is. No medical claims, no named conditions, no promised results.",
+        typical: "Strong health claims with little or no named evidence.",
+      },
+      {
+        topic: "Installation",
+        greenpulse: "On-site assembly, testing and a safety check, signed off with you.",
+        typical: "Delivery to the door, with installation left to you.",
+      },
+      {
+        topic: "Team training",
+        greenpulse: "Operator guides, user screening guidance and cleaning routines for your staff.",
+        typical: "A manual in the box.",
+      },
+      {
+        topic: "Opening your space",
+        greenpulse: "Help planning your session menu and opening content, and a check-in after you open.",
+        typical: "No launch help once the machine is delivered.",
+      },
+      {
+        topic: "Point of contact",
+        greenpulse: "One team from the first conversation to opening day.",
+        typical: "Different people for sales, delivery and support.",
+      },
+    ] satisfies ComparisonRow[],
+    summary:
+      "In short: GreenPulse is a space partner that designs, equips and launches recovery and wellness spaces, while an equipment-only supplier sells a machine and stops there.",
+  },
 
   methodology: [
     {
       number: "01",
-      phase: "Discovery & Space Planning",
-      title: "Spatial Audit & Electrical Load Planning",
+      phase: "Discover",
+      title: "Understand Your Business and Space",
       description:
-        "We review your floorplans, ceiling heights, doorways, electrical panels, and HVAC capacities. We calculate exact power draws, heat dissipation, and acoustic requirements before a single machine is ordered.",
-      deliverables: ["2D/3D Equipment Placement Layout", "Single-Line Electrical Load Map", "Ventilation & Drainage Checklist"],
+        "We ask five things first: your type of space, the room you have, your budget band, your timeline and who decides. Then we visit or review your plans.",
+      deliverables: ["Space & Goals Brief", "Site Checklist", "Photos & Measurements"],
     },
     {
       number: "02",
-      phase: "Curated Selection",
-      title: "Protocol-Driven Hardware Specification",
+      phase: "Design",
+      title: "Layout and Product Mix",
       description:
-        "Rather than pushing surplus inventory, we tailor the modality mix to your demographic: whether targeting biohackers, hotel guests, rehab patients, or active seniors.",
-      deliverables: ["Customized Hardware Specification Dossier", "Duty-Cycle & Throughput Forecast", "Turnkey Package Costing"],
+        "We plan the whole room: where each product goes, how power, water and drainage reach it, and how guests move through. The product mix is matched to your clients, not to a stock list.",
+      deliverables: ["2D / 3D Layout", "Electrical & Drainage Plan", "Product Spec Sheets"],
     },
     {
       number: "03",
-      phase: "Procurement & Import",
-      title: "End-to-End International Logistics & Customs",
+      phase: "Equip",
+      title: "A Clear Quote for the Whole Space",
       description:
-        "We manage international freight, maritime insurance, customs clearance, GST documentation, and secure warehousing. You receive zero surprise import fees or port clearance bottlenecks.",
-      deliverables: ["All-Inclusive Import Clearances", "Door-to-Door Insured Freight", "Live Tracking & Arrival Coordination"],
+        "You receive a quote pack covering the products, installation, training and timeline, so there are no surprises later.",
+      deliverables: ["Quote Pack", "Installation Timeline", "Payment Terms"],
     },
     {
       number: "04",
-      phase: "On-Site Commissioning",
-      title: "White-Glove Assembly & Safety Verification",
+      phase: "Install",
+      title: "Installation and Safety Checks",
       description:
-        "Our specialized technicians arrive on-site to unbox, assemble, level, wire, and test every system. We conduct pressure integrity checks on hyperbaric chambers and verify zero-EMF readings on saunas.",
-      deliverables: ["Physical Commissioning & Levelling", "Pressure & Thermal Safety Testing", "Sign-Off Performance Checklist"],
+        "Our technicians assemble, level, wire and test every product on site, then run a safety check and sign-off with you.",
+      deliverables: ["On-Site Installation", "Safety & Function Testing", "Sign-Off Checklist"],
     },
     {
       number: "05",
-      phase: "Staff Handover",
-      title: "Operator Protocols & Safety Certification",
+      phase: "Train",
+      title: "Team Training and Safe Operation",
       description:
-        "We train your spa managers, trainers, or clinic staff on operating procedures, cleaning protocols, contraindication screening, client onboarding, and emergency procedures.",
-      deliverables: ["Staff Operator Manuals", "Client Intake & Waiver Templates", "Sanitization & Hygiene Protocols"],
+        "We train your team on operation, cleaning, user screening and what to do in an emergency, and leave you with simple written guides.",
+      deliverables: ["Operator Guides", "User Screening Templates", "Cleaning Routines"],
     },
     {
       number: "06",
-      phase: "Lifecycle Assurance",
-      title: "Preventive Servicing & Genuine Spares",
+      phase: "Launch",
+      title: "Open With Confidence",
       description:
-        "Our relationship begins at installation. We provide scheduled preventive maintenance checkups, guaranteed availability of genuine replacement components, and direct WhatsApp engineering support.",
-      deliverables: ["Scheduled Annual Maintenance", "Stocked Pan-India Spare Parts", "Dedicated 24/7 Technical WhatsApp Desk"],
+        "We help you plan your session menu, opening posts and signage, and stay in touch after you open to see how the space is running.",
+      deliverables: ["Session Menu", "Launch Content", "Post-Opening Check-In"],
     },
   ] satisfies MethodologyStep[],
 
   standards: [
     {
-      category: "Thermal & Timber Purity",
-      headline: "FSC-Certified Canadian Woods & Non-Toxic Construction",
+      category: "Honest Claims",
+      headline: "We Say What a Product Is, Not What It Cures",
       description:
-        "Our sauna cabins use slow-grown Canadian Hemlock and Western Red Cedar. Natural aromatic properties resist moisture, warping, and bacterial growth without toxic varnishes or chemical sealants.",
+        "Every product is described by its specifications and how it fits a space. We make no medical claims, and we do not name conditions or promise results.",
       metrics: [
-        { label: "Timber Origin", value: "FSC Canadian Hemlock" },
-        { label: "Adhesive Standard", value: "Zero-VOC Food Grade" },
-        { label: "Bacterial Resistance", value: "Natural Antimicrobial" },
+        { label: "Product Copy", value: "Specs & Experience" },
+        { label: "Health Outcomes", value: "Never Claimed" },
+        { label: "Medical Questions", value: "Ask Your Doctor" },
       ],
     },
     {
-      category: "Electromagnetic Safety",
-      headline: "Shielded Elements with Ultra-Low EMF & ELF Radiation",
+      category: "Safety Guidance",
+      headline: "Screening, Training and Clear Operating Rules",
       description:
-        "Many cheap infrared saunas emit dangerous levels of magnetic radiation. GreenPulse heaters feature multi-layer grounded carbon shielding, keeping EMF levels well below 0.2 mG at body contact.",
+        "Every project includes user screening guidance, operator training and written operating rules. Products that need a trained operator are sold for supervised settings only.",
       metrics: [
-        { label: "EMF at Body Contact", value: "< 0.2 mG (Near Zero)" },
-        { label: "ELF Electric Field", value: "< 10 V/m" },
-        { label: "Shielding", value: "Double-Insulated Grounded" },
+        { label: "Screening", value: "Guidance Provided" },
+        { label: "Operators", value: "Trained Before Opening" },
+        { label: "Supervised Products", value: "Supervised Settings Only" },
       ],
     },
     {
-      category: "Pressure Engineering",
-      headline: "Aviation-Grade TPU & Dual Mechanical Pressure Relief",
+      category: "Spec Sheets",
+      headline: "One Standard Sheet for Every Product",
       description:
-        "Our mild hyperbaric oxygen chambers are fabricated with heavy-duty multi-layer TPU and carbon shells, tested to 3x their maximum operating pressure. Dual mechanical pop-off valves eliminate over-pressurization risks.",
+        "Each product has a standard spec sheet: size, weight, power, placement needs, capacity, materials and what is included, so you can plan before you decide.",
       metrics: [
-        { label: "Working Pressure", value: "1.3 – 1.5 ATA (30–50 kPa)" },
-        { label: "Safety Redundancy", value: "Dual Pop-Off Valves" },
-        { label: "Burst Safety Factor", value: "300% Rated Margin" },
+        { label: "Size & Weight", value: "Listed" },
+        { label: "Power & Placement", value: "Listed" },
+        { label: "What's Included", value: "Listed" },
       ],
     },
     {
-      category: "Global Compliance",
-      headline: "Certified to International Commercial Electrical Standards",
+      category: "Product Families",
+      headline: "One Catalogue, Named and Organised the Same Way",
       description:
-        "All electronics, transformers, compressors, and power supplies adhere to rigorous international electrical safety standards including CE, RoHS, and ISO 9001 quality management guidelines.",
+        "Products are grouped into families such as Halo, Arctic, Luma, Serene and PulseWave, and presented in the same order everywhere: Relax, Heat, Light, Cold.",
       metrics: [
-        { label: "Quality System", value: "ISO 9001 / ISO 13485" },
-        { label: "Electrical Compliance", value: "CE & RoHS Certified" },
-        { label: "Indian Grid Match", value: "220-240V 50Hz Standard" },
+        { label: "Naming", value: "Family + Model" },
+        { label: "Order", value: "Relax · Heat · Light · Cold" },
+        { label: "Images", value: "Exact Model Only" },
       ],
     },
   ] satisfies StandardItem[],
 
   faqs: [
     {
-      question: "What is GreenPulse Wellness and what is your business model?",
+      question: "What is GreenPulse Wellness and what do you do?",
       answer:
-        "GreenPulse Wellness is India's premier turnkey provider of commercial recovery, longevity, and rehabilitation hardware. We source, import, customize, install, and service cutting-edge technologies including infrared saunas, hyperbaric oxygen chambers, cryotherapy suites, red-light therapy beds, robotic SL-track massage chairs, and clinical physical therapy equipment for commercial facilities and private estates.",
+        "GreenPulse helps businesses build recovery and wellness spaces. We design the layout, equip it from one catalogue of heat, cold, light and relaxation products, and help you launch it. We work with wellness centres, gyms, clinics, hotels, senior living and homes.",
     },
     {
-      question: "Do you handle customs clearance, import duties, and shipping across India?",
+      question: "Who do you work with?",
       answer:
-        "Yes, completely. All prices quoted for turnkey equipment projects include international freight, comprehensive cargo insurance, Indian customs brokerage, GST clearance, and door-to-room delivery. You never have to deal with shipping agents or freight forwarding logistics.",
+        "Owners and operators opening or upgrading a recovery or wellness space, along with their architects and interior designers. We start with wellness centres and premium gyms, and also work with physio clinics, hotel spas, senior living and private homes.",
+    },
+    {
+      question: "What does a project look like from start to finish?",
+      answer:
+        "We start with a conversation about your space and goals, then a site visit or plan review. You receive a layout and a quote pack. After approval we install and test the products, train your team and help you plan your opening.",
     },
     {
       question: "What electrical and plumbing provisions do we need to prepare?",
       answer:
-        "Most of our systems—including massage chairs, compression systems, and standard infrared cabins—operate on standard 220V–240V single-phase Indian electrical connections with a 15A or 16A socket. Larger shared cabins or commercial sauna heaters may require a dedicated 3-phase line (typically 6kW to 9kW). We provide a detailed architectural MEP (Mechanical, Electrical, Plumbing) guide prior to delivery.",
+        "Many of our products, including massage chairs and compression systems, run on a standard single-phase connection. Larger saunas and cold plunges may need a dedicated power line, water and drainage. Each spec sheet lists the requirements, and we confirm them during the site visit.",
     },
     {
-      question: "How do you handle warranty, maintenance, and replacement spare parts?",
+      question: "Do you publish prices?",
       answer:
-        "Every commercial system carries a comprehensive 1 to 2-year warranty covering frame, electronics, heaters, and pressure mechanics. We maintain inventory of essential replacement parts—controllers, heaters, valves, air pumps, and cables—in India for rapid dispatch. Our technicians provide on-site service and scheduled preventive audits.",
+        "Prices are shared in your quote pack, because the right mix depends on your space. Tell us about your space and we will send you a plan.",
     },
     {
-      question: "Can we visit to test or experience the equipment before purchasing?",
+      question: "Can I see the products before I decide?",
       answer:
-        "Yes. We regularly host private demonstrations and exhibit at major wellness expos across India (such as IHFC Mumbai). You can reach out to our team to arrange a live demonstration or virtual video tour with our technical specialists.",
+        "Get in touch and we will talk you through the products, share spec sheets and arrange a demonstration where possible.",
     },
     {
-      question: "Do you offer equipment rental or leasing for clinics and hospitals?",
+      question: "Can you give medical advice about using the products?",
       answer:
-        "Yes, we provide flexible commercial rental and lease-to-own programs for healthcare organizations, rehabilitation clinics, and senior living facilities for selected lines such as pneumatic compression, mobility wheelchairs, and recovery chairs. Contact our team to request commercial lease pricing.",
-    },
-    {
-      question: "How long does delivery and installation take from the time of order?",
-      answer:
-        "In-stock inventory in our India hub delivers within 5 to 10 business days. Custom-ordered architectural saunas, hardshell hyperbaric chambers, or bespoke clinic suites typically require 4 to 8 weeks for custom manufacturing, maritime shipping, and customs clearance.",
+        "No. We cannot advise on medical conditions, so please ask your doctor. Products are not a substitute for medical advice, and anyone with a heart condition, who is pregnant or who has any health concern should consult a doctor before use.",
     },
   ] satisfies AboutFaqItem[],
 
   cta: {
-    eyebrow: "Transform Your Space",
-    headline: "Equip Your Facility with the Future of Longevity Technology",
+    eyebrow: "Plan Your Space",
+    headline: "Let's Plan Your Recovery Space",
     subtext:
-      "Whether you are blueprinting a flagship longevity sanctuary, upgrading a resort spa, or outfitting an elite athletic facility, our wellness engineers are ready to assist with spatial design and equipment selection.",
+      "Whether you are opening a wellness centre, adding a recovery zone to a gym or fitting out a hotel spa, tell us about your space and we will help with the layout and the right product mix.",
     primaryCta: {
       label: "Schedule a Consultation",
       href: "/contact",
     },
     secondaryCta: {
-      label: "Chat with an Engineer",
-      whatsappMessage: "Hi GreenPulse Wellness, I would like to schedule a consultation regarding wellness equipment.",
+      label: "Chat with Us",
+      whatsappMessage: "Hi GreenPulse Wellness, I would like to schedule a consultation regarding a wellness space.",
     },
     catalogCta: {
-      label: "Explore Equipment Catalog",
+      label: "Explore the Catalogue",
       href: "/products",
     },
   },

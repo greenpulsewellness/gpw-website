@@ -61,6 +61,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/blog/importing-wellness-equipment-installation-and-warranty",
+        destination: "/blog/buying-wellness-equipment-installation-and-support",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

@@ -7,13 +7,13 @@ import { BlogGrid } from "@/components/blog/blog-grid";
 import { JsonLd } from "@/components/seo/json-ld";
 
 export const metadata: Metadata = {
-  title: `The Journal — Recovery & Longevity Tech Insights`,
+  title: `The Journal — Planning Recovery Spaces`,
   description:
-    "Curated perspectives on photobiomodulation, mild hyperbaric kinetics, pneumatic compression, and commercial wellness architecture for clinics, spas, and athletic clubs.",
+    "Practical guides on saunas, cold plunges, light devices, compression and planning a recovery space for centres, gyms, clinics and hotels.",
   openGraph: {
     title: `The Journal — ${brand.name}`,
     description:
-      "Curated perspectives on photobiomodulation, mild hyperbaric kinetics, pneumatic compression, and commercial wellness architecture.",
+      "Practical guides on saunas, cold plunges, light devices, compression and planning a recovery space.",
     type: "website",
   },
 };
@@ -28,7 +28,7 @@ export default async function BlogIndexPage() {
     name: `The Journal — ${brand.name}`,
     url: "https://greenpulsewellness.com/blog",
     description:
-      "Curated perspectives on photobiomodulation, mild hyperbaric kinetics, pneumatic compression, and commercial wellness architecture.",
+      "Practical guides on saunas, cold plunges, light devices, compression and planning a recovery space.",
     publisher: {
       "@type": "Organization",
       name: brand.name,

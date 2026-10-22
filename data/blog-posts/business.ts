@@ -17,7 +17,7 @@ export const BUSINESS_POSTS: BlogInput[] = [
     author: AUTHORS["david-chen"],
     tags: ["Recovery Lounge", "Wellness Business", "Studio Design", "Pricing", "Equipment Planning"],
     keywords: ["how to start a recovery lounge", "recovery studio business plan", "wellness lounge equipment", "open a recovery centre", "contrast therapy studio"],
-    relatedSlugs: ["gym-recovery-zone-membership-pricing", "recovery-suites-for-hotels-and-resorts", "importing-wellness-equipment-installation-and-warranty"],
+    relatedSlugs: ["gym-recovery-zone-membership-pricing", "recovery-suites-for-hotels-and-resorts", "buying-wellness-equipment-installation-and-support"],
     keyTakeaways: [
       "Start with a clear customer: athletes, busy professionals, hotel guests or older adults each want something different.",
       "A lean first menu of heat, cold and compression is easier to run than a huge one.",
@@ -71,7 +71,7 @@ export const BUSINESS_POSTS: BlogInput[] = [
         heading: "Launching and keeping it busy",
         content: [
           `Open with a small founding-member group, collect honest feedback and tune the menu. Invite local gyms, physios and corporates for trial sessions. Photograph the space well, because a calm, beautiful room sells itself.`,
-          `Before you order, read about ${L("importing", "importing, installation and warranty")} so there are no surprises on delivery day. You can also browse the ${SOLUTION("recover", "Recover & Restore solution")} and the ${CATALOGUE("full equipment catalogue")}.`,
+          `Before you order, read about ${L("buying", "buying, installation and support")} so there are no surprises on delivery day. You can also browse the ${SOLUTION("recover", "Recover & Restore solution")} and the ${CATALOGUE("full equipment catalogue")}.`,
         ],
       },
     ],
@@ -135,7 +135,7 @@ export const BUSINESS_POSTS: BlogInput[] = [
         heading: "Packaging and pricing",
         content: [
           `Bundle sessions into stay packages (a 'recovery night' with late checkout, for instance), sell add-ons at check-in and offer day passes to local residents to keep the space busy mid-week. For membership thinking that also applies to resorts, read ${L("gym", "gym recovery zone pricing")}.`,
-          `Ready to plan? Explore the ${SOLUTION("recover", "Recover & Restore solutions")} and ${L("importing", "our guide to importing and warranty")}, then talk to our team about the right fit.`,
+          `Ready to plan? Explore the ${SOLUTION("recover", "Recover & Restore solutions")} and ${L("buying", "our guide to buying and support")}, then talk to our team about the right fit.`,
         ],
       },
     ],
@@ -224,7 +224,7 @@ export const BUSINESS_POSTS: BlogInput[] = [
     author: AUTHORS["marcus-vance"],
     tags: ["Physio Clinic", "Chiropractic", "Clinic Equipment", "Rehabilitation"],
     keywords: ["physiotherapy clinic equipment", "chiropractic clinic recovery devices", "clinic compression boots", "rehab clinic wellness equipment"],
-    relatedSlugs: ["handheld-red-light-and-laser-devices", "red-light-bed-vs-panel-vs-stand", "importing-wellness-equipment-installation-and-warranty"],
+    relatedSlugs: ["handheld-red-light-and-laser-devices", "red-light-bed-vs-panel-vs-stand", "buying-wellness-equipment-installation-and-support"],
     keyTakeaways: [
       "Buy for your caseload and your room, not for the longest spec list.",
       "Small, quick-to-deploy tools often outperform big ones in a busy clinic.",
@@ -264,7 +264,7 @@ export const BUSINESS_POSTS: BlogInput[] = [
         id: "room-and-flow",
         heading: "Room, flow and training",
         content: [
-          `Plan power sockets, storage and a simple cleaning routine. Train all staff on each device so no one is the single expert. Browse our ${SOLUTION("rehabilitate", "Rehabilitate solutions")} for clinic-ready kits, and read ${L("importing", "importing, installation and warranty")} to understand support. If your clinic also offers a lounge-style service, see ${L("lounge", "how to start a recovery lounge")}.`,
+          `Plan power sockets, storage and a simple cleaning routine. Train all staff on each device so no one is the single expert. Browse our ${SOLUTION("rehabilitate", "Rehabilitate solutions")} for clinic-ready kits, and read ${L("buying", "buying, installation and support")} to understand support. If your clinic also offers a lounge-style service, see ${L("lounge", "how to start a recovery lounge")}.`,
         ],
       },
     ],
@@ -277,36 +277,36 @@ export const BUSINESS_POSTS: BlogInput[] = [
 
   /* ------------------------------------------------------------------ */
   {
-    slug: "importing-wellness-equipment-installation-and-warranty",
+    slug: "buying-wellness-equipment-installation-and-support",
     cluster: "business",
     date: "2026-09-18",
-    title: "Importing Wellness Equipment: Installation, Warranty and Support",
+    title: "Buying Wellness Equipment: Installation, Warranty and Support",
     excerpt:
-      "What to ask before buying imported wellness equipment: certification, shipping, installation, training, spare parts and who picks up the phone when something breaks.",
-    coverAlt: "Illustration of a shipping crate with a route line and a verification tick",
+      "What to ask before buying wellness equipment for a business: total cost, installation, training, spare parts and who picks up the phone when something needs attention.",
+    coverAlt: "Illustration of a checklist with a verification tick",
     author: AUTHORS["david-chen"],
-    tags: ["Importing Equipment", "Warranty", "After-Sales Support", "Installation", "Commercial Buying"],
-    keywords: ["importing wellness equipment", "wellness equipment warranty", "buy sauna cold plunge supplier checklist", "equipment after sales support"],
+    tags: ["Buying Equipment", "Warranty", "After-Sales Support", "Installation", "Commercial Buying"],
+    keywords: ["buying wellness equipment", "wellness equipment warranty", "sauna cold plunge buying checklist", "equipment after sales support"],
     relatedSlugs: ["how-to-start-a-recovery-lounge", "infrared-sauna-size-power-and-installation", "setting-up-a-hyperbaric-oxygen-room-safely"],
     keyTakeaways: [
-      "The price on the quote is the start of the cost, not the end. Ask about freight, duties, installation and training.",
+      "The price on the quote is the start of the cost, not the end. Ask about delivery, installation and training.",
       "Insist on written warranty terms and a named service contact.",
-      "Check certifications and electrical compatibility for your region.",
-      "A supplier who will plan the space with you is worth more than a small discount.",
+      "Check electrical requirements for your site before you order.",
+      "A partner who will plan the space with you is worth more than a small discount.",
     ],
     sections: [
       {
         id: "the-total-picture",
         heading: "Look at the total picture",
         content: [
-          `When you buy equipment from overseas, the sticker price is only part of the story. Freight, insurance, customs clearance and taxes, delivery to site, installation and training all add up. Ask for these to be itemised, and have your accountant or customs broker confirm the duties and taxes that apply, because we cannot quote them for your situation.`,
+          `The sticker price is only part of the story. Delivery, taxes, installation, electrical work and training all add up. Ask for these to be itemised in one quote, and have your accountant confirm the taxes that apply to your business.`,
         ],
       },
       {
-        id: "certifications-and-power",
-        heading: "Certification and power",
+        id: "specs-and-power",
+        heading: "Specifications and power",
         content: [
-          `Ask which certifications and test reports apply to each product and whether they are valid for your market. Confirm voltage and frequency (for example 220 V / 50 Hz), plug types and circuit needs. For saunas, see our ${L("saunaInstall", "size, power and installation guide")}, and for oxygen chambers, ${L("hbotRoom", "setting up a hyperbaric oxygen room safely")}.`,
+          `Ask for a spec sheet for every product. It should list dimensions, weight, power, placement needs and what is included. Confirm voltage and frequency (for example 220 V / 50 Hz), plug types and circuit needs. For saunas, see our ${L("saunaInstall", "size, power and installation guide")}, and for oxygen chambers, ${L("hbotRoom", "setting up a hyperbaric oxygen room safely")}.`,
         ],
       },
       {
@@ -316,9 +316,8 @@ export const BUSINESS_POSTS: BlogInput[] = [
           `A warranty is only as good as the service behind it. Ask:`,
           `1. What is covered, and for how long, per component?`,
           `2. Who diagnoses a fault, and how fast do they respond?`,
-          `3. Are spare parts stocked locally?`,
+          `3. Are spare parts available locally?`,
           `4. Does commercial use change the terms? Many warranties differ for business use.`,
-          `For reference, our ${P("arcticZero", "Arctic Zero cryosauna")} is supplied with a 3-year warranty and operator training, and each product page lists what is included.`,
         ],
         callout: {
           type: "tip",
@@ -334,14 +333,14 @@ export const BUSINESS_POSTS: BlogInput[] = [
       },
       {
         id: "planning-with-a-partner",
-        heading: "Working with a supplier who plans with you",
+        heading: "Working with a partner who plans with you",
         content: [
-          `The best suppliers will look at your floor plan, suggest the right combination of equipment and stay in touch after delivery. That is how we try to work. Start with the ${SOLUTION("recover", "Recover & Restore solutions")} or our ${COMBOS("combos")}, and read ${L("lounge", "how to start a recovery lounge")} for the business context. You can also browse the ${CATALOGUE("full catalogue")} before talking to us.`,
+          `The best partners will look at your floor plan, suggest the right combination of equipment and stay in touch after delivery. That is how we try to work. Start with the ${SOLUTION("recover", "Recover & Restore solutions")} or our ${COMBOS("combos")}, and read ${L("lounge", "how to start a recovery lounge")} for the business context. You can also browse the ${CATALOGUE("full catalogue")} before talking to us.`,
         ],
       },
     ],
     relatedEquipment: [
-      eq("arcticZero", "Supplied with a 3-year warranty and operator training."),
+      eq("arcticZero", "A compact cold product; plan power and drainage before delivery."),
       eq("halo3", "Large commercial cabin; plan power and access before delivery."),
     ],
   },

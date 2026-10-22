@@ -39,8 +39,8 @@ export const LIGHT_POSTS: BlogInput[] = [
         content: [
           `• **Face and neck masks:** wearable and personal. See ${L("masks", "our LED face mask guide")}.`,
           `• **Panels and lamps:** target an area or the whole body from a stand or wall. The ${P("lumaPanel", "Luma Panel")} and ${P("lumaSpot", "Luma Spot")} are examples.`,
-          `• **Stands:** taller devices that cover more of the body, like the ${P("lumaStand1", "Luma Stand 1")} (12,312 LEDs, five wavelengths) and ${P("lumaTower", "Luma Tower")} (320 LEDs on wheels).`,
-          `• **Beds and chambers:** full-body formats for studios and clinics, such as the ${P("lumaCocoon1", "Luma Cocoon 1")} bed and ${P("lumaDome", "Luma Dome")} chamber.`,
+          `• **Stands:** taller devices that cover more of the body, like the ${P("lumaStand1", "Luma Stand")} (12,312 LEDs, four wavelengths) and ${P("lumaTower", "Luma Tower")} (320 LEDs on wheels).`,
+          `• **Beds and chambers:** full-body formats for studios and clinics, such as the ${P("lumaCocoon1", "Luma Cocoon")} bed and ${P("lumaDome", "Luma Dome")} chamber.`,
           `• **Handhelds:** targeted devices for specific areas. See ${L("handheld", "handheld red light and laser devices")}.`,
           `We compare the large formats head-to-head in ${L("lightFormat", "red light bed vs panel vs stand")}.`,
         ],
@@ -55,7 +55,7 @@ export const LIGHT_POSTS: BlogInput[] = [
         ],
         callout: {
           type: "science",
-          text: "Light dose depends on power, distance and time. Two devices with the same LED count can deliver different doses. Follow the manufacturer's distance and session guidance rather than guessing.",
+          text: "Light dose depends on power, distance and time. Two devices with the same LED count can deliver different doses. Follow the supplied distance and session guidance rather than guessing.",
         },
       },
       {
@@ -75,7 +75,7 @@ export const LIGHT_POSTS: BlogInput[] = [
       },
     ],
     relatedEquipment: [
-      eq("lumaStand1", "Mobile full-body stand with five wavelengths and 12,312 LEDs."),
+      eq("lumaStand1", "Full-body stand with four wavelengths and 12,312 LEDs."),
       eq("lumaPanel", "Height-adjustable panel with separate red and infrared control."),
       eq("maskDuo", "Wearable face and neck mask with seven colour modes."),
     ],
@@ -133,7 +133,7 @@ export const LIGHT_POSTS: BlogInput[] = [
         id: "using-it-well",
         heading: "Using it well",
         content: [
-          `Cleanse your skin first, remove make-up and heavy products, and follow the manufacturer's session length. Consistency matters more than marathon sessions. Pick a few fixed days a week and attach it to a habit, like your evening wind-down.`,
+          `Cleanse your skin first, remove make-up and heavy products, and follow the supplied session length. Consistency matters more than marathon sessions. Pick a few fixed days a week and attach it to a habit, like your evening wind-down.`,
           `Keep your eyes closed, and stop if you feel any discomfort. If you have sensitive skin, a skin condition, are pregnant or use photosensitising medication, speak to a professional first. No LED mask is a cure for anything.`,
         ],
       },
@@ -183,7 +183,7 @@ export const LIGHT_POSTS: BlogInput[] = [
         id: "beds",
         heading: "Beds and chambers: the full experience",
         content: [
-          `Lying down in a full-body bed wraps you in light from above (and sometimes below), so you get a complete session in one go. The ${P("lumaCocoon1", "Luma Cocoon 1")} is a clamshell bed with up to 28,512 LEDs, silent cooling and Bluetooth surround sound. The ${P("lumaCocoon2", "Luma Cocoon 2")} is a dome capsule with up to 26,880 LEDs, while the ${P("lumaDome", "Luma Dome")} is a walk-in chamber.`,
+          `Lying down in a full-body bed wraps you in light from above (and sometimes below), so you get a complete session in one go. The ${P("lumaCocoon1", "Luma Cocoon")} is a clamshell bed with 21,600 LEDs, a control tablet and Bluetooth music. The ${P("lumaCocoon2", "Luma Cocoon Pro")} adds PEMF with 41,600 LEDs, while the ${P("lumaDome", "Luma Dome")} is a walk-in chamber.`,
           `These are the premium choice for studios, spas and clinics: a signature service that feels special and runs on a timer. The trade-offs are price, footprint and power. Plan the room accordingly using lessons from ${L("lounge", "our recovery lounge guide")}.`,
         ],
       },
@@ -191,7 +191,7 @@ export const LIGHT_POSTS: BlogInput[] = [
         id: "stands",
         heading: "Stands: tall, mobile and flexible",
         content: [
-          `A stand puts a tall panel in front of you and covers most of the body. The ${P("lumaStand1", "Luma Stand 1")} has 12,312 LEDs across five wavelengths on caster wheels, and the ${P("lumaStand2", "Luma Stand 2")} adds a motorised lift for effortless height adjustment. The ${P("lumaTower", "Luma Tower")} is a tall, mobile stand with 320 LEDs.`,
+          `A stand puts a tall panel in front of you and covers most of the body. The ${P("lumaStand1", "Luma Stand")} has 12,312 LEDs across four wavelengths, and the ${P("lumaStand2", "Luma Stand Pro")} adds the 810 nm band with independent wavelength control. The ${P("lumaTower", "Luma Tower")} is a tall, mobile stand with 320 LEDs.`,
           `Stands suit venues that do not have room for a bed, or those who want to move the device between treatment rooms.`,
         ],
         callout: {
@@ -219,8 +219,8 @@ export const LIGHT_POSTS: BlogInput[] = [
       },
     ],
     relatedEquipment: [
-      eq("lumaCocoon1", "Clamshell bed with up to 28,512 LEDs and silent cooling."),
-      eq("lumaStand2", "Motorised full-body stand with automatic height lift."),
+      eq("lumaCocoon1", "Clamshell bed with 21,600 LEDs, a control tablet and Bluetooth music."),
+      eq("lumaStand2", "Full-body stand with independent wavelength control and presets."),
       eq("lumaPanel", "Affordable, height-adjustable panel for targeted use."),
     ],
   },
@@ -309,7 +309,7 @@ export const LIGHT_POSTS: BlogInput[] = [
     keyTakeaways: [
       "Handheld devices are precise and portable, ideal for small, specific areas.",
       "A 4-in-1 unit combines light, TENS and ultrasound, so read the instructions for each mode.",
-      "Always protect your eyes and follow the manufacturer's safety guidance.",
+      "Always protect your eyes and follow the supplied safety guidance.",
       "Treat them as wellness tools, not replacements for professional care.",
     ],
     sections: [
@@ -334,7 +334,7 @@ export const LIGHT_POSTS: BlogInput[] = [
         id: "safe-use",
         heading: "Using them safely",
         content: [
-          `Never shine laser light into your eyes or anyone else's, and use the supplied eye protection. Keep sessions within the manufacturer's guidance, avoid broken skin and do not use over areas your doctor has asked you to avoid. TENS and ultrasound modes have their own rules, so read the manual for each.`,
+          `Never shine laser light into your eyes or anyone else's, and use the supplied eye protection. Keep sessions within the supplied guidance, avoid broken skin and do not use over areas your doctor has asked you to avoid. TENS and ultrasound modes have their own rules, so read the manual for each.`,
           `If you are pregnant, have an implanted device such as a pacemaker or have a medical condition, ask your doctor before using any of these.`,
         ],
         callout: {

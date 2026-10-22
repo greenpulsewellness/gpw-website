@@ -187,11 +187,11 @@ export function ProductDetailView({
           >
             <div className="flex items-center gap-2.5 text-xs text-neutral-200 font-medium">
               <CheckCircle className="size-4 text-white shrink-0" />
-              <span>Commercial Hardware with 2–3 Year Comprehensive Warranty</span>
+              <span>Commercial-Grade Build for Daily Use</span>
             </div>
             <div className="flex items-center gap-2.5 text-xs text-neutral-200 font-medium">
               <CheckCircle className="size-4 text-white shrink-0" />
-              <span>Full Turnkey White-Glove Logistics & On-Site Engineering Setup</span>
+              <span>Delivery, On-Site Installation & Setup</span>
             </div>
             <div className="flex items-center gap-2.5 text-xs text-neutral-200 font-medium">
               <CheckCircle className="size-4 text-white shrink-0" />
@@ -229,7 +229,7 @@ export function ProductDetailView({
             variants={heroItem}
             className="mt-3 flex items-center justify-between text-xs text-neutral-400 px-1"
           >
-            <span>Direct manufacturer representative support</span>
+            <span>Direct support from the GreenPulse team</span>
             <button
               type="button"
               onClick={() => setIsDrawerOpen(true)}

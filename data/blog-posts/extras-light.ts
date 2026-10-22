@@ -20,7 +20,7 @@ export const LIGHT_EXTRAS: BlogExtras = {
         id: "setting-up-a-routine",
         heading: "Setting up a routine at home",
         content: [
-          `Pick a regular time, a comfortable spot and a device that you will actually reach for. Face-focused? Start with a mask, such as the ${P("maskDuo", "Luma Mask Duo")}. Whole-body? A stand like the ${P("lumaStand1", "Luma Stand 1")} or the portable ${P("lumaGo500", "Luma Go 500")} are friendlier than a bed for most homes.`,
+          `Pick a regular time, a comfortable spot and a device that you will actually reach for. Face-focused? Start with a mask, such as the ${P("maskDuo", "Luma Mask Duo")}. Whole-body? A stand like the ${P("lumaStand1", "Luma Stand")} or the portable ${P("lumaGo500", "Luma Go 500")} are friendlier than a bed for most homes.`,
           `Keep sessions short and regular rather than long and rare. Many people attach them to an existing habit, like the evening wind-down or a post-workout cool-down. Our ${L("stack", "recovery stack guide")} shows where light fits among other tools.`,
         ],
       },
@@ -44,7 +44,7 @@ export const LIGHT_EXTRAS: BlogExtras = {
       },
       {
         question: "How often should I use red light therapy?",
-        answer: `Follow the manufacturer's guidance for session length and distance. Many people use a device a few times a week; consistency matters more than long sessions.`,
+        answer: `Follow the supplied guidance for session length and distance. Many people use a device a few times a week; consistency matters more than long sessions.`,
       },
       {
         question: "Is red light therapy safe?",
@@ -73,7 +73,7 @@ export const LIGHT_EXTRAS: BlogExtras = {
         content: [
           `Try the strap and the weight. A mask should sit comfortably without pressing on your eyes or nose, and it should not slip. Check for a comfortable eye area and a timer that switches off automatically.`,
           `To clean, wipe the inside with a soft cloth as the manual directs and let it dry. Never use harsh chemicals on the LEDs, and store it somewhere dust-free. Charge it fully before use if it is cordless, like the ${P("shell2", "Luma Shell 2")}.`,
-          `If you use the mask with skincare, apply products as advised by the manufacturer. Some prefer to use a mask on clean, bare skin. For the science of the colours and wavelengths, see ${L("wavelengths", "our wavelengths explainer")}.`,
+          `If you use the mask with skincare, apply products as advised in the instructions. Some prefer to use a mask on clean, bare skin. For the science of the colours and wavelengths, see ${L("wavelengths", "our wavelengths explainer")}.`,
         ],
         callout: {
           type: "tip",
@@ -91,7 +91,7 @@ export const LIGHT_EXTRAS: BlogExtras = {
     faqs: [
       {
         question: "How often should I use an LED face mask?",
-        answer: `Follow the manufacturer's session length and frequency. Many people use a mask several times a week for ten to twenty minutes. Regular, moderate use is better than long, rare sessions.`,
+        answer: `Follow the supplied session length and frequency. Many people use a mask several times a week for ten to twenty minutes. Regular, moderate use is better than long, rare sessions.`,
       },
       {
         question: "Can I wear an LED mask with skincare products?",
@@ -114,7 +114,7 @@ export const LIGHT_EXTRAS: BlogExtras = {
         id: "space-power-and-cooling",
         heading: "Space, power and cooling",
         content: [
-          `Big light devices are a facility decision. A bed like the ${P("lumaCocoon1", "Luma Cocoon 1")} lists up to 3,000 W and a dome capsule such as the ${P("lumaCocoon2", "Luma Cocoon 2")} up to 4,500 W, so check your supply and your cooling plan with an electrician. Stands are lighter on both counts.`,
+          `Big light devices are a facility decision. A bed like the ${P("lumaCocoon1", "Luma Cocoon")} lists 3,000 W and the ${P("lumaCocoon2", "Luma Cocoon Pro")} lists 6,500 W, so check your supply and your cooling plan with an electrician. Stands are lighter on both counts.`,
           `Leave room around any bed for the opening and for staff to help guests in and out. Keep the room comfortably ventilated, since LEDs generate some heat, and plan floor protection beneath wheels.`,
         ],
       },
@@ -187,7 +187,7 @@ export const LIGHT_EXTRAS: BlogExtras = {
         heading: "Pulsing, power and dose",
         content: [
           `Wavelength is only one dial. Power (how intense the light is), distance (how far you sit) and time (how long you stay) together make up the dose. Some devices also pulse the light at set frequencies, like the 10 Hz and 40 Hz modes on the ${P("lumaPanel", "Luma Panel")}.`,
-          `Too much is not necessarily better. Follow the manufacturer's guidance and keep notes on what you use. Handheld lasers behave differently from LED panels because their light is concentrated, so read the safety guidance in ${L("handheld", "our handheld guide")}.`,
+          `Too much is not necessarily better. Follow the supplied guidance and keep notes on what you use. Handheld lasers behave differently from LED panels because their light is concentrated, so read the safety guidance in ${L("handheld", "our handheld guide")}.`,
         ],
         callout: {
           type: "science",
@@ -271,7 +271,7 @@ export const LIGHT_EXTRAS: BlogExtras = {
       },
       {
         question: "How long should I use a handheld per area?",
-        answer: `Follow the manufacturer's guidance. Short sessions per area are typical, and you should avoid overusing a single spot.`,
+        answer: `Follow the supplied guidance. Short sessions per area are typical, and you should avoid overusing a single spot.`,
       },
       {
         question: "Is the Luma Beam Crown a medical device?",

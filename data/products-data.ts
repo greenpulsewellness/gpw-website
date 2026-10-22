@@ -73,11 +73,11 @@ export const productDetails: Record<ProductId, ProductDetail> = {
   ...hbotDetails,
   "infrared-sauna-single-full-spectrum-mstar": {
     id: "infrared-sauna-single-full-spectrum-mstar",
-    subtitle: "Single-Person Full Spectrum Far Infrared Sauna (Catalog Model: MS-011FS)",
-    tagline: "Compact 90 × 90 cm personal recovery chamber built with Canadian hemlock, tourmaline-embedded carbon floor heat, and fresh-air oxygen ionization.",
+    subtitle: "Single-Person Full Spectrum Far Infrared Sauna",
+    tagline: "Compact 90 × 90 cm personal recovery chamber built with hemlock, tourmaline-embedded carbon floor heat, and fresh-air oxygen ionization.",
     overview: [
-      "The Halo 1 (Catalog Model MS-011FS) is engineered for apartments, master bedroom corners, and dedicated treatment rooms where space is at a premium but you still want a proper commercial-grade sweat. Taking up just 90 × 90 cm of floor area and standing 190 cm tall, it gives you a complete personal thermal cabin without needing a dedicated sauna room or renovations.",
-      "The cabin is built from 100% natural kiln-dried Canadian Hemlock. Hemlock is a dense, straight-grained softwood that resists warping and splitting from humidity changes, stays cool to the touch on the outside, and has zero synthetic resins or chemical odors when warmed up. An 8 mm thick tempered safety glass door seals with a magnetic strip, keeping the interior warm while giving you a clean, clear view of your room.",
+      "The Halo 1 is engineered for apartments, master bedroom corners, and dedicated treatment rooms where space is at a premium but you still want a proper commercial-grade sweat. Taking up just 90 × 90 cm of floor area and standing 190 cm tall, it gives you a complete personal thermal cabin without needing a dedicated sauna room or renovations.",
+      "The cabin is built from 100% natural kiln-dried Hemlock. Hemlock is a dense, straight-grained softwood that resists warping and splitting from humidity changes, stays cool to the touch on the outside, and has zero synthetic resins or chemical odors when warmed up. An 8 mm thick tempered safety glass door seals with a magnetic strip, keeping the interior warm while giving you a clean, clear view of your room.",
       "Heating is delivered through a balanced combination of full-spectrum quartz heaters and carbon fiber wall panels, backed by a heated floor embedded with natural tourmaline stones. The quartz emitters provide fast surface warmth while the carbon panels surround your torso in long-wave far infrared heat. The tourmaline floor plates conduct soothing warmth directly into the soles of your bare feet, improving circulation from the ground up.",
       "Drawing only 1350 Watts, the Halo 1 runs smoothly on any standard single-phase 220V–240V domestic wall socket. Inside, you get a clean digital LCD control panel, an oxygen ionizer that keeps the air fresh during heavy sweat sessions, dual stereo Bluetooth speakers, a reading light, and a 7-color ceiling starlight chromotherapy system."
     ],
@@ -124,8 +124,8 @@ export const productDetails: Record<ProductId, ProductDetail> = {
         iconName: "Speaker"
       },
       {
-        title: "Certified Canadian Hemlock",
-        description: "Solid kiln-dried Canadian hemlock with tongue-and-groove joinery that resists splitting and releases no harsh chemical fumes when hot.",
+        title: "Solid Hemlock",
+        description: "Solid kiln-dried hemlock with tongue-and-groove joinery that resists splitting and releases no harsh chemical fumes when hot.",
         iconName: "Trees"
       },
       {
@@ -185,7 +185,6 @@ export const productDetails: Record<ProductId, ProductDetail> = {
           { label: "Interior Footprint", value: "82 cm (L) × 82 cm (W) × 178 cm (H)" },
           { label: "Gross Weight (G.W)", value: "100 kg (Crated) / Net Weight: ~88 kg" },
           { label: "Glass Construction", value: "8 mm Heavy Tempered Safety Glass with magnetic latch" },
-          { label: "Timber Sourcing", value: "100% Certified Canadian Hemlock (Tongue & Groove)" }
         ]
       },
       {
@@ -213,16 +212,14 @@ export const productDetails: Record<ProductId, ProductDetail> = {
         ]
       },
       {
-        category: "Commercial Warranty & Compliance",
+        category: "Assembly",
         items: [
-          { label: "Certifications", value: "CE, RoHS, ISO 9001, ETL Electrical Safety" },
           { label: "Assembly Type", value: "Modular tongue-and-groove buckle-latch system (approx. 45 min setup)" },
-          { label: "Warranty", value: "2 Years on Electronics & Heaters / 5 Years on Hemlock Shell" }
         ]
       }
     ],
     whatsIncluded: [
-      "Prefabricated modular Canadian hemlock wall, floor, and roof panels with built-in heaters",
+      "Prefabricated modular hemlock wall, floor, and roof panels with built-in heaters",
       "8 mm heavy tempered safety glass door with pre-hung hardware and wooden handle",
       "Floor heating panel embedded with natural tourmaline mineral stones",
       "Full spectrum quartz and carbon heating elements with pre-wired harnesses",
@@ -295,7 +292,7 @@ export const productDetails: Record<ProductId, ProductDetail> = {
         answer: "In a traditional Finnish sauna, the air is baked to 80°C–100°C with hot stones, which can feel scorching to breathe. The Halo 1 heats your body directly with infrared light at 45°C to 65°C, giving you a deep, heavy sweat in air that remains comfortable and easy to breathe."
       },
       {
-        question: "How do I clean and maintain the Canadian hemlock wood?",
+        question: "How do I clean and maintain the hemlock wood?",
         answer: "Always place a dry cotton towel on the bench and floor to catch perspiration. After your session, wipe away any stray sweat drops with a dry cloth and leave the glass door open for 15 minutes. Wipe down once a month with a damp cloth and mild organic soap; never use bleach, varnish, or harsh chemicals on sauna wood."
       },
       {
@@ -317,11 +314,11 @@ export const productDetails: Record<ProductId, ProductDetail> = {
 
   "infrared-sauna-double-full-spectrum-mstar": {
     id: "infrared-sauna-double-full-spectrum-mstar",
-    subtitle: "Two-Person American Full Spectrum Infrared Sauna (Catalog Model: MS-021HC)",
-    tagline: "Spacious 120 × 105 cm two-person cabin with American full-spectrum heating, tourmaline floor integration, and optional Canadian hemlock or red cedar.",
+    subtitle: "Two-Person American Full Spectrum Infrared Sauna",
+    tagline: "Spacious 120 × 105 cm two-person cabin with American full-spectrum heating, tourmaline floor integration, and optional hemlock or red cedar.",
     overview: [
-      "The Halo 2 (Catalog Model MS-021HC) is our most popular two-person far infrared sauna, engineered for private homes, wellness retreats, and commercial spa suites. With exterior dimensions of 120 cm wide, 105 cm deep, and 190 cm high, it provides generous, comfortable bench seating for two adults to sit side by side without feeling cramped.",
-      "Powered by an advanced 1750 W American full-spectrum heating system, the Halo 2 distributes near-, mid-, and far-infrared wavelengths evenly across your entire body. The radiant panels are placed along the backrest, front columns, side walls, and under the bench, ensuring complete 360-degree thermal coverage with minimal cold spots. It can be ordered in certified Canadian Hemlock or fragrant Western Red Cedar, both finished with a full-height 8 mm tempered glass front that maximizes natural light and spaciousness.",
+      "The Halo 2 is our most popular two-person far infrared sauna, engineered for private homes, wellness retreats, and commercial spa suites. With exterior dimensions of 120 cm wide, 105 cm deep, and 190 cm high, it provides generous, comfortable bench seating for two adults to sit side by side without feeling cramped.",
+      "Powered by an advanced 1750 W American full-spectrum heating system, the Halo 2 distributes near-, mid-, and far-infrared wavelengths evenly across your entire body. The radiant panels are placed along the backrest, front columns, side walls, and under the bench, ensuring complete 360-degree thermal coverage with minimal cold spots. It can be ordered in Hemlock or fragrant Western Red Cedar, both finished with a full-height 8 mm tempered glass front that maximizes natural light and spaciousness.",
       "The floor is equipped with low-EMF carbon heating panels embedded with natural tourmaline stones. As the floor warms, the tourmaline crystals emit far-infrared energy directly into your feet, promoting healthy blood flow up through your lower limbs while generating negative ions that keep the cabin fresh.",
       "Equipped with an interior digital control panel, integrated stereo sound system (Bluetooth, USB, MP3, and FM radio), oxygen ionizer, reading lamp, and a multi-color chromotherapy starlight ceiling, the Halo 2 delivers a completely self-contained recovery suite that runs reliably off a single standard 220V–240V power connection."
     ],
@@ -343,8 +340,8 @@ export const productDetails: Record<ProductId, ProductDetail> = {
         iconName: "Flame"
       },
       {
-        title: "Canadian Hemlock or Red Cedar",
-        description: "Available in sustainably sourced Canadian Hemlock or aromatic, rot-resistant Western Red Cedar with precision tongue-and-groove joinery.",
+        title: "Hemlock or Red Cedar",
+        description: "Available in responsibly chosen Hemlock or aromatic, rot-resistant Western Red Cedar with precision tongue-and-groove joinery.",
         iconName: "Trees"
       },
       {
@@ -429,7 +426,7 @@ export const productDetails: Record<ProductId, ProductDetail> = {
           { label: "Interior Clearance", value: "112 cm (L) × 97 cm (W) × 178 cm (H)" },
           { label: "Gross Weight (G.W)", value: "130 kg (Crated) / Net Weight: ~115 kg" },
           { label: "Glass Specifications", value: "8 mm Heavy Tempered Safety Glass" },
-          { label: "Timber Options", value: "Canadian Hemlock (Standard) / Western Red Cedar (Optional Upgrade)" }
+          { label: "Timber Options", value: "Hemlock (Standard) / Western Red Cedar (Optional Upgrade)" }
         ]
       },
       {
@@ -459,14 +456,12 @@ export const productDetails: Record<ProductId, ProductDetail> = {
       {
         category: "Safety & Commercial Standards",
         items: [
-          { label: "Certifications", value: "CE, ISO 9001, RoHS, ETL Electrical Safety" },
           { label: "Assembly Architecture", value: "Modular tongue-and-groove panels with quick-snap locking buckles" },
-          { label: "Commercial Warranty", value: "2 Years on Electronics / 5 Years on Timber Shell & Heating Elements" }
         ]
       }
     ],
     whatsIncluded: [
-      "Prefabricated modular wall, floor, and ceiling timber panels in Canadian Hemlock or Red Cedar",
+      "Prefabricated modular wall, floor, and ceiling timber panels in Hemlock or Red Cedar",
       "Full-height 8 mm tempered glass front door with safety magnetic latch and wooden grab handle",
       "Pre-installed American full-spectrum infrared and carbon heater panels with insulated wiring",
       "Tourmaline-embedded heated floor assembly",
@@ -536,8 +531,8 @@ export const productDetails: Record<ProductId, ProductDetail> = {
         answer: "No. At 1750 Watts on 220V–240V power, the Halo 2 draws under 8 Amps. It plugs directly into a standard 10A or 16A domestic earthed socket, so no expensive electrical rewiring or sub-panel upgrades are needed."
       },
       {
-        question: "What is the difference between Canadian Hemlock and Western Red Cedar?",
-        answer: "Canadian Hemlock is a durable, straight-grained, hypoallergenic timber with a light blonde color and virtually no natural aroma or resin. Western Red Cedar is richer in color, naturally aromatic, and possesses natural oils that make it exceptionally resistant to moisture and mold. Both perform beautifully in dry infrared saunas."
+        question: "What is the difference between Hemlock and Western Red Cedar?",
+        answer: "Hemlock is a durable, straight-grained, hypoallergenic timber with a light blonde color and virtually no natural aroma or resin. Western Red Cedar is richer in color, naturally aromatic, and possesses natural oils that make it exceptionally resistant to moisture and mold. Both perform beautifully in dry infrared saunas."
       },
       {
         question: "How does the full-spectrum heating differ from regular far-infrared saunas?",
@@ -566,11 +561,11 @@ export const productDetails: Record<ProductId, ProductDetail> = {
 
   "infrared-sauna-double-combination-mstar": {
     id: "infrared-sauna-double-combination-mstar",
-    subtitle: "Two-Person Red Cedar Ceramic & Carbon Hybrid Infrared Sauna (Catalog Model: MS-021L)",
+    subtitle: "Two-Person Red Cedar Ceramic & Carbon Hybrid Infrared Sauna",
     tagline: "Dual-technology 120 × 105 cm sauna combining fast-acting ceramic tube heaters with wide-surface carbon panels in premium Western red cedar.",
     overview: [
-      "The Halo Hybrid 2 (Catalog Model MS-021L) combines two complementary infrared heating technologies inside a handcrafted red cedar cabin. While standard saunas rely entirely on either carbon panels or ceramic rods, the Hybrid 2 combines high-intensity ceramic emitters behind your back for focused, direct warmth with broad-spectrum carbon wall panels that envelop the entire cabin in consistent, gentle far-infrared heat.",
-      "Built from genuine kiln-dried Western Red Cedar (with Canadian Hemlock available on request), this model stands out with its rich reddish-brown wood grain, natural aromatic cedar scent, and inherent resistance to fungal moisture and warping. At 120 cm wide, 105 cm deep, and 190 cm high with a gross weight of 150 kg, it offers a solid, substantial feel with an 8 mm tempered glass door and side viewing glass.",
+      "The Halo Hybrid 2 combines two complementary infrared heating technologies inside a handcrafted red cedar cabin. While standard saunas rely entirely on either carbon panels or ceramic rods, the Hybrid 2 combines high-intensity ceramic emitters behind your back for focused, direct warmth with broad-spectrum carbon wall panels that envelop the entire cabin in consistent, gentle far-infrared heat.",
+      "Built from genuine kiln-dried Western Red Cedar (with Hemlock available on request), this model stands out with its rich reddish-brown wood grain, natural aromatic cedar scent, and inherent resistance to fungal moisture and warping. At 120 cm wide, 105 cm deep, and 190 cm high with a gross weight of 150 kg, it offers a solid, substantial feel with an 8 mm tempered glass door and side viewing glass.",
       "The ceramic heaters heat up quickly, producing an intense, deeply penetrating radiant warmth that targets tight back and shoulder muscles within minutes of stepping in. Meanwhile, the surrounding carbon panel heaters ensure that the ambient temperature remains completely balanced without cold spots, drawing a total of 1750 Watts on standard 220V–240V power.",
       "The cabin includes floor-mounted tourmaline stones for foot reflexology and negative ion emission, an oxygen ionizer for continuous fresh air, a digital LED control interface, reading lamp, and a complete multimedia sound system with Bluetooth, USB, MP3, and FM radio."
     ],
@@ -673,7 +668,7 @@ export const productDetails: Record<ProductId, ProductDetail> = {
           { label: "Interior Clearance", value: "112 cm (L) × 97 cm (W) × 178 cm (H)" },
           { label: "Gross Weight (G.W)", value: "150 kg (Crated) / Net Weight: ~132 kg" },
           { label: "Glass Specifications", value: "8 mm Heavy Tempered Safety Glass" },
-          { label: "Wood Construction", value: "Premium Western Red Cedar (Canadian Hemlock optional)" }
+          { label: "Wood Construction", value: "Premium Western Red Cedar (Hemlock optional)" }
         ]
       },
       {
@@ -701,11 +696,9 @@ export const productDetails: Record<ProductId, ProductDetail> = {
         ]
       },
       {
-        category: "Standards & Certifications",
+        category: "Assembly",
         items: [
-          { label: "Certifications", value: "CE, ISO 9001, RoHS, ETL Electrical Safety" },
           { label: "Assembly Architecture", value: "Precision pre-fabricated tongue-and-groove modular buckle system" },
-          { label: "Commercial Warranty", value: "2 Years on Electronics / 5 Years on Cedar Shell & Heaters" }
         ]
       }
     ],
@@ -775,7 +768,7 @@ export const productDetails: Record<ProductId, ProductDetail> = {
         answer: "Ceramic heaters provide intense, concentrated radiant heat that quickly warms your back and spinal joints. Carbon panels provide gentle, wide-surface far-infrared heat that warms the ambient space evenly. Combining both gives you the fast relief of ceramic with the smooth, comfortable surround-warmth of carbon."
       },
       {
-        question: "Why choose Western Red Cedar over Canadian Hemlock?",
+        question: "Why choose Western Red Cedar over Hemlock?",
         answer: "Western Red Cedar is naturally rich in essential cedar oils that give off a soothing, authentic sauna scent while acting as a natural repellent against bacteria, moisture, and mildew. It also has a distinctive, warm reddish-brown timber tone."
       },
       {
@@ -805,12 +798,12 @@ export const productDetails: Record<ProductId, ProductDetail> = {
 
   "infrared-sauna-group-full-spectrum-mstar": {
     id: "infrared-sauna-group-full-spectrum-mstar",
-    subtitle: "Three-Person Luxury Full Spectrum Quartz Combine Sauna (Catalog Model: MS-031PB / MS-061PB)",
+    subtitle: "Three-Person Luxury Full Spectrum Quartz Combine Sauna",
     tagline: "Spacious 150 × 120 cm three-person wellness cabin combining far-infrared carbon panels with full-spectrum quartz heating, starlight chromotherapy, and oxygen ionization.",
     overview: [
-      "The Halo 3 (Catalog Model MS-031PB / MS-061PB) is our premier three-person luxury infrared sauna, built for commercial recovery centers, luxury villas, boutique fitness clubs, and families. With generous dimensions of 150 cm wide, 120 cm deep, and 190 cm high, it provides ample room for three adults to sit comfortably or for two adults to stretch out with legs extended on the extra-wide bench.",
+      "The Halo 3 is our premier three-person luxury infrared sauna, built for commercial recovery centers, luxury villas, boutique fitness clubs, and families. With generous dimensions of 150 cm wide, 120 cm deep, and 190 cm high, it provides ample room for three adults to sit comfortably or for two adults to stretch out with legs extended on the extra-wide bench.",
       "Engineered with a powerful 2100 W hybrid heating array, the Halo 3 combines broad-surface far infrared carbon panels with high-output full-spectrum quartz heaters. The quartz tubes deliver immediate, penetrating near-, mid-, and far-infrared radiation that warms deep muscle tissue rapidly, while the carbon wall panels keep the ambient temperature steady and balanced without harsh hot spots.",
-      "Available in premium Canadian Hemlock or Western Red Cedar, the cabin features a wide 8 mm tempered glass front that fills the interior with natural light and creates an open, welcoming environment. The floor integrates low-EMF carbon heating panels overlaid with natural tourmaline stones that warm the feet and release negative ions into the air.",
+      "Available in premium Hemlock or Western Red Cedar, the cabin features a wide 8 mm tempered glass front that fills the interior with natural light and creates an open, welcoming environment. The floor integrates low-EMF carbon heating panels overlaid with natural tourmaline stones that warm the feet and release negative ions into the air.",
       "The cabin comes fully equipped with a high-end digital control console, ceiling starlight chromotherapy system, dedicated interior reading lamp, fresh-air oxygen ionizer, and a high-fidelity multimedia sound system supporting Bluetooth, USB, MP3, and FM radio—all operating efficiently from a single 220V–240V power connection."
     ],
     mechanismOfAction: {
@@ -861,8 +854,8 @@ export const productDetails: Record<ProductId, ProductDetail> = {
         iconName: "Speaker"
       },
       {
-        title: "Canadian Hemlock or Red Cedar",
-        description: "Precision-crafted from sustainably harvested Canadian Hemlock or aromatic Western Red Cedar with tongue-and-groove joinery.",
+        title: "Hemlock or Red Cedar",
+        description: "Precision-crafted from natural Hemlock or aromatic Western Red Cedar with tongue-and-groove joinery.",
         iconName: "Trees"
       }
     ],
@@ -917,7 +910,7 @@ export const productDetails: Record<ProductId, ProductDetail> = {
           { label: "Interior Clearance", value: "142 cm (L) × 112 cm (W) × 178 cm (H)" },
           { label: "Gross Weight (G.W)", value: "153 kg (Crated) / Net Weight: ~135 kg" },
           { label: "Glass Specifications", value: "8 mm Heavy Tempered Safety Glass" },
-          { label: "Timber Construction", value: "Canadian Hemlock (Standard) / Western Red Cedar (Optional Upgrade)" }
+          { label: "Timber Construction", value: "Hemlock (Standard) / Western Red Cedar (Optional Upgrade)" }
         ]
       },
       {
@@ -947,14 +940,12 @@ export const productDetails: Record<ProductId, ProductDetail> = {
       {
         category: "Commercial & Manufacturing Standards",
         items: [
-          { label: "Certifications", value: "CE, ISO 9001, RoHS, ETL Electrical Safety" },
           { label: "Assembly Architecture", value: "Modular prefabricated tongue-and-groove panel system with buckle latches" },
-          { label: "Commercial Warranty", value: "2 Years on Electronics / 5 Years on Timber Shell & Heating Elements" }
         ]
       }
     ],
     whatsIncluded: [
-      "Modular Canadian Hemlock or Western Red Cedar prefabricated panels with pre-mounted heaters",
+      "Modular Hemlock or Western Red Cedar prefabricated panels with pre-mounted heaters",
       "8 mm heavy tempered glass front door and side glass panels with magnetic sealing",
       "Full-spectrum quartz combine heater assemblies with protective wooden slat covers",
       "Far-infrared carbon fiber wall heating panels with quick-connect wiring",
@@ -1055,12 +1046,12 @@ export const productDetails: Record<ProductId, ProductDetail> = {
 
   "infrared-sauna-group-combination-mstar": {
     id: "infrared-sauna-group-combination-mstar",
-    subtitle: "Three-Person Luxury Hybrid Quartz & Carbon Infrared Sauna (Catalog Model: MS-061PB)",
+    subtitle: "Three-Person Luxury Hybrid Quartz & Carbon Infrared Sauna",
     tagline: "Spacious 150 × 120 cm luxury cabin combining full-spectrum quartz heaters with wide-coverage carbon panels, red cedar craftsmanship, and starlight chromotherapy.",
     overview: [
-      "The Halo Hybrid 3 (Catalog Model MS-061PB) is an extra-wide three-person thermal sanctuary engineered for luxury residences, commercial wellness lounges, athletic clubs, and health resorts. Measuring 150 cm wide, 120 cm deep, and 190 cm high with a gross crated weight of 153 kg, this unit delivers the ultimate multi-person infrared session with generous legroom and shoulder clearance.",
+      "The Halo Hybrid 3 is an extra-wide three-person thermal sanctuary engineered for luxury residences, commercial wellness lounges, athletic clubs, and health resorts. Measuring 150 cm wide, 120 cm deep, and 190 cm high with a gross crated weight of 153 kg, this unit delivers the ultimate multi-person infrared session with generous legroom and shoulder clearance.",
       "At the core of the Hybrid 3 is an advanced dual-system heating matrix combining high-intensity full-spectrum quartz emitters with large-format far-infrared carbon fiber wall panels. The quartz elements penetrate deep into tight lumbar muscles and spinal joints within seconds of turning on, while the low-EMF carbon panels blanket the entire interior in a smooth, continuous far-infrared field (drawing 2100 Watts on a standard single-phase 220V–240V line).",
-      "Milled from premium Canadian Hemlock or Western Red Cedar with 8 mm architectural tempered glass, the cabin provides exceptional acoustic quiet and thermal efficiency. The floor is lined with carbon heating elements beneath natural tourmaline mineral stones, warming bare feet and releasing negative ions throughout your sweat session.",
+      "Milled from premium Hemlock or Western Red Cedar with 8 mm architectural tempered glass, the cabin provides exceptional acoustic quiet and thermal efficiency. The floor is lined with carbon heating elements beneath natural tourmaline mineral stones, warming bare feet and releasing negative ions throughout your sweat session.",
       "Every detail is turnkey: an intuitive digital control interface allows exact temperature and time calibration, supported by an on-board oxygen ionizer, warm interior reading light, a 7-color ceiling starlight chromotherapy array, and a high-fidelity stereo sound system with Bluetooth, USB, MP3, and FM radio."
     ],
     mechanismOfAction: {
@@ -1162,7 +1153,7 @@ export const productDetails: Record<ProductId, ProductDetail> = {
           { label: "Interior Footprint", value: "142 cm (L) × 112 cm (W) × 178 cm (H)" },
           { label: "Gross Weight (G.W)", value: "153 kg (Crated) / Net Weight: ~135 kg" },
           { label: "Glass Construction", value: "8 mm Heavy Tempered Safety Glass" },
-          { label: "Timber Options", value: "Western Red Cedar or Canadian Hemlock (Tongue & Groove)" }
+          { label: "Timber Options", value: "Western Red Cedar or Hemlock (Tongue & Groove)" }
         ]
       },
       {
@@ -1190,16 +1181,14 @@ export const productDetails: Record<ProductId, ProductDetail> = {
         ]
       },
       {
-        category: "Standards & Warranty",
+        category: "Assembly",
         items: [
-          { label: "Certifications", value: "CE, RoHS, ISO 9001, ETL Electrical Safety" },
           { label: "Assembly Type", value: "Modular tongue-and-groove buckle-latch system" },
-          { label: "Warranty", value: "2 Years on Electronics & Heaters / 5 Years on Timber Shell" }
         ]
       }
     ],
     whatsIncluded: [
-      "Prefabricated modular Western Red Cedar or Canadian Hemlock panels with built-in heaters",
+      "Prefabricated modular Western Red Cedar or Hemlock panels with built-in heaters",
       "8 mm heavy tempered safety glass door and side panels with magnetic latch",
       "Full spectrum quartz and carbon heating elements with pre-wired harnesses",
       "Floor heating panel embedded with natural tourmaline mineral stones",
@@ -1301,12 +1290,12 @@ export const productDetails: Record<ProductId, ProductDetail> = {
 
   "cold-plunge-single-round-yg": {
     id: "cold-plunge-single-round-yg",
-    subtitle: "Round Single-Person Cold Plunge Ice Bath (Catalog Model: BST-1MDB)",
+    subtitle: "Round Single-Person Cold Plunge Ice Bath",
     tagline: "A compact round ice bath with a 304 stainless steel tub, built-in 0.8 HP chiller and circulation filtration, cooling to 3 °C for indoor or outdoor spaces.",
     overview: [
-      "The Arctic Ring (Catalog Model BST-1MDB) is a single-person round cold plunge designed for gyms, spas, recovery studios and homes that want a dedicated cold-immersion station without a large footprint. The exterior measures 90 cm across and 75 cm high, with an interior of 82 cm across and 59 cm deep.",
+      "The Arctic Ring is a single-person round cold plunge designed for gyms, spas, recovery studios and homes that want a dedicated cold-immersion station without a large footprint. The exterior measures 90 cm across and 75 cm high, with an interior of 82 cm across and 59 cm deep.",
       "The tub is lined with 304 stainless steel, and a waterproofed fabric cover keeps the water clean between sessions. A built-in 0.8 HP water chiller can bring the water down to 3 °C (37.4 °F), and a circulation and filtration system keeps the water moving.",
-      "It is a plug-and-plunge unit suited to both indoor and outdoor installation. The exterior is finished with vertical panels and regulation barrel hoops, with premium Canadian cedar or hemlock options also offered.",
+      "It is a plug-and-plunge unit suited to both indoor and outdoor installation. The exterior is finished with vertical panels and regulation barrel hoops, with premium cedar or hemlock options also offered.",
     ],
     mechanismOfAction: {
       heading: "Chilled, Filtered Water Immersion",
@@ -1324,7 +1313,7 @@ export const productDetails: Record<ProductId, ProductDetail> = {
       { title: "Circulation Filtration", description: "Water circulation and filtration system keeps the water moving.", iconName: "Sparkles" },
       { title: "Plug & Plunge", description: "Plug-and-use operation with no complicated installation.", iconName: "Zap" },
       { title: "Long-Lasting Tub", description: "304 stainless steel interior and regulation barrel hoops built for extended use.", iconName: "ShieldCheck" },
-      { title: "Premium Wood Options", description: "Fine Canadian cedar or hemlock options available for the exterior.", iconName: "Trees" },
+      { title: "Premium Wood Options", description: "Fine cedar or hemlock options available for the exterior.", iconName: "Trees" },
     ],
     benefits: [
       { title: "Post-Training Recovery Routine", description: "A dedicated cold-immersion station that supports a recovery routine after exercise.", metric: "Cold Immersion" },
@@ -1349,7 +1338,7 @@ export const productDetails: Record<ProductId, ProductDetail> = {
           { label: "Exterior Dimensions", value: "90 × 75 cm (diameter × height)" },
           { label: "Interior Dimensions", value: "82 × 59 cm (diameter × depth)" },
           { label: "Interior Material", value: "304 stainless steel tub" },
-          { label: "Exterior Material", value: "PS board with regulation barrel hoop (premium Canadian cedar / hemlock options)" },
+          { label: "Exterior Material", value: "PS board with regulation barrel hoop (premium cedar / hemlock options)" },
           { label: "Cover", value: "Waterproofed fabric cover" },
         ],
       },
@@ -1391,35 +1380,35 @@ export const productDetails: Record<ProductId, ProductDetail> = {
 
   "cold-plunge-tub-new-ice-bath": {
     id: "cold-plunge-tub-new-ice-bath",
-    subtitle: "Full-Size Composite Cold Plunge Tub (FiberCore Flex Ultra)",
-    tagline: "A one-piece CNC-machined composite tub with patented joints, two-stage filtration and a VGB safety-certified drain, paired with a high-power chiller.",
+    subtitle: "Full-Size Composite Cold Plunge Tub",
+    tagline: "A one-piece CNC-machined composite tub with purpose-designed joints, two-stage filtration and a safety drain, paired with a high-power chiller.",
     overview: [
-      "The Arctic Tub (FiberCore Flex Ultra) is a full-size cold plunge designed as a flexible, powerful combination paired with the most powerful chiller in the range. The setup is simple and intelligent, built to deliver a smooth, cloud-like ice bath experience.",
-      "The shell is a one-piece, CNC-machined composite tub made with custom-designed parts and full patent coverage. A patented dedicated joint sets the industry standard, and an integrated top filter housing makes filter replacement fast and easy.",
-      "Water circulation is improved by patented water nozzles and return water ports, backed by a two-stage filtration system. The tub integrates a VGB safety-certified drain and bathtub design.",
+      "The Arctic Tub is a full-size cold plunge designed as a flexible, powerful combination paired with the most powerful chiller in the range. The setup is simple and intelligent, built to deliver a smooth, cloud-like ice bath experience.",
+      "The shell is a one-piece, CNC-machined composite tub made with custom-designed parts and a purpose-designed joint, and an integrated top filter housing makes filter replacement fast and easy.",
+      "Water circulation is improved by purpose-designed water nozzles and return water ports, backed by a two-stage filtration system. The tub integrates a safety drain and bathtub design.",
     ],
     mechanismOfAction: {
       heading: "Circulated, Two-Stage Filtered Cold Water",
-      description: "The Arctic Tub keeps chilled water circulating through patented nozzles and return ports, and passes it through a two-stage filtration system housed in the top of the unit.",
+      description: "The Arctic Tub keeps chilled water circulating through purpose-designed nozzles and return ports, and passes it through a two-stage filtration system housed in the top of the unit.",
       points: [
-        "Patented water nozzles and return water ports improve circulation through the tub.",
+        "Purpose-designed water nozzles and return ports improve circulation through the tub.",
         "Two-stage filtration keeps the water clean between sessions.",
         "An integrated top filter housing makes filter changes quick and simple.",
-        "A VGB safety-certified drain is integrated into the tub design.",
+        "A safety drain is integrated into the tub design.",
       ],
     },
     features: [
       { title: "One-Piece Composite Shell", description: "Built from composite material as a one-piece CNC-machined shell.", iconName: "Layers" },
-      { title: "Patented Dedicated Joint", description: "Custom-designed parts with full patent coverage and a patented joint that sets industry standards.", iconName: "ShieldCheck" },
+      { title: "Purpose-Designed Joint", description: "Custom-designed parts and a dedicated joint for a solid one-piece shell.", iconName: "ShieldCheck" },
       { title: "Integrated Top Filter Housing", description: "Fast and easy filter replacement from the top of the unit.", iconName: "Sliders" },
-      { title: "Patented Nozzles & Return Ports", description: "Water nozzles and return water ports are designed to enhance circulation.", iconName: "Wind" },
+      { title: "Nozzles & Return Ports", description: "Water nozzles and return water ports are designed to enhance circulation.", iconName: "Wind" },
       { title: "Two-Stage Filtration", description: "A two-stage filtration system keeps the water clean.", iconName: "Sparkles" },
-      { title: "VGB-Certified Drain", description: "Integrates a VGB safety-certified drain and bathtub design.", iconName: "Award" },
+      { title: "Safety Drain", description: "Integrates a safety drain and bathtub design.", iconName: "Award" },
     ],
     benefits: [
       { title: "Roomy Full-Size Tub", description: "Up to 483 litres of capacity in a 170 × 80 cm footprint.", metric: "Up to 483 L" },
       { title: "Easy Filter Care", description: "Top-mounted filter housing speeds up routine maintenance.", metric: "Quick Swap" },
-      { title: "Built for Commercial Spaces", description: "Composite one-piece shell and certified drain suit gyms, spas and recovery centres.", metric: "Durable Shell" },
+      { title: "Built for Commercial Spaces", description: "Composite one-piece shell and safety drain suit gyms, spas and recovery centres.", metric: "Durable Shell" },
     ],
     specGroups: [
       {
@@ -1437,17 +1426,17 @@ export const productDetails: Record<ProductId, ProductDetail> = {
         items: [
           { label: "Filtration", value: "Two-stage filtration system" },
           { label: "Filter Housing", value: "Integrated top filter housing" },
-          { label: "Circulation", value: "Patented water nozzles and return water ports" },
-          { label: "Drain", value: "VGB safety-certified" },
+          { label: "Circulation", value: "Water nozzles and return water ports" },
+          { label: "Drain", value: "Safety drain" },
         ],
       },
     ],
     whatsIncluded: [
-      "FiberCore Flex Ultra one-piece composite tub",
+      "One-piece composite tub",
       "Chiller unit (the most powerful chiller in the range)",
       "Integrated top filter housing with two-stage filtration",
-      "Patented water nozzles and return water ports",
-      "VGB safety-certified drain",
+      "Water nozzles and return water ports",
+      "Safety drain",
     ],
     protocol: {
       recommendedDuration: "As advised by your wellness professional",
@@ -1480,12 +1469,12 @@ export const productDetails: Record<ProductId, ProductDetail> = {
 
   "cryo-mini-cryome": {
     id: "cryo-mini-cryome",
-    subtitle: "Compact Automated Cryosauna (Cryome Mini)",
+    subtitle: "Compact Automated Cryosauna",
     tagline: "A fully automated cryosauna that needs no assembly, with a 7\" touch screen, a 1 m² footprint and an operating range of −110 to −180 °C.",
     overview: [
-      "The Arctic Zero (Cryome Mini) is a compact cryosauna built for centres that want to offer cryotherapy in a small space. It has a footprint of about 1 square metre, with overall dimensions of roughly 176 cm high, 112 cm long and 95 cm wide, and it does not require assembly.",
+      "The Arctic Zero is a compact cryosauna built for centres that want to offer cryotherapy in a small space. It has a footprint of about 1 square metre, with overall dimensions of roughly 176 cm high, 112 cm long and 95 cm wide, and it does not require assembly.",
       "Operation is fully automated to help prevent human error, controlled from a 7\" touch screen with intuitive operation. An electric elevator adjusts the customer's position in the cabin, and the unit connects over Wi-Fi or LAN for remote maintenance and software updates.",
-      "The Mini runs at −110 to −180 °C with a pre-cooling time of up to 5 minutes, and is supplied with a 3-year warranty. Liquid nitrogen can be supplied from a pressurised tank or a non-pressurised Dewar.",
+      "The Mini runs at −110 to −180 °C with a pre-cooling time of up to 5 minutes, and is. Liquid nitrogen can be supplied from a pressurised tank or a non-pressurised Dewar.",
     ],
     mechanismOfAction: {
       heading: "Automated Liquid-Nitrogen Cold Exposure",
@@ -1508,7 +1497,7 @@ export const productDetails: Record<ProductId, ProductDetail> = {
     benefits: [
       { title: "Small Footprint", description: "Fits a treatment room with a footprint of about 1 m².", metric: "1 m²" },
       { title: "Quick to Start", description: "Pre-cooling takes 5 minutes at most.", metric: "≤ 5 min" },
-      { title: "Peace of Mind", description: "3-year warranty with operator training provided onsite and through a free online course.", metric: "3-Year Warranty" },
+      { title: "Operator Training", description: "Operator training is provided as part of your project.", metric: "Training Included" },
     ],
     specGroups: [
       {
@@ -1520,7 +1509,6 @@ export const productDetails: Record<ProductId, ProductDetail> = {
           { label: "Power Requirement", value: "1.5 kW" },
           { label: "Display", value: "7\" touch screen" },
           { label: "Connectivity", value: "Wi-Fi / LAN" },
-          { label: "Warranty", value: "3 years" },
         ],
       },
       {
@@ -1550,7 +1538,7 @@ export const productDetails: Record<ProductId, ProductDetail> = {
       },
     ],
     whatsIncluded: [
-      "Cryome Mini cryosauna (standard Medium cabin; Small and Large sizes available)",
+      "Arctic Zero cryosauna (standard Medium cabin; Small and Large sizes available)",
       "Protective cover and collar for shoulders and upper torso",
       "Gloves for arm protection",
       "Footwear",
@@ -1562,7 +1550,7 @@ export const productDetails: Record<ProductId, ProductDetail> = {
       recommendedDuration: "Sessions of around 3 minutes (as configured by the operator)",
       frequency: "Per your operator's programme",
       preparation: [
-        "Operate the unit only with a trained operator, and follow the manufacturer's training and safety procedures.",
+        "Operate the unit only with a trained operator, and follow the supplied training and safety procedures.",
         "Pre-cool the cabin (up to 5 minutes) before the first session.",
       ],
       protocolSteps: [
@@ -1580,10 +1568,9 @@ export const productDetails: Record<ProductId, ProductDetail> = {
       { type: "Spas & Clinics", description: "An automated unit that fits a single treatment room." },
     ],
     faqs: [
-      { question: "Does it need assembly?", answer: "No. The Cryome Mini does not require assembly." },
+      { question: "Does it need assembly?", answer: "No. The Arctic Zero does not require assembly." },
       { question: "What does it run on?", answer: "It needs a 1.5 kW power supply and liquid nitrogen, from a pressurised tank or a non-pressurised Dewar." },
       { question: "Is training provided?", answer: "Yes. Onsite operator training and a free online training course are available." },
-      { question: "What warranty does it carry?", answer: "A 3-year warranty." },
     ],
     relatedProductIds: ["cold-plunge-tub-new-ice-bath", "cold-plunge-single-round-yg", "cold-plunge-foldable-aircore"],
   },
@@ -1622,7 +1609,7 @@ export function synthesizeProductDetail(baseProduct: Product, all: Product[] = p
       points: [
         "Stimulates peripheral blood flow and lymphatic microcirculation.",
         "Relieves muscular tension, joint stiffness, and postural fatigue.",
-        "Built with medical-grade components tested for 24/7 continuous duty cycles.",
+        "Built with wipe-clean components tested for 24/7 continuous duty cycles.",
         "Supports autonomic nervous system balance and physical relaxation.",
       ],
     },
@@ -1644,7 +1631,7 @@ export function synthesizeProductDetail(baseProduct: Product, all: Product[] = p
       },
       {
         title: "Rapid Hygienic Sanitation",
-        description: `Non-porous, medical-grade surfaces enable fast, non-abrasive turnaround between consecutive guests.`,
+        description: `Non-porous, wipe-clean surfaces enable fast, non-abrasive turnaround between consecutive guests.`,
         iconName: "Sparkles",
       },
     ],
@@ -1683,18 +1670,15 @@ export function synthesizeProductDetail(baseProduct: Product, all: Product[] = p
       {
         category: "Build & Materials",
         items: [
-          { label: "Chassis / Enclosure", value: "Commercial-grade alloy / FSC-certified timber / medical polymer" },
+          { label: "Chassis / Enclosure", value: "Commercial-grade alloy / timber / durable polymer" },
           { label: "Surface Finish", value: "Antimicrobial, wipe-clean resilient formulation" },
           { label: "Operating Ambient Temp", value: "10°C to 40°C indoor climate-controlled room" },
-          { label: "Safety Rating", value: "CE Marked, RoHS compliant, Low EMF engineered" },
         ],
       },
       {
-        category: "Warranty & Support",
+        category: "Delivery & Setup",
         items: [
-          { label: "Standard Warranty", value: "2 Years Commercial Comprehensive Warranty" },
           { label: "Delivery & Setup", value: "Turnkey delivery, unpacking, and installation assistance" },
-          { label: "Spare Parts Availability", value: "Guaranteed 10-year component supply chain" },
         ],
       },
     ],
@@ -1703,7 +1687,7 @@ export function synthesizeProductDetail(baseProduct: Product, all: Product[] = p
       "Universal power supply cable and surge-protected electrical harness",
       "Digital operator console or wireless handheld controller",
       "Surface care microfiber kit and botanical sanitizing guidelines",
-      "Full manufacturer user dossier and warranty registration credentials",
+      "Full user guide and registration documents",
     ],
     protocol: {
       recommendedDuration: "15 to 45 minutes",
@@ -1730,15 +1714,11 @@ export function synthesizeProductDetail(baseProduct: Product, all: Product[] = p
     faqs: [
       {
         question: `How quickly can the ${baseProduct.name} be installed and commissioned?`,
-        answer: "GreenPulse Wellness provides turnkey white-glove delivery and assembly. Typical commissioning takes 1 to 3 hours depending on site logistics.",
+        answer: "GreenPulse Wellness provides delivery and assembly. Typical commissioning takes 1 to 3 hours depending on site logistics.",
       },
       {
         question: "What electrical requirements are needed?",
         answer: "The unit operates on standard 220–240V AC power. A dedicated 16A grounded circuit is recommended for continuous commercial usage.",
-      },
-      {
-        question: "What warranty coverage is included?",
-        answer: "Every unit includes a comprehensive commercial warranty covering all structural parts, electronics, and technical service support.",
       },
     ],
     relatedProductIds: all

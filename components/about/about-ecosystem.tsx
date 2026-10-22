@@ -34,10 +34,10 @@ export function AboutEcosystem() {
             Spaces We Transform
           </span>
           <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-            Engineered Across Six Distinct Industry Environments
+            Planned for Six Kinds of Space
           </h2>
           <p className="mt-4 text-base sm:text-lg text-neutral-300 font-light leading-relaxed">
-            From multi-floor clinical longevity destinations to private residential penthouses, our hardware bundles and spatial plans are tailored to your exact operational requirements.
+            From wellness centres and gyms to hotels, care settings and private homes, every layout and product mix is planned around your business.
           </p>
         </motion.div>
 
@@ -137,12 +137,12 @@ export function AboutEcosystem() {
               <div className="pt-2 flex items-center gap-4">
                 <Button asChild size="md" variant="outline">
                   <Link href="/#who-we-equip" className="inline-flex items-center gap-2">
-                    <span>View All Equip Profiles</span>
+                    <span>See Who We Equip</span>
                     <ArrowRight className="size-3.5" />
                   </Link>
                 </Button>
                 <Button asChild size="md" variant="ghost">
-                  <Link href="/products">Browse Compatible Hardware</Link>
+                  <Link href="/products">Browse the Catalogue</Link>
                 </Button>
               </div>
             </div>
@@ -159,7 +159,7 @@ export function AboutEcosystem() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70" />
                 <div className="absolute top-4 left-4 rounded-lg bg-black/60 backdrop-blur-md px-3 py-1.5 border border-white/10 text-xs font-mono text-white">
-                  <span>Commercial Installation Profile</span>
+                  <span>Space Profile</span>
                 </div>
               </div>
             </div>

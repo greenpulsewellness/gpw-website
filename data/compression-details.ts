@@ -1,14 +1,14 @@
 import type { ProductDetail, ProductFeature, ProductSpecItem } from "./products-data";
 
 /**
- * Detail pages for the PulseWave air-compression line (DJ catalog models S9082, S9082F, S9035, S9061B, M2001, S9081L).
- * Source: "Catalogue (Air compression massager, Shenzhen Dongjilian).pdf".
+ * Detail pages for the PulseWave air-compression line.
+ * Product detail data.
  * Wellness wording only: no treatment claims (edema, varicose veins, cramps, lymphatic claims removed), no pricing,
  * no carton / logistics data.
  */
 
 const SAFETY =
-  "Compression is not suitable for everyone. Consult a medical professional before use, especially if you have a circulation or vein condition, an injury, or reduced skin sensation, and follow the manufacturer's instructions. Use the emergency air-release if you feel discomfort.";
+  "Compression is not suitable for everyone. Consult a medical professional before use, especially if you have a circulation or vein condition, an injury, or reduced skin sensation, and follow the supplied instructions. Use the emergency air-release if you feel discomfort.";
 
 const SPACES = [
   { type: "Gyms & Sports Teams", description: "Post-training recovery stations for athletes, with individual sets per user." },
@@ -65,10 +65,10 @@ function compression(o: Input): ProductDetail {
 export const compressionDetails: Record<string, ProductDetail> = {
   "compression-boots-dj-sets": compression({
     id: "compression-boots-dj-sets",
-    subtitle: "Wireless Air Compression Boots (Catalog Model: S9082)",
+    subtitle: "Wireless Air Compression Boots",
     tagline: "Cordless, tubeless boots with an on-boot LED controller, Bluetooth sync and five overlapping chambers.",
     overview: [
-      "The PulseWave Go (Catalog Model S9082) is a wireless compression boot set with an all-in-one smart controller mounted directly on the boots, with an LED screen display. No tubes or cables get in the way.",
+      "The PulseWave Go is a wireless compression boot set with an all-in-one smart controller mounted directly on the boots, with an LED screen display. No tubes or cables get in the way.",
       "Bluetooth synchronises both boots so they start, run and change programmes together. Five overlapping air chambers provide continuous sequential pressure with no gaps, and 11 intensity levels cover 50–150 mmHg across three compression modes.",
       "A zipper makes the boots easy to put on and take off, and an emergency air-release button lets pressure be released quickly.",
     ],
@@ -104,10 +104,10 @@ export const compressionDetails: Record<string, ProductDetail> = {
 
   "pulsewave-glow-wireless-compression-boots-with-infrared-light": compression({
     id: "pulsewave-glow-wireless-compression-boots-with-infrared-light",
-    subtitle: "Wireless Compression Boots with Infrared LED Light (Catalog Model: S9082F)",
+    subtitle: "Wireless Compression Boots with Infrared LED Light",
     tagline: "Wireless compression with built-in infrared light emitters for gentle warmth during the session.",
     overview: [
-      "The PulseWave Glow (Catalog Model S9082F) adds infrared light emitters inside the boot sleeves to the wireless compression design of the Go, offering gentle warmth alongside dynamic compression.",
+      "The PulseWave Glow adds infrared light emitters inside the boot sleeves to the wireless compression design of the Go, offering gentle warmth alongside dynamic compression.",
       "It has a smart controller with a clear LED display, Bluetooth synchronisation across both legs, five overlapping air chambers, a rapid front zipper and an emergency air-release button. Pressure runs from 50 to 150 mmHg in 11 levels across three modes.",
     ],
     heading: "Compression with Infrared Warmth",
@@ -143,10 +143,10 @@ export const compressionDetails: Record<string, ProductDetail> = {
 
   "pulsewave-ease-air-compression-leg-massager": compression({
     id: "pulsewave-ease-air-compression-leg-massager",
-    subtitle: "Air Compression Leg Massager (Catalog Model: S9035)",
+    subtitle: "Air Compression Leg Massager",
     tagline: "A quiet, rechargeable four-chamber leg massager with a contoured calf fit and up to 4 hours of use.",
     overview: [
-      "The PulseWave Ease (Catalog Model S9035) is an air compression recovery system with built-in curved modules shaped to the calf for added comfort. The pump is super quiet, so sessions don't disturb the room.",
+      "The PulseWave Ease is an air compression recovery system with built-in curved modules shaped to the calf for added comfort. The pump is super quiet, so sessions don't disturb the room.",
       "Four air chambers, three massage modes and eight intensity levels run at 50–120 mmHg. A portable, rechargeable all-in-one controller means no wall outlet is needed during a session, and optional hip and arm sleeves are available.",
     ],
     heading: "Quiet Four-Chamber Compression",
@@ -181,10 +181,10 @@ export const compressionDetails: Record<string, ProductDetail> = {
 
   "pulsewave-charge-rechargeable-air-compression-boots": compression({
     id: "pulsewave-charge-rechargeable-air-compression-boots",
-    subtitle: "Rechargeable Air Compression Boots (Catalog Model: S9061B)",
+    subtitle: "Rechargeable Air Compression Boots",
     tagline: "Four chambers, 12 intensity levels from a gentle 40 mmHg up to 150 mmHg, and a built-in battery.",
     overview: [
-      "The PulseWave Charge (Catalog Model S9061B) offers an expanded pressure range, starting at a gentle 40 mmHg and reaching 150 mmHg across 12 adjustable levels and three compression modes.",
+      "The PulseWave Charge offers an expanded pressure range, starting at a gentle 40 mmHg and reaching 150 mmHg across 12 adjustable levels and three compression modes.",
       "Anatomical calf modules help keep pressure even, and a high-capacity built-in battery with an integrated smart controller handle keeps the set portable. Optional hip and arm attachments are compatible.",
     ],
     heading: "Wide-Range Four-Chamber Compression",
@@ -219,10 +219,10 @@ export const compressionDetails: Record<string, ProductDetail> = {
 
   "pulsewave-recover-air-compression-recovery-system": compression({
     id: "pulsewave-recover-air-compression-recovery-system",
-    subtitle: "Air Compression Recovery System (Catalog Model: M2001)",
+    subtitle: "Air Compression Recovery System",
     tagline: "Five superimposed chambers with no gaps between bags, a seamless wave of compression and an LED controller.",
     overview: [
-      "The PulseWave Recover (Catalog Model M2001) uses five superimposed air bags with zero space between them for a seamless gradient wave of compression.",
+      "The PulseWave Recover uses five superimposed air bags with zero space between them for a seamless gradient wave of compression.",
       "A dual-action sequential inflation and deflation cycle runs through three massage modes at 11 intensity levels (50–150 mmHg). An all-in-one controller with LED display, curved calf modules and a durable zipper complete the set, with optional arm and hip sleeves available.",
     ],
     heading: "Superimposed Gradient Compression",
@@ -257,10 +257,10 @@ export const compressionDetails: Record<string, ProductDetail> = {
 
   "pulsewave-max-8-chamber-air-compression-recovery-system": compression({
     id: "pulsewave-max-8-chamber-air-compression-recovery-system",
-    subtitle: "8-Chamber Rechargeable Air Compression Recovery Boots (Catalog Model: S9081L)",
+    subtitle: "8-Chamber Rechargeable Air Compression Recovery Boots",
     tagline: "Eight overlapping chambers, six programmes, individual chamber selection and a 15–60 minute timer.",
     overview: [
-      "The PulseWave Max (Catalog Model S9081L) is the elite eight-chamber set, with eight overlapping air chambers distributing pressure from the foot to the upper thigh. A single full-length front zipper removes the need for multiple connection pieces.",
+      "The PulseWave Max is the elite eight-chamber set, with eight overlapping air chambers distributing pressure from the foot to the upper thigh. A single full-length front zipper removes the need for multiple connection pieces.",
       "An all-in-one smart touch controller supports individual chamber selection, six massage programmes and 11 intensity levels (50–150 mmHg). A timer from 15 to 60 minutes can be set in 5-minute steps.",
       "A built-in 11.1 V / 4500 mAh lithium battery gives about 2.5 hours of use.",
     ],
@@ -297,10 +297,10 @@ export const compressionDetails: Record<string, ProductDetail> = {
 
   "compression-system-konbest-9690k": compression({
     id: "compression-system-konbest-9690k",
-    subtitle: "Professional 6-Chamber Compression System with App Control (Catalog Model: 9690K-B)",
+    subtitle: "Professional 6-Chamber Compression System with App Control",
     tagline: "Six chambers, 30–260 mmHg, an LED touch screen, app control and a quiet brushless pump under 45 dB.",
     overview: [
-      "The PulseWave Pro 6 (Catalog Model Konbest 9690K-B, Advanced Professional Series) is built for sports clubs, athletic trainers and physiotherapists. Six overlapping chamber cuffs cover the feet, calves, knees and thighs in a progressive sequential pattern.",
+      "The PulseWave Pro 6 is built for sports clubs, athletic trainers and physiotherapists. Six overlapping chamber cuffs cover the feet, calves, knees and thighs in a progressive sequential pattern.",
       "A high-power brushless DC pump inflates quickly and runs quietly, under 45 dB. Pressure is shown on an LED touch screen, with smart app control and a digital pressure sensor for precise regulation across 30 to 260 mmHg.",
       "Six pre-programmed modes (such as Warm Up, Deep Recovery, Rapid Recovery and All-Chamber Massage) are available. Skip Care lets selected chambers be turned off, while Intensive Care focuses on chosen areas. A 5200 mAh battery gives 2 to 5 hours of cordless use.",
     ],
@@ -340,10 +340,10 @@ export const compressionDetails: Record<string, ProductDetail> = {
 
   "pulsewave-pro-8-air-compression-recovery-system-8-chamber": compression({
     id: "pulsewave-pro-8-air-compression-recovery-system-8-chamber",
-    subtitle: "Professional 8-Chamber Compression System with App Control (Catalog Model: 9890K-B)",
+    subtitle: "Professional 8-Chamber Compression System with App Control",
     tagline: "Eight overlapping chambers, a high-flow brushless pump up to 260 mmHg, a touch screen and independent zone selection.",
     overview: [
-      "The PulseWave Pro 8 (Catalog Model Konbest 9890K-B, Advanced Professional Series) is the eight-chamber version for sports clubs and rehabilitation clinics. Eight overlapping chambers deliver granular, multi-zone sequential compression from the feet to the upper thigh.",
+      "The PulseWave Pro 8 is the eight-chamber version for sports clubs and rehabilitation clinics. Eight overlapping chambers deliver granular, multi-zone sequential compression from the feet to the upper thigh.",
       "A high-flow brushless pump supports pressures from 30 up to 260 mmHg, regulated by a built-in sensor. An LED touch screen shows chamber pressure readouts, with full app connectivity. Six modes and a 10 to 90 minute timer are available.",
       "Skip Care and Intensive Care let the operator bypass or focus on selected zones. A 5200 mAh lithium battery runs 2 to 5 hours at under 45 dB.",
     ],
@@ -381,10 +381,10 @@ export const compressionDetails: Record<string, ProductDetail> = {
 
   "pulsewave-4-air-compression-boots-wireless-app-control": compression({
     id: "pulsewave-4-air-compression-boots-wireless-app-control",
-    subtitle: "Wireless 4-Chamber Compression Boots with App Control (Catalog Model: 9490 Pro)",
+    subtitle: "Wireless 4-Chamber Compression Boots with App Control",
     tagline: "Cordless four-chamber boots with detachable pump modules, per-leg settings, colour LCD and app control.",
     overview: [
-      "The PulseWave 4 (Catalog Model Konbest 9490Pro, Sports Portable Series) is a cordless set with fully detachable pump modules mounted directly on the boot sleeves, so there are no trailing hoses.",
+      "The PulseWave 4 is a cordless set with fully detachable pump modules mounted directly on the boot sleeves, so there are no trailing hoses.",
       "A Motion Space pump system lets each leg run its own pressure and mode. A vibrant colour LCD and built-in app control (iOS and Android) set five modes at 30 to 240 mmHg, regulated by a digital pressure sensor. Four overlapping chambers cover the foot, calf, knee and thigh.",
       "Timers of 15, 30 and 45 minutes are available (total session up to 180 minutes), with a 3200 mAh battery giving 1 to 3 hours of cordless use at under 45 dB.",
     ],
@@ -421,10 +421,10 @@ export const compressionDetails: Record<string, ProductDetail> = {
 
   "pulsewave-4-plus-air-compression-boots": compression({
     id: "pulsewave-4-plus-air-compression-boots",
-    subtitle: "Wireless 4-Chamber Compression Boots, App Control (Catalog Model: 9490 Pro E)",
+    subtitle: "Wireless 4-Chamber Compression Boots, App Control",
     tagline: "A cordless four-chamber set with direct-docking pump modules, colour LCD, app sync and independent limb control.",
     overview: [
-      "The PulseWave 4 Plus (Catalog Model Konbest 9490ProE, Sports Portable Series) is a wireless set for athletes, runners and sports travellers. Pump modules dock directly on the boots, so there are no external air hoses.",
+      "The PulseWave 4 Plus is a wireless set for athletes, runners and sports travellers. Pump modules dock directly on the boots, so there are no external air hoses.",
       "A colour LCD and smartphone app synchronisation set customised cycling profiles, and pressure can be set independently for each leg. Four overlapping chambers run five massage modes at 30 to 240 mmHg with a digital pressure sensor.",
       "Timers of 15, 30 and 45 minutes are available, with a 3200 mAh battery giving 1 to 3 hours of use at under 45 dB.",
     ],
@@ -460,10 +460,10 @@ export const compressionDetails: Record<string, ProductDetail> = {
 
   "pulsewave-4-direct-air-compression-boots": compression({
     id: "pulsewave-4-direct-air-compression-boots",
-    subtitle: "Hand-Controlled 4-Chamber Compression Boots (Catalog Model: 9490 Max)",
+    subtitle: "Hand-Controlled 4-Chamber Compression Boots",
     tagline: "A four-chamber set with an ergonomic hand controller on quick-connect hoses, large colour LCD and physical buttons.",
     overview: [
-      "The PulseWave 4 Direct (Catalog Model Konbest 9490Max, Sports Portable Series, hand controlled) uses an external handheld controller connected by durable quick-connect hoses, keeping weight off the legs.",
+      "The PulseWave 4 Direct uses an external handheld controller connected by durable quick-connect hoses, keeping weight off the legs.",
       "A large colour LCD and tactile physical buttons make it simple to use without a smartphone. Four overlapping chambers run five massage modes at up to 240 mmHg (30–240 mmHg), with timers of 15, 30 and 45 minutes.",
       "A 3200 mAh rechargeable lithium battery gives 1 to 3 hours of use at under 45 dB. Optional arm, waist and hip cuffs are supported.",
     ],
@@ -501,10 +501,10 @@ export const compressionDetails: Record<string, ProductDetail> = {
 
   "pulsewave-5-portable-air-compression-boots": compression({
     id: "pulsewave-5-portable-air-compression-boots",
-    subtitle: "Portable 5-Chamber Compression Boots (Catalog Model: 9590)",
+    subtitle: "Portable 5-Chamber Compression Boots",
     tagline: "A cordless five-chamber set with a clear LCD, three preset modes and 50–200 mmHg, built for home and fitness use.",
     overview: [
-      "The PulseWave 5 (Catalog Model Konbest 9590, Economic / Home Care & Fitness Series) is a cordless, battery-powered five-chamber set for travel or living-room sessions.",
+      "The PulseWave 5 is a cordless, battery-powered five-chamber set for travel or living-room sessions.",
       "A fifth intermediate chamber gives smoother pressure transitions between the calf and upper thigh than four-chamber entry models. A clear digital LCD with essential buttons keeps operation simple across three preset modes and 50 to 200 mmHg.",
       "Timers of 10, 20 and 30 minutes are available, with a 3200 mAh battery giving 1 to 3 hours of use at under 45 dB.",
     ],

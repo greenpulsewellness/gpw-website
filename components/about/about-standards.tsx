@@ -17,13 +17,13 @@ export function AboutStandards() {
           className="max-w-3xl mb-14 sm:mb-16"
         >
           <span className="label-mono text-white font-semibold tracking-wider">
-            Material & Engineering Standards
+            How We Keep It Clear
           </span>
           <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-            Verified Biophysical Safety, Material Purity, and Engineering Compliance
+            Honest Claims, Clear Specs, Careful Safety
           </h2>
           <p className="mt-4 text-base sm:text-lg text-neutral-400 font-light leading-relaxed">
-            Every material that touches a human body or radiates thermal energy is tested against strict biocompatibility and electromagnetic benchmarks.
+            We describe products by what they are, document them the same way every time and put safety guidance in every project.
           </p>
         </motion.div>
 
@@ -70,7 +70,7 @@ export function AboutStandards() {
           ))}
         </div>
 
-        {/* Global Compliance Badges Banner */}
+        {/* Safety line */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -80,25 +80,25 @@ export function AboutStandards() {
         >
           <div className="space-y-1 text-center md:text-left">
             <h4 className="text-base font-bold text-white">
-              Full Spectrum Commercial Certification
+              Safety Information
             </h4>
             <p className="text-xs sm:text-sm text-neutral-400 font-light">
-              All electronic systems operate natively on Indian 220V–240V 50Hz single/three-phase standards with CE & RoHS conformity.
+              Not a substitute for medical advice. Please consult a doctor before use if you have a heart condition, are pregnant or have any health concern.
             </p>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-3 font-mono text-xs text-neutral-300">
             <span className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5">
-              CE Certified
+              Spec Sheet for Every Product
             </span>
             <span className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5">
-              RoHS Compliant
+              Operator Training
             </span>
             <span className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5">
-              ISO 9001 / 13485
+              User Screening Guidance
             </span>
             <span className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-white">
-              Low-EMF &lt; 0.2 mG
+              Honest Claims
             </span>
           </div>
         </motion.div>

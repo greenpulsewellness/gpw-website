@@ -73,7 +73,7 @@ export default function ComplaintsPage() {
               </div>
               <div className="rounded-xl border border-wood/25 bg-canvas p-4 space-y-1.5">
                 <span className="font-mono text-[11px] uppercase tracking-wider text-pine font-semibold">4. Warranty & Preventative Maintenance</span>
-                <p className="text-pine/80">Delayed scheduled quarterly maintenance checkups under active AMC/CMC contracts or disputed warranty replacement requests.</p>
+                <p className="text-pine/80">Delayed scheduled maintenance visits under an agreed service contract, or disputed warranty requests.</p>
               </div>
               <div className="rounded-xl border border-wood/25 bg-canvas p-4 space-y-1.5">
                 <span className="font-mono text-[11px] uppercase tracking-wider text-pine font-semibold">5. Billing, Deposits & Invoicing</span>

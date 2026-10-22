@@ -76,12 +76,12 @@ export function AboutStory() {
 
                 <div className="absolute bottom-6 left-6 right-6 space-y-3">
                   <div className="flex items-center justify-between text-xs font-mono border-t border-white/15 pt-3">
-                    <span className="text-neutral-400">Headquarters</span>
-                    <span className="text-white font-medium">Bengaluru, Karnataka</span>
+                    <span className="text-neutral-400">Founded by</span>
+                    <span className="text-white font-medium">Architect-led team</span>
                   </div>
                   <div className="flex items-center justify-between text-xs font-mono">
-                    <span className="text-neutral-400">Coverage</span>
-                    <span className="text-white font-medium">Pan-India Deployment</span>
+                    <span className="text-neutral-400">Built for</span>
+                    <span className="text-white font-medium">Gyms, clinics, hotels & homes</span>
                   </div>
                 </div>
               </div>
@@ -99,7 +99,7 @@ export function AboutStory() {
             transition={{ duration: 0.5 }}
             className="text-sm font-mono uppercase tracking-wider text-neutral-400 font-semibold"
           >
-            Three Principles That Shape Our Work
+            Three Values That Shape Our Work
           </motion.h3>
 
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">

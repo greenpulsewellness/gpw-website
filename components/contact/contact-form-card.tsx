@@ -98,9 +98,8 @@ export function ContactFormCard() {
               Let&apos;s build your sanctuary.
             </h1>
             <p className="text-sm sm:text-base text-neutral-400 font-normal leading-relaxed">
-              India&apos;s turnkey commercial wellness provider. We partner with resort spas, longevity
-              centres, athletic facilities, and private residences from spatial layout to white-glove
-              commissioning.
+              We design, equip and launch recovery and wellness spaces for centres, gyms, clinics,
+              hotels and homes, from the first layout to opening day.
             </p>
           </div>
 
@@ -313,7 +312,7 @@ export function ContactFormCard() {
                       type="text"
                       value={interestedItem}
                       onChange={(e) => setInterestedItem(e.target.value)}
-                      placeholder="e.g. Infrared Sauna, Cold Plunge, HBOT Chamber, Contrast Suite"
+                      placeholder="e.g. Infrared Sauna, Cold Plunge, Light Device, Contrast Suite"
                       className="w-full rounded-2xl bg-[#121418] border border-white/10 hover:border-white/20 focus:border-white/40 focus:ring-1 focus:ring-white/20 px-4 py-3.5 text-sm text-white placeholder:text-neutral-600 outline-none transition-all"
                     />
                   </div>

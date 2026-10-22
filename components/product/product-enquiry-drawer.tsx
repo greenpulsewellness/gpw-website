@@ -143,7 +143,7 @@ export function ProductEnquiryDrawer({
                 {productName}
               </h3>
               <p className="text-xs text-neutral-400 mt-1">
-                Request manufacturer wholesale pricing, site engineering dossiers, and turnkey delivery timelines.
+                Request a quote, the spec sheet and a delivery timeline for your space.
               </p>
             </div>
 

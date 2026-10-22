@@ -224,7 +224,7 @@ export const BUSINESS_EXTRAS: BlogExtras = {
     ],
   },
 
-  [SLUG.importing]: {
+  [SLUG.buying]: {
     sections: [
       {
         id: "red-flags",
@@ -266,12 +266,8 @@ export const BUSINESS_EXTRAS: BlogExtras = {
     ],
     faqs: [
       {
-        question: "Who handles customs and import duties?",
-        answer: `This depends on the terms of sale. Always ask who is responsible for freight, customs clearance, duties and taxes, and have your accountant or customs broker confirm the amounts.`,
-      },
-      {
         question: "What warranty should I expect on wellness equipment?",
-        answer: `Warranties vary by product and by whether use is personal or commercial. Get the terms in writing and ask who services the equipment locally. For example, the Arctic Zero cryosauna is supplied with a 3-year warranty.`,
+        answer: `Warranties vary by product and by whether use is personal or commercial. Get the terms in writing and ask who services the equipment locally.`,
       },
       {
         question: "Is installation included?",

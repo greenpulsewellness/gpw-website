@@ -8,19 +8,20 @@ import { AboutMethodology } from "@/components/about/about-methodology";
 import { AboutStandards } from "@/components/about/about-standards";
 import { AboutFaq } from "@/components/about/about-faq";
 import { AboutCta } from "@/components/about/about-cta";
+import { AboutComparison } from "@/components/about/about-comparison";
 import { AmbientBackground } from "@/components/ui/ambient-background";
 import { JsonLd } from "@/components/seo/json-ld";
 import { aboutData } from "@/data/about";
 import { faqSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: `About Us — Architectural Longevity & Recovery Infrastructure`,
+  title: `About Us — Designed. Equipped. Launched.`,
   description:
-    "Learn about GreenPulse Wellness: our founding thesis, biophysical engineering standards, and turnkey commercial deployment of hyperbarics, infrared thermal cabins, cryo, and rehabilitation hardware across India.",
+    "Learn about GreenPulse Wellness: we design, equip and launch recovery and wellness spaces for centres, gyms, clinics, hotels, senior living and homes across India.",
   openGraph: {
-    title: `About GreenPulse Wellness — Longevity Infrastructure`,
+    title: `About GreenPulse Wellness`,
     description:
-      "Curated, certified recovery and rehabilitation hardware for luxury destinations, longevity clinics, athletic clubs, and private residences.",
+      "We design, equip and launch recovery and wellness spaces, with the layout planned before you build.",
     type: "website",
     url: "https://greenpulsewellness.com/about",
   },
@@ -37,13 +38,20 @@ const aboutJsonLd = {
       name: `About ${brand.name}`,
       url: "https://greenpulsewellness.com/about",
       description:
-        "Learn about GreenPulse Wellness: our founding thesis, biophysical engineering standards, and turnkey commercial deployment of hyperbarics, infrared thermal cabins, cryo, and rehabilitation hardware across India.",
+        "Learn about GreenPulse Wellness: we design, equip and launch recovery and wellness spaces for centres, gyms, clinics, hotels, senior living and homes across India.",
       mainEntity: {
         "@type": "Organization",
         name: brand.name,
         url: "https://greenpulsewellness.com",
         logo: "https://greenpulsewellness.com/logo-horizontal.png",
       },
+    },
+    {
+      "@type": "Table",
+      about: "GreenPulse Wellness compared with a typical equipment-only supplier",
+      name: aboutData.comparison.headline,
+      description: aboutData.comparison.caption,
+      url: "https://greenpulsewellness.com/about#about-comparison-heading",
     },
     faqSchema(aboutData.faqs),
   ],
@@ -60,6 +68,7 @@ export default function AboutPage() {
         <AboutPillars />
         <AboutEcosystem />
         <AboutMethodology />
+        <AboutComparison />
         <AboutStandards />
         <AboutFaq />
         <AboutCta />

@@ -2,7 +2,7 @@ import type { ProductDetail, ProductProtocol } from "./products-data";
 
 /**
  * Detail pages for the Mobility line: Glide (folding electric wheelchairs) and Rise (standing wheelchairs).
- * Source: "2026 Mobility&homecare Sep Rev.20(2).pdf" (Glide) and "Standying wheelchair series.pdf" (Rise).
+ * Product detail data.
  * Wellness / product wording only: no medical or therapeutic claims, no pricing.
  */
 
@@ -104,10 +104,10 @@ export const mobilityDetails: Record<string, ProductDetail> = {
 
   "glide-trek-1-electric-wheelchair": {
     id: "glide-trek-1-electric-wheelchair",
-    subtitle: "Compact Folding Electric Wheelchair (Catalog Model: DW-EW2601A)",
+    subtitle: "Compact Folding Electric Wheelchair",
     tagline: "A light 22 kg folding power chair with 250 W × 2 motors and a choice of 6 Ah or 10 Ah lithium battery.",
     overview: [
-      "The Glide Trek 1 (Catalog Model DW-EW2601A) is a compact, lightweight folding power chair with a steel frame and a net weight of 22 kg. It folds to 56 × 29 × 78 cm for storage and travel.",
+      "The Glide Trek 1 is a compact, lightweight folding power chair with a steel frame and a net weight of 22 kg. It folds to 56 × 29 × 78 cm for storage and travel.",
       "Two 250 W brushed motors, a 6 Ah or 10 Ah lithium battery option and an electronic brake give a driving range of 9 km. Weight capacity is 100 kg.",
       "It rolls on 7-inch front and 9-inch rear PU solid wheels.",
     ],
@@ -166,10 +166,10 @@ export const mobilityDetails: Record<string, ProductDetail> = {
 
   "glide-trek-2-electric-wheelchair": {
     id: "glide-trek-2-electric-wheelchair",
-    subtitle: "Folding Electric Wheelchair with Large Rear Wheels (Catalog Model: DW-EW2603A)",
+    subtitle: "Folding Electric Wheelchair with Large Rear Wheels",
     tagline: "An aluminium-alloy folding power chair with carbon-transfer finish, 12-inch rear wheels and up to 15 km of range.",
     overview: [
-      "The Glide Trek 2 (Catalog Model DW-EW2603A) is an enhanced folding electric wheelchair with an aluminium-alloy frame finished with surface carbon-transfer printing. Net weight is 22.4 kg, and it folds to 58 × 38 × 83 cm.",
+      "The Glide Trek 2 is an enhanced folding electric wheelchair with an aluminium-alloy frame finished with surface carbon-transfer printing. Net weight is 22.4 kg, and it folds to 58 × 38 × 83 cm.",
       "Two 250 W brushed motors and a 6 Ah or 10 Ah lithium battery give a range of 9 km or 15 km depending on the battery configuration. Weight capacity is 100 kg.",
       "Large 12-inch PU solid rear wheels pair with 7-inch PU solid front wheels and an electronic brake.",
     ],
@@ -228,10 +228,10 @@ export const mobilityDetails: Record<string, ProductDetail> = {
 
   "glide-core-wheelchair": {
     id: "glide-core-wheelchair",
-    subtitle: "Folding Electric Wheelchair (Catalog Model: DW-605J)",
+    subtitle: "Folding Electric Wheelchair",
     tagline: "An ergonomic aluminium folding chair with 250 W × 2 motors, 45 cm seat (51 cm optional) and a 20 km range.",
     overview: [
-      "The Glide Core (Catalog Model DW-605J) is an ergonomic, heavy-duty folding electric wheelchair with an aluminium-alloy frame. It weighs 23.3 kg without the battery and folds to 68 × 42 × 73 cm.",
+      "The Glide Core is an ergonomic, heavy-duty folding electric wheelchair with an aluminium-alloy frame. It weighs 23.3 kg without the battery and folds to 68 × 42 × 73 cm.",
       "Two 250 W DC motors run from a 24 V 12 Ah or 20 Ah lithium-ion battery to a top speed of 6 km/h and a driving range of 20 km. Weight capacity is 100 kg, and an electromagnetic brake holds the chair.",
       "Standard seat width is 45 cm with a 51 cm option. An adjustable headrest and a manual rear recline mechanism are available as options.",
     ],
@@ -292,10 +292,10 @@ export const mobilityDetails: Record<string, ProductDetail> = {
 
   "glide-junior-pediatric-electric-wheelchair": {
     id: "glide-junior-pediatric-electric-wheelchair",
-    subtitle: "Compact Electric Wheelchair for Junior Users (Catalog Model: DW-703LJ)",
+    subtitle: "Compact Electric Wheelchair for Junior Users",
     tagline: "A compact aluminium frame with 24 V 250 W × 2 brushless motors, folding to 69 × 45 × 77 cm.",
     overview: [
-      "The Glide Junior (Catalog Model DW-703LJ) is a compact, lightweight electric wheelchair frame engineered for junior and pediatric users. The aluminium-alloy frame weighs 22.6 kg without the battery and folds to 69 × 45 × 77 cm.",
+      "The Glide Junior is a compact, lightweight electric wheelchair frame engineered for junior and pediatric users. The aluminium-alloy frame weighs 22.6 kg without the battery and folds to 69 × 45 × 77 cm.",
       "Two 24 V 250 W brushless motors run from a 24 V 12 Ah lead-acid battery to a top speed of 6 km/h and a driving range of 20 km or more. Weight capacity is 100 kg.",
       "It uses 8-inch front wheels, 12-inch rear drive wheels and an electromagnetic brake.",
     ],
@@ -355,10 +355,10 @@ export const mobilityDetails: Record<string, ProductDetail> = {
 
   "rise-1-standing-wheelchair": {
     id: "rise-1-standing-wheelchair",
-    subtitle: "Electric Standing Wheelchair with Mid-Mounted Motor (Catalog Model: DW-EW103)",
+    subtitle: "Electric Standing Wheelchair with Mid-Mounted Motor",
     tagline: "A heavy-duty chair with an electric standing function, a 48 V 600 W mid-mounted motor and dual-handle control.",
     overview: [
-      "The Rise 1 (Catalog Model DW-EW103, electric standing function as detailed under DW-T103-1) is a heavy-duty electric wheelchair with an integrated standing function that assists the user to stand up, easing the long hours of prolonged sitting.",
+      "The Rise 1 is a heavy-duty electric wheelchair with an integrated standing function that assists the user to stand up, easing the long hours of prolonged sitting.",
       "A high-power 48 V 600 W mid-mounted differential motor (upgradeable to 60 V 1000 W) and a standard 48 V 20 Ah lead-acid battery deliver a speed of 0–20 km/h and a range of 25–100 km depending on the battery configuration.",
       "The chair has a thick integrated front and rear steel frame, foldable armrests, foot pedals, leg rests, double handles and a recline-capable backrest. Double springs and four front fork springs give multi-point shock absorption, and full customisation is supported.",
     ],
@@ -430,10 +430,10 @@ export const mobilityDetails: Record<string, ProductDetail> = {
 
   "rise-2-standing-wheelchair": {
     id: "rise-2-standing-wheelchair",
-    subtitle: "Sit-and-Stand Electric Wheelchair (Catalog Model: DW-EW201 / DW-EW201C)",
+    subtitle: "Sit-and-Stand Electric Wheelchair",
     tagline: "A dual-function electric chair for sitting and standing with a widened anti-rollover chassis.",
     overview: [
-      "The Rise 2 (Catalog Model DW-EW201, standing variant DW-EW201C / Little Bee) offers electrically controlled sitting and standing for home and outdoor travel.",
+      "The Rise 2 offers electrically controlled sitting and standing for home and outdoor travel.",
       "Integrated protective gear and a widened anti-rollover chassis are designed to keep the user secure while standing. Armrests and leg protectors fold over, and the waist guard and knee pads adjust in height. The front handle adjusts up or down by 30 cm (ground height 83 to 115 cm).",
       "Two 24 V 250 W motors run from a 24 V 12 Ah or 20 Ah lead-acid battery for a range of 10 to 20 km.",
     ],
@@ -501,10 +501,10 @@ export const mobilityDetails: Record<string, ProductDetail> = {
 
   "rise-3-standing-wheelchair": {
     id: "rise-3-standing-wheelchair",
-    subtitle: "5-in-1 Electric Standing Wheelchair (Catalog Model: DW-EW307-5)",
+    subtitle: "5-in-1 Electric Standing Wheelchair",
     tagline: "A five-function electric chair with vertical lift, standing, lie-flat recline and seat tilt, lifting to a 1 m hover height.",
     overview: [
-      "The Rise 3 (Catalog Model DW-EW307-5) is a 5-in-1 multi-functional electric chair: fully powered vertical lift, standing, lying flat (recline) and buttock lift / tilt. The seat lifts to a hovering height of 95 to 100 cm from the ground.",
+      "The Rise 3 is a 5-in-1 multi-functional electric chair: fully powered vertical lift, standing, lying flat (recline) and buttock lift / tilt. The seat lifts to a hovering height of 95 to 100 cm from the ground.",
       "A self-locking motor push-rod system helps prevent unintended drops or shifts, and rear anti-roll wheels add stability. Quick-release armrests and foot pedals, an adjustable backrest angle and an optional electric leg-lift package make it modular.",
       "Two 24 V 350 W motors run from a 24 V 40 Ah lead-acid battery to a speed of 0–8 km/h and a range of 25 km, controlled by a single-handed 360° joystick.",
     ],

@@ -21,7 +21,7 @@ export function WorkflowProtocol({ solution }: WorkflowProtocolProps) {
               Session Flow & Protocol Guidance
             </h2>
             <p className="text-neutral-300 text-sm sm:text-base leading-relaxed mb-8">
-              We provide comprehensive standard operating procedures (SOPs) and client progression protocols tested across global longevity and rehabilitation centers.
+              We provide comprehensive standard operating procedures (SOPs) and client progression protocols written for recovery and rehabilitation spaces.
             </p>
 
             <div className="space-y-4">

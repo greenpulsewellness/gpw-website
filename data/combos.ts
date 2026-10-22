@@ -1,7 +1,7 @@
 /**
  * GreenPulse Wellness — equipment combos.
  *
- * Source: combo master sheet (C01–C30). Pricing, cost and margin columns are
+ * Product detail data.
  * deliberately NOT stored here — combos are quoted on enquiry.
  *
  * Copy rule: wellness language only — never medical or treatment claims.
@@ -24,8 +24,10 @@ const P = {
   "Arctic Fold": "cold-plunge-foldable-aircore",
   "Arctic Zero": "cryo-mini-cryome",
   "Luma Stand": "led-therapy-full-stand",
-  "Luma Cocoon 1": "led-therapy-full-body-clam-1-m6",
-  "Luma Cocoon 2": "led-therapy-full-body-clam-2-m6l",
+  "Luma Stand Pro": "led-therapy-full-stand-2",
+  "Luma Dome": "led-therapy-full-body-stand-chamber",
+  "Luma Cocoon": "led-therapy-full-body-clam-1-m6",
+  "Luma Cocoon Pro": "led-therapy-full-body-clam-2-m6l",
   "Luma Tower": "led-stand-gy-t320",
   "Luma Panel": "led-bracket-panel-mid",
   "Luma Spot": "led-lamp-focus",
@@ -223,7 +225,7 @@ export const combos: Combo[] = [
     items: [
       ["Halo 3", 1],
       ["Arctic Tub", 1],
-      ["Luma Cocoon 1", 1],
+      ["Luma Cocoon", 1],
       ["Serene Elite", 1],
       ["Serene 360", 1],
       ["PulseWave Pro 6", 2],
@@ -258,7 +260,7 @@ export const combos: Combo[] = [
     segment: "longevity",
     audience: "Longevity & wellness centres",
     tier: "Signature",
-    items: [["Halo 3", 1], ["Arctic Tub", 1], ["Luma Cocoon 1", 1], ["Oxa Cube Solo", 1], ["Aurora Wrap", 1]],
+    items: [["Halo 3", 1], ["Arctic Tub", 1], ["Luma Cocoon", 1], ["Oxa Cube Solo", 1], ["Aurora Wrap", 1]],
     pitch: "Heat, cold, full-body light and hyperbaric oxygen, plus a red-light wrap: the core of a premium longevity centre.",
     usage: "A four-pillar routine of heat, cold, light and oxygen, with the red-light wrap for rest sessions.",
     needs: ["sauna", "plunge", "hbot", "ledBed"],
@@ -277,7 +279,7 @@ export const combos: Combo[] = [
       ["Halo 3", 1],
       ["Arctic Tub", 1],
       ["Arctic Zero", 1],
-      ["Luma Cocoon 2", 1],
+      ["Luma Cocoon Pro", 1],
       ["Oxa Cube Duo", 1],
       ["Serene Elite", 1],
       ["PulseWave Pro 6", 4],
@@ -413,7 +415,7 @@ export const combos: Combo[] = [
   {
     id: "rebound-sports-rapid-care",
     code: "C17",
-    name: "Rebound Sports Rapid Care",
+    name: "Rebound Sports Injury Rapid Care",
     family: "Rebound",
     solution: "rehabilitate",
     segment: "rehab",
@@ -633,7 +635,7 @@ export const combos: Combo[] = [
   {
     id: "vital-recovery-home",
     code: "C30",
-    name: "Vital Recovery Home",
+    name: "Vital Post-Op Home",
     family: "Vital",
     solution: "livewell",
     segment: "care",

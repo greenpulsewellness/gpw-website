@@ -39,7 +39,7 @@ const MODALITIES: ModalityMeta[] = [
     id: "all",
     label: "All Equipment",
     icon: Sparkles,
-    subtitle: "Complete Commercial Longevity & Wellness Fleet",
+    subtitle: "The Full GreenPulse Catalogue",
     accent: "text-white",
   },
   {
@@ -60,14 +60,14 @@ const MODALITIES: ModalityMeta[] = [
     id: "light",
     label: "Light",
     icon: SunMedium,
-    subtitle: "Medical Photobiomodulation (PBM) & Red Light Panels",
+    subtitle: "LED Red Light Panels & Light Devices",
     accent: "text-rose-400",
   },
   {
     id: "air",
     label: "Air",
     icon: Wind,
-    subtitle: "Hard-Shell Hyperbaric Oxygen Chambers (HBOT)",
+    subtitle: "Oxa Chambers: Specs & Enquiry",
     accent: "text-teal-400",
   },
   {

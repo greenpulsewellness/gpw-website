@@ -69,11 +69,11 @@ export function AboutCta() {
         </div>
 
         <div className="mt-12 text-xs font-mono text-neutral-400 flex flex-wrap items-center justify-center gap-6">
-          <span>Pan-India On-Site Deployment</span>
+          <span>Layout, Install & Launch</span>
           <span className="size-1 rounded-full bg-neutral-600" />
-          <span>GST & Commercial Invoice Compliant</span>
+          <span>Clear Quote Pack</span>
           <span className="size-1 rounded-full bg-neutral-600" />
-          <span>Direct Engineer Support</span>
+          <span>One Point of Contact</span>
         </div>
       </motion.div>
     </section>

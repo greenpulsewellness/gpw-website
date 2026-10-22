@@ -53,7 +53,7 @@ export const AIR_POSTS: BlogInput[] = [
         id: "regulation-and-people",
         heading: "Regulation, training and suitability",
         content: [
-          `This is the section to read twice. Hyperbaric equipment must only be installed and operated in line with the regulations where you are, by a trained operator following the manufacturer's safety procedures. Requirements vary by country and sometimes by state, so we ask every buyer to confirm them before an order is placed.`,
+          `This is the section to read twice. Hyperbaric equipment must only be installed and operated in line with the regulations where you are, by a trained operator following the supplied safety procedures. Requirements vary by country and sometimes by state, so we ask every buyer to confirm them before an order is placed.`,
           `A chamber is not suitable for everyone, and a medical professional should confirm a person is suitable before any session. Reputable centres screen clients and keep records.`,
           `We do not claim that hyperbaric sessions treat or cure any condition. We supply equipment for use in appropriately regulated wellness settings.`,
         ],
@@ -161,7 +161,7 @@ export const AIR_POSTS: BlogInput[] = [
     author: AUTHORS["marcus-vance"],
     tags: ["HBOT Safety", "Facility Planning", "Oxygen Handling", "Operator Training"],
     keywords: ["hyperbaric chamber installation", "HBOT room requirements", "hyperbaric oxygen safety", "hyperbaric chamber operator training"],
-    relatedSlugs: ["hyperbaric-oxygen-chamber-guide", "hyperbaric-chamber-single-vs-double-vs-portable", "importing-wellness-equipment-installation-and-warranty"],
+    relatedSlugs: ["hyperbaric-oxygen-chamber-guide", "hyperbaric-chamber-single-vs-double-vs-portable", "buying-wellness-equipment-installation-and-support"],
     keyTakeaways: [
       "Plan the room around the chamber, the oxygen generator, the compressor and a clear access path.",
       "Keep ignition sources and flammable materials out of the room. Oxygen-enriched air changes how things burn.",
@@ -193,7 +193,7 @@ export const AIR_POSTS: BlogInput[] = [
         id: "oxygen-fire-safety",
         heading: "Oxygen and fire safety",
         content: [
-          `Oxygen-enriched air makes materials burn faster and hotter. The golden rules are simple: keep ignition sources away, no open flames, no unsuitable electronics, and follow the manufacturer's guidance on what can enter the cabin. Display clear signage, and train staff to brief every client.`,
+          `Oxygen-enriched air makes materials burn faster and hotter. The golden rules are simple: keep ignition sources away, no open flames, no unsuitable electronics, and follow the supplied guidance on what can enter the cabin. Display clear signage, and train staff to brief every client.`,
           `Install appropriate fire detection and extinguishers as your regulations require, and keep service access to the generator clear.`,
         ],
       },
@@ -202,7 +202,7 @@ export const AIR_POSTS: BlogInput[] = [
         heading: "People and procedures",
         content: [
           `Every session needs a trained operator following a written protocol: pre-session checks, a suitability screen for each client, a controlled pressurisation and a controlled release. Test the manual relief valve, emergency switch, automatic safety valve and intercom before every session.`,
-          `Write an emergency plan, rehearse it with your team and keep records of maintenance and sessions. Our ${L("importing", "guide to installation, warranty and after-sales support")} describes how to get these set up with your supplier.`,
+          `Write an emergency plan, rehearse it with your team and keep records of maintenance and sessions. Our ${L("buying", "guide to installation, warranty and after-sales support")} describes how to get these set up with your supplier.`,
         ],
       },
       {

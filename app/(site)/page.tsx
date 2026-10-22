@@ -25,7 +25,7 @@ const homeJsonLd = {
         addressCountry: "IN",
       },
       description:
-        "Turnkey commercial wellness, recovery, and rehabilitation equipment provider in India. Turnkey space design, white-glove equipment commissioning, and preventive biomedical maintenance.",
+        "GreenPulse designs, equips and launches recovery and wellness spaces in India: layout planning, a single product catalogue, installation, training and launch support.",
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Commercial Wellness Spatial Solutions",
@@ -36,7 +36,7 @@ const homeJsonLd = {
               "@type": "Service",
               name: "Recover & Restore Contrast Suites",
               url: "https://greenpulsewellness.com/solutions/recover",
-              description: "High-throughput contrast therapy, full-spectrum infrared saunas, and ice baths for commercial wellness operators.",
+              description: "Infrared saunas, cold plunges and compression for recovery floors.",
             },
           },
           {
@@ -45,7 +45,7 @@ const homeJsonLd = {
               "@type": "Service",
               name: "AgeWell Longevity & Cellular Suites",
               url: "https://greenpulsewellness.com/solutions/agewell",
-              description: "Mild hyperbaric oxygen chambers (mHBOT) and 360-degree photobiomodulation (PBM) red light canopies.",
+              description: "Comfort, mobility and light products for senior living and longevity centres.",
             },
           },
           {
@@ -54,7 +54,7 @@ const homeJsonLd = {
               "@type": "Service",
               name: "Rehabilitate Physical Medicine Suites",
               url: "https://greenpulsewellness.com/solutions/rehabilitate",
-              description: "Electric drop chiropractic tables, 4D robotic spinal decompression loungers, and clinical recovery systems.",
+              description: "Practice tables, loungers and recovery tools for physio and chiropractic practices.",
             },
           },
           {
@@ -63,7 +63,7 @@ const homeJsonLd = {
               "@type": "Service",
               name: "Live Well Clinical & Homecare Convalescence",
               url: "https://greenpulsewellness.com/solutions/live-well",
-              description: "Zero-gravity patient recovery chairs, localized cold therapy, and month-to-month post-op equipment rentals.",
+              description: "Recovery chairs and cold products for clinics, care settings and homes.",
             },
           },
         ],
@@ -74,26 +74,26 @@ const homeJsonLd = {
       mainEntity: [
         {
           "@type": "Question",
-          name: "Does GreenPulse Wellness handle import customs and on-site installation in India?",
+          name: "Does GreenPulse Wellness install the products and train our team?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes. GreenPulse Wellness manages complete end-to-end logistics including international freight, customs clearance, transit insurance, on-site mechanical assembly, electrical safety verification, and operational commissioning across India.",
+            text: "Yes. We plan the layout, install and test each product on site, run a safety check with you and train your team before you open.",
           },
         },
         {
           "@type": "Question",
-          name: "What equipment warranties and maintenance services are provided?",
+          name: "What does a GreenPulse project include?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "All commercial equipment is covered by comprehensive manufacturer warranties paired with our dedicated Pan-India Annual Maintenance Contracts (AMC), including scheduled quarterly preventive servicing, consumable replacements, and rapid technician dispatch.",
+            text: "A project covers the space layout, the product mix from one catalogue, installation, team training and help planning your opening. Service and warranty terms are shared in your quote pack.",
           },
         },
         {
           "@type": "Question",
-          name: "Can facilities rent recovery equipment instead of buying outright?",
+          name: "How do I get started?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes. We offer structured commercial leasing for gyms and spas as well as month-to-month clinical rentals for hospitals, post-operative patients, and home convalescence suites.",
+            text: "Tell us about your space through the contact form or WhatsApp. We will ask about your space, budget band and timeline, then send a plan.",
           },
         },
       ],

@@ -25,13 +25,13 @@ export function AboutMethodology() {
           className="max-w-3xl mb-14 sm:mb-16"
         >
           <span className="label-mono text-white font-semibold tracking-wider">
-            Our Turnkey Methodology
+            Our Process
           </span>
           <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-            How We Partner With You: From Concept Blueprint to Daily Sessions
+            From First Conversation to First Session
           </h2>
           <p className="mt-4 text-base sm:text-lg text-neutral-400 font-light leading-relaxed">
-            We operate as an integrated equipment partner rather than a transactional vendor. Here is our six-phase turnkey execution methodology.
+            One team from first conversation to opening day. Here are our six steps.
           </p>
         </motion.div>
 

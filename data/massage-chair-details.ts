@@ -2,12 +2,12 @@ import type { ProductDetail, ProductFeature, ProductSpecItem } from "./products-
 
 /**
  * Detail pages for the Serene massage chairs.
- * Source: "Massage chair catalogue -2026.pdf" (RX-01 MS-607, RX-02 MS-131 PLUS) and the Lounge / Comfort product sheets (RX-03 to RX-05).
+ * Product detail data.
  * Wellness wording only: no treatment claims, no pricing, no carton / shipping data.
  */
 
 const SAFETY =
-  "Massage chairs are not suitable for everyone. Consult a medical professional before use, especially if you are pregnant, have a pacemaker or medical implant, an injury, or a spinal condition, and follow the manufacturer's instructions.";
+  "Massage chairs are not suitable for everyone. Consult a medical professional before use, especially if you are pregnant, have a pacemaker or medical implant, an injury, or a spinal condition, and follow the supplied instructions.";
 
 type Input = {
   id: string;
@@ -40,7 +40,7 @@ function chair(o: Input): ProductDetail {
     whatsIncluded: o.included,
     protocol: {
       recommendedDuration: o.duration ?? "As advised in the user manual",
-      frequency: "As desired, within the manufacturer's guidance",
+      frequency: "As desired, within the supplied guidance",
       preparation: ["Place the chair on a level floor with the clearance noted in the specifications.", "Sit back fully and adjust the recline before starting."],
       protocolSteps: [
         { step: "Settle in", instruction: "Sit back against the chair and choose an automatic programme." },
@@ -58,10 +58,10 @@ function chair(o: Input): ProductDetail {
 export const massageChairDetails: Record<string, ProductDetail> = {
   "massage-chair-mid-range-lion": chair({
     id: "massage-chair-mid-range-lion",
-    subtitle: "Mid-Range 3D Full-Body Massage Chair with SL Track (Catalog Model: MS-607)",
+    subtitle: "Mid-Range 3D Full-Body Massage Chair with SL Track",
     tagline: "A 3D mechanism on a super-long SL track, with full-body airbags, body scan, three zero-gravity positions and 12 automatic programmes.",
     overview: [
-      "The Serene Mid (Catalog Model MS-607, Mid Range) is a full-body massage chair built around a 3D mechanism with smooth, contoured rollers that follow the body's curves. A super-long SL track runs from the neck and shoulders down the spine to the glutes and upper thighs.",
+      "The Serene Mid is a full-body massage chair built around a 3D mechanism with smooth, contoured rollers that follow the body's curves. A super-long SL track runs from the neck and shoulders down the spine to the glutes and upper thighs.",
       "Full-body airbags wrap the shoulders, arms, calves and feet, and a smart body scan maps shoulder position and spine contour before each session. Heating pads in the backrest and armrests, three zero-gravity positions and an automatic leg extension complete the comfort features.",
       "Twelve automatic programmes cover recovery, relaxation, stretching and sleep. Built-in Bluetooth speakers, an onboard storage box and a USB charging port finish the experience.",
     ],
@@ -116,10 +116,10 @@ export const massageChairDetails: Record<string, ProductDetail> = {
 
   "massage-chair-elite-ms131": chair({
     id: "massage-chair-elite-ms131",
-    subtitle: "Elite 4D Smart Full-Body Massage Chair (Catalog Model: MS-131 PLUS)",
+    subtitle: "Elite 4D Smart Full-Body Massage Chair",
     tagline: "A 4D mechanism with adjustable depth from 38 to 118 mm, super-long SL track, body scan, heel rocking and a touchscreen controller.",
     overview: [
-      "The Serene Elite (Catalog Model MS-131 PLUS, Elite Range) is a flagship 4D smart massage chair. Its in-and-out depth is adjustable from 38 mm up to 118 mm, with an up-and-down speed of 10 to 50 mm/s, designed to mimic the feel of a therapist's hands.",
+      "The Serene Elite is a flagship 4D smart massage chair. Its in-and-out depth is adjustable from 38 mm up to 118 mm, with an up-and-down speed of 10 to 50 mm/s, designed to mimic the feel of a therapist's hands.",
       "A super-long continuous SL track covers neck to hamstrings, while full-body airbags with intelligent anti-pinch sensors add compression safely. A high-precision optical body scan tailors the session to the individual's spine.",
       "Lower-leg care includes triple foot rollers, a heel rocking massage, leg kneading plates and automatic leg extension. Three zero-gravity positions, dual heating zones (back and hands), an ultra-thin touchscreen controller, a wireless phone-charging pad and a sleep-oriented music system with high-fidelity speakers complete the chair.",
     ],

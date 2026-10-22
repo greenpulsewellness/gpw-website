@@ -30,7 +30,7 @@ export const COLD_EXTRAS: BlogExtras = {
         heading: "What it costs to run",
         content: [
           `Running costs come from electricity for the chiller and pump, water and treatment, and maintenance. A well-insulated tub with a cover wastes less energy, because the chiller does not fight the sun and the air all day. Keep the unit ventilated and clean for efficiency.`,
-          `Ask your supplier for the power rating and an idea of daily consumption in your climate. For a business, include these numbers in your plan, and review the ${L("importing", "installation and warranty guide")} to avoid surprises.`,
+          `Ask your supplier for the power rating and an idea of daily consumption in your climate. For a business, include these numbers in your plan, and review the ${L("buying", "installation and support guide")} to avoid surprises.`,
         ],
       },
     ],
@@ -144,7 +144,7 @@ export const COLD_EXTRAS: BlogExtras = {
         id: "venue-hygiene",
         heading: "If you run a venue",
         content: [
-          `Shared water needs a stricter regime than a home tub. Require a shower before entry, limit the number of users between water changes, keep a log and train staff to spot early signs of trouble. Include maintenance in your supplier agreement, as explained in ${L("importing", "our guide to warranty and after-sales support")}, and review the cold station layout in ${L("lounge", "how to start a recovery lounge")}.`,
+          `Shared water needs a stricter regime than a home tub. Require a shower before entry, limit the number of users between water changes, keep a log and train staff to spot early signs of trouble. Include maintenance in your supplier agreement, as explained in ${L("buying", "our guide to warranty and after-sales support")}, and review the cold station layout in ${L("lounge", "how to start a recovery lounge")}.`,
           `For the choice of tub itself, see the ${L("coldGuide", "cold plunge buying guide")}.`,
         ],
       },
@@ -152,7 +152,7 @@ export const COLD_EXTRAS: BlogExtras = {
     faqs: [
       {
         question: "How often should I change cold plunge water?",
-        answer: `It depends on usage and how the water is treated. Follow your manufacturer's guidance, and in a business set a written schedule based on how many people use the tub each day.`,
+        answer: `It depends on usage and how the water is treated. Follow the supplied guidance, and in a business set a written schedule based on how many people use the tub each day.`,
       },
       {
         question: "Why is my cold plunge water cloudy?",
@@ -175,7 +175,7 @@ export const COLD_EXTRAS: BlogExtras = {
         id: "safety-and-supervision",
         heading: "Safety and supervision",
         content: [
-          `Both are intense experiences and both need respect. With a cryosauna, staff must be trained to operate the machine, handle liquid nitrogen and protect clients' skin, hands, feet and airways as the manufacturer directs. The ${P("arcticZero", "Arctic Zero")} includes overflow and level sensors, an open-door sensor, a pressure release valve and an emergency stop.`,
+          `Both are intense experiences and both need respect. With a cryosauna, staff must be trained to operate the machine, handle liquid nitrogen and protect clients' skin, hands, feet and airways as the supplied guidance directs. The ${P("arcticZero", "Arctic Zero")} includes overflow and level sensors, an open-door sensor, a pressure release valve and an emergency stop.`,
           `With a plunge, the main safety points are entry and exit, supervision for new users and sensible time limits. Our ${L("coldGuide", "cold plunge guide")} covers drain safety and layout, and ${L("coldCare", "water care")} covers hygiene.`,
           `Screen every client in both cases. Cold is not appropriate for everyone, and anyone with a heart or circulation condition, or who is pregnant, should speak to a doctor first.`,
         ],

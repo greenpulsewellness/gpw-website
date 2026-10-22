@@ -29,35 +29,35 @@ export const HERO_SLIDES: HeroSlide[] = [
   {
     word: "Recovery",
     description:
-      "Advanced contrast therapy, cryo-restoration, and thermal suites engineered to accelerate cellular rejuvenation and deep systemic recovery.",
+      "Contrast, cold and heat spaces planned as one calm, well-designed floor.",
     src: "/recovery.png",
     alt: "Advanced recovery and restoration therapy suite",
   },
   {
     word: "Wellness",
     description:
-      "Holistic sensory sanctuaries designed to harmonize circadian rhythms, regulate autonomic tone, and cultivate deep restorative tranquility.",
+      "Quiet, considered rooms for rest, designed around how people want to feel.",
     src: "/wellness.png",
     alt: "Holistic wellness sanctuary and sensory suite",
   },
   {
     word: "Performance",
     description:
-      "Clinical-grade bio-stacking equipment and hyperbaric conditioning built for elite athletic preparation, cognitive sharpness, and peak endurance.",
+      "Recovery zones for gyms and sports centres, built for steady daily use.",
     src: "/performance.png",
     alt: "Longevity performance and recovery space",
   },
   {
     word: "Longevity",
     description:
-      "Preventative health infrastructure and biomarker-focused modalities providing turnkey longevity suites for premier clinics, resorts, and private residences.",
+      "Spaces for longevity centres, resorts and homes, designed, equipped and launched with you.",
     src: "/longivity.png",
     alt: "AgeWell active recovery and rehabilitation sanctuary",
   },
   {
     word: "Vitality",
     description:
-      "Precision physiotherapy, targeted photobiomodulation, and lymphatic drainage technologies crafted for lifetime mobility and sustained vitality.",
+      "Comfortable, practical equipment for clinics, care settings and everyday living.",
     src: "/vitality.png",
     alt: "Clinical rehabilitation and physiotherapy suite",
   },

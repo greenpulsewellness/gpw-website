@@ -25,14 +25,13 @@ export const metadata: Metadata = {
     template: `%s | ${brand.name}`,
   },
   description:
-    "Turnkey commercial recovery, rehabilitation, and longevity equipment for wellness centres, hotel spas, athletic clubs, physiotherapy clinics, hospitals, and private residences in India. Curated, imported, installed, and serviced.",
+    "GreenPulse designs, equips and launches recovery and wellness spaces for wellness centres, gyms, clinics, hotel spas, senior living and homes across India.",
   applicationName: brand.name,
   keywords: [
     "commercial wellness equipment",
     "longevity suite architecture",
     "full-spectrum infrared saunas India",
     "commercial cold plunge chiller",
-    "mild hyperbaric oxygen chambers HBOT",
     "photobiomodulation red light therapy bed",
     "pneumatic compression boots",
     "robotic 4D massage chairs",
@@ -59,13 +58,13 @@ export const metadata: Metadata = {
     siteName: brand.name,
     title: `${brand.name} — ${brand.tagline}`,
     description:
-      "Commercial recovery, rehabilitation, and longevity hardware imported, installed, and maintained for wellness destinations and healthcare facilities across India.",
+      "Designed. Equipped. Launched. Recovery and wellness spaces for centres, gyms, clinics, hotels and homes across India.",
     images: [
       {
         url: "/logo-horizontal.png",
         width: 1200,
         height: 630,
-        alt: `${brand.name} — Commercial Longevity & Recovery Hardware`,
+        alt: `${brand.name} — Designed. Equipped. Launched.`,
       },
     ],
   },
@@ -73,7 +72,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${brand.name} — ${brand.tagline}`,
     description:
-      "Commercial recovery, rehabilitation, and longevity hardware imported, installed, and maintained across India.",
+      "Designed. Equipped. Launched. Recovery and wellness spaces across India.",
     images: ["/logo-horizontal.png"],
   },
   robots: {
@@ -112,7 +111,7 @@ const globalJsonLd = {
       },
       image: `${SITE_URL}/logo-horizontal.png`,
       description:
-        "Commercial recovery, rehabilitation, and longevity equipment importer, space planner, and turnkey commissioning provider across India.",
+        "Recovery and wellness space partner in India: layout design, equipment from one catalogue, installation, training and launch support.",
       telephone: contact.phone,
       email: contact.email,
       address: {

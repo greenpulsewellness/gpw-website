@@ -23,7 +23,7 @@ export function SolutionFaq({ solution }: SolutionFaqProps) {
             Frequently Asked Questions
           </h2>
           <p className="mt-3 text-neutral-400 text-sm sm:text-base">
-            Technical, electrical, and procurement insights for {solution.title}.
+            Technical, electrical and planning answers for {solution.title}.
           </p>
         </div>
 

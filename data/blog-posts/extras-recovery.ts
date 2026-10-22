@@ -36,7 +36,7 @@ export const RECOVERY_EXTRAS: BlogExtras = {
     faqs: [
       {
         question: "How long should I use compression boots?",
-        answer: `Typically 20 to 30 minutes per session, depending on the programme and the manufacturer's guidance. Start shorter and lower if you are new to them.`,
+        answer: `Typically 20 to 30 minutes per session, depending on the programme and the supplied guidance. Start shorter and lower if you are new to them.`,
       },
       {
         question: "Can I wear compression boots every day?",

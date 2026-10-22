@@ -37,7 +37,7 @@ export default function PrivacyPage() {
           subtitle="How GreenPulse Wellness collects, secures, uses, and respects personal, facility, and commercial data across our website and technical support channels."
           effectiveDate="January 1, 2026"
           lastUpdated="March 2026"
-          version="2026.2 (Global & DPDPA Aligned)"
+          version="2026.2 (DPDPA Aligned)"
           sections={SECTIONS}
         >
           {/* Section 1 */}
@@ -78,7 +78,7 @@ export default function PrivacyPage() {
                 <span className="font-mono text-[11px] uppercase tracking-wider text-pine font-semibold flex items-center gap-1.5">
                   <Eye className="size-3.5 text-pine" /> Technical Enquiries & Preferences
                 </span>
-                <p className="text-pine/80">Product interest (e.g., hyperbaric chambers, infrared saunas, cryotherapy, compression), suite tier selections, and rental specifications.</p>
+                <p className="text-pine/80">Product interest (e.g., infrared saunas, cold plunges, light devices, compression), suite tier selections, and rental specifications.</p>
               </div>
               <div className="rounded-xl border border-wood/25 bg-oat/40 p-4 space-y-2">
                 <span className="font-mono text-[11px] uppercase tracking-wider text-pine font-semibold flex items-center gap-1.5">
@@ -97,7 +97,7 @@ export default function PrivacyPage() {
             <ul className="list-disc pl-5 space-y-2 text-xs sm:text-sm text-pine/80 leading-relaxed">
               <li><strong>Direct Interactions:</strong> When you complete our website enquiry form, request a product catalog specification, or schedule an equipment demonstration.</li>
               <li><strong>WhatsApp Business Desk:</strong> When you initiate a conversation with our commercial advisory team via our integrated WhatsApp links.</li>
-              <li><strong>Commercial Contract Execution:</strong> When your organization enters into a purchase order, leasing arrangement, or AMC contract.</li>
+              <li><strong>Commercial Contract Execution:</strong> When your organization places an order or enters into a rental or service agreement.</li>
               <li><strong>Service & Technician Reports:</strong> Site readiness assessments and commissioning logs completed during field visits.</li>
             </ul>
           </section>
@@ -117,7 +117,7 @@ export default function PrivacyPage() {
               </div>
               <div className="flex items-start gap-2">
                 <ShieldCheck className="size-4 shrink-0 text-pine mt-0.5" />
-                <p><strong>Logistics & Installation Execution:</strong> Coordinating freight dispatches, transit insurance, on-site technician scheduling, and handover testing.</p>
+                <p><strong>Delivery & Installation:</strong> Coordinating deliveries, on-site technician scheduling, and handover testing.</p>
               </div>
               <div className="flex items-start gap-2">
                 <ShieldCheck className="size-4 shrink-0 text-pine mt-0.5" />
@@ -142,7 +142,7 @@ export default function PrivacyPage() {
               Data is shared strictly on a confidential need-to-know basis with:
             </p>
             <ul className="list-disc pl-5 space-y-1.5 text-xs sm:text-sm text-pine/80">
-              <li><strong>Certified Logistics & Freight Carriers:</strong> Strictly to complete site delivery and track shipments.</li>
+              <li><strong>Delivery Partners:</strong> Strictly to complete site delivery and track shipments.</li>
               <li><strong>Authorized Field Technicians & Engineers:</strong> To coordinate site inspections, electrical testing, and equipment handover.</li>
               <li><strong>Cloud Hosting & Secure Infrastructure Providers:</strong> ISO/IEC 27001 certified cloud environments hosting our databases.</li>
               <li><strong>Law Enforcement & Regulatory Authorities:</strong> Only when strictly mandated by valid legal subpoenas, court orders, or statutory regulations.</li>

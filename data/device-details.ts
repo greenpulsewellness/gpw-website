@@ -2,12 +2,12 @@ import type { ProductDetail, ProductProtocol } from "./products-data";
 
 /**
  * Detail pages for the smaller recovery devices: Thrum massage guns, Ember / Aurora blankets, Frostfire pad.
- * Source: Konbest catalog (pages 24, 29, 34, 35) and manufacturer data sheets.
+ * Product detail data.
  * Wellness wording only: no treatment claims, no pricing.
  */
 
 const SAFETY =
-  "Not suitable for everyone. Consult a medical professional before use, especially if you are pregnant, have a medical implant, an injury, or reduced skin sensation, and follow the manufacturer's instructions.";
+  "Not suitable for everyone. Consult a medical professional before use, especially if you are pregnant, have a medical implant, an injury, or reduced skin sensation, and follow the supplied instructions.";
 
 const protocol = (recommendedDuration: string, steps: ProductProtocol["protocolSteps"], prep: string[]): ProductProtocol => ({
   recommendedDuration,
@@ -38,10 +38,10 @@ export const deviceDetails: Record<string, ProductDetail> = {
 
   "percussion-gun-jm04sa": {
     id: "percussion-gun-jm04sa",
-    subtitle: "Compact Percussion Massage Gun with Hot & Cold Head (Catalog Model: JM04sA)",
+    subtitle: "Compact Percussion Massage Gun with Hot & Cold Head",
     tagline: "A portable brushless massage gun with a built-in cooling and heating head and USB Type-C charging.",
     overview: [
-      "The Thrum Lite (Catalog Model JM04sA) is a compact, portable percussion massager built for gym bags, travel and desk-side use. A dual hot and cold contrast head is integrated directly into the massage head.",
+      "The Thrum Lite is a compact, portable percussion massager built for gym bags, travel and desk-side use. A dual hot and cold contrast head is integrated directly into the massage head.",
       "Active semiconductor cooling and rapid heating are built in, with three cooling levels (20 °C, 15 °C and 10 °C) and multi-level heating. A low-noise brushless motor drives precise percussive speed settings.",
       "It charges over USB Type-C from an integrated lithium-ion battery.",
     ],
@@ -89,10 +89,10 @@ export const deviceDetails: Record<string, ProductDetail> = {
 
   "percussion-massager-jm003": {
     id: "percussion-massager-jm003",
-    subtitle: "Professional 30-Speed Percussion Massage Gun (Catalog Model: JM003)",
+    subtitle: "Professional 30-Speed Percussion Massage Gun",
     tagline: "A full-size professional massager with an LCD display, 30 speeds up to 3,200+ RPM and four interchangeable heads.",
     overview: [
-      "The Thrum Pro (Catalog Model JM003) is a full-size professional percussion device for physical therapists, trainers and athletes. A digital LCD display shows the live speed level and battery percentage.",
+      "The Thrum Pro is a full-size professional percussion device for physical therapists, trainers and athletes. A digital LCD display shows the live speed level and battery percentage.",
       "Thirty continuous speed levels reach up to 3,200+ RPM from a heavy-duty brushless DC motor with high stall force. Four interchangeable heads are included: ball, U-shape fork, bullet and flat.",
       "A dynamic-balance construction keeps the grip free of vibration, and a high-capacity rechargeable lithium-ion pack gives extended run time.",
     ],
@@ -140,10 +140,10 @@ export const deviceDetails: Record<string, ProductDetail> = {
 
   "percussion-massager-jm019": {
     id: "percussion-massager-jm019",
-    subtitle: "Deep-Amplitude 12 mm Percussion Massage Gun (Catalog Model: JM019)",
+    subtitle: "Deep-Amplitude 12 mm Percussion Massage Gun",
     tagline: "A high-amplitude massage gun with a 12 mm stroke, professional brushless motor and three speeds.",
     overview: [
-      "The Thrum Deep (Catalog Model JM019) is a high-amplitude percussion gun with a 12 mm stroke length for firm, deep-reaching percussion.",
+      "The Thrum Deep is a high-amplitude percussion gun with a 12 mm stroke length for firm, deep-reaching percussion.",
       "A professional brushless motor with high stall-force resistance keeps the head from stalling under firm pressure. A streamlined three-speed interface covers warm-up, release and deeper work, and a long-lasting rechargeable lithium battery powers it.",
     ],
     mechanismOfAction: {
@@ -191,10 +191,10 @@ export const deviceDetails: Record<string, ProductDetail> = {
 
   "sauna-blanket-rl301": {
     id: "sauna-blanket-rl301",
-    subtitle: "5-in-1 Far-Infrared & Red Light Thermal Dome / Blanket (Catalog Model: RL301)",
+    subtitle: "5-in-1 Far-Infrared & Red Light Thermal Dome / Blanket",
     tagline: "Far-infrared heat, 660 / 850 nm red light, PEMF, terahertz and negative-ion stones in a 3-zone, 1200–1300 W blanket system.",
     overview: [
-      "The Ember Wrap (Catalog Model RL301) is a five-in-one thermal dome / blanket that combines far-infrared (FIR) heat, 660 nm / 850 nm red light, PEMF (pulsed electromagnetic field), terahertz and negative-ion mineral stone therapy.",
+      "The Ember Wrap is a five-in-one thermal dome / blanket that combines far-infrared (FIR) heat, 660 nm / 850 nm red light, PEMF (pulsed electromagnetic field), terahertz and negative-ion mineral stone therapy.",
       "Three independent zones (upper body, waist / core and lower body) set the temperature separately, up to 90 °C in the dome and 80 °C on the mat. Low-EMF carbon-fibre heating wires sit inside a fireproof, waterproof, corrosion-resistant PU / TPU leather cover.",
       "Light output comes from 896 red 660 nm LEDs and 224 three-chip 850 nm near-infrared LEDs, with PEMF adjustable from 1 to 30 Hz and a timer from 5 to 60 minutes.",
     ],
@@ -261,10 +261,10 @@ export const deviceDetails: Record<string, ProductDetail> = {
 
   "red-light-blanket-rl302": {
     id: "red-light-blanket-rl302",
-    subtitle: "Full-Body Red & Near-Infrared Light Blanket (Catalog Model: RL302)",
+    subtitle: "Full-Body Red & Near-Infrared Light Blanket",
     tagline: "A 180 × 180 cm flexible blanket with 2,240 LEDs at 660 nm + 850 nm, three light modes and five intensity levels.",
     overview: [
-      "The Aurora Wrap (Catalog Model RL302) is a full-body, wrap-around flexible light blanket delivering 660 nm red and 850 nm near-infrared light together. It opens to 180 × 180 cm for full-body coverage.",
+      "The Aurora Wrap is a full-body, wrap-around flexible light blanket delivering 660 nm red and 850 nm near-infrared light together. It opens to 180 × 180 cm for full-body coverage.",
       "Three light modes (constant wave, 10 Hz pulse and 40 Hz pulse) and five intensity levels are available, with a 10 to 60 minute timer. The flexible, foldable waterproof PU + TPU casing runs on a safe DC 24 V low-voltage supply.",
       "Light comes from 2,240 LED units (6,720 high-output chips, 660 nm : 850 nm in a 1 : 2 ratio) at 112–130 mW/cm² and 200 W rated power.",
     ],
@@ -320,7 +320,7 @@ export const deviceDetails: Record<string, ProductDetail> = {
         { step: "Session", instruction: "Lie on or under the blanket and relax for the set time." },
         { step: "Finish", instruction: "Switch off, fold the blanket and wipe the casing." },
       ],
-      ["Clean, dry skin free of products.", "Follow the manufacturer's safety and eye-protection instructions."],
+      ["Clean, dry skin free of products.", "Follow the supplied safety and eye-protection instructions."],
     ),
     suitableEnvironments: [
       { type: "Wellness & Longevity Centres", description: "A full-body light station that packs away easily." },
@@ -339,10 +339,10 @@ export const deviceDetails: Record<string, ProductDetail> = {
 
   "cold-therapy-unit-806pro": {
     id: "cold-therapy-unit-806pro",
-    subtitle: "Wearable Cold, Heat & Red Light Therapy Pad (Catalog Model: CL806Pro)",
+    subtitle: "Wearable Cold, Heat & Red Light Therapy Pad",
     tagline: "A semiconductor pad that cools, heats, vibrates and delivers 660 / 850 nm red light, with no ice needed.",
     overview: [
-      "The Frostfire Pad (Catalog Model CL806Pro) is a wearable semiconductor pad combining rapid cooling, rapid heating, vibration massage and red / infrared light (660 nm + 850 nm) in one device, without needing ice.",
+      "The Frostfire Pad is a wearable semiconductor pad combining rapid cooling, rapid heating, vibration massage and red / infrared light (660 nm + 850 nm) in one device, without needing ice.",
       "Four adjustable temperature levels span 3 °C to 45 °C. A flexible pad and elastic body straps hold it to the lower back, torso or thigh.",
       "It runs at 42 W from a 7.4 V / 5,000 mAh rechargeable battery with 5 V / 2 A Type-C charging, and weighs 1.2 kg.",
     ],
@@ -387,7 +387,7 @@ export const deviceDetails: Record<string, ProductDetail> = {
         { step: "Session", instruction: "Stay relaxed and check the skin regularly during use." },
         { step: "Finish", instruction: "Remove the pad, switch off and recharge." },
       ],
-      ["Use over clean, dry skin and start at a moderate temperature.", "Follow the manufacturer's instructions."],
+      ["Use over clean, dry skin and start at a moderate temperature.", "Follow the supplied instructions."],
     ),
     suitableEnvironments: SPACES,
     faqs: [

@@ -54,7 +54,7 @@ export function SolutionCatalog({ solution }: SolutionCatalogProps) {
               Hardware Engineered for {solution.title}
             </h2>
             <p className="mt-3.5 text-base sm:text-lg text-neutral-300 leading-relaxed">
-              Every system is certified for commercial throughput, compliant with international electrical standards, and backed by our dedicated maintenance SLA.
+              Every product comes with a standard spec sheet covering size, power, placement needs and what is included.
             </p>
           </div>
 

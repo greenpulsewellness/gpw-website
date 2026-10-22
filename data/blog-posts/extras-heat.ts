@@ -9,7 +9,7 @@ export const HEAT_EXTRAS: BlogExtras = {
         content: [
           `The same cabin can serve a family or a spa, but the buying logic is different. At home you are optimising for comfort, footprint and how often you will really use it. In a business you are optimising for capacity, turnaround, durability and the cost of keeping the room in service.`,
           `For a home, the ${P("halo1", "Halo 1")} or ${P("halo2", "Halo 2")} usually wins. For a studio, spa or clinic, the ${P("halo3", "Halo 3")} or a ${P("haloHybrid3", "Halo Hybrid 3")} gives you the capacity to run back-to-back sessions. Commercial buyers should also think about wipe-down routines, towel handling and booking flow, which we cover in ${L("lounge", "how to start a recovery lounge")}.`,
-          `One more difference: businesses need a service plan. Ask who maintains the heaters, how quickly parts arrive and what the warranty says about commercial use. Our guide to ${L("importing", "importing, installation and warranty")} lists the questions worth asking.`,
+          `One more difference: businesses need a service plan. Ask who maintains the heaters, how quickly parts arrive and what the warranty says about commercial use. Our guide to ${L("buying", "buying, installation and support")} lists the questions worth asking.`,
         ],
       },
       {
@@ -127,7 +127,7 @@ export const HEAT_EXTRAS: BlogExtras = {
         content: [
           `Specs only tell part of the story. Where the heaters sit and how many there are decides whether your back, legs and chest get an even share of warmth. Good cabins place heaters around the body and keep hot surfaces out of reach.`,
           `When you try a cabin, check three things: is the warmth even, can you adjust it, and is any heater so close that it feels harsh? A well-designed cabin should feel the same whether you sit at one end of the bench or the other.`,
-          `Wood and glass matter here too. Light-coloured wood reflects warmth gently, and a well-sealed glass door keeps heat in. The ${P("haloHybrid2", "Halo Hybrid 2")} pairs ceramic tube heaters with carbon panels in red cedar, while the ${P("halo2", "Halo 2")} uses full-spectrum heating with Canadian hemlock or red cedar options.`,
+          `Wood and glass matter here too. Light-coloured wood reflects warmth gently, and a well-sealed glass door keeps heat in. The ${P("haloHybrid2", "Halo Hybrid 2")} pairs ceramic tube heaters with carbon panels in red cedar, while the ${P("halo2", "Halo 2")} uses full-spectrum heating with hemlock or red cedar options.`,
         ],
       },
       {
@@ -190,7 +190,7 @@ export const HEAT_EXTRAS: BlogExtras = {
         heading: "If it is for a business",
         content: [
           `Commercial rooms add layers: fire safety, signage, accessibility, towel and laundry flow, and cleaning schedules. Speak to your electrician and local authority early. Plan the sauna next to changing facilities if you can, and put any ${L("contrast", "cold plunge")} within a few steps.`,
-          `Our ${COMBOS("combos")} and ${SOLUTION("recover", "Recover & Restore solutions")} show how venues lay these rooms out, and the ${L("importing", "importing and installation guide")} covers delivery, warranty and support.`,
+          `Our ${COMBOS("combos")} and ${SOLUTION("recover", "Recover & Restore solutions")} show how venues lay these rooms out, and the ${L("buying", "buying and installation guide")} covers delivery, warranty and support.`,
         ],
       },
     ],
@@ -245,7 +245,7 @@ export const HEAT_EXTRAS: BlogExtras = {
       },
       {
         question: "How long should I use a sauna blanket?",
-        answer: `Follow the manufacturer's guidance. As a general approach, begin with short sessions at a lower temperature and build up gradually as you feel comfortable. Never sleep in a heated blanket.`,
+        answer: `Follow the supplied guidance. As a general approach, begin with short sessions at a lower temperature and build up gradually as you feel comfortable. Never sleep in a heated blanket.`,
       },
       {
         question: "Can two people use a sauna blanket at once?",

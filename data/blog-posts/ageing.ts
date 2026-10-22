@@ -89,7 +89,7 @@ export const AGEING_POSTS: BlogInput[] = [
     author: AUTHORS["david-chen"],
     tags: ["Electric Wheelchair", "Standing Wheelchair", "Mobility", "Assistive Technology"],
     keywords: ["how to choose an electric wheelchair", "standing wheelchair guide", "foldable electric wheelchair", "lightweight electric wheelchair"],
-    relatedSlugs: ["wellness-lounge-for-senior-living", "massage-chair-buying-guide", "importing-wellness-equipment-installation-and-warranty"],
+    relatedSlugs: ["wellness-lounge-for-senior-living", "massage-chair-buying-guide", "buying-wellness-equipment-installation-and-support"],
     keyTakeaways: [
       "Start with the person: how they move, where they go, how they travel and who helps them.",
       "Weight and fold size decide whether a chair fits in a car boot or a lift.",
@@ -135,7 +135,7 @@ export const AGEING_POSTS: BlogInput[] = [
         id: "service-and-support",
         heading: "Battery, service and support",
         content: [
-          `Check the range under real conditions (hills, passenger weight, weather), how the battery is charged and replaced, and who services the chair. For organisations buying several chairs, read ${L("importing", "our guide to warranty and after-sales support")}. Mobility works best with a comfortable destination, which is why we link it with our ${L("senior", "senior living wellness lounge guide")}. Browse the ${CATALOGUE("mobility range")}.`,
+          `Check the range under real conditions (hills, passenger weight, weather), how the battery is charged and replaced, and who services the chair. For organisations buying several chairs, read ${L("buying", "our guide to warranty and after-sales support")}. Mobility works best with a comfortable destination, which is why we link it with our ${L("senior", "senior living wellness lounge guide")}. Browse the ${CATALOGUE("mobility range")}.`,
         ],
       },
     ],

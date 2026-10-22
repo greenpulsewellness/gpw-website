@@ -59,7 +59,7 @@ export const HEAT_POSTS: BlogInput[] = [
         id: "wood-and-build",
         heading: "Wood, build quality and the little things",
         content: [
-          `You will sit against the wood, breathe next to it and clean it, so it matters. Canadian hemlock is light, smooth and low in scent. Red cedar is warmer in colour and has a pleasant natural aroma, but some people find it a little strong in a small cabin.`,
+          `You will sit against the wood, breathe next to it and clean it, so it matters. hemlock is light, smooth and low in scent. Red cedar is warmer in colour and has a pleasant natural aroma, but some people find it a little strong in a small cabin.`,
           `Look past the wood too. A tourmaline floor, a built-in ionizer, chromotherapy lighting and Bluetooth sound are not essentials, but they change how a session feels. Ask to see a cabin in person or on a video call and check the door seal, glass quality and how the control panel behaves.`,
         ],
       },
@@ -72,7 +72,7 @@ export const HEAT_POSTS: BlogInput[] = [
           `3. What does the warranty cover, and who services the cabin if something fails?`,
           `4. Is installation included, and how long does it take on site?`,
           `5. Can you share the certification and safety documents for the heaters and wiring?`,
-          `A supplier who answers these without hesitation is usually the one you want. If you are buying for a business, read ${L("importing", "our guide to importing, installation and warranty")} first. And if you would like a person to talk it through, our team can help via the ${SOLUTION("recover", "Recover & Restore solutions")} page or the enquiry form.`,
+          `A supplier who answers these without hesitation is usually the one you want. If you are buying for a business, read ${L("buying", "our guide to buying, installation and support")} first. And if you would like a person to talk it through, our team can help via the ${SOLUTION("recover", "Recover & Restore solutions")} page or the enquiry form.`,
         ],
       },
       {
@@ -243,7 +243,7 @@ export const HEAT_POSTS: BlogInput[] = [
     author: AUTHORS["marcus-vance"],
     tags: ["Sauna Installation", "Electrical Planning", "Room Size", "Commercial Fit-out"],
     keywords: ["infrared sauna size", "infrared sauna power requirements", "infrared sauna installation", "how much space for infrared sauna"],
-    relatedSlugs: ["infrared-sauna-buying-guide", "importing-wellness-equipment-installation-and-warranty", "how-to-start-a-recovery-lounge"],
+    relatedSlugs: ["infrared-sauna-buying-guide", "buying-wellness-equipment-installation-and-support", "how-to-start-a-recovery-lounge"],
     keyTakeaways: [
       "Our cabins are 90 × 90, 120 × 105 and 150 × 120 cm, all 190 cm tall. Leave extra room for the door swing and airflow.",
       "Power ranges from about 1,350 W (one person) to about 2,100 W (three people). Have a qualified electrician confirm the circuit.",
@@ -291,7 +291,7 @@ export const HEAT_POSTS: BlogInput[] = [
           `3. Clear route from the door to the room`,
           `4. Someone on site to approve placement`,
           `5. Warranty and service details in writing`,
-          `For commercial buyers, the logistics get bigger, which is why we wrote a separate piece on ${L("importing", "importing, installation and warranty")}. If you are fitting out a whole space, see ${L("lounge", "how to start a recovery lounge")} for layout ideas, or explore our ${COMBOS("ready-made combos")}.`,
+          `For commercial buyers, the logistics get bigger, which is why we wrote a separate piece on ${L("buying", "buying, installation and support")}. If you are fitting out a whole space, see ${L("lounge", "how to start a recovery lounge")} for layout ideas, or explore our ${COMBOS("ready-made combos")}.`,
         ],
       },
     ],

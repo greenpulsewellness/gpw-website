@@ -2,13 +2,13 @@ import type { ProductDetail, ProductSpecGroup } from "./products-data";
 
 /**
  * Detail pages for the Oxa / Oxy hyperbaric chambers.
- * Source: manufacturer specification sheets (photos) for Cube Solo, Cube Duo, Mini, Oxy 1 and Oxy 2.
+ * Product detail data.
  * Wellness / product wording only: no treatment or medical claims, no pricing, no packaging / shipping data.
  * Regulatory check and trained operator required (per project notes).
  */
 
 const SAFETY = [
-  "Hyperbaric chambers must only be installed and operated in line with local regulations, by a trained operator, following the manufacturer's safety procedures.",
+  "Hyperbaric chambers must only be installed and operated in line with local regulations, by a trained operator, following the supplied safety procedures.",
   "Not suitable for everyone. A medical professional should confirm that a person is suitable before any session.",
 ];
 

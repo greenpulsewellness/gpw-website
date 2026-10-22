@@ -164,15 +164,15 @@ export const hero = {
 export const solutionsSection = {
   eyebrow: "What we do",
   title: "One partner for every recovery space, from floor plan to first session.",
-  line: "GreenPulse Wellness supplies commercial wellness, recovery and rehabilitation equipment across India. We help you choose the right machines, bring them in, install them, train your team and keep everything running.",
+  line: "GreenPulse designs, equips and launches recovery and wellness spaces. We plan the layout, choose the right products from one catalogue, install them and train your team.",
   proof: [
-    { title: "Import handled", line: "Freight, customs, insurance and delivery, end to end." },
+    { title: "Designed first", line: "A layout for your space, planned before you build." },
     { title: "Installed & commissioned", line: "On-site assembly, electrical safety checks and team training." },
-    { title: "Pan-India AMC", line: "Scheduled servicing, spares and fast technician visits." },
-    { title: "Buy, lease or rent", line: "Leasing for gyms and spas, monthly rentals for clinics and homecare." },
+    { title: "Launch support", line: "Session menu, opening content and a check-in after you open." },
+    { title: "One point of contact", line: "One team from first conversation to opening day." },
   ],
   suitesLabel: "Four suites",
-  /** TODO: confirm highlights with the supply team */
+  /** Highlights follow the product order: Relax, Heat, Light, Cold */
   suites: {
     recover: {
       summary: "Contrast therapy, infrared heat and cold immersion for busy recovery floors.",
@@ -180,7 +180,7 @@ export const solutionsSection = {
     },
     agewell: {
       summary: "Mobility, comfort and longevity equipment for senior living residences.",
-      highlights: ["Standing wheelchairs", "Massage chairs", "Hyperbaric chambers"],
+      highlights: ["Standing chairs", "Massage chairs", "Light devices"],
     },
     rehabilitate: {
       summary: "Drop tables, decompression loungers and recovery tools for physio and chiro practices.",
@@ -534,7 +534,7 @@ export const products: Product[] = [
     subCategory: "Full Spectrum Infrared Saunas",
     brand: "HALO",
     url: "/products/infrared-sauna-single-full-spectrum-mstar",
-    description: "Compact single-person full-spectrum infrared sauna (Catalog Model: MS-011FS) crafted from Canadian hemlock with tourmaline floor heating, oxygen ionizer, and 7-color chromotherapy.",
+    description: "Compact single-person full-spectrum infrared sauna crafted from hemlock with tourmaline floor heating, oxygen ionizer, and 7-color chromotherapy.",
     tiers: ["Pro", "Signature"],
     specs: ["90 × 90 × 190 cm", "1350 W", "1 Person"],
     image: productImage(
@@ -551,7 +551,7 @@ export const products: Product[] = [
     subCategory: "Full Spectrum Infrared Saunas",
     brand: "HALO",
     url: "/products/infrared-sauna-double-full-spectrum-mstar",
-    description: "Two-person American full-spectrum infrared sauna (Catalog Model: MS-021HC) with Canadian hemlock or red cedar, tourmaline floor heating, oxygen ionizer, and integrated Bluetooth sound.",
+    description: "Two-person American full-spectrum infrared sauna with hemlock or red cedar, tourmaline floor heating, oxygen ionizer, and integrated Bluetooth sound.",
     tiers: ["Pro", "Signature"],
     specs: ["120 × 105 × 190 cm", "1750 W", "2 Persons"],
     image: productImage(
@@ -585,7 +585,7 @@ export const products: Product[] = [
     subCategory: "Full Spectrum Infrared Saunas",
     brand: "HALO",
     url: "/products/infrared-sauna-group-full-spectrum-mstar",
-    description: "Three-person luxury full-spectrum infrared sauna (Catalog Model: MS-031PB / MS-061PB) with quartz combine heating, starlight chromotherapy, dual speakers, and oxygen ionizer.",
+    description: "Three-person luxury full-spectrum infrared sauna with quartz combine heating, starlight chromotherapy, dual speakers, and oxygen ionizer.",
     tiers: ["Pro", "Signature"],
     specs: ["150 × 120 × 190 cm", "2100 W", "3 Persons"],
     image: productImage(
@@ -602,7 +602,7 @@ export const products: Product[] = [
     subCategory: "Full Spectrum Infrared Saunas",
     brand: "HALO",
     url: "/products/infrared-sauna-double-combination-mstar",
-    description: "Two-person hybrid infrared sauna (Catalog Model: MS-021L) in red cedar with ceramic tube and carbon panel heaters, tourmaline stone floor, and multimedia sound.",
+    description: "Two-person hybrid infrared sauna in red cedar with ceramic tube and carbon panel heaters, tourmaline stone floor, and multimedia sound.",
     tiers: ["Essential", "Pro"],
     specs: ["120 × 105 × 190 cm", "1750 W", "2 Persons"],
     image: productImage(
@@ -619,7 +619,7 @@ export const products: Product[] = [
     subCategory: "Full Spectrum Infrared Saunas",
     brand: "HALO",
     url: "/products/infrared-sauna-group-combination-mstar",
-    description: "Luxury three-person hybrid infrared sauna (Catalog Model: MS-061PB) combining far-infrared carbon panels with full-spectrum quartz heating, red cedar or hemlock build, and tourmaline floor.",
+    description: "Luxury three-person hybrid infrared sauna combining far-infrared carbon panels with full-spectrum quartz heating, red cedar or hemlock build, and tourmaline floor.",
     tiers: ["Essential", "Pro"],
     specs: ["150 × 120 × 190 cm", "2100 W", "3 Persons"],
     image: productImage(
@@ -653,7 +653,7 @@ export const products: Product[] = [
     subCategory: "Cryo & Ice Bath Systems",
     brand: "ARCTIC",
     url: "/products/cold-plunge-tub-new-ice-bath",
-    description: "Full-size one-piece composite cold plunge tub (FiberCore Flex Ultra) with two-stage filtration, patented water nozzles and a VGB safety-certified drain, paired with a high-power chiller.",
+    description: "Full-size one-piece composite cold plunge tub with two-stage filtration, purpose-designed water nozzles and a safety drain, paired with a high-power chiller.",
     tiers: ["Pro", "Signature"],
     specs: ["170 × 80 cm", "421 / 483 L", "2-Stage Filtration"],
     image: productImage(
@@ -693,7 +693,7 @@ export const products: Product[] = [
     subCategory: "Cryo & Ice Bath Systems",
     brand: "ARCTIC",
     url: "/products/cryo-mini-cryome",
-    description: "Compact, fully automated cryosauna (Cryome Mini) with a 7\" touch screen, 1 m² footprint and operating range of −110 to −180 °C, supplied with a 3-year warranty.",
+    description: "Compact, fully automated cryosauna with a 7\" touch screen, 1 m² footprint and operating range of −110 to −180 °C.",
     tiers: ["Pro", "Signature"],
     specs: ["−110 to −180 °C", "1.5 kW", "1 m² Footprint"],
     image: productImage(
@@ -703,69 +703,117 @@ export const products: Product[] = [
     ),
   },
   {
+    id: "cryo-chill-cryome-icechill",
+    name: "Arctic Chill Nitrogen Cryotherapy Chamber (1–2 Person, Breathable Air)",
+    category: "Cold & Cryo Therapy",
+    modality: "cold",
+    subCategory: "Cryo & Ice Bath Systems",
+    brand: "ARCTIC",
+    url: "/products/cryo-chill-cryome-icechill",
+    description: "Walk-in nitrogen cryochamber for one or two people with breathable air inside, running at −80 to −110 °C with a 20\" operator touchscreen.",
+    tiers: ["Pro", "Signature"],
+    specs: ["−80 to −110 °C","1–2 Person","Breathable Air"],
+    image: productImage(
+      "cryo-chill-cryome-icechill",
+      "Arctic Chill Nitrogen Cryotherapy Chamber (1–2 Person, Breathable Air)",
+    ),
+  },
+  {
+    id: "cryo-one-cryome",
+    name: "Arctic One Individual Cryotherapy Cryosauna",
+    category: "Cold & Cryo Therapy",
+    modality: "cold",
+    subCategory: "Cryo & Ice Bath Systems",
+    brand: "ARCTIC",
+    url: "/products/cryo-one-cryome",
+    description: "Single-person nitrogen cryosauna with a height-adjustable elevator, 7\" operator and 10\" client displays, operating at −110 to −180 °C.",
+    tiers: ["Pro", "Signature"],
+    specs: ["−110 to −180 °C","1.5 kW","Electric Elevator"],
+    image: productImage(
+      "cryo-one-cryome",
+      "Arctic One Individual Cryotherapy Cryosauna",
+    ),
+  },
+  {
+    id: "cryo-ultra-cryome-pro",
+    name: "Arctic Ultra Premium Cryotherapy Cryosauna (High Throughput)",
+    category: "Cold & Cryo Therapy",
+    modality: "cold",
+    subCategory: "Cryo & Ice Bath Systems",
+    brand: "ARCTIC",
+    url: "/products/cryo-ultra-cryome-pro",
+    description: "Premium single-person cryosauna built for up to 90 sessions a day, with auto-drying and a 3-minute pre-cool.",
+    tiers: ["Pro", "Signature"],
+    specs: ["−110 to −180 °C","90 Sessions/Day","Auto-Drying"],
+    image: productImage(
+      "cryo-ultra-cryome-pro",
+      "Arctic Ultra Premium Cryotherapy Cryosauna (High Throughput)",
+    ),
+  },
+  {
     id: "led-therapy-full-stand",
-    name: "Luma Stand 1 Full Body LED Light Therapy Stand",
+    name: "Luma Stand Full Body LED Light Therapy Stand",
     category: "Light & Photobiomodulation",
     modality: "light",
     subCategory: "Photobiomodulation & Red Light Therapy",
     brand: "LUMA",
     url: "/products/led-therapy-full-stand",
-    description: "Mobile vertical LED light therapy stand (Model M1) with 12,312 LEDs, five wavelengths, LCD touch control and caster wheels.",
+    description: "Full-body LED light therapy stand (Model M1 Plus) with 12,312 LEDs at 1,500 W, four wavelengths and simple button control.",
     tiers: ["Pro", "Signature"],
-    specs: ["12,312 LEDs", "1500 W", "5 Wavelengths"],
+    specs: ["12,312 LEDs", "1500 W", "4 Wavelengths"],
     image: productImage(
       "led-therapy-full-stand",
-      "Luma Stand 1 Full Body LED Light Therapy Stand",
+      "Luma Stand Full Body LED Light Therapy Stand",
       "/GPW%20Product%20mockup/Light/Luma%20Stand%20Full%20Body%20LED%20Light%20Therapy%20Stand/Luma%20Stand%20Full%20Body%20LED%20Light%20Therapy%20Stand.png",
     ),
   },
   {
     id: "led-therapy-full-stand-2",
-    name: "Luma Stand 2 Motorized Full Body LED Light Therapy Stand",
+    name: "Luma Stand Pro Full Body LED Light Therapy Stand (Independent Wavelength Control)",
     category: "Light & Photobiomodulation",
     modality: "light",
     subCategory: "Photobiomodulation & Red Light Therapy",
     brand: "LUMA",
     url: "/products/led-therapy-full-stand-2",
-    description: "Motorized vertical LED light therapy stand (Model M2) with automatic height lift, IoT pulse control and wireless remote.",
+    description: "Full-body LED light therapy stand (Model M2 Plus) with 9,600 LEDs, five wavelengths, independent wavelength control and preset protocols.",
     tiers: ["Pro", "Signature"],
-    specs: ["Auto Lift", "Up to 9,600 LEDs", "IoT Control"],
+    specs: ["9,600 LEDs", "1500 W", "Independent Control"],
     image: productImage(
       "led-therapy-full-stand-2",
-      "Luma Stand 2 Motorized Full Body LED Light Therapy Stand",
+      "Luma Stand Pro Full Body LED Light Therapy Stand (Independent Wavelength Control)",
     ),
   },
   {
     id: "led-therapy-full-body-clam-1-m6",
-    name: "Luma Cocoon 1 Full Body LED Light Therapy Bed",
+    name: "Luma Cocoon Full Body LED Light Therapy Bed",
     category: "Light & Photobiomodulation",
     modality: "light",
     subCategory: "Photobiomodulation & Red Light Therapy",
     brand: "LUMA",
     url: "/products/led-therapy-full-body-clam-1-m6",
-    description: "Full-body clamshell LED light therapy bed (Model M4) with up to 28,512 LEDs, silent cooling, Bluetooth surround sound and IoT pulse control.",
+    description: "Full-body clamshell LED light therapy bed (Model M4N Plus) with 21,600 LEDs at 3,000 W, a control tablet, Bluetooth music and independent wavelength control.",
     tiers: ["Pro", "Signature"],
-    specs: ["Up to 28,512 LEDs", "Up to 3000 W", "Clamshell Bed"],
+    specs: ["21,600 LEDs", "3000 W", "Clamshell Bed"],
     image: productImage(
       "led-therapy-full-body-clam-1-m6",
-      "Luma Cocoon 1 Full Body LED Light Therapy Bed",
+      "Luma Cocoon Full Body LED Light Therapy Bed",
       "/GPW%20Product%20mockup/Light/Luma%20Cocoon%201%20Full%20Body%20LED%20Light%20Therapy%20Bed/D274D258-A160-4310-9D8D-0BF2389C4B21.png",
     ),
   },
   {
     id: "led-therapy-full-body-clam-2-m6l",
-    name: "Luma Cocoon 2 Advanced Full Body LED Light Therapy Bed",
+    name: "Luma Cocoon Pro Full Body LED Light Therapy Bed with PEMF",
     category: "Light & Photobiomodulation",
     modality: "light",
     subCategory: "Photobiomodulation & Red Light Therapy",
     brand: "LUMA",
     url: "/products/led-therapy-full-body-clam-2-m6l",
-    description: "Moonlight capsule LED light therapy bed (Model MMB): a crescent dome cabin with five wavelengths, up to 26,880 LEDs and wireless IoT control.",
+    description: "Advanced full-body clamshell LED light therapy bed (Model M6N Plus) with 41,600 LEDs at 6,500 W, PEMF, a control tablet and independent wavelength control.",
     tiers: ["Pro", "Signature"],
-    specs: ["Up to 26,880 LEDs", "Up to 4500 W", "Dome Capsule"],
+    specs: ["41,600 LEDs", "6500 W", "PEMF"],
     image: productImage(
       "led-therapy-full-body-clam-2-m6l",
-      "Luma Cocoon 2 Advanced Full Body LED Light Therapy Bed",
+      "Luma Cocoon Pro Full Body LED Light Therapy Bed with PEMF",
     ),
   },
   {
@@ -776,9 +824,9 @@ export const products: Product[] = [
     subCategory: "Photobiomodulation & Red Light Therapy",
     brand: "LUMA",
     url: "/products/led-therapy-full-body-stand-chamber",
-    description: "Walk-in full-body LED light therapy stand chamber",
+    description: "Walk-in full-body LED light therapy chamber (Model M11) with 48,000 LEDs at 6,500 to 7,000 W, five wavelengths and independent wavelength control.",
     tiers: ["Pro", "Signature"],
-    specs: ["Walk-In Chamber", "LED Light Therapy"],
+    specs: ["48,000 LEDs", "6500–7000 W", "Walk-In Chamber"],
     image: productImage(
       "led-therapy-full-body-stand-chamber",
       "Luma Dome Full Body LED Light Therapy Chamber",
@@ -1621,7 +1669,7 @@ export const spotlight: SpotlightItem[] = [
     line: "Full-spectrum infrared warmth for two.",
     benefits: [
       "Full-spectrum and carbon heaters with tourmaline stones.",
-      "Canadian hemlock cabin, 120 × 105 × 190 cm, for two people.",
+      "hemlock cabin, 120 × 105 × 190 cm, for two people.",
       "Oxygen ionizer, Bluetooth sound and 7-colour star lights.",
     ],
     media: {
@@ -1748,15 +1796,15 @@ export const audiences: Audience[] = [
 export const processSection = {
   eyebrow: "How we work",
   title: "From first call to first session.",
-  line: "One partner from consultation through import, installation and service.",
+  line: "One partner from the first conversation to your opening day.",
 };
 
 export const steps: Step[] = [
   { number: "01", title: "Consult", line: "We map your space, clients and goals first." },
-  { number: "02", title: "Curate", line: "A shortlist matched to your use case and budget." },
-  { number: "03", title: "Source & Import", line: "Sourcing, shipping, customs and delivery handled." },
+  { number: "02", title: "Design", line: "A layout and product shortlist matched to your space and budget." },
+  { number: "03", title: "Equip", line: "Your products, a clear quote pack and a delivery plan." },
   { number: "04", title: "Install & Train", line: "On-site installation and hands-on team training." },
-  { number: "05", title: "Service & Support", line: "Scheduled maintenance, spares and one number to call." },
+  { number: "05", title: "Launch", line: "Session menu, opening content and one number to call." },
 ];
 
 /* ------------------------------------------------------------------ */

@@ -30,7 +30,7 @@ export default function CompliancePage() {
       <main>
         <LegalPageLayout
           title="Regulatory Compliance & Safety Guidelines"
-          subtitle="Clear operational standards, international safety certifications, and contraindication protocols governing the deployment of GreenPulse Wellness hardware."
+          subtitle="Clear safety guidance, honest claims and contraindication information for the use of GreenPulse Wellness products."
           effectiveDate="January 1, 2026"
           lastUpdated="March 2026"
           version="2026.1 (Commercial Standard)"
@@ -42,10 +42,10 @@ export default function CompliancePage() {
               1. Regulatory Standing & Wellness Classification
             </h2>
             <p className="text-sm leading-relaxed text-pine/80">
-              <strong>{brand.name}</strong> curates, imports, installs, and services advanced longevity, recovery, and restorative wellness hardware. All systems within our commercial and homecare suites are classified as <strong>General Wellness, Physical Conditioning, and Aesthetic Recovery Products</strong> in accordance with global regulatory parameters (such as the US FDA General Wellness Policy and applicable CDSCO classifications).
+              <strong>{brand.name}</strong> designs, equips and launches recovery and wellness spaces. Our products are presented as <strong>general wellness and physical conditioning products</strong>. The regulatory status of each model is confirmed before it is marketed, and wording on this site does not change what a device legally is.
             </p>
             <p className="text-sm leading-relaxed text-pine/80">
-              Our hardware is designed to promote physiological relaxation, enhance post-exercise recovery, assist muscular restoration, encourage circulation, and support general health. Unless a specific product model is explicitly designated and invoiced as an accredited medical device with local statutory registration for hospital operating theatres, hardware supplied by {brand.name} must be operated within a non-diagnostic wellness context.
+              Our products are built for relaxation and recovery routines. Unless a specific model is expressly designated and invoiced as a registered medical device, products supplied by {brand.name} must be used in a non-diagnostic wellness context.
             </p>
           </section>
 
@@ -57,10 +57,10 @@ export default function CompliancePage() {
                 <span className="font-mono uppercase tracking-wider text-xs">Essential Health Disclaimer</span>
               </div>
               <p className="text-xs sm:text-sm text-pine/85 leading-relaxed">
-                Nothing on this website, in our product catalogs, or in operator manuals should be construed as clinical medical advice. GreenPulse Wellness does not evaluate, diagnose, treat, prevent, or cure any pathology or chronic medical condition.
+                Not a substitute for medical advice. Nothing on this website, in our catalogues or in operator guides is clinical advice, and we cannot advise on medical conditions. Please ask your doctor.
               </p>
               <p className="text-xs sm:text-sm text-pine/85 leading-relaxed">
-                Individuals with pre-existing medical conditions, cardiovascular illness, implanted electronic devices (such as pacemakers), neurological disorders, or pregnant women should seek consultation with a licensed medical practitioner prior to initiating sessions.
+                Individuals with pre-existing medical conditions, cardiovascular illness, implanted electronic devices (such as pacemakers), neurological disorders, or pregnant women should consult a doctor before use. Anyone with a heart condition, who is pregnant or who has any health concern should do the same.
               </p>
             </div>
           </section>
@@ -78,7 +78,7 @@ export default function CompliancePage() {
               {/* mHBOT */}
               <div className="rounded-xl border border-wood/25 bg-canvas p-4 space-y-1.5">
                 <span className="font-mono text-xs uppercase tracking-wider text-pine font-bold">
-                  A. Mild Hyperbaric Oxygen Chambers (mHBOT, 1.3–1.5 ATA)
+                  A. Oxa Chambers (supervised settings only)
                 </span>
                 <p className="text-pine/80">
                   <strong>Absolute Contraindications:</strong> Untreated pneumothorax, severe chronic obstructive pulmonary disease (COPD) with air trapping, and recent middle ear surgery.
@@ -91,7 +91,7 @@ export default function CompliancePage() {
               {/* Photobiomodulation */}
               <div className="rounded-xl border border-wood/25 bg-canvas p-4 space-y-1.5">
                 <span className="font-mono text-xs uppercase tracking-wider text-pine font-bold">
-                  B. Photobiomodulation / Full-Body Red Light Beds
+                  B. Luma Light Devices
                 </span>
                 <p className="text-pine/80">
                   <strong>Contraindications:</strong> Severe photosensitivity, active intake of photosensitizing pharmaceuticals (e.g. isotretinoin, tetracyclines, methotrexate), and active ocular pathologies without certified blackout protective eyewear.
@@ -104,7 +104,7 @@ export default function CompliancePage() {
               {/* Whole Body Cryo & Cold Plunge */}
               <div className="rounded-xl border border-wood/25 bg-canvas p-4 space-y-1.5">
                 <span className="font-mono text-xs uppercase tracking-wider text-pine font-bold">
-                  C. Cryotherapy Cabins & Contrast Cold Plunges
+                  C. Arctic Cold Plunges & Cryo Systems
                 </span>
                 <p className="text-pine/80">
                   <strong>Contraindications:</strong> Uncontrolled arterial hypertension (&gt; 160/100 mmHg), acute myocardial infarction, unstable angina, Raynaud&apos;s phenomenon, cold urticaria, deep vein thrombosis, and symptomatic peripheral arterial disease.
@@ -117,7 +117,7 @@ export default function CompliancePage() {
               {/* Compression */}
               <div className="rounded-xl border border-wood/25 bg-canvas p-4 space-y-1.5">
                 <span className="font-mono text-xs uppercase tracking-wider text-pine font-bold">
-                  D. Pneumatic Compression Recovery Boots
+                  D. PulseWave Compression
                 </span>
                 <p className="text-pine/80">
                   <strong>Contraindications:</strong> Active deep vein thrombosis (DVT), thrombophlebitis, pulmonary embolism history, localized acute skin infections, open dermal wounds, or severe congestive heart failure.
@@ -132,11 +132,11 @@ export default function CompliancePage() {
               3. Commercial Facility Operator SOPs
             </h2>
             <p className="text-sm leading-relaxed text-pine/80">
-              Commercial facilities (wellness centers, luxury hotel spas, athletic training suites, gyms, and clinical clinics) deploying {brand.name} hardware agree to implement the following Standard Operating Procedures:
+              Commercial facilities (wellness centres, hotel spas, gyms, clinics and care settings) deploying {brand.name} hardware agree to implement the following Standard Operating Procedures:
             </p>
             <ul className="list-disc pl-5 space-y-2 text-xs sm:text-sm text-pine/80">
               <li><strong>Guest Health Intake & Waiver:</strong> Every user must complete a health intake questionnaire disclosing relevant medical history and acknowledge an informed consent waiver prior to their first session.</li>
-              <li><strong>Certified Operator Presence:</strong> Equipment must only be operated or supervised by staff who have completed the {brand.name} White-Glove Training & Orientation module.</li>
+              <li><strong>Certified Operator Presence:</strong> Equipment must only be operated or supervised by staff who have completed {brand.name} operator training.</li>
               <li><strong>Emergency Stop Verification:</strong> Physical emergency relief valves (on hyperbaric chambers) and master power kill switches must be physically inspected daily before the first client session.</li>
               <li><strong>Session Log Retention:</strong> Keep records of session durations, pressure levels, and temperatures to ensure adherence to rated duty cycles.</li>
             </ul>
@@ -145,23 +145,23 @@ export default function CompliancePage() {
           {/* Section 5 */}
           <section id="electrical-safety" className="scroll-mt-28 space-y-4">
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-pine">
-              4. Electrical, Pressure & Engineering Standards
+              4. Electrical, Pressure & Site Safety
             </h2>
             <p className="text-sm leading-relaxed text-pine/80">
-              Our hardware is curated from certified manufacturing partners adhering to internationally recognized standards:
+              Each product's spec sheet lists its power, placement and safety requirements. As a baseline for every site:
             </p>
             <div className="grid gap-2.5 sm:grid-cols-2 text-xs sm:text-sm text-pine/80">
               <div className="rounded-lg border border-wood/20 p-3 bg-oat/30">
-                <strong>Electrical Compliance:</strong> CE, RoHS, and IEC 60601-1 / 60335 compliant electronics, dual-pole residual current circuit breakers (RCCB/ELCB).
+                <strong>Electrical Supply:</strong> Install on a correctly rated supply with residual current protection (RCCB/ELCB), as listed on the spec sheet.
               </div>
               <div className="rounded-lg border border-wood/20 p-3 bg-oat/30">
-                <strong>Pressure Vessel Safety:</strong> Hyperbaric chambers feature dual independent mechanical relief valves ensuring chamber pressure cannot exceed rated design limits.
+                <strong>Pressure Equipment:</strong> Oxa chambers are for supervised settings with a trained operator, installed and run in line with local regulations and the safety procedures supplied.
               </div>
               <div className="rounded-lg border border-wood/20 p-3 bg-oat/30">
-                <strong>Non-Toxic Materials:</strong> Medical-grade TPU / aircraft aluminum chambers, zero-VOC Canadian Hemlock/Cedar wood saunas, and skin-friendly silicone air bladders.
+                <strong>Ventilation &amp; Placement:</strong> Allow the clearances, ventilation and drainage listed for each product, and keep ignition sources away from oxygen equipment.
               </div>
               <div className="rounded-lg border border-wood/20 p-3 bg-oat/30">
-                <strong>EMF Suppression:</strong> Ultra-low electromagnetic field (EMF / ELF) shielding on all infrared heating elements and photobiomodulation driver boards.
+                <strong>Eye &amp; Operator Safety:</strong> Light and laser devices need eye protection and a trained operator, as set out in each manual and spec sheet.
               </div>
             </div>
           </section>
@@ -187,10 +187,10 @@ export default function CompliancePage() {
               6. Incident Reporting & Safety Feedback
             </h2>
             <p className="text-sm leading-relaxed text-pine/80">
-              In the unlikely event of an equipment failure that results in a near-miss, physical discomfort, or user safety concern, commercial operators are requested to cease machine operation immediately and submit an Incident Report to our Safety Advisory Board within twenty-four (24) hours:
+              In the unlikely event of an equipment failure that results in a near-miss, physical discomfort, or user safety concern, commercial operators are requested to cease machine operation immediately and send us an incident report within twenty-four (24) hours:
             </p>
             <div className="rounded-xl border border-wood/25 bg-canvas p-5 space-y-2 text-xs sm:text-sm text-pine">
-              <p><strong>Safety & Regulatory Desk:</strong> {brand.name} Safety & Quality Assurance</p>
+              <p><strong>Safety & Regulatory Desk:</strong> {brand.name} Safety Desk</p>
               <p><strong>Emergency Incident Email:</strong> <a href={`mailto:${contact.email}`} className="font-semibold underline">{contact.email}</a></p>
               <p><strong>Direct Helpline:</strong> <a href={`tel:${contact.phoneRaw}`} className="font-semibold">{contact.phone}</a></p>
             </div>

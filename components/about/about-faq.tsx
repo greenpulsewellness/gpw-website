@@ -24,13 +24,13 @@ export function AboutFaq() {
           className="text-center mb-12 sm:mb-16"
         >
           <span className="label-mono text-white font-semibold tracking-wider">
-            Commercial Procurement
+            Common Questions
           </span>
           <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
             Frequently Asked Questions
           </h2>
           <p className="mt-3 text-sm sm:text-base text-neutral-400 font-light max-w-xl mx-auto">
-            Essential answers on lead times, Indian customs, warranty protocols, and turnkey installation support.
+            Straight answers on how we work, what to prepare and how we handle safety.
           </p>
         </motion.div>
 

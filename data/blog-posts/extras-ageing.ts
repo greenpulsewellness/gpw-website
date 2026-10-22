@@ -32,7 +32,7 @@ export const AGEING_EXTRAS: BlogExtras = {
         heading: "Involving staff, residents and families",
         content: [
           `The best lounges are built with the people who use them. Talk to residents about what they enjoy, involve nursing and activity teams early and keep families informed. A short information sheet and a consent process for each device build trust.`,
-          `Think about training, record-keeping and how you will handle residents who feel unwell. Our ${L("importing", "guide to installation and after-sales support")} describes what to ask suppliers, and the ${L("hotel", "hospitality guide")} offers ideas from the way hotels welcome guests.`,
+          `Think about training, record-keeping and how you will handle residents who feel unwell. Our ${L("buying", "guide to installation and after-sales support")} describes what to ask suppliers, and the ${L("hotel", "hospitality guide")} offers ideas from the way hotels welcome guests.`,
           `If you are building a wider programme, the ${SOLUTION("agewell", "AgeWell solution")} and ${COMBOS("combos")} offer starting points.`,
         ],
       },
@@ -72,7 +72,7 @@ export const AGEING_EXTRAS: BlogExtras = {
         id: "cost-and-support",
         heading: "Maintenance, batteries and support",
         content: [
-          `A wheelchair is something people rely on every day, so plan for upkeep. Ask about battery life and replacement, tyres, controllers and spare parts, and who services the chair locally. If you are buying for an organisation, see ${L("importing", "our guide to warranty and after-sales support")}.`,
+          `A wheelchair is something people rely on every day, so plan for upkeep. Ask about battery life and replacement, tyres, controllers and spare parts, and who services the chair locally. If you are buying for an organisation, see ${L("buying", "our guide to warranty and after-sales support")}.`,
           `Think beyond the chair. Where will it be stored and charged? How will the user get to the places they enjoy? A comfortable lounge or garden is a great destination, which is why we cover it in ${L("senior", "wellness lounges for senior living")}. For hotels and venues, the ${L("hotel", "hotel suite guide")} touches on accessibility.`,
           `Explore the ${CATALOGUE("mobility range")} or ask our team about the ${SOLUTION("agewell", "AgeWell solution")}.`,
         ],

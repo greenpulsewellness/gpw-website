@@ -2,7 +2,7 @@ import type { ProductDetail, ProductProtocol } from "./products-data";
 
 /**
  * Detail pages for the Luma line (full-body light beds/stands, panels, lamps, masks and Luma Beam devices).
- * Source: Merican red-light brochure (LT-*) and "LED SMALL ITEMS hot-sale products" catalog (LS-*).
+ * Product detail data.
  * Wellness wording only: no treatment claims, no pricing.
  */
 
@@ -35,7 +35,7 @@ const panelProtocol = (duration: string) =>
       { step: "Session", instruction: "Run the selected mode for the programmed time." },
       { step: "Finish", instruction: "Switch off and wipe the surface clean." },
     ],
-    ["Clean, dry skin, free of products.", "Follow the manufacturer's safety and eye-protection instructions."],
+    ["Clean, dry skin, free of products.", "Follow the supplied safety and eye-protection instructions."],
   );
 
 const SPACES = [
@@ -44,257 +44,226 @@ const SPACES = [
   { type: "Private Residences", description: "A home option for a personal wellness routine." },
 ];
 
+type FullBodyInput = {
+  id: string;
+  name: string;
+  model: string;
+  subtitle: string;
+  tagline: string;
+  overview: string[];
+  points: string[];
+  features: ProductDetail["features"];
+  benefits: ProductDetail["benefits"];
+  light: [string, string][];
+  build: [string, string][];
+  included: string[];
+  faqs: ProductDetail["faqs"];
+  related: string[];
+};
+
+/** Full-body Luma line (LT-01 to LT-05), built from the master product sheet. */
+const fullBody = (d: FullBodyInput): ProductDetail => ({
+  id: d.id,
+  subtitle: d.subtitle,
+  tagline: d.tagline,
+  overview: d.overview,
+  mechanismOfAction: {
+    heading: "Multi-Wavelength LED Exposure",
+    description: `The ${d.name} delivers red and near-infrared light over the body from a measured distance, controlled by the system and a safety timer.`,
+    points: d.points,
+  },
+  features: d.features,
+  benefits: d.benefits,
+  specGroups: [
+    { category: "Light & Power", items: d.light.map(([label, value]) => ({ label, value })) },
+    { category: "Build & Control", items: d.build.map(([label, value]) => ({ label, value })) },
+  ],
+  whatsIncluded: d.included,
+  protocol: bedProtocol,
+  suitableEnvironments: SPACES,
+  faqs: d.faqs,
+  relatedProductIds: d.related,
+});
+
 export const lumaDetails: Record<string, ProductDetail> = {
-  /* ---------------- Full-body (Merican) ---------------- */
+  /* ---------------- Full-body ---------------- */
 
-  "led-therapy-full-stand": {
+  "led-therapy-full-stand": fullBody({
     id: "led-therapy-full-stand",
-    subtitle: "Mobile Full-Body LED Light Therapy Stand (Catalog Model: M1)",
-    tagline: "Space-saving footprint, fully adjustable as desired: a 12,312-LED vertical stand on caster wheels with touch control.",
+    name: "Luma Stand",
+    model: "M1 Plus",
+    subtitle: "Full-Body LED Light Therapy Stand",
+    tagline: "A compact 12,312-LED vertical stand with four wavelengths and simple button control.",
     overview: [
-      "The Luma Stand 1 (Catalog Model M1) is a mobile vertical light panel for full-body sessions in commercial or household spaces. Its space-saving footprint and caster wheels make it easy to store and move.",
-      "It uses 12,312 Taiwan Epistar LEDs at 1500 W, delivering 295 W/m² across five wavelengths (633, 660, 810, 850 and 940 nm; customisable). Angles adjust for multi-position use, and a self-locking stability system keeps the stand steady.",
-      "An LCD touch interface and smart safety timer keep operation simple.",
+      "The Luma Stand is a vertical full-body light stand for studios, clinics and homes. It carries 12,312 LEDs at 1,500 W and delivers 29.5 mW/cm² across four wavelengths (633, 660, 850 and 940 nm).",
+      "Three acrylic control buttons keep operation simple. Wavelengths are not controlled independently, and the unit has no control tablet or Bluetooth audio. Built-in cooling keeps it comfortable to run.",
     ],
-    mechanismOfAction: {
-      heading: "Multi-Wavelength LED Panel Exposure",
-      description: "A large vertical LED array delivers red and near-infrared wavelengths over the body from a measured distance, controlled by touch and a safety timer.",
-      points: [
-        "Five wavelengths: 633, 660, 810, 850 and 940 nm (customisable).",
-        "12,312 Taiwan Epistar LEDs at 295 W/m² irradiance.",
-        "Adjustable angles allow multi-position sessions.",
-        "Smart safety timer ends the session automatically.",
-      ],
-    },
+    points: ["Four wavelengths: 633, 660, 850 and 940 nm.", "12,312 LEDs at 29.5 mW/cm².", "Three acrylic control buttons.", "Built-in cooling."],
     features: [
-      { title: "LCD Touch Control", description: "Digital touch interface for simple operation.", iconName: "Monitor" },
-      { title: "Adjustable Angles", description: "Position the panel for multi-position treatment.", iconName: "Move" },
-      { title: "Self-Locking Stability", description: "Stability system holds the stand in place.", iconName: "ShieldCheck" },
-      { title: "Smart Safety Timer", description: "Timed sessions end automatically.", iconName: "Sliders" },
-      { title: "Compact & Mobile", description: "Caster wheels and a small footprint for easy storage.", iconName: "Maximize" },
+      { title: "Simple Button Control", description: "Three acrylic control buttons.", iconName: "Sliders" },
+      { title: "Four Wavelengths", description: "633, 660, 850 and 940 nm.", iconName: "Zap" },
+      { title: "Cooling", description: "Built-in cooling for comfortable running.", iconName: "Wind" },
+      { title: "Compact Stand", description: "1850 × 860 × 860 mm and 38 kg.", iconName: "Maximize" },
     ],
     benefits: [
-      { title: "Full-Panel Coverage", description: "12,312 LEDs across a 1950 mm tall panel.", metric: "12,312 LEDs" },
-      { title: "Easy to Move", description: "Caster wheels and 38 kg weight make repositioning simple.", metric: "38 kg" },
+      { title: "Full-Panel Coverage", description: "12,312 LEDs on a tall vertical panel.", metric: "12,312 LEDs" },
+      { title: "Light to Move", description: "38 kg overall weight.", metric: "38 kg" },
     ],
-    specGroups: [
-      {
-        category: "Light & Power",
-        items: [
-          { label: "Light Source", value: "Taiwan Epistar LED" },
-          { label: "LED Count", value: "12,312 pcs" },
-          { label: "Power", value: "1500 W" },
-          { label: "Irradiance", value: "295 W/m²" },
-          { label: "Wavelengths", value: "633 + 660 + 810 + 850 + 940 nm (customisable)" },
-          { label: "Input Voltage", value: "110 V / 220 V" },
-        ],
-      },
-      {
-        category: "Build & Control",
-        items: [
-          { label: "Control System", value: "Digital touch system (LCD)" },
-          { label: "Dimensions", value: "1950 × 860 × 860 mm" },
-          { label: "Weight", value: "38 kg" },
-          { label: "Use", value: "Commercial and household" },
-        ],
-      },
+    light: [
+      ["LED Count", "12,312 pcs"], ["Power", "1,500 W"], ["Irradiance", "29.5 mW/cm²"],
+      ["Wavelengths", "633 + 660 + 850 + 940 nm"], ["Input Voltage", "110 V / 220 V (EU / US / UK / AU plug)"],
     ],
-    whatsIncluded: ["Luma Stand 1 (M1) with caster wheels", "LCD touch control", "Power cable"],
-    protocol: bedProtocol,
-    suitableEnvironments: SPACES,
+    build: [
+      ["Control", "3 acrylic control buttons (no independent wavelength control)"], ["Cooling", "Yes; no tablet or Bluetooth"],
+      ["Dimensions", "1850 × 860 × 860 mm"], ["Weight", "38 kg"], ["Colours", "White, Black"],           ],
+    included: ["Luma Stand (M1 Plus)", "Power cable"],
     faqs: [
-      { question: "Can I customise the wavelengths?", answer: "Yes. The standard set is 633, 660, 810, 850 and 940 nm, and the wavelengths can be customised." },
-      { question: "Is it suitable for home use?", answer: "Yes. It is listed for both commercial and household use." },
+      { question: "Can I control wavelengths separately?", answer: "No. The M1 Plus runs its wavelengths together. For independent control, see the Luma Stand Pro." },
     ],
-    relatedProductIds: ["led-therapy-full-stand-2", "led-therapy-full-body-clam-1-m6", "led-therapy-full-body-clam-2-m6l"],
-  },
+    related: ["led-therapy-full-stand-2", "led-therapy-full-body-clam-1-m6", "led-therapy-full-body-clam-2-m6l"],
+  }),
 
-  "led-therapy-full-stand-2": {
+  "led-therapy-full-stand-2": fullBody({
     id: "led-therapy-full-stand-2",
-    subtitle: "Motorized Full-Body LED Light Therapy Stand (Catalog Model: M2)",
-    tagline: "Lightweight and agile 360° private light-therapy wellness, with an automatic lift for precise height adjustment.",
+    name: "Luma Stand Pro",
+    model: "M2 Plus",
+    subtitle: "Full-Body LED Light Therapy Stand with Independent Wavelength Control",
+    tagline: "A 9,600-LED stand with five wavelengths, independent wavelength control and preset protocols.",
     overview: [
-      "The Luma Stand 2 (Catalog Model M2) is a motorized vertical stand with automatic lifting so the panel height can be set precisely. Caster wheels and flexible angle adjustment make it easy to position.",
-      "Fresh air circulation and high-efficiency cooling keep the unit comfortable to run. It is controlled with a digital touch system or an IoT management system with pulse frequency modulation, and can also be driven by wireless remote.",
-      "It is offered in two configurations (4,800 or 9,600 LEDs; 1000 W or 1500 W) across five wavelengths.",
+      "The Luma Stand Pro is a vertical full-body stand with 9,600 LEDs at 1,500 W, delivering 38.9 mW/cm² across five wavelengths (633, 660, 810, 850 and 940 nm).",
+      "Each wavelength can be controlled independently, with 6+1 preset programmes, pulse frequency from 1 to 10,000 Hz and duty cycle from 1 to 100%. Built-in cooling keeps it comfortable to run; it has no control tablet or Bluetooth audio.",
     ],
-    mechanismOfAction: {
-      heading: "Height-Adjustable Multi-Wavelength LED Panel",
-      description: "A motorized stand moves the LED panel to the desired height, while IoT control sets pulse frequency and programmes.",
-      points: [
-        "Five wavelengths: 633, 660, 810, 850 and 940 nm (customisable).",
-        "Two configurations: 4,800 or 9,600 Taiwan Epistar LEDs.",
-        "Automatic motorized lift for precise height.",
-        "Pulse frequency modulation through the IoT management system.",
-      ],
-    },
+    points: ["Five wavelengths: 633, 660, 810, 850 and 940 nm.", "Independent wavelength control.", "6+1 presets, 1–10,000 Hz, duty 1–100%.", "9,600 LEDs at 38.9 mW/cm²."],
     features: [
-      { title: "Automatic Lifting", description: "Motorized height adjustment for precise positioning.", iconName: "Move" },
-      { title: "Cooling & Fresh Air", description: "Air circulation and integrated high-efficiency cooling.", iconName: "Wind" },
-      { title: "Dual Control", description: "Digital touch system plus IoT management with pulse frequency modulation.", iconName: "Smartphone" },
-      { title: "Wireless Remote", description: "Wireless remote control capability.", iconName: "Sliders" },
-      { title: "Flexible Angles", description: "Adjustable angles and caster wheels for easy positioning.", iconName: "Maximize" },
+      { title: "Independent Wavelength Control", description: "Set each wavelength separately.", iconName: "Sliders" },
+      { title: "Preset Programmes", description: "6+1 presets with adjustable pulse frequency and duty cycle.", iconName: "Zap" },
+      { title: "Cooling", description: "Built-in cooling for comfortable running.", iconName: "Wind" },
+      { title: "Sturdy Stand", description: "1845 × 880 × 1045 mm and 75 kg.", iconName: "ShieldCheck" },
     ],
     benefits: [
-      { title: "Precise Height", description: "Motorized lift sets the panel exactly where needed.", metric: "Auto Lift" },
-      { title: "Two Power Options", description: "Choose 1000 W or 1500 W.", metric: "1000 / 1500 W" },
+      { title: "Flexible Protocols", description: "Pulse 1–10,000 Hz, duty 1–100%.", metric: "6+1 Presets" },
+      { title: "Higher Output", description: "38.9 mW/cm² across five wavelengths.", metric: "38.9 mW/cm²" },
     ],
-    specGroups: [
-      {
-        category: "Light & Power (two configurations)",
-        items: [
-          { label: "Light Source", value: "Taiwan Epistar LED" },
-          { label: "LED Count", value: "4,800 / 9,600 pcs" },
-          { label: "Power", value: "1000 W / 1500 W" },
-          { label: "Irradiance", value: "288 / 389 W/m²" },
-          { label: "Wavelengths", value: "633 + 660 + 810 + 850 + 940 nm (customisable)" },
-          { label: "Input Voltage", value: "110 V / 220 V" },
-        ],
-      },
-      {
-        category: "Build & Control",
-        items: [
-          { label: "Control", value: "Digital touch system and IoT management system (pulse frequency modulation); wireless remote" },
-          { label: "Dimensions", value: "1845 × 880 × 1045 mm" },
-          { label: "Weight", value: "75 kg" },
-          { label: "Use", value: "Commercial and household" },
-        ],
-      },
+    light: [
+      ["LED Count", "9,600 pcs"], ["Power", "1,500 W"], ["Irradiance", "38.9 mW/cm²"],
+      ["Wavelengths", "633 + 660 + 810 + 850 + 940 nm"], ["Input Voltage", "110 V / 220 V (EU / US / UK / AU plug)"],
     ],
-    whatsIncluded: ["Luma Stand 2 (M2) with motorized lift and caster wheels", "Wireless remote", "Power cable"],
-    protocol: bedProtocol,
-    suitableEnvironments: SPACES,
+    build: [
+      ["Control", "Independent wavelength control; 6+1 presets; 1–10,000 Hz; duty 1–100%"], ["Cooling", "Yes; no tablet or Bluetooth"],
+      ["Dimensions", "1845 × 880 × 1045 mm"], ["Weight", "75 kg"], ["Colours", "White, Black"],           ],
+    included: ["Luma Stand Pro (M2 Plus)", "Power cable"],
     faqs: [
-      { question: "What is the difference between the two configurations?", answer: "One uses 4,800 LEDs at 1000 W (288 W/m²) and the other 9,600 LEDs at 1500 W (389 W/m²)." },
-      { question: "Can it be controlled remotely?", answer: "Yes, by wireless remote and through the IoT management system." },
+      { question: "What is different from the Luma Stand?", answer: "The Stand Pro adds the 810 nm band, independent wavelength control and preset programmes with adjustable pulse and duty cycle." },
     ],
-    relatedProductIds: ["led-therapy-full-stand", "led-therapy-full-body-clam-1-m6", "led-therapy-full-body-clam-2-m6l"],
-  },
+    related: ["led-therapy-full-stand", "led-therapy-full-body-clam-1-m6", "led-therapy-full-body-clam-2-m6l"],
+  }),
 
-  "led-therapy-full-body-clam-1-m6": {
+  "led-therapy-full-body-clam-1-m6": fullBody({
     id: "led-therapy-full-body-clam-1-m6",
-    subtitle: "Full-Body Clamshell LED Light Therapy Bed (Catalog Model: M4)",
-    tagline: "Timeless fashion, revitalized renewal: a classic two-piece clamshell bed with surround sound and IoT pulse control.",
+    name: "Luma Cocoon",
+    model: "M4N Plus",
+    subtitle: "Full-Body Clamshell LED Light Therapy Bed",
+    tagline: "A 21,600-LED clamshell bed with a control tablet, Bluetooth music and independent wavelength control.",
     overview: [
-      "The Luma Cocoon 1 (Catalog Model M4) is a classic two-piece horizontal clamshell bed that surrounds the whole body while lying down. European-style structural stability supports a premium, quiet experience.",
-      "A fresh air circulation system with silent thermal dissipation and intelligent temperature sensing keep the cabin comfortable. A Bluetooth surround-sound system and IoT wireless management system with pulse modulation complete the experience.",
-      "It is offered in two configurations: 11,616 LEDs at 1500 W or 28,512 LEDs at 3000 W.",
+      "The Luma Cocoon is a horizontal clamshell bed that surrounds the whole body while lying down. It carries 21,600 LEDs at 3,000 W, delivering 61.3 mW/cm² across five wavelengths (633, 660, 810, 850 and 940 nm).",
+      "A control tablet sets each wavelength independently, with 6+1 presets, pulse frequency from 1 to 10,000 Hz and duty cycle from 1 to 100%. Bluetooth music and built-in cooling complete the experience.",
     ],
-    mechanismOfAction: {
-      heading: "Enclosed Full-Body LED Exposure",
-      description: "Top and bottom LED shells deliver multi-wavelength light around the whole body, with cabin temperature sensed and managed automatically.",
-      points: [
-        "Four wavelengths: 633, 660, 850 and 940 nm (customisable).",
-        "11,616 or 28,512 Taiwan Epistar LEDs depending on configuration.",
-        "Intelligent temperature sensing and control.",
-        "IoT management with pulse modulation.",
-      ],
-    },
+    points: ["Five wavelengths: 633, 660, 810, 850 and 940 nm.", "21,600 LEDs at 61.3 mW/cm².", "Independent wavelength control with 6+1 presets.", "Control tablet and Bluetooth music."],
     features: [
       { title: "Full-Body Clamshell", description: "Lying-down canopy covers the whole body.", iconName: "Layers" },
-      { title: "Silent Cooling", description: "Fresh air circulation with silent thermal dissipation.", iconName: "Wind" },
-      { title: "Surround Sound", description: "Bluetooth surround-sound system.", iconName: "Speaker" },
-      { title: "Smart Temperature Control", description: "Intelligent temperature sensing and control.", iconName: "ThermometerSnowflake" },
-      { title: "IoT Management", description: "Wireless IoT system with pulse modulation.", iconName: "Smartphone" },
-      { title: "Stable Build", description: "European-style structural stability.", iconName: "ShieldCheck" },
+      { title: "Control Tablet", description: "Independent wavelength control, 6+1 presets, 1–10,000 Hz, duty 1–100%.", iconName: "Smartphone" },
+      { title: "Bluetooth Music", description: "Play your own music during a session.", iconName: "Speaker" },
+      { title: "Cooling", description: "Built-in cooling for a comfortable cabin.", iconName: "Wind" },
+      { title: "Colour Options", description: "White, Black, Pink or Red; custom logo in about 7 days.", iconName: "Sparkles" },
     ],
     benefits: [
-      { title: "Two Power Levels", description: "1500 W or 3000 W configurations.", metric: "1500 / 3000 W" },
-      { title: "High LED Count", description: "Up to 28,512 LEDs for full coverage.", metric: "Up to 28,512" },
+      { title: "High Output", description: "3,000 W and 61.3 mW/cm² for full coverage.", metric: "21,600 LEDs" },
     ],
-    specGroups: [
-      {
-        category: "Light & Power (two configurations)",
-        items: [
-          { label: "Light Source", value: "Taiwan Epistar LED" },
-          { label: "LED Count", value: "11,616 / 28,512 pcs" },
-          { label: "Power", value: "1500 W / 3000 W" },
-          { label: "Irradiance", value: "220 / 529 W/m²" },
-          { label: "Wavelengths", value: "633 + 660 + 850 + 940 nm (customisable)" },
-          { label: "Input Voltage", value: "110 V / 220 V" },
-        ],
-      },
-      {
-        category: "Build",
-        items: [
-          { label: "Dimensions", value: "1935 × 855 × 990 mm" },
-          { label: "Weight", value: "110 kg" },
-          { label: "Use", value: "Commercial and household" },
-        ],
-      },
+    light: [
+      ["LED Count", "21,600 pcs"], ["Power", "3,000 W"], ["Irradiance", "61.3 mW/cm²"],
+      ["Wavelengths", "633 + 660 + 810 + 850 + 940 nm"], ["Input Voltage", "110 V / 220 V, 20 A dedicated breaker"],
     ],
-    whatsIncluded: ["Luma Cocoon 1 (M4) two-piece clamshell bed", "Bluetooth surround-sound system", "IoT wireless management system", "Power cable"],
-    protocol: bedProtocol,
-    suitableEnvironments: SPACES,
+    build: [
+      ["Control", "Control tablet; independent wavelength control; 6+1 presets; 1–10,000 Hz; duty 1–100%"], ["Audio & Cooling", "Bluetooth music; cooling"],
+      ["Dimensions", "1940 × 860 × 820 mm"], ["Weight", "140 kg (max user 150 kg)"], ["Colours", "White, Black, Pink, Red"],           ],
+    included: ["Luma Cocoon (M4N Plus) clamshell bed", "Control tablet", "Bluetooth music system", "Power cable"],
     faqs: [
-      { question: "What configurations are available?", answer: "11,616 LEDs at 1500 W (220 W/m²) or 28,512 LEDs at 3000 W (529 W/m²)." },
-      { question: "Does it have audio?", answer: "Yes, a Bluetooth surround-sound system." },
+      { question: "What power does it need?", answer: "110 V or 220 V with a 20 A dedicated breaker." },
+      { question: "Can the logo be customised?", answer: "Yes, custom logos take about 7 days." },
     ],
-    relatedProductIds: ["led-therapy-full-body-clam-2-m6l", "led-therapy-full-stand", "led-therapy-full-stand-2"],
-  },
+    related: ["led-therapy-full-body-clam-2-m6l", "led-therapy-full-stand", "led-therapy-full-body-stand-chamber"],
+  }),
 
-  "led-therapy-full-body-clam-2-m6l": {
+  "led-therapy-full-body-clam-2-m6l": fullBody({
     id: "led-therapy-full-body-clam-2-m6l",
-    subtitle: "Moonlight Capsule Full-Body LED Light Therapy Bed (Catalog Model: MMB)",
-    tagline: "A moonlight therapy capsule, born under gentle light: a crescent dome cabin with five-wavelength coverage.",
+    name: "Luma Cocoon Pro",
+    model: "M6N Plus",
+    subtitle: "Full-Body LED Light Therapy Bed with PEMF",
+    tagline: "A 41,600-LED clamshell bed with PEMF, a control tablet and five-wavelength independent control.",
     overview: [
-      "The Luma Cocoon 2 Advanced (Catalog Model MMB, Moonlight Capsule) is a curved dome capsule bed in a high-end crescent cabin design with dynamic ambient glow.",
-      "It covers five wavelengths (633, 660, 810, 850 and 940 nm), including the 810 nm band, with high-efficiency thermal dissipation and intelligent cabin temperature control. Environmental surround sound with Bluetooth and a wireless IoT smart control system with pulse frequency modulation round out the experience.",
-      "The spacious interior has skin-friendly contact surfaces. Two configurations are offered: 13,440 LEDs at 2500 W or 26,880 LEDs at 4500 W.",
+      "The Luma Cocoon Pro is an advanced full-body clamshell bed with 41,600 LEDs at 6,500 W, delivering 104.4 mW/cm² across five wavelengths (633, 660, 810, 850 and 940 nm).",
+      "It adds PEMF (1 to 50 Hz, duty 1 to 50%) alongside independent wavelength control, 6+1 presets and pulse frequency from 1 to 10,000 Hz. A control tablet, Bluetooth music and cooling are included.",
     ],
-    mechanismOfAction: {
-      heading: "Dome Capsule Full-Spectrum LED Exposure",
-      description: "A curved capsule surrounds the body with five-wavelength LED light, while the system manages cabin temperature and pulse settings.",
-      points: [
-        "Five wavelengths: 633, 660, 810, 850 and 940 nm.",
-        "13,440 or 26,880 Taiwan Epistar LEDs depending on configuration.",
-        "Intelligent cabin temperature control with high-efficiency cooling.",
-        "IoT management with pulse frequency modulation.",
-      ],
-    },
+    points: ["Five wavelengths: 633, 660, 810, 850 and 940 nm.", "41,600 LEDs at 104.4 mW/cm².", "PEMF 1–50 Hz, duty 1–50%.", "Independent wavelength control with 6+1 presets."],
     features: [
-      { title: "Crescent Dome Cabin", description: "High-end design with dynamic ambient glow.", iconName: "Sun" },
-      { title: "Five-Wavelength Coverage", description: "Full spectrum including the 810 nm band.", iconName: "Zap" },
-      { title: "Thermal Management", description: "Efficient heat dissipation and intelligent temperature control.", iconName: "ThermometerSnowflake" },
-      { title: "Surround Sound", description: "Environmental audio with Bluetooth connectivity.", iconName: "Speaker" },
-      { title: "Wireless IoT Control", description: "Smart control with pulse frequency modulation.", iconName: "Smartphone" },
-      { title: "Skin-Friendly Interior", description: "Spacious cabin with skin-friendly contact surfaces.", iconName: "Sparkles" },
+      { title: "PEMF", description: "Pulsed electromagnetic field, 1–50 Hz with duty 1–50%.", iconName: "Zap" },
+      { title: "Control Tablet", description: "Independent wavelength control, 6+1 presets, 1–10,000 Hz, duty 1–100%.", iconName: "Smartphone" },
+      { title: "Bluetooth Music", description: "Play your own music during a session.", iconName: "Speaker" },
+      { title: "Cooling", description: "Built-in cooling for a comfortable cabin.", iconName: "Wind" },
+      { title: "Full-Body Clamshell", description: "Lying-down canopy covers the whole body.", iconName: "Layers" },
     ],
     benefits: [
-      { title: "Premium Format", description: "Designed for luxury spas, clinics and wellness centres.", metric: "Capsule" },
-      { title: "Two Power Levels", description: "2500 W or 4500 W configurations.", metric: "2500 / 4500 W" },
+      { title: "Top Output", description: "6,500 W and 104.4 mW/cm².", metric: "41,600 LEDs" },
     ],
-    specGroups: [
-      {
-        category: "Light & Power (two configurations)",
-        items: [
-          { label: "Light Source", value: "Taiwan Epistar LED" },
-          { label: "LED Count", value: "13,440 / 26,880 pcs" },
-          { label: "Power", value: "2500 W / 4500 W" },
-          { label: "Irradiance", value: "411 / 800 W/m²" },
-          { label: "Wavelengths", value: "633 + 660 + 810 + 850 + 940 nm" },
-          { label: "Input Voltage", value: "220 V" },
-        ],
-      },
-      {
-        category: "Build & Control",
-        items: [
-          { label: "Control System", value: "IoT management system (pulse frequency modulation)" },
-          { label: "Dimensions", value: "2145 × 1060 × 910 mm" },
-          { label: "Weight", value: "200 kg" },
-          { label: "Use", value: "Commercial wellness centres, luxury spas, clinics" },
-        ],
-      },
+    light: [
+      ["LED Count", "41,600 pcs"], ["Power", "6,500 W"], ["Irradiance", "104.4 mW/cm²"],
+      ["Wavelengths", "633 + 660 + 810 + 850 + 940 nm"], ["PEMF", "1–50 Hz, duty 1–50%"], ["Input Voltage", "220 V / 380 V, 40 A dedicated breaker"],
     ],
-    whatsIncluded: ["Luma Cocoon 2 (MMB) capsule bed", "Bluetooth surround-sound system", "IoT smart control system", "Power cable"],
-    protocol: bedProtocol,
-    suitableEnvironments: SPACES.slice(0, 2),
+    build: [
+      ["Control", "Control tablet; independent wavelength control; 6+1 presets; 1–10,000 Hz; duty 1–100%"], ["Audio & Cooling", "Bluetooth music; cooling"],
+      ["Dimensions", "2275 × 1235 × 1125 mm"], ["Weight", "380 kg (max user 350 kg)"], ["Colours", "White, Black"],           ],
+    included: ["Luma Cocoon Pro (M6N Plus) bed", "Control tablet", "Bluetooth music system", "Power cable"],
     faqs: [
-      { question: "What power does it need?", answer: "220 V input; 2500 W or 4500 W depending on configuration." },
-      { question: "How is it controlled?", answer: "Through a wireless IoT management system with pulse frequency modulation." },
+      { question: "What power does it need?", answer: "220 V or 380 V with a 40 A dedicated breaker." },
+      { question: "What is different from the Luma Cocoon?", answer: "The Cocoon Pro adds PEMF and more than double the LEDs and power (41,600 LEDs at 6,500 W)." },
     ],
-    relatedProductIds: ["led-therapy-full-body-clam-1-m6", "led-therapy-full-stand", "led-therapy-full-stand-2"],
-  },
+    related: ["led-therapy-full-body-clam-1-m6", "led-therapy-full-body-stand-chamber", "led-therapy-full-stand-2"],
+  }),
+
+  "led-therapy-full-body-stand-chamber": fullBody({
+    id: "led-therapy-full-body-stand-chamber",
+    name: "Luma Dome",
+    model: "M11",
+    subtitle: "Walk-In Full-Body LED Light Therapy Chamber",
+    tagline: "A vertical walk-in chamber with 48,000 LEDs and five-wavelength independent control.",
+    overview: [
+      "The Luma Dome is a walk-in vertical chamber with 48,000 LEDs at 6,500 to 7,000 W, delivering 80 mW/cm² across five wavelengths (633, 660, 810, 850 and 940 nm).",
+      "Independent wavelength control, 6+1 presets, pulse frequency from 1 to 10,000 Hz and duty cycle from 1 to 100% are set from the control tablet. Bluetooth music and cooling are included.",
+    ],
+    points: ["Five wavelengths: 633, 660, 810, 850 and 940 nm.", "48,000 LEDs at 80 mW/cm².", "Independent wavelength control with 6+1 presets.", "Control tablet and Bluetooth music."],
+    features: [
+      { title: "Walk-In Chamber", description: "Stand inside a vertical chamber of light.", iconName: "Maximize" },
+      { title: "Control Tablet", description: "Independent wavelength control, 6+1 presets, 1–10,000 Hz, duty 1–100%.", iconName: "Smartphone" },
+      { title: "Bluetooth Music", description: "Play your own music during a session.", iconName: "Speaker" },
+      { title: "Cooling", description: "Built-in cooling for a comfortable cabin.", iconName: "Wind" },
+    ],
+    benefits: [
+      { title: "Highest LED Count", description: "48,000 LEDs for 360° coverage.", metric: "48,000 LEDs" },
+      { title: "Compact Shipping", description: "5 units per 20 ft, 11 per 40 ft container.", metric: "5 / 20 ft" },
+    ],
+    light: [
+      ["LED Count", "48,000 pcs"], ["Power", "6,500–7,000 W"], ["Irradiance", "80 mW/cm²"],
+      ["Wavelengths", "633 + 660 + 810 + 850 + 940 nm"], ["Input Voltage", "220 V / 380 V, 60 A dedicated breaker"],
+    ],
+    build: [
+      ["Control", "Control tablet; independent wavelength control; 6+1 presets; 1–10,000 Hz; duty 1–100%"], ["Audio & Cooling", "Bluetooth music; cooling"],
+      ["Dimensions (vertical)", "1400 × 1350 × 2330 mm"], ["Weight", "300 kg"], ["Colours", "White, Black"],           ],
+    included: ["Luma Dome (M11) chamber", "Control tablet", "Bluetooth music system", "Power cable"],
+    faqs: [
+      { question: "What power does it need?", answer: "220 V or 380 V with a 60 A dedicated breaker." },
+    ],
+    related: ["led-therapy-full-body-clam-2-m6l", "led-therapy-full-body-clam-1-m6", "led-therapy-full-stand-2"],
+  }),
 
   /* ---------------- Luma Go portable stands ---------------- */
 
@@ -330,10 +299,10 @@ export const lumaDetails: Record<string, ProductDetail> = {
 
   "led-stand-gy-t320": {
     id: "led-stand-gy-t320",
-    subtitle: "Tall Mobile Red Light Therapy Stand (Catalog Model: GY-T320)",
+    subtitle: "Tall Mobile Red Light Therapy Stand",
     tagline: "A tall vertical tower on rolling wheels with 320 LEDs at 660 nm + 850 nm and preset programmes.",
     overview: [
-      "The Luma Tower (Catalog Model GY-T320) is a tall vertical stand with a base and rolling wheels for easy movement between rooms. It carries 320 LEDs in a dual 660 nm red and 850 nm near-infrared combination.",
+      "The Luma Tower is a tall vertical stand with a base and rolling wheels for easy movement between rooms. It carries 320 LEDs in a dual 660 nm red and 850 nm near-infrared combination.",
       "Sessions are adjustable from 1 to 60 minutes, with frequency adjustment, multiple modes, a timer and preset programmes. High optical output of 300 mW/cm² suits half-body and full-body sessions.",
     ],
     mechanismOfAction: {
@@ -480,12 +449,12 @@ export const lumaDetails: Record<string, ProductDetail> = {
 
   "led-handheld-gy-eust01": {
     id: "led-handheld-gy-eust01",
-    subtitle: "Handheld 4-in-1 Laser, TENS & Ultrasound Device (Catalog Model: GY-EUST-001)",
+    subtitle: "Handheld 4-in-1 Laser, TENS & Ultrasound Device",
     tagline: "A rechargeable handheld that combines TENS, a 650 nm red laser, an 808 nm infrared laser and 1 MHz ultrasound.",
     overview: [
-      "The Luma Beam Quad (Catalog Model GY-EUST-001) is an ergonomic handheld device that brings four modalities into one unit: TENS, a 650 nm red laser, an 808 nm infrared laser and 1 MHz ultrasound.",
+      "The Luma Beam Quad is an ergonomic handheld device that brings four modalities into one unit: TENS, a 650 nm red laser, an 808 nm infrared laser and 1 MHz ultrasound.",
       "It is powered by 100–240 V AC (DC 5 V/3 A) charging and a built-in 1,850 mAh rechargeable battery, with a 5 W power output and a 4 cm² red-light effective area.",
-      "This is a laser device. Follow the manufacturer's safety instructions and use only as directed by a qualified professional.",
+      "This is a laser device. Follow the supplied safety instructions and use only as directed by a qualified professional.",
     ],
     mechanismOfAction: {
       heading: "Four Modalities in One Handheld",
@@ -523,11 +492,11 @@ export const lumaDetails: Record<string, ProductDetail> = {
     protocol: protocol(
       "As advised by a qualified professional",
       [
-        { step: "Prepare", instruction: "Read the manufacturer's safety instructions and select the mode." },
+        { step: "Prepare", instruction: "Read the supplied safety instructions and select the mode." },
         { step: "Use", instruction: "Apply as directed by a qualified professional." },
         { step: "Finish", instruction: "Switch off, clean the head and recharge." },
       ],
-      ["Laser device: follow the manufacturer's eye-safety guidance.", "Intended for use by trained operators."],
+      ["Laser device: follow the supplied eye-safety guidance.", "Intended for use by trained operators."],
     ),
     suitableEnvironments: [
       { type: "Physio & Chiro Clinics", description: "A compact multi-mode handheld for the treatment room." },
@@ -542,12 +511,12 @@ export const lumaDetails: Record<string, ProductDetail> = {
 
   "led-handheld-gy-hl-001": {
     id: "led-handheld-gy-hl-001",
-    subtitle: "Handheld Red & Infrared Laser Wand (Catalog Model: GY-HL-001)",
+    subtitle: "Handheld Red & Infrared Laser Wand",
     tagline: "A handheld wand with 9 red 650 nm and 4 infrared 808 nm laser diodes, continuous and pulsed modes.",
     overview: [
-      "The Luma Beam Wand (Catalog Model GY-HL-001) is a handheld laser wand with nine 650 nm red laser diodes and four 808 nm infrared laser diodes.",
+      "The Luma Beam Wand is a handheld laser wand with nine 650 nm red laser diodes and four 808 nm infrared laser diodes.",
       "It offers continuous-wave and pulsed working modes, accepts 100–240 V AC charging and has a built-in 1,500 mAh rechargeable battery.",
-      "This is a laser device. Follow the manufacturer's safety instructions and use only as directed by a qualified professional.",
+      "This is a laser device. Follow the supplied safety instructions and use only as directed by a qualified professional.",
     ],
     mechanismOfAction: {
       heading: "Red & Infrared Laser Diode Wand",
@@ -583,11 +552,11 @@ export const lumaDetails: Record<string, ProductDetail> = {
     protocol: protocol(
       "As advised by a qualified professional",
       [
-        { step: "Prepare", instruction: "Read the manufacturer's safety instructions and pick the mode." },
+        { step: "Prepare", instruction: "Read the supplied safety instructions and pick the mode." },
         { step: "Use", instruction: "Apply as directed by a qualified professional." },
         { step: "Finish", instruction: "Switch off, clean the head and recharge." },
       ],
-      ["Laser device: follow the manufacturer's eye-safety guidance.", "Intended for use by trained operators."],
+      ["Laser device: follow the supplied eye-safety guidance.", "Intended for use by trained operators."],
     ),
     suitableEnvironments: [
       { type: "Physio & Chiro Clinics", description: "A handheld laser wand for the treatment room." },
@@ -602,12 +571,12 @@ export const lumaDetails: Record<string, ProductDetail> = {
 
   "led-cap-gy-hgci": {
     id: "led-cap-gy-hgci",
-    subtitle: "Wearable Red Laser Cap (Catalog Model: GY-HGC1)",
+    subtitle: "Wearable Red Laser Cap",
     tagline: "A wearable cap with 200 laser diodes at 650 nm, designed for hands-free scalp sessions.",
     overview: [
-      "The Luma Beam Crown (Catalog Model GY-HGC1) is a wearable cap carrying 200 laser diodes at 650 nm, with a total working power of 1 W for the whole unit.",
+      "The Luma Beam Crown is a wearable cap carrying 200 laser diodes at 650 nm, with a total working power of 1 W for the whole unit.",
       "Integrated head sensors are built into the cap, and the unit can run from a power bank for cordless use.",
-      "This is a laser device (laser diodes, not LEDs). Follow the manufacturer's safety instructions and use only as directed.",
+      "This is a laser device (laser diodes, not LEDs). Follow the supplied safety instructions and use only as directed.",
     ],
     mechanismOfAction: {
       heading: "Wearable 650 nm Laser Cap",
@@ -644,11 +613,11 @@ export const lumaDetails: Record<string, ProductDetail> = {
     protocol: protocol(
       "As advised by a qualified professional",
       [
-        { step: "Prepare", instruction: "Read the manufacturer's safety instructions." },
+        { step: "Prepare", instruction: "Read the supplied safety instructions." },
         { step: "Wear", instruction: "Fit the cap and start the programme." },
         { step: "Finish", instruction: "Remove the cap and wipe it down." },
       ],
-      ["Laser device: follow the manufacturer's eye-safety guidance."],
+      ["Laser device: follow the supplied eye-safety guidance."],
     ),
     suitableEnvironments: [
       { type: "Wellness & Beauty Centres", description: "A wearable add-on for scalp-care menus." },
@@ -665,11 +634,11 @@ export const lumaDetails: Record<string, ProductDetail> = {
 
   "led-mask-gy-009": {
     id: "led-mask-gy-009",
-    subtitle: "7-Colour LED Face & Neck Mask (Catalog Model: GY-009)",
+    subtitle: "7-Colour LED Face & Neck Mask",
     tagline: "A flexible silicone face mask with a matching neck piece: 105 + 114 LEDs in seven light modes.",
     overview: [
-      "The Luma Mask Duo (Catalog Model GY-009) is a flexible face mask with a dedicated matching neck piece, with 105 LEDs on the face and 114 on the neck (219 in total).",
-      "It is made from medical-grade soft silica gel, offers seven light-colour modes, and works with mobile power banks for cordless use.",
+      "The Luma Mask Duo is a flexible face mask with a dedicated matching neck piece, with 105 LEDs on the face and 114 on the neck (219 in total).",
+      "It is made from wipe-clean soft silica gel, offers seven light-colour modes, and works with mobile power banks for cordless use.",
     ],
     mechanismOfAction: {
       heading: "Seven-Colour LED Mask",
@@ -677,14 +646,14 @@ export const lumaDetails: Record<string, ProductDetail> = {
       points: [
         "105 LEDs on the face mask and 114 on the neck piece.",
         "Seven colour modes.",
-        "Medical-grade soft silica gel.",
+        "Wipe-clean soft silica gel.",
         "Compatible with power banks.",
       ],
     },
     features: [
       { title: "Face + Neck", description: "Matching neck piece extends coverage.", iconName: "Layers" },
       { title: "7 Colour Modes", description: "Select the colour for each session.", iconName: "Sun" },
-      { title: "Soft Silicone", description: "Medical-grade soft silica gel.", iconName: "Sparkles" },
+      { title: "Soft Silicone", description: "Wipe-clean soft silica gel.", iconName: "Sparkles" },
       { title: "Cordless Use", description: "Works with mobile power banks.", iconName: "BatteryCharging" },
     ],
     benefits: [
@@ -697,7 +666,7 @@ export const lumaDetails: Record<string, ProductDetail> = {
         items: [
           { label: "LED Count", value: "105 (face) + 114 (neck) = 219" },
           { label: "Spectrum", value: "7 colour modes" },
-          { label: "Material", value: "Medical-grade soft silica gel" },
+          { label: "Material", value: "Wipe-clean soft silica gel" },
           { label: "Power", value: "Compatible with mobile power banks" },
         ],
       },
@@ -717,10 +686,10 @@ export const lumaDetails: Record<string, ProductDetail> = {
 
   "led-mask-gy-bmh": {
     id: "led-mask-gy-bmh",
-    subtitle: "7-Mode Hard-Shell LED Face Mask (Catalog Model: GY-BMH)",
+    subtitle: "7-Mode Hard-Shell LED Face Mask",
     tagline: "A rigid ergonomic mask with 50 high-output LEDs and seven adjustable modes.",
     overview: [
-      "The Luma Shell (Catalog Model GY-BMH) is a rigid, ergonomic face mask with 50 high-output LED beads and seven adjustable light modes.",
+      "The Luma Shell is a rigid, ergonomic face mask with 50 high-output LED beads and seven adjustable light modes.",
       "A durable ABS hard shell is fitted with an organic silicone ring around the eye sockets for light protection and comfort.",
     ],
     mechanismOfAction: {
@@ -767,10 +736,10 @@ export const lumaDetails: Record<string, ProductDetail> = {
 
   "led-mask-gy-106a": {
     id: "led-mask-gy-106a",
-    subtitle: "Multi-Wavelength Hard-Shell LED Face Mask (Catalog Model: GY-106A)",
+    subtitle: "Multi-Wavelength Hard-Shell LED Face Mask",
     tagline: "A rechargeable hard-shell mask with 78 LEDs, seven modes and wavelengths from 390 to 630 nm plus white light.",
     overview: [
-      "The Luma Shell 2 (Catalog Model GY-106A) is an advanced hard-shell face mask with 78 LED beads and seven adjustable spectrum modes.",
+      "The Luma Shell 2 is an advanced hard-shell face mask with 78 LED beads and seven adjustable spectrum modes.",
       "Wavelengths include 390 nm, 470 nm (blue), 490 nm (cyan), 520 nm (green), 590 nm (yellow), 630 nm (red) and a white-light mode. It has an 800 mAh built-in rechargeable battery and a 5 V / 1 A input.",
     ],
     mechanismOfAction: {
@@ -820,10 +789,10 @@ export const lumaDetails: Record<string, ProductDetail> = {
 function goStand(o: { id: string; size: string; model: string; leds: string; power: string; dims: string; related: string[] }): ProductDetail {
   return {
     id: o.id,
-    subtitle: `Portable Red Light Therapy Stand, Size ${o.size} (Catalog Model: ${o.model})`,
+    subtitle: `Portable Red Light Therapy Stand, Size ${o.size}`,
     tagline: `A portable ${o.leds}-LED panel stand at 660 nm + 850 nm, with 1 to 20 minute sessions.`,
     overview: [
-      `The Luma Go ${o.size} (Catalog Model ${o.model}) is a portable red-light panel stand with ${o.leds} LEDs combining 660 nm red and 850 nm near-infrared light. Dimensions are ${o.dims}.`,
+      `The Luma Go ${o.size} is a portable red-light panel stand with ${o.leds} LEDs combining 660 nm red and 850 nm near-infrared light. Dimensions are ${o.dims}.`,
       "It comes in a switch version or an intelligent version, with a working time of 1 to 20 minutes. Optical power is 168–189 mW/cm².",
       "The Luma Go range has three sizes: 500, 1000 and 1500.",
     ],

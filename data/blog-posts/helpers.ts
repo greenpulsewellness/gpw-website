@@ -30,7 +30,7 @@ export const SLUG = {
   hotel: "recovery-suites-for-hotels-and-resorts",
   gym: "gym-recovery-zone-membership-pricing",
   clinic: "equipping-a-physio-or-chiropractic-clinic",
-  importing: "importing-wellness-equipment-installation-and-warranty",
+  buying: "buying-wellness-equipment-installation-and-support",
   senior: "wellness-lounge-for-senior-living",
   wheelchair: "choosing-an-electric-or-standing-wheelchair",
 } as const;

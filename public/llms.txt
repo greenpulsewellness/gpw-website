@@ -1,140 +1,59 @@
 # GreenPulse Wellness
 
-> Commercial recovery, rehabilitation, and longevity equipment and space architecture in India. We curate, import, install, and service medical-grade and performance wellness hardware for commercial wellness centres, luxury hotel spas, athletic clubs, physiotherapy clinics, hospitals, and private residences.
+> GreenPulse designs, equips and launches recovery and wellness spaces in India: layout planning, one catalogue of heat, cold, light and relaxation products, installation, team training and launch support. We work with wellness centres, gyms, clinics, hotel spas, senior living and homes.
 
 Website: https://greenpulsewellness.com
 Contact: hello@greenpulsewellness.com | WhatsApp: +91 75500 22504
-Operating Region: India (Pan-India delivery, installation, and on-site biomedical AMC servicing)
+Region: India
 
-For full technical specifications, architecture blueprints, power/HVAC requirements, and modality mechanisms, see [llms-full.txt](https://greenpulsewellness.com/llms-full.txt).
+Headline: Designed. Equipped. Launched.
 
 ---
 
 ## What We Do
 
-GreenPulse Wellness provides turnkey recovery infrastructure:
-1. **Curated Global Hardware**: Importation of certified recovery, contrast, photobiomodulation, hyperbaric, compression, and biomechanical rehabilitation equipment.
-2. **Space Planning & 3D Architectural Architecture**: Floor layouts, zoning, ventilation, electrical load sizing, plumbing/drainage, and acoustic isolation for commercial facilities.
-3. **White-Glove Commissioning**: On-site mechanical installation, calibration, electrical verification, and operator staff training.
-4. **Biomedical AMC & Service**: Preventive maintenance contracts, filter/bulb replacements, rapid-response technician dispatch, and loaner units for clinical continuity.
-5. **Flexible Procurement**: Direct capital purchase (CapEx), operational equipment leasing, and month-to-month clinical rentals for post-op and home convalescence.
+1. **Design**: We plan the whole space, including the layout, power, drainage and ventilation notes.
+2. **Equip**: Heat, cold, light and relaxation products from one catalogue, each with a standard spec sheet.
+3. **Launch**: Installation, safety checks, team training and help planning your session menu and opening.
 
 ---
 
-## 4 Core Spatial Solutions
+## Four Ways We Equip a Space
 
-We design and equip spaces across 4 distinct functional models:
-
-### 1. Recover & Restore (Contrast & Thermal Sanctuaries)
-- **URL**: https://greenpulsewellness.com/solutions/recover
-- **Focus**: High-throughput contrast therapy, thermal vascular pumping, and cellular recovery.
-- **Target Audience**: Wellness & longevity centres, luxury hotel spas, fitness clubs, and private estates.
-- **Typical Footprint**: 450–1,200 sq.ft.
-- **Core Modalities**: Full-spectrum infrared saunas (far, mid, near IR), commercial cold plunges with ozone and sub-micron filtration (down to 3°C), whole-body cryotherapy cabins (-110°C to -140°C), and zero-gravity contrast loungers.
-
-### 2. AgeWell (Cellular Vitality & Preventive Longevity)
-- **URL**: https://greenpulsewellness.com/solutions/agewell
-- **Focus**: Mitochondrial activation, tissue oxygenation, and systemic anti-inflammatory optimization.
-- **Target Audience**: Longevity clinics, executive health suites, premium integrative wellness facilities, and private longevity residences.
-- **Typical Footprint**: 500–1,500 sq.ft.
-- **Core Modalities**: Hard-shell mild hyperbaric oxygen chambers (1.3 to 2.0 ATA, 93%+ O2 purity), clinical full-body photobiomodulation (PBM) LED beds (660nm red & 850nm near-infrared wavelengths), and targeted cellular recovery systems.
-
-### 3. Rehabilitate (Physical Therapy & Biomechanical Restoration)
-- **URL**: https://greenpulsewellness.com/solutions/rehabilitate
-- **Focus**: Musculoskeletal injury recovery, neuromuscular re-education, and spinal decompressive therapy.
-- **Target Audience**: Orthopaedic hospitals, sports medicine institutes, physical therapy clinics, and elite athletic performance training facilities.
-- **Typical Footprint**: 600–2,000 sq.ft.
-- **Core Modalities**: Multi-drop electric chiropractic tables, 4D robotic spinal decompression massage loungers, motorized rehabilitation treatment couches, and clinical percussion units.
-
-### 4. Live Well (Clinical Care & Home Convalescence)
-- **URL**: https://greenpulsewellness.com/solutions/live-well
-- **Focus**: Bridging the critical gap between inpatient hospital discharge and comfortable home recovery.
-- **Target Audience**: Post-operative surgical recovery clinics, specialized assisted living, palliative homecare, and private patient suites.
-- **Typical Footprint**: 120–400 sq.ft (per patient room/suite).
-- **Core Modalities**: Zero-gravity therapeutic positioning chairs, localized cold compression therapy, lightweight foldable power wheelchairs, and flexible month-to-month rental equipment.
+- **Recover & Restore**: https://greenpulsewellness.com/solutions/recover - Infrared saunas, cold plunges, compression and massage chairs for wellness centres, hotel spas and gyms.
+- **AgeWell**: https://greenpulsewellness.com/solutions/agewell - Comfortable seating and mobility products for senior living and care settings.
+- **Rehabilitate**: https://greenpulsewellness.com/solutions/rehabilitate - Practical equipment for physiotherapy and chiropractic practices.
+- **Live Well**: https://greenpulsewellness.com/solutions/live-well - Comfort and recovery products for clinics, care settings and homes.
 
 ---
 
-## Complete Hardware Catalog by Modality
+## Product Families
 
-Catalog Index: https://greenpulsewellness.com/products
+Products appear in this order: Relax, Heat, Light, Cold, Air.
 
-### 1. Infrared Saunas & Heat Therapy
-- **Infrared Sauna Single Full-Spectrum (MStar)** (https://greenpulsewellness.com/products/infrared-sauna-single-full-spectrum-mstar): Canadian hemlock / cedar wood, near/mid/far infrared emitters, chromotherapy, low-EMF shielding (<2 mG).
-- **Infrared Sauna Double Full-Spectrum (MStar)** (https://greenpulsewellness.com/products/infrared-sauna-double-full-spectrum-mstar): 2-person cabin for boutique suites and partner recovery sessions.
-- **Infrared Sauna Group Full-Spectrum (MStar)** (https://greenpulsewellness.com/products/infrared-sauna-group-full-spectrum-mstar): 4-to-6 person commercial cabin for hotels and athletic clubs.
-- **Infrared Sauna Combination Suites (MStar)** (https://greenpulsewellness.com/products/infrared-sauna-double-combination-mstar): Hybrid traditional Finnish rock stove + full-spectrum infrared heating.
-- **Sauna Blanket RL301** (https://greenpulsewellness.com/products/sauna-blanket-rl301): Portable far-infrared thermal wrap for private treatment rooms and travel.
+- **Serene** - massage chairs
+- **Halo** - infrared and hybrid saunas
+- **Luma** - LED red light and near-infrared devices
+- **Arctic** - cold plunges and cryo systems
+- **Oxa** - chambers, listed with specifications for supervised settings only; enquire for details
+- **PulseWave** - compression systems
+- **Thrum, Ember, Aurora, Frostfire** - percussion, wraps and pads
+- **Glide, Rise** - mobility chairs and standing chairs
 
-### 2. Cold Water Immersion & Cryotherapy
-- **Cold Plunge Single Round (YG)** (https://greenpulsewellness.com/products/cold-plunge-single-round-yg): Insulated stainless steel tub, 1.0 HP chiller with heating/cooling (3°C to 40°C), ozone sanitation, 20-micron filtration.
-- **Cold Plunge Tub Commercial Ice Bath** (https://greenpulsewellness.com/products/cold-plunge-tub-new-ice-bath): High-throughput commercial plunge for gyms and spas with continuous filtration.
-- **Cold Plunge Foldable AirCore** (https://greenpulsewellness.com/products/cold-plunge-foldable-aircore): Drop-stitch military-grade PVC inflatable tub with external quick-connect chiller.
-- **Cryo Mini (CryoMe)** (https://greenpulsewellness.com/products/cryo-mini-cryome): Localized sub-zero cryogenic therapy for targeted joint inflammation and facial cryo-stimulation.
-- **Cold Therapy Compression Unit 806Pro & CL802** (https://greenpulsewellness.com/products/cold-therapy-unit-806pro): Continuous chilled water circulation paired with pneumatic compression for acute post-surgical swelling.
-
-### 3. Hyperbaric Oxygen Therapy (mHBOT)
-- **HBOT Single Cube Chamber** (https://greenpulsewellness.com/products/hbot-single-cube-chamber): Hard-shell mild hyperbaric chamber operating at 1.3 to 1.5 ATA with dedicated medical-grade oxygen concentrator (93%–96% purity).
-- **HBOT Double Cube Chamber** (https://greenpulsewellness.com/products/hbot-double-cube-chamber): Dual-occupancy spacious chamber for assisted sessions, executive clinics, and private spas.
-- **HBOT Single Mini (Komjet)** (https://greenpulsewellness.com/products/hbot-single-mini-komjet): Compact hard/soft hybrid chamber optimized for home recovery and boutique clinics.
-
-### 4. Photobiomodulation (PBM / Red Light Therapy)
-- **LED Therapy Full-Body Clam Bed (M6 & M6L)** (https://greenpulsewellness.com/products/led-therapy-full-body-clam-1-m6): 360-degree full-body immersion canopy, dual wavelengths (660nm red + 850nm near-infrared), multi-frequency pulsing (10Hz–40Hz).
-- **LED Therapy Full Stand Chamber** (https://greenpulsewellness.com/products/led-therapy-full-stand-chamber): Upright vertical photobiomodulation panel array for quick 10-minute sessions in gyms.
-- **Targeted LED Panels & Lamps** (https://greenpulsewellness.com/products/led-stand-gy-t320): Modular clinic-grade panels for targeted tendon, joint, and facial tissue regeneration.
-- **Red Light Blanket RL302** (https://greenpulsewellness.com/products/red-light-blanket-rl302): Flexible wearable 660/850nm LED blanket for in-bed rehabilitation.
-
-### 5. Compression Therapy & Lymphatic Recovery
-- **PulseWave Pro 8 Air Compression System** (https://greenpulsewellness.com/products/pulsewave-pro-8-air-compression-recovery-system-8-chamber): 8 overlapping chambers, pressure 30–240 mmHg, dynamic peristaltic pulse gradient.
-- **PulseWave Studio Group Compression System** (https://greenpulsewellness.com/products/pulsewave-studio-group-compression-therapy-system): Multi-station rack powering 4+ simultaneous athletes for sports teams.
-- **PulseWave Pants & Multi-Zone Systems** (https://greenpulsewellness.com/products/pulsewave-pants-air-compression-recovery-pants): Full hip, lower back, and groin compression sleeves for athletic recovery.
-- **PulseWave Heat & Glow Wireless Boots** (https://greenpulsewellness.com/products/pulsewave-heat-wireless-compression-boots-with-heat): Cordless boots integrating thermal heating and red light therapy into compression cycles.
-
-### 6. Robotic 4D Massage & Spinal Decompression
-- **Massage Chair Elite MS131** (https://greenpulsewellness.com/products/massage-chair-elite-ms131): AI body scanner, 4D dual-core massage engine, SL-track spine alignment, zero-gravity recline.
-- **Massage Chair Mid-Range Lion** (https://greenpulsewellness.com/products/massage-chair-mid-range-lion): Commercial durability with deep tissue calf and foot rollers.
-- **Lounge SL & 360 Massage Chairs** (https://greenpulsewellness.com/products/lounge-sl-massage-chair): Minimalist Scandinavian-aesthetic recovery loungers for hotel executive suites and relaxation lounges.
-
-### 7. Biomechanical Rehab & Mobility Equipment
-- **Chiropractic Drop Tables** (https://greenpulsewellness.com/products/dragon-glide-flex): Multi-section motorized elevation and drop tables for physical medicine practitioners.
-- **Power Wheelchair DW-W6**: Ultra-lightweight carbon-fiber motorized wheelchair for assisted patient mobility.
-- **Percussion Massagers JM04SA & JM003** (https://greenpulsewellness.com/products/percussion-gun-jm04sa): High-torque brushless deep muscle stimulation guns with titanium treatment heads.
+Catalogue: https://greenpulsewellness.com/products
+Combos: https://greenpulsewellness.com/combos
 
 ---
 
-## Research & Evidence-Based Insights (The Journal)
+## How We Describe Products
 
-Journal Index: https://greenpulsewellness.com/blog
+We describe products by what they are, their specifications and how they fit a space. We make no medical claims and do not name conditions. Not a substitute for medical advice. Please consult a doctor before use if you have a heart condition, are pregnant or have any health concern.
 
-1. **The Science of Photobiomodulation in Infrared Saunas**
-   - URL: https://greenpulsewellness.com/blog/science-of-photobiomodulation-infrared-saunas
-   - Key finding: 660nm and 850nm wavelengths trigger cytochrome c oxidase in mitochondrial respiration, elevating cellular ATP synthesis by 140–200%.
-2. **Designing Commercial Recovery Suites for Luxury Hotels**
-   - URL: https://greenpulsewellness.com/blog/designing-commercial-recovery-suites-for-luxury-hotels
-   - Key finding: High-yield wellness suites generate 25–40% RevPAR premiums by converting underutilized square footage into private contrast suites.
-3. **Mild Hyperbaric Oxygen Therapy (mHBOT): The Operator's Clinical Guide**
-   - URL: https://greenpulsewellness.com/blog/mild-hyperbaric-oxygen-therapy-recovery-guide
-   - Key finding: 1.3 to 1.5 ATA pressure increases plasma dissolved oxygen independently of haemoglobin, promoting capillary neoangiogenesis.
-4. **Contrast Therapy Protocols: Infrared Hyperthermia and Sub-5°C Cold Water Immersion**
-   - URL: https://greenpulsewellness.com/blog/contrast-therapy-infrared-cold-water-immersion
-   - Key finding: Alternating vasodilation (sauna) and vasoconstriction (ice bath) stimulates the autonomic vascular pump and down-regulates systemic inflammatory markers.
-5. **Dynamic Sequential Compression for Athletic Recovery**
-   - URL: https://greenpulsewellness.com/blog/dynamic-compression-for-athletic-recovery-normatec
-   - Key finding: Peristaltic pneumatic gradient pulsing accelerates venous-lymphatic return and reduces post-exercise delayed onset muscle soreness (DOMS).
-6. **Wellness Hardware ROI: Monetization Strategies for Gyms, Spas & Clinics**
-   - URL: https://greenpulsewellness.com/blog/wellness-roi-how-gyms-and-spas-monetize-recovery-tech
-   - Key finding: Turnkey passive recovery hardware achieves commercial payback within 6 to 14 months at 65% average utilization.
+## Pages
 
----
-
-## Compliance, Safety & Governance
-
-- **Wellness Classification**: GreenPulse Wellness equipment is commercial recovery, lifestyle, and rehabilitation wellness technology. We enforce strict wellness-only language ("supports cellular recovery", "promotes restorative relaxation") and never make disease-cure or diagnostic medical claims.
-- **Electrical & Engineering Standards**: All hardware complies with CE, ISO 9001/13485, and RoHS directives with dedicated earth grounding, surge suppression, and low-EMF shielding.
-- **Water & Air Sanitation**: Plunge systems utilize dual ozone oxidation and sub-micron continuous filtration; hyperbarics utilize dual-stage HEPA air filtration.
-- **Policies**:
-  - Regulatory Compliance & Safety: https://greenpulsewellness.com/compliance
-  - Privacy Policy: https://greenpulsewellness.com/privacy
-  - Terms of Service: https://greenpulsewellness.com/terms
-  - Grievance Redressal: https://greenpulsewellness.com/complaints
-  - Cookie Policy: https://greenpulsewellness.com/cookies
+- About: https://greenpulsewellness.com/about
+- Journal: https://greenpulsewellness.com/blog
+- Contact: https://greenpulsewellness.com/contact
+- Compliance & safety: https://greenpulsewellness.com/compliance
+- Terms: https://greenpulsewellness.com/terms
+- Privacy: https://greenpulsewellness.com/privacy

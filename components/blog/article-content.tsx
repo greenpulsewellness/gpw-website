@@ -423,7 +423,7 @@ export function ArticleContent({ post, relatedPosts, pillarPost }: ArticleConten
                 Planning a recovery suite or commercial wellness facility?
               </h3>
               <p className="mt-3 text-sm text-neutral-300 max-w-xl leading-relaxed">
-                GreenPulse provides space ergonomics assessment, imported hardware procurement, electrical compliance planning, and preventative maintenance for institutional spaces.
+                GreenPulse provides space layout planning, product selection, electrical planning, installation and team training for your space.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Button asChild variant="dark" size="md">

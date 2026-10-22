@@ -14,7 +14,7 @@ export const AIR_EXTRAS: BlogExtras = {
           `4. What training is provided for operators, and is it on site?`,
           `5. What does installation involve, and what does the room need to provide?`,
           `6. What is covered by the warranty, and who services the chamber?`,
-          `The answers tell you more about the supplier than any brochure. Our ${L("importing", "guide to importing, installation and warranty")} expands on these questions.`,
+          `The answers tell you more about the supplier than any brochure. Our ${L("buying", "guide to buying, installation and support")} expands on these questions.`,
         ],
         callout: {
           type: "tip",
@@ -85,7 +85,7 @@ export const AIR_EXTRAS: BlogExtras = {
         content: [
           `Do not buy on size alone. Start with regulation and operator availability, then room and power, then capacity. Walk through the room needs in ${L("hbotRoom", "setting up a hyperbaric oxygen room safely")} and the principles in the ${L("hbotGuide", "hyperbaric chamber guide")}.`,
           `If you are weighing it against other investments for the same budget, compare it with the equipment in a ${L("lounge", "recovery lounge")}, such as heat, cold and compression. A chamber is a premium add-on rather than a starting point for most venues.`,
-          `Ask about delivery routes and warranty terms, which we cover in ${L("importing", "our importing guide")}. And browse the ${CATALOGUE("Air & Oxygen category")} to see current models.`,
+          `Ask about delivery routes and warranty terms, which we cover in ${L("buying", "our buying guide")}. And browse the ${CATALOGUE("Air & Oxygen category")} to see current models.`,
         ],
         callout: {
           type: "tip",
@@ -104,7 +104,7 @@ export const AIR_EXTRAS: BlogExtras = {
       },
       {
         question: "How loud is the chamber?",
-        answer: `Internal noise is listed at 45 dB or below and external noise at 58 dB or below, based on the manufacturer's specifications.`,
+        answer: `Internal noise is listed at 45 dB or below and external noise at 58 dB or below, based on the supplied specifications.`,
       },
       {
         question: "Can two people use a hyperbaric chamber together?",
@@ -158,7 +158,7 @@ export const AIR_EXTRAS: BlogExtras = {
       },
       {
         question: "Can a hyperbaric chamber be installed at home?",
-        answer: `Local regulations and the manufacturer's requirements apply, and a trained operator and medical suitability check are required. We recommend discussing your situation with us and your local authority first.`,
+        answer: `Local regulations and the supplied requirements apply, and a trained operator and medical suitability check are required. We recommend discussing your situation with us and your local authority first.`,
       },
       {
         question: "What power supply do the chambers need?",
@@ -166,7 +166,7 @@ export const AIR_EXTRAS: BlogExtras = {
       },
       {
         question: "Who should be present during a session?",
-        answer: `A trained operator, following the manufacturer's procedures and your local regulations, should supervise sessions via the control panel and intercom.`,
+        answer: `A trained operator, following the supplied procedures and your local regulations, should supervise sessions via the control panel and intercom.`,
       },
     ],
   },

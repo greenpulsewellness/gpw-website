@@ -161,7 +161,7 @@ export const COLD_POSTS: BlogInput[] = [
     author: AUTHORS["marcus-vance"],
     tags: ["Cold Plunge Maintenance", "Water Care", "Filtration", "Chiller"],
     keywords: ["cold plunge water maintenance", "how often change cold plunge water", "cold plunge filter", "cold plunge chiller maintenance"],
-    relatedSlugs: ["cold-plunge-buying-guide", "contrast-therapy-infrared-and-cold-plunge", "importing-wellness-equipment-installation-and-warranty"],
+    relatedSlugs: ["cold-plunge-buying-guide", "contrast-therapy-infrared-and-cold-plunge", "buying-wellness-equipment-installation-and-support"],
     keyTakeaways: [
       "Cover the tub when not in use and rinse before you step in. Most dirty water is preventable.",
       "Check and clean the filter on a regular schedule; commercial use needs a stricter one.",
@@ -205,7 +205,7 @@ export const COLD_POSTS: BlogInput[] = [
         heading: "Looking after the chiller",
         content: [
           `Chillers need to breathe. Keep the unit in a ventilated spot with clear space around it, away from direct sun and standing water. Keep vents and fan grilles free of dust and leaves, and have a technician check refrigerant and electrical connections during routine servicing.`,
-          `For outdoor installations, protect power connections from rain and plan for cold or hot extremes. If you are a business, include maintenance in the contract from day one. Our ${L("importing", "guide to installation, warranty and after-sales support")} explains what to ask for.`,
+          `For outdoor installations, protect power connections from rain and plan for cold or hot extremes. If you are a business, include maintenance in the contract from day one. Our ${L("buying", "guide to installation, warranty and after-sales support")} explains what to ask for.`,
         ],
       },
       {

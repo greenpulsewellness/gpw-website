@@ -98,8 +98,8 @@ export default function ProductsIndexPage() {
         {/* Full-width edge-to-edge horizontal banner strip */}
         <ProductPromotionalBanner />
 
-        <div className="shell pt-8 sm:pt-10">
-          {/* Catalog Filter & Grid */}
+        <div className="pt-3 sm:pt-4">
+          {/* Catalog Filter & Grid (filter panel is full-bleed, grid sits in the shell) */}
           <div className="pb-24">
             <Suspense
               fallback={

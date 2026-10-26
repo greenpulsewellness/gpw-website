@@ -56,13 +56,19 @@ function toMediaSlot(id: string, name: string, img: SanityImage, index = 0): Med
 
 function toProduct(doc: SanityProduct): Product {
   const { image, gallery, ...rest } = doc;
+  // Product photography is served from /public/GreenPulse (see data/home.ts), not Sanity —
+  // keeps image traffic off the Sanity CDN. Sanity images are only used for products without it.
+  const local = localProducts.find((p) => p.id === doc.id);
+  const localShots = local?.image.src?.startsWith("/GreenPulse/") ? local : null;
   return {
     ...rest,
     subCategory: rest.subCategory ?? undefined,
     brand: rest.brand ?? undefined,
     url: `/products/${doc.id}`,
-    image: toMediaSlot(doc.id, doc.name, image),
-    gallery: (gallery ?? []).filter((g) => g?.url).map((g, i) => toMediaSlot(doc.id, doc.name, g, i + 1)),
+    image: localShots?.image ?? toMediaSlot(doc.id, doc.name, image),
+    gallery:
+      localShots?.gallery ??
+      (localShots ? [] : (gallery ?? []).filter((g) => g?.url).map((g, i) => toMediaSlot(doc.id, doc.name, g, i + 1))),
   };
 }
 

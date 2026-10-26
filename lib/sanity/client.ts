@@ -14,5 +14,8 @@ export const sanityClient = createClient({
 export const PRODUCTS_TAG = "products";
 export const BLOG_TAG = "blog";
 
-/** Fallback refresh interval (seconds) if the webhook isn't configured. */
-export const PRODUCTS_REVALIDATE = 60;
+/**
+ * Fallback refresh interval (seconds). Publishes refresh pages instantly via the
+ * /api/revalidate webhook, so this only bounds staleness if a webhook call is missed.
+ */
+export const PRODUCTS_REVALIDATE = 60 * 60 * 24;

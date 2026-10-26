@@ -78,7 +78,7 @@ export function ProductGallery({
                       setIsZoomed(false);
                     }}
                     className={cn(
-                      "group relative aspect-[3/2] w-full overflow-hidden rounded-md border bg-[#0d0d0d] transition-all cursor-pointer focus:outline-hidden shrink-0",
+                      "group relative aspect-[4/3] w-full overflow-hidden rounded-md border bg-[#0d0d0d] transition-all cursor-pointer focus:outline-hidden shrink-0",
                       isActive
                         ? "border-white ring-1 ring-white/60 shadow-md opacity-100"
                         : "border-white/10 opacity-60 hover:opacity-100 hover:border-white/40"
@@ -100,7 +100,7 @@ export function ProductGallery({
         )}
 
         {/* Right: Main Image Container — Completely clean without pills */}
-        <div className="flex-1 relative aspect-[3/2] w-full overflow-hidden rounded-md border border-white/10 bg-[#0d0d0d] shadow-md transition-all group/gallery">
+        <div className="flex-1 relative aspect-[4/3] w-full overflow-hidden rounded-md border border-white/10 bg-[#0d0d0d] shadow-md transition-all group/gallery">
           {imageSrc && !imgError ? (
             <AnimatePresence mode="wait">
               <motion.div

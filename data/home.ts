@@ -122,7 +122,7 @@ export const contact = {
   
   phone: "+91 75500 22504",
   phoneRaw: "+917550022504",
-  email: "hello@greenpulsewellness.com", // TODO: placeholder — confirm
+  email: "welcome@greenpulsewellness.com", // TODO: placeholder — confirm
   address: "TODO: Studio address, City, State, PIN", // TODO: placeholder
   instagram: "https://www.instagram.com/greenpulse.wellness",
   linkedin: "https://www.linkedin.com/in/arsheenbukhari/",

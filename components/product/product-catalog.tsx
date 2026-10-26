@@ -97,12 +97,12 @@ function ProductCard({
   return (
     <Link
       href={`/products/${product.id}`}
-      className="group flex flex-col h-full overflow-hidden rounded-lg border border-white/10 bg-[#0d0d0d] transition-all duration-300 hover:border-white/30 hover:bg-[#141414] hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] cursor-pointer"
+      className="group flex flex-col h-full overflow-hidden rounded-2xl border border-white/10 bg-[#0d0d0d] transition-all duration-300 hover:-translate-y-0.5 hover:border-white/25 hover:bg-[#121212] hover:shadow-[0_12px_32px_rgba(0,0,0,0.55)] cursor-pointer"
     >
       {/* Product Image */}
       <div
         className={`relative ${
-          compact ? "aspect-square" : "aspect-square sm:aspect-[4/3]"
+          "aspect-[4/3]"
         } w-full overflow-hidden bg-black`}
       >
         {product.image?.src ? (
@@ -125,25 +125,15 @@ function ProductCard({
         )}
       </div>
 
-      {/* Product Info */}
-      <div
-        className={`${
-          compact ? "p-2 sm:p-2.5" : "p-2.5 sm:p-3.5"
-        } flex flex-col justify-between flex-1 border-t border-white/5 gap-1.5`}
-      >
+      {/* Product name only */}
+      <div className={`${compact ? "px-3 py-3 sm:px-4 sm:py-3.5" : "px-3.5 py-3.5 sm:px-4 sm:py-4"}`}>
         <h4
           className={`${
-            compact ? "text-[11px] sm:text-xs" : "text-xs sm:text-sm"
-          } font-medium tracking-tight text-white group-hover:text-white/90 line-clamp-2 leading-snug`}
+            compact ? "text-[13px] sm:text-sm" : "text-sm sm:text-[15px]"
+          } font-medium tracking-tight text-white line-clamp-2 leading-snug`}
         >
           {product.name}
         </h4>
-        <div className="flex items-center justify-between text-[10px] text-neutral-400 pt-1 border-t border-white/5">
-          <span className="truncate max-w-[85px] sm:max-w-[120px]">
-            {product.subCategory || product.category?.split("&")[0]?.trim()}
-          </span>
-          <ArrowRight className="size-3 text-neutral-500 group-hover:text-white group-hover:translate-x-0.5 transition-all shrink-0 ml-1" />
-        </div>
       </div>
     </Link>
   );
@@ -219,12 +209,12 @@ function CategoryStripRow({
       <div className="relative">
         <div
           ref={scrollRef}
-          className="flex gap-2.5 sm:gap-3.5 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pb-2 -mx-4 px-4 sm:mx-0 sm:px-0"
+          className="flex gap-3 sm:gap-4 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pb-2 -mx-4 px-4 sm:mx-0 sm:px-0"
         >
           {category.items.map((product) => (
             <div
               key={product.id}
-              className="w-[145px] sm:w-[175px] md:w-[210px] shrink-0 snap-start"
+              className="w-[200px] sm:w-[240px] md:w-[270px] shrink-0 snap-start"
             >
               <ProductCard product={product} compact />
             </div>
@@ -324,9 +314,10 @@ export function ProductCatalog() {
   const isBrowsingAllWithoutSearch = selectedModality === "all" && !selectedType && searchQuery === "";
 
   return (
-    <div className="space-y-6 sm:space-y-8">
-      {/* ── Filter panel: search + view, category chips, product-type chips ── */}
-      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-3 backdrop-blur-md sm:p-4 lg:p-5">
+    <>
+      {/* ── Filter panel: full-bleed like the banner — curved top, straight bottom ── */}
+      <div className="rounded-t-[1.5rem] border-y border-white/10 bg-white/[0.03] backdrop-blur-md sm:rounded-t-[2.25rem] lg:rounded-t-[3rem]">
+       <div className="shell py-4 sm:py-5 lg:py-6">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between lg:gap-6">
           {/* Search & view switcher — first on mobile, right-aligned on desktop */}
           <div className="flex items-center gap-2 lg:order-2 lg:w-auto">
@@ -384,7 +375,7 @@ export function ProductCatalog() {
           <div
             role="group"
             aria-label="Equipment category"
-            className="no-scrollbar -mx-3 flex items-center gap-2 overflow-x-auto px-3 [mask-image:linear-gradient(to_right,transparent,black_12px,black_calc(100%-24px),transparent)] sm:-mx-4 sm:px-4 lg:order-1 lg:mx-0 lg:flex-wrap lg:overflow-visible lg:px-0 lg:[mask-image:none]"
+            className="no-scrollbar -mx-4 flex items-center gap-2 overflow-x-auto px-4 [mask-image:linear-gradient(to_right,transparent,black_12px,black_calc(100%-24px),transparent)] md:-mx-8 md:px-8 lg:order-1 lg:mx-0 lg:flex-wrap lg:overflow-visible lg:px-0 lg:[mask-image:none]"
           >
             {MODALITIES.map((modality) => {
               const Icon = modality.icon;
@@ -415,7 +406,7 @@ export function ProductCatalog() {
           <div
             role="group"
             aria-label="Product type"
-            className="no-scrollbar -mx-3 flex min-w-0 flex-1 items-center gap-1.5 overflow-x-auto px-3 [mask-image:linear-gradient(to_right,transparent,black_12px,black_calc(100%-24px),transparent)] sm:mx-0 sm:px-0 sm:[mask-image:none] lg:flex-wrap lg:overflow-visible"
+            className="no-scrollbar -mx-4 flex min-w-0 flex-1 items-center gap-1.5 overflow-x-auto px-4 [mask-image:linear-gradient(to_right,transparent,black_12px,black_calc(100%-24px),transparent)] sm:mx-0 sm:px-0 sm:[mask-image:none] lg:flex-wrap lg:overflow-visible"
           >
             {PRODUCT_TYPES.map((t) => {
               const active = t.id === selectedTypeId;
@@ -446,9 +437,11 @@ export function ProductCatalog() {
             )}
           </div>
         </div>
+       </div>
       </div>
 
       {/* ── Product Display Section ────────────────────────────── */}
+      <div className="shell pt-6 sm:pt-8">
       {filteredProducts.length === 0 ? (
         <div className="py-20 text-center rounded-md border border-white/10 bg-[#0d0d0d]">
           <h3 className="text-lg font-bold text-white">No products found</h3>
@@ -485,6 +478,7 @@ export function ProductCatalog() {
           ))}
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 }

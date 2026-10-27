@@ -4,6 +4,7 @@ import { brand } from "@/data/home";
 import { getProductWithDetail, getProducts } from "@/lib/products";
 import { EnquiryProvider } from "@/components/home/enquiry-context";
 import { ProductDetailView } from "@/components/product/product-detail-view";
+import { LoopArt } from "@/components/ui/loop-art";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbSchema, faqSchema, SITE_URL } from "@/lib/schema";
 
@@ -110,7 +111,27 @@ export default async function ProductDetailPage({ params }: PageProps) {
   return (
     <EnquiryProvider>
       <JsonLd data={jsonLd} />
-      <main className="min-h-screen bg-canvas pt-12 sm:pt-14">
+      <main className="relative isolate min-h-screen bg-canvas pt-12 sm:pt-14">
+        {/* Same green-washed dark base + Loop ribbons as the catalog page */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10"
+          style={{
+            backgroundImage: [
+              "radial-gradient(ellipse 70% 900px at 0% 300px, rgba(76,184,74,0.20), transparent 70%)",
+              "radial-gradient(ellipse 60% 1000px at 100% 45%, rgba(46,154,72,0.16), transparent 70%)",
+              "radial-gradient(ellipse 80% 800px at 30% 100%, rgba(181,211,52,0.10), transparent 70%)",
+              "linear-gradient(180deg, #000 0%, #020a05 40%, #03100a 100%)",
+            ].join(","),
+          }}
+        />
+        <LoopArt variant="wave-outline" frameClassName="-z-10" className="-right-[10%] top-[340px] w-[min(120vw,900px)] opacity-35 md:top-[420px]" />
+        <LoopArt
+          variant="band-line"
+          frameClassName="-z-10 [mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)]"
+          className="left-1/2 top-[48%] w-[2400px] -translate-x-1/2 opacity-30"
+        />
+        <LoopArt variant="wave-glow" frameClassName="-z-10" className="-bottom-[120px] -left-[14%] w-[min(130vw,1000px)] opacity-20" />
         <div className="shell">
           <ProductDetailView
             product={product}

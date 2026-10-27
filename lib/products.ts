@@ -1,7 +1,7 @@
 import "server-only";
 import { cache } from "react";
 import { defineQuery } from "next-sanity";
-import { products as localProducts, type MediaSlot, type Product } from "@/data/home";
+import { hiddenProductIds, products as localProducts, type MediaSlot, type Product } from "@/data/home";
 import { getProductDetail, synthesizeProductDetail, type ProductDetail } from "@/data/products-data";
 import { PRODUCTS_REVALIDATE, PRODUCTS_TAG, sanityClient } from "@/lib/sanity/client";
 
@@ -43,6 +43,8 @@ const PRODUCT_DETAIL_QUERY = defineQuery(`
 
 const fetchOptions = { next: { revalidate: PRODUCTS_REVALIDATE, tags: [PRODUCTS_TAG] } };
 
+const visibleLocalProducts = localProducts.filter((p) => !hiddenProductIds.has(p.id));
+
 function toMediaSlot(id: string, name: string, img: SanityImage, index = 0): MediaSlot {
   return {
     id: index ? `product-${id}-${index}` : `product-${id}`,
@@ -72,15 +74,31 @@ function toProduct(doc: SanityProduct): Product {
   };
 }
 
+/**
+ * Adds products that exist in data/home.ts but haven't been created in Sanity yet,
+ * each placed after the product that precedes it locally.
+ */
+function withLocalOnly(fromSanity: Product[]): Product[] {
+  const merged = [...fromSanity];
+  const ids = new Set(merged.map((p) => p.id));
+  localProducts.forEach((p, i) => {
+    if (ids.has(p.id)) return;
+    const prev = localProducts.slice(0, i).reverse().find((q) => ids.has(q.id));
+    merged.splice(prev ? merged.findIndex((q) => q.id === prev.id) + 1 : merged.length, 0, p);
+    ids.add(p.id);
+  });
+  return merged;
+}
+
 /** All products, catalog-ordered. Deduped per request. */
 export const getProducts = cache(async (): Promise<Product[]> => {
   try {
     const docs = await sanityClient.fetch<SanityProduct[]>(PRODUCTS_QUERY, {}, fetchOptions);
-    if (docs?.length) return docs.map(toProduct);
+    if (docs?.length) return withLocalOnly(docs.map(toProduct)).filter((p) => !hiddenProductIds.has(p.id));
   } catch (err) {
     console.error("[products] Sanity fetch failed, using local data:", err);
   }
-  return localProducts;
+  return visibleLocalProducts;
 });
 
 /** One product plus its full detail content, or null if it doesn't exist. */
@@ -91,7 +109,7 @@ export const getProductWithDetail = cache(
     if (!product) return null;
 
     // Products came from local data — use the local detail too.
-    if (all === localProducts) return { product, detail: getProductDetail(id) };
+    if (all === visibleLocalProducts) return { product, detail: getProductDetail(id) };
 
     let doc: SanityProductDetail | null = null;
     try {

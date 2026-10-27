@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { BlogPost } from "@/data/blog";
+import { isHiddenProductHref } from "@/data/home";
 import { BlogCard } from "./blog-card";
 import { Button } from "@/components/ui/button";
 import { RichText } from "./rich-text";
@@ -17,6 +18,7 @@ interface ArticleContentProps {
 
 export function ArticleContent({ post, relatedPosts, pillarPost }: ArticleContentProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const focusEquipment = (post.relatedEquipment ?? []).filter((eq) => !isHiddenProductHref(eq.link));
   const [activeSection, setActiveSection] = useState<string>(
     post.sections[0]?.id || ""
   );
@@ -355,13 +357,13 @@ export function ArticleContent({ post, relatedPosts, pillarPost }: ArticleConten
             )}
 
             {/* ── Equipment in Focus Highlight ── */}
-            {post.relatedEquipment && post.relatedEquipment.length > 0 && (
+            {focusEquipment.length > 0 && (
               <div className="my-12 rounded-[28px] border border-pine/30 bg-oat/50 p-6 sm:p-8">
                 <span className="label-mono text-[11px] font-semibold tracking-wider text-pine">
                   Equipment In Focus
                 </span>
                 <div className="mt-5 space-y-6">
-                  {post.relatedEquipment.map((eq) => (
+                  {focusEquipment.map((eq) => (
                     <div
                       key={eq.name}
                       className="flex flex-col sm:flex-row items-center gap-6 rounded-2xl bg-canvas p-5 border border-wood/20"

@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { isHiddenProductHref } from "@/data/home";
 
 /**
  * Parses inline markdown: **bold** and internal links [anchor](/path).
@@ -16,6 +17,7 @@ function parseInline(text: string): React.ReactNode {
       );
     }
     const link = part.match(/^\[([^\]]+)\]\((\/[^)\s]*)\)$/);
+    if (link && isHiddenProductHref(link[2])) return link[1];
     if (link) {
       return (
         <Link

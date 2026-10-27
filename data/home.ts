@@ -528,31 +528,32 @@ const productImage = (id: ProductId, name: string, src?: string): MediaSlot => (
 /**
  * Product photography lives in /public/GreenPulse/<slug>/<slug>-<n>-<view>.webp:
  * 0 banner-hero (16:9), 1 front, 2 side, 3 real-use, 4 measurements (all 4:3),
- * 5 banner-overview (16:9). Front is the main image; 2–4 make up the gallery.
+ * 5 banner-overview (16:9). `lead` picks the main image (catalog card, first in the
+ * gallery; real use by default); the other shots follow. Measurements and banners
+ * stay in the folder but aren't shown for now.
  */
-const galleryViews = [
-  { view: "2-side", alt: "side view" },
-  { view: "3-real-use", alt: "in use" },
-  { view: "4-measurements", alt: "dimensions" },
-] as const;
+const shotViews = {
+  front: { file: "1-front", alt: "front view" },
+  side: { file: "2-side", alt: "side view" },
+  "real-use": { file: "3-real-use", alt: "in use" },
+} as const;
+
+type ShotView = keyof typeof shotViews;
 
 const productShots = (
   id: ProductId,
   name: string,
   slug: string,
-  { frontOnly = false }: { frontOnly?: boolean } = {},
+  { lead = "real-use" }: { lead?: ShotView } = {},
 ): Pick<Product, "image" | "gallery"> => {
-  const shot = (view: string) => `/GreenPulse/${slug}/${slug}-${view}.webp`;
+  const slot = (slotId: string, view: ShotView) => ({
+    ...productImage(slotId, name, `/GreenPulse/${slug}/${slug}-${shotViews[view].file}.webp`),
+    alt: `${name} ${shotViews[view].alt}`,
+  });
+  const views = (Object.keys(shotViews) as ShotView[]).filter((v) => v !== lead);
   return {
-    image: { ...productImage(id, name, shot("1-front")), alt: `${name} front view` },
-    ...(frontOnly
-      ? {}
-      : {
-          gallery: galleryViews.map(({ view, alt }, i) => ({
-            ...productImage(`${id}-g${i + 1}`, name, shot(view)),
-            alt: `${name} ${alt}`,
-          })),
-        }),
+    image: slot(id, lead),
+    gallery: views.map((view, i) => slot(`${id}-g${i + 1}`, view)),
   };
 };
 
@@ -607,7 +608,22 @@ export const products: Product[] = [
     description: "Two-person hybrid infrared sauna in red cedar with ceramic tube and carbon panel heaters, tourmaline stone floor, and multimedia sound.",
     tiers: ["Essential", "Pro"],
     specs: ["120 × 105 × 190 cm", "1750 W", "2 Persons"],
-    ...productShots("infrared-sauna-double-combination-mstar", "Halo Hybrid 2 Infrared Sauna (2 Person, Carbon + Ceramic Heater)", "halo-hybrid-2", { frontOnly: true }),
+    // Only a real-use shot so far (no front/side/measurements set), so not productShots().
+    image: {
+      ...productImage(
+        "infrared-sauna-double-combination-mstar",
+        "Halo Hybrid 2 Infrared Sauna (2 Person, Carbon + Ceramic Heater)",
+        "/GreenPulse/halo-hybrid-2/halo-hybrid-2-0-real-use.webp",
+      ),
+      alt: "Halo Hybrid 2 Infrared Sauna (2 Person, Carbon + Ceramic Heater) in use",
+    },
+    gallery: [
+      productImage(
+        "infrared-sauna-double-combination-mstar-g1",
+        "Halo Hybrid 2 Infrared Sauna (2 Person, Carbon + Ceramic Heater)",
+        "/GPW%20Product%20mockup/Heat/Halo%20Hybrid%202%20Infrared%20Sauna%20(2%20Person,%20Carbon%20+%20Ceramic%20Heater)/Halo%20Hybrid%202%20-draft.png",
+      ),
+    ],
   },
   {
     id: "infrared-sauna-group-combination-mstar",
@@ -620,7 +636,11 @@ export const products: Product[] = [
     description: "Luxury three-person hybrid infrared sauna combining far-infrared carbon panels with full-spectrum quartz heating, red cedar or hemlock build, and tourmaline floor.",
     tiers: ["Essential", "Pro"],
     specs: ["150 × 120 × 190 cm", "2100 W", "3 Persons"],
-    ...productShots("infrared-sauna-group-combination-mstar", "Halo Hybrid 3 Infrared Sauna (3 Person, Carbon + Ceramic Heater)", "halo-hybrid-3", { frontOnly: true }),
+    image: productImage(
+      "infrared-sauna-group-combination-mstar",
+      "Halo Hybrid 3 Infrared Sauna (3 Person, Carbon + Ceramic Heater)",
+      "/GPW%20Product%20mockup/Heat/Halo%20Hybrid%203%20Infrared%20Sauna%20(3%20Person,%20Carbon%20+%20Ceramic%20Heater)/BC993F5D-DC6A-4C33-A539-94D9700898E7.png",
+    ),
   },
   {
     id: "cold-plunge-single-round-yg",
@@ -815,7 +835,11 @@ export const products: Product[] = [
     description: "Compact single-user hyperbaric oxygen chamber rated 2.0 ATA, 1500 × 900 × 1950 mm, with a carbon steel door and a 15 L/min oxygen generator.",
     tiers: ["Essential", "Pro"],
     specs: ["2.0 ATA", "1500 × 900 × 1950 mm", "1 Person"],
-    ...productShots("hbot-single-mini-komjet", "Oxa Mini Portable Hyperbaric Oxygen Chamber (HBOT)", "oxa-mini", { frontOnly: true }),
+    image: productImage(
+      "hbot-single-mini-komjet",
+      "Oxa Mini Portable Hyperbaric Oxygen Chamber (HBOT)",
+      "/GPW%20Product%20mockup/Air/Oxa%20Mini%20Portable%20Hyperbaric%20Oxygen%20Chamber%20(HBOT)/Oxa%20Mini%20Portable%20Hyperbaric%20Oxygen%20Chamber%20(HBOT).png",
+    ),
   },
   {
     id: "oxy-1-hyperbaric-oxygen-chamber-single",
@@ -987,10 +1011,15 @@ export const products: Product[] = [
     description: "Hand-controlled 4-chamber compression boots (Model 9490 Max) with a large colour LCD and physical buttons, no app needed.",
     tiers: ["Essential", "Pro"],
     specs: ["4 Chambers", "Hand Controller", "30–240 mmHg"],
-    image: productImage(
-      "pulsewave-4-direct-air-compression-boots",
-      "PulseWave 4 Direct Air Compression Boots (4-Chamber, Hand Controller)",
-    ),
+    // Only a real-use shot so far, so not productShots().
+    image: {
+      ...productImage(
+        "pulsewave-4-direct-air-compression-boots",
+        "PulseWave 4 Direct Air Compression Boots (4-Chamber, Hand Controller)",
+        "/GreenPulse/pulsewave-4-direct/pulsewave-4-direct-3-real-use.webp",
+      ),
+      alt: "PulseWave 4 Direct Air Compression Boots (4-Chamber, Hand Controller) in use",
+    },
   },
   {
     id: "pulsewave-5-portable-air-compression-boots",
@@ -1003,10 +1032,15 @@ export const products: Product[] = [
     description: "Portable 5-chamber compression boots (Model 9590) with 3 preset modes, 50–200 mmHg and a clear LCD.",
     tiers: ["Essential", "Pro"],
     specs: ["5 Chambers", "50–200 mmHg", "3 Modes"],
-    image: productImage(
-      "pulsewave-5-portable-air-compression-boots",
-      "PulseWave 5 Portable Air Compression Boots",
-    ),
+    // Only a real-use shot so far, so not productShots().
+    image: {
+      ...productImage(
+        "pulsewave-5-portable-air-compression-boots",
+        "PulseWave 5 Portable Air Compression Boots",
+        "/GreenPulse/pulsewave-5/pulsewave-5-3-real-use.webp",
+      ),
+      alt: "PulseWave 5 Portable Air Compression Boots in use",
+    },
   },
   {
     id: "pulsewave-glow-wireless-compression-boots-with-infrared-light",
@@ -1150,6 +1184,19 @@ export const products: Product[] = [
     tiers: ["Essential", "Pro"],
     specs: ["3–45 °C", "Cold + Heat + Red Light", "1.2 kg"],
     ...productShots("cold-therapy-unit-806pro", "Frostfire Pad Cold, Heat & Red Light Therapy Pad", "frostfire-pad"),
+  },
+  {
+    id: "frostfire-joint-wrap",
+    name: "Frostfire Joint Wrap Cold, Heat & Infrared Therapy Wrap",
+    category: "Cold & Cryo Therapy",
+    modality: "cold",
+    subCategory: "Contrast Therapy Devices",
+    brand: "FROSTFIRE",
+    url: "/products/frostfire-joint-wrap",
+    description: "Wearable joint wrap with cold, heat and infrared modes, a strap-and-buckle fit and one-touch controls, sized at 420 × 240 mm.",
+    tiers: ["Essential", "Pro"],
+    specs: ["Cold + Heat + Infrared", "420 × 240 mm", "Wearable Wrap"],
+    ...productShots("frostfire-joint-wrap", "Frostfire Joint Wrap Cold, Heat & Infrared Therapy Wrap", "frostfire-joint-wrap"),
   },
   {
     id: "luma-go-portable-red-light-stand",
@@ -1417,6 +1464,21 @@ export const products: Product[] = [
 
 export const productById = (id: ProductId) =>
   products.find((p) => p.id === id) || products[0];
+
+/**
+ * Products taken off the site for now. They stay in this file and in Sanity so they can
+ * come back by deleting the id here: getProducts() drops them, and links to them
+ * (blog copy, combos) render as plain text.
+ */
+export const hiddenProductIds: ReadonlySet<ProductId> = new Set([
+  "infrared-sauna-group-combination-mstar", // Halo Hybrid 3
+  "hbot-single-mini-komjet", // Oxa Mini
+  "pulsewave-pro-8-air-compression-recovery-system-8-chamber", // PulseWave Pro 8
+]);
+
+/** True for a /products/<id> link whose product is hidden. */
+export const isHiddenProductHref = (href: string) =>
+  hiddenProductIds.has(href.match(/^\/products\/([^/?#]+)/)?.[1] ?? "");
 
 /* ------------------------------------------------------------------ */
 /* 5. Spotlight                                                        */

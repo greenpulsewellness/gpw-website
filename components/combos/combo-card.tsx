@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, ChevronDown, Sparkles } from "lucide-react";
 import { type Combo, type ComboTier, comboProductId, comboUnits, siteNeedLabels } from "@/data/combos";
+import { hiddenProductIds } from "@/data/home";
 import { Button } from "@/components/ui/button";
 import { useEnquiry } from "@/components/home/enquiry-context";
 import { cn } from "@/lib/utils";
@@ -85,21 +86,35 @@ export function ComboCard({
       <div className="relative mt-6">
         <p className="label-mono mb-2 text-[10px] text-white/40">What&apos;s inside</p>
         <ul className="divide-y divide-white/[0.07] border-y border-white/[0.07]">
-          {combo.items.map(([name, qty]) => (
-            <li key={name}>
-              <Link
-                href={`/products/${comboProductId(name)}`}
-                className="group/item flex items-center gap-3 py-2.5 text-sm text-white/85 transition-colors hover:text-white"
-              >
-                <span className="label-mono w-7 shrink-0 text-[11px] tabular-nums text-white/45">{qty}×</span>
-                <span className="flex-1">{name}</span>
-                <ArrowUpRight
-                  className="size-3.5 text-white/0 transition-all group-hover/item:text-white/60 group-hover/item:-translate-y-px"
-                  aria-hidden
-                />
-              </Link>
-            </li>
-          ))}
+          {combo.items.map(([name, qty]) => {
+            const id = comboProductId(name);
+            const qtyLabel = (
+              <span className="label-mono w-7 shrink-0 text-[11px] tabular-nums text-white/45">{qty}×</span>
+            );
+            return (
+              <li key={name}>
+                {/* Hidden products stay in the combo but have no page to link to. */}
+                {hiddenProductIds.has(id) ? (
+                  <div className="flex items-center gap-3 py-2.5 text-sm text-white/85">
+                    {qtyLabel}
+                    <span className="flex-1">{name}</span>
+                  </div>
+                ) : (
+                  <Link
+                    href={`/products/${id}`}
+                    className="group/item flex items-center gap-3 py-2.5 text-sm text-white/85 transition-colors hover:text-white"
+                  >
+                    {qtyLabel}
+                    <span className="flex-1">{name}</span>
+                    <ArrowUpRight
+                      className="size-3.5 text-white/0 transition-all group-hover/item:text-white/60 group-hover/item:-translate-y-px"
+                      aria-hidden
+                    />
+                  </Link>
+                )}
+              </li>
+            );
+          })}
         </ul>
       </div>
 

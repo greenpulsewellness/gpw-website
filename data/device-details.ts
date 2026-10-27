@@ -1,7 +1,7 @@
 import type { ProductDetail, ProductProtocol } from "./products-data";
 
 /**
- * Detail pages for the smaller recovery devices: Thrum massage guns, Ember / Aurora blankets, Frostfire pad.
+ * Detail pages for the smaller recovery devices: Thrum massage guns, Ember / Aurora blankets, Frostfire pad and joint wrap.
  * Product detail data.
  * Wellness wording only: no treatment claims, no pricing.
  */
@@ -396,5 +396,67 @@ export const deviceDetails: Record<string, ProductDetail> = {
       { question: "How does it charge?", answer: "5 V / 2 A over Type-C." },
     ],
     relatedProductIds: ["percussion-gun-jm04sa", "red-light-blanket-rl302", "sauna-blanket-rl301"],
+  },
+
+  /* ---------------- Frostfire joint wrap ---------------- */
+  // Facts below come from the product artwork (modes, controls, 420 × 240 mm).
+  // TODO: confirm temperature range, power, battery and weight with the supplier and add them.
+
+  "frostfire-joint-wrap": {
+    id: "frostfire-joint-wrap",
+    subtitle: "Wearable Cold, Heat & Infrared Therapy Wrap",
+    tagline: "A strap-on joint wrap that switches between cold, heat and infrared at the touch of a button.",
+    overview: [
+      "The Frostfire Joint Wrap brings cold, heat and infrared into one wearable wrap. It sits around the knee and is held in place by an adjustable strap with a metal buckle, so the user can stay seated and relaxed during a session.",
+      "A vented thermal module sits on the outside of the wrap, with a separate control unit below it. Cold, heat and infrared each have their own button, alongside power and status indicators.",
+      "It measures 420 × 240 mm and is designed as a compact add-on for recovery rooms, treatment rooms and home routines.",
+    ],
+    mechanismOfAction: {
+      heading: "Cold, Heat & Infrared in One Wrap",
+      description: "A thermal module on the wrap cools or warms the contact area, and an infrared mode adds gentle warmth, all selected from the on-wrap control unit.",
+      points: [
+        "Three modes: cold, heat and infrared.",
+        "Vented thermal module on the outside of the wrap.",
+        "One-touch control unit with a button per mode.",
+        "Adjustable strap with metal buckle for a secure fit.",
+      ],
+    },
+    features: [
+      { title: "Three Modes in One", description: "Cold, heat and infrared from a single wrap.", iconName: "Layers" },
+      { title: "One-Touch Controls", description: "A dedicated button for each mode on the control unit.", iconName: "ThermometerSnowflake" },
+      { title: "Wearable Fit", description: "Adjustable strap and buckle wrap around the knee.", iconName: "Move" },
+    ],
+    benefits: [
+      { title: "Compact Size", description: "Small enough for a treatment-room drawer or a gym bag.", metric: "420 × 240 mm" },
+      { title: "Versatile", description: "Switch between cold, heat and infrared in one session.", metric: "3 modes" },
+    ],
+    specGroups: [
+      {
+        category: "Specifications",
+        items: [
+          { label: "Therapy Modes", value: "Cold, heat, infrared" },
+          { label: "Controls", value: "On-wrap control unit with mode and power buttons" },
+          { label: "Fit", value: "Adjustable strap with metal buckle" },
+          { label: "Dimensions", value: "420 × 240 mm" },
+        ],
+      },
+    ],
+    whatsIncluded: ["Frostfire Joint Wrap with control unit", "Adjustable strap"],
+    protocol: protocol(
+      "As advised by your wellness professional",
+      [
+        { step: "Set up", instruction: "Fit the wrap around the joint, tighten the strap and choose a mode." },
+        { step: "Session", instruction: "Stay relaxed and check the skin regularly during use." },
+        { step: "Finish", instruction: "Switch off, remove the wrap and store it flat." },
+      ],
+      ["Use over clean, dry skin and start on a gentle setting.", "Follow the supplied instructions."],
+    ),
+    suitableEnvironments: SPACES,
+    faqs: [
+      { question: "Which modes does it have?", answer: "Cold, heat and infrared, each with its own button." },
+      { question: "How does it stay in place?", answer: "An adjustable strap with a metal buckle holds it around the joint." },
+      { question: "How big is it?", answer: "420 × 240 mm." },
+    ],
+    relatedProductIds: ["cold-therapy-unit-806pro", "percussion-gun-jm04sa", "red-light-blanket-rl302"],
   },
 };

@@ -21,14 +21,14 @@ const DEFAULT_SLIDES: BannerSlide[] = [
   // All artwork is 21:9 (~1916x821). Add more slides here (5-6 planned).
   {
     id: "arctic-tub",
-    src: "/banners/arctic-tub-banner.png",
+    src: "/banners/arctic-tub-banner.webp",
     alt: "Arctic Tub Cold Plunge Ice Bath Tub",
     title: "Arctic Tub Cold Plunge Ice Bath Tub",
     href: "/products/cold-plunge-tub-new-ice-bath",
   },
   {
     id: "frostfire-pad",
-    src: "/banners/Frostfire Pad Cold, Heat & Red Light Therapy Pad - 2.png",
+    src: "/banners/frostfire-pad-banner.webp",
     alt: "Frostfire Pad Cold, Heat & Red Light Therapy Pad - Relieve, Recover, Rejuvenate",
     title: "Frostfire Pad Cold, Heat & Red Light Therapy Pad",
     subtitle: "3 Therapies, 4 Temperature Levels, Portable semiconductor recovery",
@@ -36,14 +36,14 @@ const DEFAULT_SLIDES: BannerSlide[] = [
   },
   {
     id: "luma-cocoon-pro",
-    src: "/banners/luma-coocoon-banner.png",
+    src: "/banners/luma-cocoon-pro-banner.webp",
     alt: "Luma Cocoon Pro Full Body LED Light Therapy Bed with PEMF",
     title: "Luma Cocoon Pro Full Body LED Light Therapy Bed with PEMF",
     href: "/products/led-therapy-full-body-clam-2-m6l",
   },
   {
     id: "oxa-cube-duo",
-    src: "/banners/oxa-cube-duo.png",
+    src: "/banners/oxa-cube-duo-banner.webp",
     alt: "Oxa Cube Duo Hyperbaric Oxygen Chamber (HBOT, Double)",
     title: "Oxa Cube Duo Hyperbaric Oxygen Chamber (HBOT, Double)",
     href: "/products/hbot-double-cube-chamber",
@@ -68,6 +68,7 @@ export function ProductPromotionalBanner({
   // Wrap index safely within bounds
   const currentIndex = ((page % slides.length) + slides.length) % slides.length;
   const currentSlide = slides[currentIndex];
+  const nextSlide = slides[(currentIndex + 1) % slides.length];
 
   const paginate = useCallback(
     (newDirection: number) => {
@@ -209,6 +210,31 @@ export function ProductPromotionalBanner({
             </Link>
           </motion.div>
         </AnimatePresence>
+
+        {/* Lazy-load the upcoming slide off-screen so it's cached before the carousel advances. */}
+        {slides.length > 1 && (
+          <Image
+            key={nextSlide.id}
+            src={nextSlide.mobileSrc ?? nextSlide.src}
+            alt=""
+            aria-hidden
+            fill
+            loading="lazy"
+            sizes="100vw"
+            className={`invisible pointer-events-none ${nextSlide.mobileSrc ? "md:hidden" : ""}`}
+          />
+        )}
+        {slides.length > 1 && nextSlide.mobileSrc && (
+          <Image
+            src={nextSlide.src}
+            alt=""
+            aria-hidden
+            fill
+            loading="lazy"
+            sizes="100vw"
+            className="invisible pointer-events-none max-md:hidden"
+          />
+        )}
       </div>
 
     </section>

@@ -65,16 +65,16 @@ export function AboutEcosystem() {
 
         {/* Selected Sector Card Layout */}
         <div className="mt-8 rounded-2xl sm:rounded-3xl border border-white/10 bg-white/[0.02] p-6 sm:p-10 backdrop-blur-md overflow-hidden">
-          <AnimatePresence mode="wait">
-          <motion.div
-            key={activeSector.id}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
-            <div className="lg:col-span-7 space-y-6">
+            <AnimatePresence mode="wait">
+            <motion.div
+              key={activeSector.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3 }}
+              className="lg:col-span-7 space-y-6">
               <div>
                 <span className="label-mono text-xs font-semibold text-white">
                   Target Vertical
@@ -145,26 +145,33 @@ export function AboutEcosystem() {
                   <Link href="/products">Browse the Catalogue</Link>
                 </Button>
               </div>
-            </div>
+            </motion.div>
+            </AnimatePresence>
 
-            {/* Right Media Image */}
+            {/* Right Media Image: all sectors stacked and cross-faded so switching never waits on a fetch */}
             <div className="lg:col-span-5">
               <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden border border-white/15 bg-neutral-900 shadow-2xl">
-                <Image
-                  src={activeSector.image}
-                  alt={activeSector.title}
-                  fill
-                  className="object-cover object-center transition-all duration-500"
-                  sizes="(min-width: 1024px) 35vw, 90vw"
-                />
+                {ecosystem.map((sector) => (
+                  <Image
+                    key={sector.id}
+                    src={sector.image}
+                    alt={sector.id === activeId ? sector.title : ""}
+                    aria-hidden={sector.id !== activeId}
+                    fill
+                    loading="lazy"
+                    className={`object-cover object-center transition-opacity duration-500 ${
+                      sector.id === activeId ? "opacity-100" : "opacity-0"
+                    }`}
+                    sizes="(min-width: 1024px) 35vw, 90vw"
+                  />
+                ))}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70" />
                 <div className="absolute top-4 left-4 rounded-lg bg-black/60 backdrop-blur-md px-3 py-1.5 border border-white/10 text-xs font-mono text-white">
                   <span>Space Profile</span>
                 </div>
               </div>
             </div>
-          </motion.div>
-          </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

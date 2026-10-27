@@ -130,7 +130,7 @@ export const aboutData = {
       tagline: "Recovery spaces that look as premium as your brand.",
       description:
         "Recovery studios and longevity centres combining heat, cold, light and relaxation in one planned floor. We design the flow between rooms so every session feels considered.",
-      image: "/Target client/audience-longevity.png",
+      image: "/Target%20client/audience-longevity.webp",
       modalities: ["Halo Infrared Cabins", "Arctic Cold Plunges", "Luma Light Devices", "Serene Massage Chairs"],
       typicalFootprint: "400 – 1,200 sq.ft across 3–5 rooms",
       outcomes: ["A complete multi-therapy floor", "Consistent look across rooms", "Clear layout before installation"],

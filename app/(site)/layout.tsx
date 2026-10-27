@@ -11,6 +11,7 @@ import { brand, contact } from "@/data/home";
 import { getProducts } from "@/lib/products";
 import { CookieBanner } from "@/components/ui/cookie-banner";
 import { JsonLd } from "@/components/seo/json-ld";
+import { Analytics } from '@vercel/analytics/next';
 
 const display = Outfit({ subsets: ["latin"], variable: "--font-outfit", display: "swap" });
 const sans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display: "swap" });
@@ -169,6 +170,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <FooterStage footer={<Footer />}>{children}</FooterStage>
           </SmoothScroll>
           <CookieBanner />
+          <Analytics />
         </ProductsProvider>
       </body>
     </html>

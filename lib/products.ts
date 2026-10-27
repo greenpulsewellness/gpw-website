@@ -10,12 +10,9 @@ import { PRODUCTS_REVALIDATE, PRODUCTS_TAG, sanityClient } from "@/lib/sanity/cl
  * if Sanity is unreachable or has no products yet, so the site never renders empty.
  */
 
-type SanityImage = { alt?: string; url?: string } | null;
-
-type SanityProduct = Omit<Product, "image" | "url" | "gallery"> & {
-  image: SanityImage;
-  gallery: SanityImage[] | null;
-};
+// Product images always come from data/home.ts (/public/GreenPulse). The images stored in
+// Sanity are marketing mockup collages for internal use, so they're never queried.
+type SanityProduct = Omit<Product, "image" | "url" | "gallery">;
 
 type SanityProductDetail = SanityProduct & Partial<Omit<ProductDetail, "id">>;
 
@@ -23,9 +20,7 @@ const PRODUCT_FIELDS = /* groq */ `
   "id": slug.current,
   name, category, modality, subCategory, brand, description,
   "tiers": coalesce(tiers, []),
-  "specs": coalesce(specs, []),
-  image{ alt, "url": asset->url },
-  gallery[]{ alt, "url": asset->url }
+  "specs": coalesce(specs, [])
 `;
 
 const PRODUCTS_QUERY = defineQuery(`
@@ -45,32 +40,26 @@ const fetchOptions = { next: { revalidate: PRODUCTS_REVALIDATE, tags: [PRODUCTS_
 
 const visibleLocalProducts = localProducts.filter((p) => !hiddenProductIds.has(p.id));
 
-function toMediaSlot(id: string, name: string, img: SanityImage, index = 0): MediaSlot {
+/** Placeholder slot for a product with no local photography. */
+function emptyImage(id: string, name: string): MediaSlot {
   return {
-    id: index ? `product-${id}-${index}` : `product-${id}`,
+    id: `product-${id}`,
     kind: "image",
-    label: `${name} — product 4:5`,
-    aspect: "4:5",
-    alt: img?.alt || `${name} photographed on a neutral backdrop`,
-    src: img?.url || undefined,
+    label: `${name} — product 4:3`,
+    aspect: "4:3",
+    alt: `${name} photographed on a neutral backdrop`,
   };
 }
 
 function toProduct(doc: SanityProduct): Product {
-  const { image, gallery, ...rest } = doc;
-  // Product photography is served from /public/GreenPulse (see data/home.ts), not Sanity —
-  // keeps image traffic off the Sanity CDN. Sanity images are only used for products without it.
   const local = localProducts.find((p) => p.id === doc.id);
-  const localShots = local?.image.src?.startsWith("/GreenPulse/") ? local : null;
   return {
-    ...rest,
-    subCategory: rest.subCategory ?? undefined,
-    brand: rest.brand ?? undefined,
+    ...doc,
+    subCategory: doc.subCategory ?? undefined,
+    brand: doc.brand ?? undefined,
     url: `/products/${doc.id}`,
-    image: localShots?.image ?? toMediaSlot(doc.id, doc.name, image),
-    gallery:
-      localShots?.gallery ??
-      (localShots ? [] : (gallery ?? []).filter((g) => g?.url).map((g, i) => toMediaSlot(doc.id, doc.name, g, i + 1))),
+    image: local?.image ?? emptyImage(doc.id, doc.name),
+    gallery: local?.gallery ?? [],
   };
 }
 

@@ -2,6 +2,7 @@ import "server-only";
 import { cache } from "react";
 import { defineQuery } from "next-sanity";
 import { BLOG_POSTS, getPillarPost, pickRelatedPosts, type BlogPost } from "@/data/blog";
+import { products } from "@/data/home";
 import { BLOG_TAG, PRODUCTS_REVALIDATE, PRODUCTS_TAG, sanityClient } from "@/lib/sanity/client";
 
 /**
@@ -40,7 +41,6 @@ const POSTS_QUERY = defineQuery(`
     "relatedEquipment": relatedEquipment[]->{
       name,
       category,
-      "image": coalesce(image.asset->url, ""),
       "link": "/products/" + slug.current,
       description
     }
@@ -72,7 +72,10 @@ function toPost(doc: SanityPost): BlogPost {
     author: doc.author ?? FALLBACK_AUTHOR,
     // Drop callouts left empty in the admin.
     sections: doc.sections.map((s) => ({ ...s, callout: s.callout?.text ? s.callout : undefined })),
-    relatedEquipment: (doc.relatedEquipment ?? []).filter((eq) => eq?.name),
+    // Sanity product images are internal mockup collages; use the catalogue photo instead.
+    relatedEquipment: (doc.relatedEquipment ?? [])
+      .filter((eq) => eq?.name)
+      .map((eq) => ({ ...eq, image: products.find((p) => `/products/${p.id}` === eq.link)?.image.src ?? "" })),
   };
 }
 

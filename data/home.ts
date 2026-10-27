@@ -617,13 +617,6 @@ export const products: Product[] = [
       ),
       alt: "Halo Hybrid 2 Infrared Sauna (2 Person, Carbon + Ceramic Heater) in use",
     },
-    gallery: [
-      productImage(
-        "infrared-sauna-double-combination-mstar-g1",
-        "Halo Hybrid 2 Infrared Sauna (2 Person, Carbon + Ceramic Heater)",
-        "/GPW%20Product%20mockup/Heat/Halo%20Hybrid%202%20Infrared%20Sauna%20(2%20Person,%20Carbon%20+%20Ceramic%20Heater)/Halo%20Hybrid%202%20-draft.png",
-      ),
-    ],
   },
   {
     id: "infrared-sauna-group-combination-mstar",
@@ -636,10 +629,10 @@ export const products: Product[] = [
     description: "Luxury three-person hybrid infrared sauna combining far-infrared carbon panels with full-spectrum quartz heating, red cedar or hemlock build, and tourmaline floor.",
     tiers: ["Essential", "Pro"],
     specs: ["150 × 120 × 190 cm", "2100 W", "3 Persons"],
+    // No product photography yet (the mockup collages are internal only).
     image: productImage(
       "infrared-sauna-group-combination-mstar",
       "Halo Hybrid 3 Infrared Sauna (3 Person, Carbon + Ceramic Heater)",
-      "/GPW%20Product%20mockup/Heat/Halo%20Hybrid%203%20Infrared%20Sauna%20(3%20Person,%20Carbon%20+%20Ceramic%20Heater)/BC993F5D-DC6A-4C33-A539-94D9700898E7.png",
     ),
   },
   {
@@ -835,10 +828,10 @@ export const products: Product[] = [
     description: "Compact single-user hyperbaric oxygen chamber rated 2.0 ATA, 1500 × 900 × 1950 mm, with a carbon steel door and a 15 L/min oxygen generator.",
     tiers: ["Essential", "Pro"],
     specs: ["2.0 ATA", "1500 × 900 × 1950 mm", "1 Person"],
+    // No product photography yet (the mockup collages are internal only).
     image: productImage(
       "hbot-single-mini-komjet",
       "Oxa Mini Portable Hyperbaric Oxygen Chamber (HBOT)",
-      "/GPW%20Product%20mockup/Air/Oxa%20Mini%20Portable%20Hyperbaric%20Oxygen%20Chamber%20(HBOT)/Oxa%20Mini%20Portable%20Hyperbaric%20Oxygen%20Chamber%20(HBOT).png",
     ),
   },
   {
@@ -1499,7 +1492,7 @@ export const spotlight: SpotlightItem[] = [
     media: {
       id: "spotlight-hbot",
       kind: "image",
-      src: "/GPW%20Product%20mockup/Air/Oxa%20Cube%20Duo%20Hyperbaric%20Oxygen%20Chamber%20(HBOT,%20Double)/34D447C1-0498-4EA8-AC53-7FE942251360.png",
+      src: "/GreenPulse/oxa-cube-duo/oxa-cube-duo-3-real-use.webp",
       label: "Oxa Cube Duo Hyperbaric Oxygen Chamber",
       aspect: "4:5",
       alt: "Oxa Cube Duo hyperbaric oxygen chamber",
@@ -1517,7 +1510,7 @@ export const spotlight: SpotlightItem[] = [
     media: {
       id: "spotlight-infrared-sauna",
       kind: "image",
-      src: "/GPW%20Product%20mockup/Heat/Halo%202%20Infrared%20Sauna%20(2%20Person,%20Full%20Spectrum)/halo%202.png",
+      src: "/GreenPulse/halo-2/halo-2-3-real-use.webp",
       label: "Halo 2 Infrared Sauna",
       aspect: "4:5",
       alt: "Halo 2 two-person full-spectrum infrared sauna",
@@ -1535,7 +1528,7 @@ export const spotlight: SpotlightItem[] = [
     media: {
       id: "spotlight-normatec",
       kind: "image",
-      src: "/GPW%20Product%20mockup/Compression/PulseWave%20Go%20Wireless%20Air%20Compression%20Boots/PulseWave%20Go.png",
+      src: "/GreenPulse/pulsewave-go/pulsewave-go-3-real-use.webp",
       label: "PulseWave Go Wireless Compression Boots",
       aspect: "4:5",
       alt: "PulseWave Go wireless air compression boots",

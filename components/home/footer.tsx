@@ -19,7 +19,7 @@ export function Footer() {
 
       <div className="shell relative z-10">
         {/* ── Top Link Columns ── */}
-        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:gap-x-10">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:gap-x-10">
             {/* Column 1: Solutions */}
             <div>
               <h3 className="text-xs font-normal tracking-wide text-neutral-400 mb-4 sm:mb-5">
@@ -64,41 +64,7 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Column 3: Who We Equip */}
-            <div>
-              <h3 className="text-xs font-normal tracking-wide text-neutral-400 mb-4 sm:mb-5">
-                Who We Equip
-              </h3>
-              <ul className="space-y-3 text-sm font-normal text-neutral-200">
-                <li>
-                  <Link href="/#who-we-equip" className="hover:text-white transition-colors">
-                    Longevity Centres
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/#who-we-equip" className="hover:text-white transition-colors">
-                    Hotel & Resort Spas
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/#who-we-equip" className="hover:text-white transition-colors">
-                    Athletic Training Clubs
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/#who-we-equip" className="hover:text-white transition-colors">
-                    Physiotherapy Clinics
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/#who-we-equip" className="hover:text-white transition-colors">
-                    Senior Living & Care
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Column 5: Company & Contact */}
+            {/* Column 3: Company & Contact */}
             <div>
               <h3 className="text-xs font-normal tracking-wide text-neutral-400 mb-4 sm:mb-5">
                 Company

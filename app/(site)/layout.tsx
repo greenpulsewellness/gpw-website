@@ -157,7 +157,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const products = await getProducts();
 
   return (
-    <html lang="en" className={`dark ${display.variable} ${sans.variable} ${mono.variable}`}>
+    // The home intro's inline script may add data-intro-skip before hydration.
+    <html lang="en" suppressHydrationWarning className={`dark ${display.variable} ${sans.variable} ${mono.variable}`}>
       <head>
         <JsonLd data={globalJsonLd} />
       </head>

@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
   AnimatePresence,
@@ -48,6 +48,56 @@ const DEFAULT_FINAL: PreloaderImage = {
 };
 
 /* ------------------------------------------------------------------ */
+/* Once-per-session gate                                               */
+/* ------------------------------------------------------------------ */
+
+/** Session cookie (no expiry), shared across tabs, cleared when the browser closes. */
+const INTRO_COOKIE = "gpw_intro_seen";
+/** Set on <html> when the intro must not show, so CSS hides the overlay before first paint. */
+const SKIP_ATTR = "data-intro-skip";
+
+/**
+ * Runs inline during HTML parsing on a full page load, before the overlay is
+ * painted. Skips the intro when it was already seen this session, unless this
+ * load is a refresh (only the home page renders this script).
+ */
+const SKIP_SCRIPT = `(function(){try{var d=document.documentElement;var seen=document.cookie.split('; ').indexOf('${INTRO_COOKIE}=1')>-1;var n=performance.getEntriesByType('navigation')[0];var reload=n&&n.type==='reload';if((seen&&!reload)||matchMedia('(prefers-reduced-motion: reduce)').matches)d.setAttribute('${SKIP_ATTR}','');}catch(e){}})();`;
+
+/** True until the first preloader mount in this document has made its decision. */
+let firstMountInDocument = true;
+
+function hasSeenIntro() {
+  return document.cookie.split("; ").includes(`${INTRO_COOKIE}=1`);
+}
+
+function markIntroSeen() {
+  const secure = window.location.protocol === "https:" ? "; Secure" : "";
+  document.cookie = `${INTRO_COOKIE}=1; path=/; SameSite=Lax${secure}`;
+}
+
+/** The document itself was a refresh of the home page (not of another page we navigated from). */
+function isHomeReload() {
+  try {
+    const nav = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+    return nav?.type === "reload" && new URL(nav.name).pathname === "/";
+  } catch {
+    return false;
+  }
+}
+
+function shouldPlayIntro() {
+  const firstMount = firstMountInDocument;
+  firstMountInDocument = false;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
+  if (getIsBackNavigation()) return false;
+  if (!hasSeenIntro()) return true;
+  // Seen this session: replay only when the home page itself was refreshed,
+  // and only on that first load; later visits within the tab skip it.
+  return firstMount && isHomeReload();
+}
+
+/* ------------------------------------------------------------------ */
 /* Context — lets the hero hold its video + headline until the intro   */
 /* ------------------------------------------------------------------ */
 
@@ -88,35 +138,25 @@ export function LayoutPreloader({
 
   const progress = useMotionValue(0);
   const counter = useTransform(progress, (v) => String(Math.round(v)).padStart(3, "0"));
+  // Decided once per mount, so Strict Mode's effect re-run doesn't flip it.
+  const playRef = useRef<boolean | null>(null);
+
+  // Before paint, so a skipped intro never flashes its black overlay.
+  useLayoutEffect(() => {
+    if (playRef.current === null) playRef.current = shouldPlayIntro();
+    if (!playRef.current) document.documentElement.setAttribute(SKIP_ATTR, "");
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Check if user has reduced motion preference
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    // Check if this is a browser reload vs in-session navigation
-    let isReload = false;
-    try {
-      const navEntries = performance.getEntriesByType("navigation") as PerformanceNavigationTiming[];
-      if (navEntries.length > 0 && navEntries[0].type === "reload") {
-        isReload = true;
-      }
-    } catch {
-      // ignore
-    }
-
-    const isBack = getIsBackNavigation();
-    const alreadySeen = sessionStorage.getItem("gpw_intro_seen") === "true";
-
-    // If back navigation or already viewed in this session (and not a hard reload), skip preloader
-    if (reduce || isBack || (alreadySeen && !isReload)) {
+    if (!playRef.current) {
       setVisible(false);
       setDone(true);
       return;
     }
 
-    sessionStorage.setItem("gpw_intro_seen", "true");
+    markIntroSeen();
 
     // Centre box size in px so it can animate to the full viewport.
     const W = window.innerWidth;
@@ -176,6 +216,8 @@ export function LayoutPreloader({
 
         setDone(true); // hero video starts playing under the overlay
         setVisible(false); // overlay fades out
+        // Later visits to the home page in this tab hide the overlay before it paints.
+        document.documentElement.setAttribute(SKIP_ATTR, "");
 
         // Clean up listeners & unlock scrolling
         window.removeEventListener("wheel", preventScroll);
@@ -225,11 +267,16 @@ export function LayoutPreloader({
 
   return (
     <PreloaderContext.Provider value={done}>
+      <script dangerouslySetInnerHTML={{ __html: SKIP_SCRIPT }} />
+      <style>{`html[${SKIP_ATTR}] .gpw-preloader{display:none}`}</style>
+
       {children}
 
       {/* The nav lives in the root layout, outside this overlay's stacking
           context, so hide it while the intro runs. */}
-      {visible && <style>{".site-nav{opacity:0;pointer-events:none!important}"}</style>}
+      {visible && (
+        <style>{`html:not([${SKIP_ATTR}]) .site-nav{opacity:0;pointer-events:none!important}`}</style>
+      )}
 
       <AnimatePresence>
         {visible && (
@@ -238,7 +285,7 @@ export function LayoutPreloader({
             aria-hidden="true"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, transition: { duration: 0.7, ease: "easeOut" } }}
-            className="fixed inset-0 z-[100] overflow-hidden bg-black"
+            className="gpw-preloader fixed inset-0 z-[100] overflow-hidden bg-black"
           >
             {/* Film grain */}
             <div className="pointer-events-none absolute -inset-[20%] z-30 animate-noise opacity-[0.07] mix-blend-overlay [background-image:url('data:image/svg+xml;utf8,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%22200%22%20height=%22200%22%3E%3Cfilter%20id=%22n%22%3E%3CfeTurbulence%20type=%22fractalNoise%22%20baseFrequency=%220.9%22%20numOctaves=%223%22%20stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect%20width=%22100%25%22%20height=%22100%25%22%20filter=%22url(%23n)%22/%3E%3C/svg%3E')]" />

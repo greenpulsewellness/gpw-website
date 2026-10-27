@@ -123,9 +123,9 @@ export default function CookiesPage() {
                 </thead>
                 <tbody className="divide-y divide-wood/15 text-pine/80 bg-canvas">
                   <tr>
-                    <td className="px-4 py-3 font-mono font-medium text-pine">__gpw_preloader</td>
+                    <td className="px-4 py-3 font-mono font-medium text-pine">gpw_intro_seen</td>
                     <td className="px-4 py-3">Functional</td>
-                    <td className="px-4 py-3">Tracks introductory animation completion to prevent repetitive animations on subpages.</td>
+                    <td className="px-4 py-3">Remembers that the home page intro animation has played, so it shows once per browser session.</td>
                     <td className="px-4 py-3">Session</td>
                   </tr>
                   <tr>

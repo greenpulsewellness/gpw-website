@@ -3,7 +3,7 @@ import { DEFAULT_OG_IMAGE } from "@/lib/schema";
 import { brand, contact } from "@/data/home";
 import { LegalPageLayout, LegalSection } from "@/components/legal/legal-page-layout";
 import { ShieldCheck, Lock, Eye, Database, UserCheck, Mail } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/ui/intent-link";
 
 export const metadata: Metadata = {
   title: `Privacy Policy`,

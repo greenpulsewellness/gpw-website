@@ -3,7 +3,7 @@
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import Link from "next/link";
+import Link from "@/components/ui/intent-link";
 import { ArrowUpRight } from "lucide-react";
 import type { WarpParams } from "@paper-design/shaders-react";
 import { cn } from "@/lib/utils";

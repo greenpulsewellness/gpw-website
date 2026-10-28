@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/ui/intent-link";
 import { ArrowUpRight } from "lucide-react";
 import { brand, contact, solutions } from "@/data/home";
 import { PRODUCT_TYPES } from "@/data/product-types";

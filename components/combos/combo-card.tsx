@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/ui/intent-link";
 import { ArrowRight, ArrowUpRight, ChevronDown, Sparkles } from "lucide-react";
 import { type Combo, type ComboTier, comboProductId, comboUnits, siteNeedLabels } from "@/data/combos";
 import { hiddenProductIds } from "@/data/home";

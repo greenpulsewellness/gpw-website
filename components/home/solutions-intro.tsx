@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/intent-link";
 import { Accessibility, ArrowUpRight, Bone, HeartPulse, ThermometerSnowflake } from "lucide-react";
 import FeatureShaderCards, { type ShaderCardItem } from "@/components/ui/feature-shader-cards";
 import { LoopArt } from "@/components/ui/loop-art";

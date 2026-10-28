@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/ui/intent-link";
 import { usePathname } from "next/navigation";
 import { Printer, ArrowUpRight, Clock, Calendar, CheckCircle2, MessageSquare, Mail } from "lucide-react";
 import { brand, contact } from "@/data/home";

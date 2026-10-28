@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/ui/intent-link";
 import { motion } from "motion/react";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { aboutData } from "@/data/about";

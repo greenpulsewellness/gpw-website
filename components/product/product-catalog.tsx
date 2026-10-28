@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, useEffect, useRef } from "react";
-import Link from "next/link";
+import Link from "@/components/ui/intent-link";
 import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import {

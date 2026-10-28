@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/ui/intent-link";
 import { ArrowRight, Check, Clock, Maximize2, Package, Sparkles } from "lucide-react";
 import type { SolutionDetail } from "@/data/solutions-data";
 import { useSolutionEnquiry } from "./solution-context";

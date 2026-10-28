@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/ui/intent-link";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { aboutData } from "@/data/about";

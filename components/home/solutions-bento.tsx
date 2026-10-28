@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/ui/intent-link";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { bentoSlides, type BentoSlideTile } from "@/data/home";
 import { cn } from "@/lib/utils";

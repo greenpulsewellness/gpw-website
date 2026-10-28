@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/ui/intent-link";
 import { ArrowRight } from "lucide-react";
 import { packagesSection } from "@/data/home";
 import { comboById, featuredComboId, homeComboIds, type Combo } from "@/data/combos";

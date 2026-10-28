@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { brand, contact } from "@/data/home";
 import { whatsappUrl } from "@/lib/whatsapp";
+import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 export function ContactFormCard() {
@@ -63,6 +64,7 @@ export function ContactFormCard() {
       });
 
       if (!res.ok) throw new Error("Failed to submit inquiry");
+      trackEvent("generate_lead", { form: "contact" });
       setStatus("success");
     } catch {
       setStatus("error");

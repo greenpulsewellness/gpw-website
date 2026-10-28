@@ -84,7 +84,6 @@ export default function GalleryModalAccordion() {
                     "object-cover transition-transform duration-700 ease-out",
                     isActive ? "scale-105" : "scale-100",
                   )}
-                  priority={idx < 2}
                 />
 
                 {/* Subtle vignette for idle legibility — NO blur, NO grayscale */}

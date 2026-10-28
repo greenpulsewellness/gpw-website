@@ -3,8 +3,7 @@
 import Link from "@/components/ui/intent-link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-
-const STORAGE_KEY = "gpw-cookie-consent";
+import { CONSENT_EVENT, CONSENT_STORAGE_KEY as STORAGE_KEY } from "@/lib/analytics";
 
 export function CookieBanner() {
   const pathname = usePathname();
@@ -28,6 +27,7 @@ export function CookieBanner() {
     try {
       localStorage.setItem(STORAGE_KEY, value);
     } catch {}
+    window.dispatchEvent(new Event(CONSENT_EVENT));
     setVisible(false);
   };
 
@@ -40,7 +40,8 @@ export function CookieBanner() {
       className="fixed inset-x-4 bottom-4 z-[100] mx-auto flex max-w-xl flex-col gap-3 rounded-2xl border border-white/10 bg-[#0a0f0c]/95 p-4 text-sm text-neutral-300 shadow-xl backdrop-blur-md print:hidden sm:left-auto sm:right-6 sm:bottom-6 sm:mx-0 sm:flex-row sm:items-center"
     >
       <p className="flex-1 text-xs leading-relaxed">
-        We use essential cookies to run this site.{" "}
+        We use essential cookies to run this site and, if you accept, analytics cookies to understand
+        how it&apos;s used.{" "}
         <Link href="/cookies" className="text-white underline underline-offset-2">
           Cookie Policy
         </Link>

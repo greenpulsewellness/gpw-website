@@ -139,3 +139,16 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Home entry animation: the head script sets these on <html> before the body is
+   parsed (see lib/intro.ts), so neither the nav nor the overlay can flash. */
+html[data-intro-skip] .gpw-preloader {
+  display: none;
+}
+html[data-intro-play] body {
+  background: #000;
+}
+html[data-intro-play] .site-nav {
+  opacity: 0;
+  pointer-events: none !important;
+}

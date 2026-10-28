@@ -6,6 +6,7 @@ import { ArrowRight, Check, Loader2, Mail, MapPin, Phone, User } from "lucide-re
 import { contact, enquiry, type BusinessType, type ProductCategory } from "@/data/home";
 import { comboById, combos, comboSegments } from "@/data/combos";
 import { validateEnquiry, type EnquiryErrors, type EnquiryField } from "@/lib/enquiry";
+import { trackEvent } from "@/lib/analytics";
 import { useProducts } from "@/components/products-context";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -91,6 +92,7 @@ export function EnquiryForm() {
         }),
       });
       if (!res.ok) throw new Error(String(res.status));
+      trackEvent("generate_lead", { form: "home" });
       setStatus("success");
     } catch {
       setStatus("error");

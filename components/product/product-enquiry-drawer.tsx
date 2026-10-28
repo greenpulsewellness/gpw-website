@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { X, Send, CheckCircle2, ShieldCheck } from "lucide-react";
 import { whatsappUrl } from "@/lib/whatsapp";
+import { trackEvent } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import { WhatsAppColorIcon } from "@/components/home/icons";
 
@@ -79,6 +80,7 @@ export function ProductEnquiryDrawer({
         return;
       }
       if (!res.ok) throw new Error(String(res.status));
+      trackEvent("generate_lead", { form: "product" });
       setSubmitted(true);
     } catch (err) {
       console.error("[product-enquiry] delivery error", err);

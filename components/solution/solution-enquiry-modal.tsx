@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { X, Send, CheckCircle2, ShieldCheck, Sparkles, Building2, Phone, User, MapPin } from "lucide-react";
 import { contact } from "@/data/home";
 import { whatsappUrl } from "@/lib/whatsapp";
+import { trackEvent } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import { WhatsAppColorIcon } from "@/components/home/icons";
 import { useSolutionEnquiry } from "./solution-context";
@@ -78,6 +79,7 @@ export function SolutionEnquiryModal({ solutionTitle }: SolutionEnquiryModalProp
         return;
       }
       if (!res.ok) throw new Error(String(res.status));
+      trackEvent("generate_lead", { form: "solution" });
       setSubmitted(true);
     } catch (err) {
       console.error("[solution-enquiry] delivery error", err);

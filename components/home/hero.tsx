@@ -30,35 +30,35 @@ export const HERO_SLIDES: HeroSlide[] = [
     word: "Recovery",
     description:
       "Contrast, cold and heat spaces planned as one calm, well-designed floor.",
-    src: "/recovery.png",
+    src: "/intro/recovery-hero.webp",
     alt: "Advanced recovery and restoration therapy suite",
   },
   {
     word: "Wellness",
     description:
       "Quiet, considered rooms for rest, designed around how people want to feel.",
-    src: "/wellness.png",
+    src: "/intro/wellness-hero.webp",
     alt: "Holistic wellness sanctuary and sensory suite",
   },
   {
     word: "Performance",
     description:
       "Recovery zones for gyms and sports centres, built for steady daily use.",
-    src: "/performance.png",
+    src: "/intro/performance-hero.webp",
     alt: "Longevity performance and recovery space",
   },
   {
     word: "Longevity",
     description:
       "Spaces for longevity centres, resorts and homes, designed, equipped and launched with you.",
-    src: "/longivity.png",
+    src: "/intro/longevity-hero.webp",
     alt: "AgeWell active recovery and rehabilitation sanctuary",
   },
   {
     word: "Vitality",
     description:
       "Comfortable, practical equipment for clinics, care settings and everyday living.",
-    src: "/vitality.png",
+    src: "/intro/vitality-hero.webp",
     alt: "Clinical rehabilitation and physiotherapy suite",
   },
 ];
@@ -124,6 +124,7 @@ export function Hero() {
             height="100%"
             autoplay={introDone && inView ? 4000 : 0}
             playing={inView}
+            deferRest={!introDone}
             duration={1800}
             loop={true}
             arrows={false}

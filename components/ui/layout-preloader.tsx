@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { preload } from "react-dom";
 import {
   AnimatePresence,
   animate,
@@ -11,6 +12,7 @@ import {
 } from "motion/react";
 import { Logo } from "@/components/home/logo";
 import { getLenis, getIsBackNavigation, saveScrollPosition } from "@/lib/scroll";
+import { INTRO_COOKIE, PLAY_ATTR, SKIP_ATTR } from "@/lib/intro";
 
 declare global {
   interface Window {
@@ -28,14 +30,20 @@ const EASE_IN_OUT = [0.76, 0, 0.24, 1] as const;
 const STACK_START = 0.25; // first image enters the window
 const STACK_STEP = 0.55; // gap between images
 const STACK_DURATION = 0.8;
+const EXPAND_DURATION = 1.1;
+
+/** Longest the intro waits for its images before giving up and showing the page. */
+const READY_TIMEOUT_MS = 2500;
 
 type PreloaderImage = { src: string; alt: string };
 
+// Pre-sized WebP files from scripts/generate-intro-images.mjs, served as-is so no
+// visitor waits on an image being converted.
 const DEFAULT_IMAGES: PreloaderImage[] = [
-  { src: "/vitality.jpg", alt: "Vitality Suite" },
-  { src: "/longivity.png", alt: "Longevity Infrastructure" },
-  { src: "/performance.png", alt: "Performance Lab" },
-  { src: "/wellness.png", alt: "Wellness Sanctuary" },
+  { src: "/intro/vitality-intro.webp", alt: "Vitality Suite" },
+  { src: "/intro/longevity-intro.webp", alt: "Longevity Infrastructure" },
+  { src: "/intro/performance-intro.webp", alt: "Performance Lab" },
+  { src: "/intro/wellness-intro.webp", alt: "Wellness Sanctuary" },
 ];
 
 /** Centre window aspect ratio (width / height) — the intro images are 4:3. */
@@ -43,25 +51,13 @@ const WINDOW_RATIO = 4 / 3;
 
 /** Must match the first hero slide so the hand-off is seamless. */
 const DEFAULT_FINAL: PreloaderImage = {
-  src: "/recovery.png",
+  src: "/intro/recovery-hero.webp",
   alt: "Recovery & Cellular Rejuvenation",
 };
 
 /* ------------------------------------------------------------------ */
 /* Once-per-session gate                                               */
 /* ------------------------------------------------------------------ */
-
-/** Session cookie (no expiry), shared across tabs, cleared when the browser closes. */
-const INTRO_COOKIE = "gpw_intro_seen";
-/** Set on <html> when the intro must not show, so CSS hides the overlay before first paint. */
-const SKIP_ATTR = "data-intro-skip";
-
-/**
- * Runs inline during HTML parsing on a full page load, before the overlay is
- * painted. Skips the intro when it was already seen this session, unless this
- * load is a refresh (only the home page renders this script).
- */
-const SKIP_SCRIPT = `(function(){try{var d=document.documentElement;var seen=document.cookie.split('; ').indexOf('${INTRO_COOKIE}=1')>-1;var n=performance.getEntriesByType('navigation')[0];var reload=n&&n.type==='reload';if((seen&&!reload)||matchMedia('(prefers-reduced-motion: reduce)').matches)d.setAttribute('${SKIP_ATTR}','');}catch(e){}})();`;
 
 /** True until the first preloader mount in this document has made its decision. */
 let firstMountInDocument = true;
@@ -75,26 +71,47 @@ function markIntroSeen() {
   document.cookie = `${INTRO_COOKIE}=1; path=/; SameSite=Lax${secure}`;
 }
 
-/** The document itself was a refresh of the home page (not of another page we navigated from). */
-function isHomeReload() {
-  try {
-    const nav = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
-    return nav?.type === "reload" && new URL(nav.name).pathname === "/";
-  } catch {
-    return false;
-  }
-}
-
 function shouldPlayIntro() {
   const firstMount = firstMountInDocument;
   firstMountInDocument = false;
 
+  // A full load of the home page was already decided by the head script.
+  const html = document.documentElement;
+  if (firstMount && html.hasAttribute(PLAY_ATTR)) return true;
+  if (firstMount && html.hasAttribute(SKIP_ATTR)) return false;
+
+  // Client-side navigation to the home page: play only if it hasn't played since
+  // the last refresh (the head script clears the cookie on every refresh).
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
   if (getIsBackNavigation()) return false;
-  if (!hasSeenIntro()) return true;
-  // Seen this session: replay only when the home page itself was refreshed,
-  // and only on that first load; later visits within the tab skip it.
-  return firstMount && isHomeReload();
+  return !hasSeenIntro();
+}
+
+/** Resolves once the image is downloaded and decoded, so it paints on its first frame. */
+function whenReady(src: string) {
+  return new Promise<void>((resolve, reject) => {
+    const img = new window.Image();
+    img.onload = () => img.decode().then(resolve, resolve);
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+
+/**
+ * Waits up to READY_TIMEOUT_MS for the images. Returns the ones ready in time, in
+ * order, ending with the final image — or null when the final image isn't ready,
+ * since the intro can't hand off to the hero without it.
+ */
+async function readySequence(images: PreloaderImage[], finalImage: PreloaderImage) {
+  const all = [...images, finalImage];
+  const ready = new Set<string>();
+  const loads = all.map((img) => whenReady(img.src).then(() => void ready.add(img.src), () => {}));
+  await Promise.race([
+    Promise.all(loads),
+    new Promise((resolve) => window.setTimeout(resolve, READY_TIMEOUT_MS)),
+  ]);
+  if (!ready.has(finalImage.src)) return null;
+  return all.filter((img) => ready.has(img.src));
 }
 
 /* ------------------------------------------------------------------ */
@@ -130,11 +147,13 @@ export function LayoutPreloader({
   const [done, setDone] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [rect, setRect] = useState<{ x: number; y: number; w: number; h: number; vw: number; vh: number } | null>(null);
+  // The images that will actually play: null until they've loaded (or timed out).
+  const [layers, setLayers] = useState<PreloaderImage[] | null>(null);
 
-  const layers = [...images, finalImage];
-  const finalDelay = STACK_START + images.length * STACK_STEP;
-  const expandAt = finalDelay + STACK_DURATION + 0.25;
-  const expandDuration = 1.1;
+  // Start downloading during server render, long before this component hydrates.
+  // A visitor skipping the intro saw it earlier this session, so these are cached.
+  preload(finalImage.src, { as: "image", fetchPriority: "high" });
+  images.forEach((img, i) => preload(img.src, { as: "image", fetchPriority: i === 0 ? "high" : "auto" }));
 
   const progress = useMotionValue(0);
   const counter = useTransform(progress, (v) => String(Math.round(v)).padStart(3, "0"));
@@ -144,7 +163,14 @@ export function LayoutPreloader({
   // Before paint, so a skipped intro never flashes its black overlay.
   useLayoutEffect(() => {
     if (playRef.current === null) playRef.current = shouldPlayIntro();
-    if (!playRef.current) document.documentElement.setAttribute(SKIP_ATTR, "");
+    const html = document.documentElement;
+    if (playRef.current) {
+      html.setAttribute(PLAY_ATTR, "");
+      html.removeAttribute(SKIP_ATTR);
+    } else {
+      html.setAttribute(SKIP_ATTR, "");
+      html.removeAttribute(PLAY_ATTR);
+    }
   }, []);
 
   useEffect(() => {
@@ -193,11 +219,6 @@ export function LayoutPreloader({
     window.addEventListener("touchmove", preventScroll, { passive: false });
     window.addEventListener("keydown", preventKeys);
 
-    const counterAnim = animate(progress, 100, {
-      duration: expandAt,
-      ease: [0.45, 0, 0.2, 1],
-    });
-
     const resetToTop = () => {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
       const currentLenis = getLenis();
@@ -208,41 +229,63 @@ export function LayoutPreloader({
       saveScrollPosition("/", 0);
     };
 
-    const tExpand = window.setTimeout(() => setExpanded(true), expandAt * 1000);
-    const tDone = window.setTimeout(
-      () => {
-        // Enforce scroll top right before unlocking
-        resetToTop();
+    const finish = () => {
+      // Enforce scroll top right before unlocking
+      resetToTop();
 
-        setDone(true); // hero video starts playing under the overlay
-        setVisible(false); // overlay fades out
-        // Later visits to the home page in this tab hide the overlay before it paints.
-        document.documentElement.setAttribute(SKIP_ATTR, "");
+      setDone(true); // hero video starts playing under the overlay
+      setVisible(false); // overlay fades out; SKIP_ATTR is set once the fade completes
+      document.documentElement.removeAttribute(PLAY_ATTR); // nav fades in under the overlay
 
-        // Clean up listeners & unlock scrolling
-        window.removeEventListener("wheel", preventScroll);
-        window.removeEventListener("touchmove", preventScroll);
-        window.removeEventListener("keydown", preventKeys);
+      // Clean up listeners & unlock scrolling
+      window.removeEventListener("wheel", preventScroll);
+      window.removeEventListener("touchmove", preventScroll);
+      window.removeEventListener("keydown", preventKeys);
 
-        document.documentElement.style.overflow = "";
-        document.body.style.overflow = "";
-        document.body.style.overscrollBehavior = "";
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+      document.body.style.overscrollBehavior = "";
 
-        const currentLenis = getLenis();
-        currentLenis?.start();
+      const currentLenis = getLenis();
+      currentLenis?.start();
 
-        // Enforce hero at the top across several frames to eliminate any buffered momentum
-        resetToTop();
-        requestAnimationFrame(resetToTop);
-        setTimeout(resetToTop, 50);
-        setTimeout(resetToTop, 120);
-        setTimeout(resetToTop, 250);
-      },
-      (expandAt + expandDuration) * 1000,
-    );
+      // Enforce hero at the top across several frames to eliminate any buffered momentum
+      resetToTop();
+      requestAnimationFrame(resetToTop);
+      setTimeout(resetToTop, 50);
+      setTimeout(resetToTop, 120);
+      setTimeout(resetToTop, 250);
+    };
+
+    // The timeline starts only once its images can paint; until then the
+    // overlay holds on the logo with the counter at 000.
+    let cancelled = false;
+    let counterAnim: ReturnType<typeof animate> | undefined;
+    let tExpand = 0;
+    let tDone = 0;
+
+    void readySequence(images, finalImage).then((sequence) => {
+      if (cancelled) return;
+      // Too slow to load: skip straight to the page rather than play over blanks.
+      if (!sequence) {
+        finish();
+        return;
+      }
+
+      const expandAt = STACK_START + (sequence.length - 1) * STACK_STEP + STACK_DURATION + 0.25;
+      setLayers(sequence);
+      counterAnim = animate(progress, 100, {
+        duration: expandAt,
+        ease: [0.45, 0, 0.2, 1],
+      });
+      tExpand = window.setTimeout(() => setExpanded(true), expandAt * 1000);
+      tDone = window.setTimeout(finish, (expandAt + EXPAND_DURATION) * 1000);
+    });
 
     return () => {
-      counterAnim.stop();
+      cancelled = true;
+      document.documentElement.removeAttribute(PLAY_ATTR);
+      counterAnim?.stop();
       window.clearTimeout(tExpand);
       window.clearTimeout(tDone);
       window.removeEventListener("wheel", preventScroll);
@@ -253,7 +296,7 @@ export function LayoutPreloader({
       document.body.style.overscrollBehavior = "";
       getLenis()?.start();
     };
-  }, [expandAt, progress]);
+  }, [images, finalImage, progress]);
 
   // Let other components (e.g. the cookie banner) know the intro has finished.
   useEffect(() => {
@@ -267,18 +310,12 @@ export function LayoutPreloader({
 
   return (
     <PreloaderContext.Provider value={done}>
-      <script dangerouslySetInnerHTML={{ __html: SKIP_SCRIPT }} />
-      <style>{`html[${SKIP_ATTR}] .gpw-preloader{display:none}`}</style>
-
-      {children}
-
-      {/* The nav lives in the root layout, outside this overlay's stacking
-          context, so hide it while the intro runs. */}
-      {visible && (
-        <style>{`html:not([${SKIP_ATTR}]) .site-nav{opacity:0;pointer-events:none!important}`}</style>
-      )}
-
-      <AnimatePresence>
+      {/* The overlay comes before the page in the HTML, so the browser paints it
+          before any of the hero; globals.css hides it or the nav from the first paint. */}
+      {/* SKIP_ATTR hides the overlay with display:none, so it is set only after the
+          exit fade — setting it earlier cuts the fade and jerks into the hero.
+          Later visits to the home page in this tab then hide the overlay before it paints. */}
+      <AnimatePresence onExitComplete={() => document.documentElement.setAttribute(SKIP_ATTR, "")}>
         {visible && (
           <motion.div
             key="preloader"
@@ -292,7 +329,7 @@ export function LayoutPreloader({
 
             {/* 4:3 image box — every image fills it fully; after the last one
                 lands, the box itself grows to full screen, carrying the image */}
-            {rect && (
+            {rect && layers && (
               <motion.div
                 className="absolute overflow-hidden"
                 initial={{ left: rect.x, top: rect.y, width: rect.w, height: rect.h, borderRadius: 14 }}
@@ -301,10 +338,9 @@ export function LayoutPreloader({
                     ? { left: 0, top: 0, width: rect.vw, height: rect.vh, borderRadius: 0 }
                     : { left: rect.x, top: rect.y, width: rect.w, height: rect.h, borderRadius: 14 }
                 }
-                transition={{ duration: expandDuration, ease: EASE_IN_OUT }}
+                transition={{ duration: EXPAND_DURATION, ease: EASE_IN_OUT }}
               >
                 {layers.map((img, i) => {
-                  const isFinal = i === layers.length - 1;
                   return (
                     <motion.div
                       key={img.src}
@@ -331,8 +367,8 @@ export function LayoutPreloader({
                           src={img.src}
                           alt={img.alt}
                           fill
-                          sizes={isFinal ? "100vw" : "(max-width: 640px) 90vw, 680px"}
-                          priority
+                          unoptimized
+                          loading="eager"
                           className="object-cover"
                         />
                       </motion.div>
@@ -345,7 +381,7 @@ export function LayoutPreloader({
             {/* Brand + counter */}
             <motion.div
               className="label-mono pointer-events-none absolute inset-x-0 bottom-0 z-20 flex items-end justify-between p-5 text-neutral-400 sm:p-8"
-              initial={{ opacity: 0, y: 12 }}
+              initial={false}
               animate={expanded ? { opacity: 0, y: -12 } : { opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: EASE_OUT }}
             >
@@ -357,6 +393,7 @@ export function LayoutPreloader({
           </motion.div>
         )}
       </AnimatePresence>
+      {children}
     </PreloaderContext.Provider>
   );
 }

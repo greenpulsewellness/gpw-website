@@ -48,6 +48,8 @@ export type MorphGalleryProps = {
   autoplay?: number;
   /** When false the GL loop stops drawing and autoplay holds (e.g. off-screen). Default true. */
   playing?: boolean;
+  /** Load only the first image until this turns false (e.g. while an intro plays over it). Default false. */
+  deferRest?: boolean;
   arrows?: boolean;
   thumbnails?: boolean;
   /** Controlled index. Omit for uncontrolled. */
@@ -257,6 +259,7 @@ export default function MorphGallery({
   loop = true,
   autoplay = 0,
   playing = true,
+  deferRest = false,
   arrows = true,
   thumbnails = true,
   index,
@@ -299,6 +302,14 @@ export default function MorphGallery({
   tuning.current = { duration, noiseScale, edge, drift, reduced };
   const playingRef = React.useRef(playing);
   playingRef.current = playing;
+
+  // Set by the GL effect while the remaining images are held back.
+  const deferRef = React.useRef(deferRest);
+  deferRef.current = deferRest;
+  const loadRestRef = React.useRef<(() => void) | null>(null);
+  React.useEffect(() => {
+    if (!deferRest) loadRestRef.current?.();
+  }, [deferRest]);
 
   // A transition is requested by index changes and consumed by the loop.
   const request = React.useRef<{ from: number; to: number } | null>(null);
@@ -454,34 +465,43 @@ export default function MorphGallery({
         // the first one.
         let running = false;
         let refused = 0;
-        await Promise.all(
-          items.map((item, i) =>
-            loadImage(item.src).then(
-              (img) => {
-                if (disposed) return;
-                const tex = gl.createTexture();
-                gl.bindTexture(gl.TEXTURE_2D, tex);
-                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
-                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-                textures[i] = tex;
-                aspects[i] = img.naturalWidth / Math.max(img.naturalHeight, 1);
-                if (!running) {
-                  running = true;
-                  resize();
-                  setReady(true);
-                  raf = requestAnimationFrame(frame);
-                }
-              },
-              () => {
-                refused += 1;
-                if (refused === items.length && !disposed) setFailed(true);
-              },
-            ),
-          ),
-        );
+        const upload = (item: MorphItem, i: number) =>
+          loadImage(item.src).then(
+            (img) => {
+              if (disposed) return;
+              const tex = gl.createTexture();
+              gl.bindTexture(gl.TEXTURE_2D, tex);
+              gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+              gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+              gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+              gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+              gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+              textures[i] = tex;
+              aspects[i] = img.naturalWidth / Math.max(img.naturalHeight, 1);
+              if (!running) {
+                running = true;
+                resize();
+                setReady(true);
+                raf = requestAnimationFrame(frame);
+              }
+            },
+            () => {
+              refused += 1;
+              if (refused === items.length && !disposed) setFailed(true);
+            },
+          );
+        const loadRest = () =>
+          Promise.all(items.slice(1).map((item, i) => upload(item, i + 1)));
+
+        if (deferRef.current) {
+          loadRestRef.current = () => {
+            loadRestRef.current = null;
+            void loadRest();
+          };
+          await upload(items[0], 0);
+        } else {
+          await Promise.all([upload(items[0], 0), loadRest()]);
+        }
       } catch {
         if (!disposed) setFailed(true);
       }
@@ -490,6 +510,7 @@ export default function MorphGallery({
 
     return () => {
       disposed = true;
+      loadRestRef.current = null;
       cancelAnimationFrame(raf);
       observer.disconnect();
       canvas.removeEventListener("webglcontextlost", onLost);

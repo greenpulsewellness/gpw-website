@@ -9,16 +9,17 @@ const isProd = process.env.NODE_ENV === "production";
  * Content-Security-Policy for the public site (not applied to /studio, which needs a much
  * wider policy). Next.js injects inline bootstrap scripts, so script-src keeps
  * 'unsafe-inline' (the "without nonces" setup from the Next.js CSP guide); everything else
- * is locked to this origin plus Sanity's image CDN.
+ * is locked to this origin plus Sanity's image CDN and the Google Analytics endpoints
+ * (loaded only after cookie consent).
  */
 const csp = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://cdn.sanity.io https://greenpulsewellness.com https://*.greenpulsewellness.com",
+  "img-src 'self' data: blob: https://cdn.sanity.io https://greenpulsewellness.com https://*.greenpulsewellness.com https://*.google-analytics.com https://*.googletagmanager.com",
   "media-src 'self' blob: data:",
   "font-src 'self' data:",
-  "connect-src 'self'",
+  "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
   "frame-src 'none'",
   "object-src 'none'",
   "base-uri 'self'",

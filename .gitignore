@@ -54,3 +54,6 @@ GPW_SENSITIVE_FILES/
 .env
 .env.*
 !.env.example
+
+# original logo artwork (source files, not used by the site)
+/public/Logo AW/

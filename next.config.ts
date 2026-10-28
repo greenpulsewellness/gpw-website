@@ -43,8 +43,13 @@ const nextConfig: NextConfig = {
   ],
   images: {
     formats: ["image/avif", "image/webp"],
-    // Product photos change rarely; Sanity URLs are content-hashed. Cache optimized variants for a week.
-    minimumCacheTTL: 60 * 60 * 24 * 7,
+    // Each width below is a separate (billed) transformation per image, so keep the list short.
+    // 2048 is also the max width scripts/optimize-public-images.mjs keeps for photos in /public.
+    deviceSizes: [640, 828, 1080, 1440, 2048],
+    imageSizes: [64, 128, 256, 384],
+    // Product photos change rarely; Sanity URLs are content-hashed. Cache optimized variants for
+    // 31 days. When replacing a photo in /public, give it a new file name so the old copy isn't served.
+    minimumCacheTTL: 60 * 60 * 24 * 31,
     remotePatterns: [
       {
         protocol: "https",

@@ -350,6 +350,10 @@ export default function MorphGallery({
     let progress = 1;
     let startedAt = 0;
     let direction = 1;
+    // Between dissolves the frame is static, and the fbm pass is far too heavy to
+    // repeat every frame for nothing — so the loop only draws when this is set,
+    // or while a dissolve is running.
+    let dirty = true;
 
     const onLost = (e: Event) => {
       e.preventDefault();
@@ -369,6 +373,8 @@ export default function MorphGallery({
       canvas.width = w;
       canvas.height = h;
       gl.viewport(0, 0, w, h);
+      // Resizing clears the drawing buffer.
+      dirty = true;
     };
     const observer = new ResizeObserver(resize);
     observer.observe(canvas);
@@ -412,6 +418,7 @@ export default function MorphGallery({
       const fromTex = pick(from);
       const toTex = pick(to);
       if (!fromTex || !toTex) return;
+      dirty = false;
 
       gl.activeTexture(gl.TEXTURE0);
       gl.bindTexture(gl.TEXTURE_2D, fromTex);
@@ -432,7 +439,7 @@ export default function MorphGallery({
     };
 
     const frame = () => {
-      if (playingRef.current) draw();
+      if (playingRef.current && (dirty || progress < 1 || request.current)) draw();
       raf = requestAnimationFrame(frame);
     };
 
@@ -478,6 +485,8 @@ export default function MorphGallery({
               gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
               textures[i] = tex;
               aspects[i] = img.naturalWidth / Math.max(img.naturalHeight, 1);
+              // It may replace a stand-in that `pick` was showing.
+              dirty = true;
               if (!running) {
                 running = true;
                 resize();

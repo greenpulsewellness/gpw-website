@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DEFAULT_OG_IMAGE } from "@/lib/schema";
 import { brand, contact } from "@/data/home";
 import { LegalPageLayout, LegalSection } from "@/components/legal/legal-page-layout";
 import { Cookie, Settings, ShieldCheck, ToggleLeft } from "lucide-react";
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
     title: `Cookie Policy — ${brand.name}`,
     description: "Official Cookie Policy for GreenPulse Wellness.",
     type: "website",
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

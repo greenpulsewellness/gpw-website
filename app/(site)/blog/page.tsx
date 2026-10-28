@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DEFAULT_OG_IMAGE } from "@/lib/schema";
 import { getAllCategories } from "@/data/blog";
 import { getPosts } from "@/lib/blog";
 import { brand } from "@/data/home";
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     description:
       "Practical guides on saunas, cold plunges, light devices, compression and planning a recovery space.",
     type: "website",
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

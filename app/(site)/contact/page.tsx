@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DEFAULT_OG_IMAGE } from "@/lib/schema";
 import { brand, contact } from "@/data/home";
 import { ContactFormCard } from "@/components/contact/contact-form-card";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
       "Engineering turnkey commercial wellness suites and medical-grade recovery architecture. Request product information, spatial design consults, or partnership opportunities.",
     url: `${SITE_URL}/contact`,
     type: "website",
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

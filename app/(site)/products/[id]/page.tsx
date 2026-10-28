@@ -6,7 +6,7 @@ import { EnquiryProvider } from "@/components/home/enquiry-context";
 import { ProductDetailView } from "@/components/product/product-detail-view";
 import { LoopArt } from "@/components/ui/loop-art";
 import { JsonLd } from "@/components/seo/json-ld";
-import { breadcrumbSchema, faqSchema, SITE_URL } from "@/lib/schema";
+import { breadcrumbSchema, faqSchema, SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/schema";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -56,13 +56,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
               alt: `${product.name} studio photography`,
             },
           ]
-        : undefined,
+        : [DEFAULT_OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title: `${product.name} — ${brand.name}`,
       description: product.description,
-      images: product.image.src ? [product.image.src] : undefined,
+      images: product.image.src ? [product.image.src] : [DEFAULT_OG_IMAGE],
     },
   };
 }

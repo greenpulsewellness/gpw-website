@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import { DEFAULT_OG_IMAGE } from "@/lib/schema";
 import { brand } from "@/data/home";
 import { ProductCatalog } from "@/components/product/product-catalog";
 import { ProductPromotionalBanner } from "@/components/product/product-promotional-banner";
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     description:
       "Purpose-led recovery, rehabilitation, and longevity hardware engineered for high-performance facilities and private sanctuaries.",
     type: "website",
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

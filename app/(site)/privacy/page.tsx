@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DEFAULT_OG_IMAGE } from "@/lib/schema";
 import { brand, contact } from "@/data/home";
 import { LegalPageLayout, LegalSection } from "@/components/legal/legal-page-layout";
 import { ShieldCheck, Lock, Eye, Database, UserCheck, Mail } from "lucide-react";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     title: `Privacy Policy — ${brand.name}`,
     description: "Official Privacy Policy for GreenPulse Wellness.",
     type: "website",
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

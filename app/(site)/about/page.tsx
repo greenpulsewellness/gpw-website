@@ -12,7 +12,7 @@ import { AboutComparison } from "@/components/about/about-comparison";
 import { AmbientBackground } from "@/components/ui/ambient-background";
 import { JsonLd } from "@/components/seo/json-ld";
 import { aboutData } from "@/data/about";
-import { faqSchema } from "@/lib/schema";
+import { faqSchema, DEFAULT_OG_IMAGE } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: `About Us — Designed. Equipped. Launched.`,
@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     description:
       "We design, equip and launch recovery and wellness spaces, with the layout planned before you build.",
     type: "website",
+    images: [DEFAULT_OG_IMAGE],
     url: "https://greenpulsewellness.com/about",
   },
   alternates: {

@@ -12,6 +12,7 @@ import { getProducts } from "@/lib/products";
 import { CookieBanner } from "@/components/ui/cookie-banner";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Analytics } from '@vercel/analytics/next';
+import { DEFAULT_OG_IMAGE } from "@/lib/schema";
 
 const display = Outfit({ subsets: ["latin"], variable: "--font-outfit", display: "swap" });
 const sans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display: "swap" });
@@ -60,21 +61,14 @@ export const metadata: Metadata = {
     title: `${brand.name} — ${brand.tagline}`,
     description:
       "Designed. Equipped. Launched. Recovery and wellness spaces for centres, gyms, clinics, hotels and homes across India.",
-    images: [
-      {
-        url: "/logo-horizontal.png",
-        width: 1200,
-        height: 630,
-        alt: `${brand.name} — Designed. Equipped. Launched.`,
-      },
-    ],
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: `${brand.name} — ${brand.tagline}`,
     description:
       "Designed. Equipped. Launched. Recovery and wellness spaces across India.",
-    images: ["/logo-horizontal.png"],
+    images: [DEFAULT_OG_IMAGE],
   },
   robots: {
     index: true,

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DEFAULT_OG_IMAGE } from "@/lib/schema";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { brand } from "@/data/home";
 import { combos, comboSafetyNote, comboSegments, comboTiers, type ComboTier } from "@/data/combos";
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
     title: `Wellness Equipment Combos — ${brand.name}`,
     description: "Ready-made heat, cold, light, oxygen and recovery bundles for every kind of wellness space.",
     type: "website",
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

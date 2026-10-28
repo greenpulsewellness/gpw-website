@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DEFAULT_OG_IMAGE } from "@/lib/schema";
 import { brand, contact } from "@/data/home";
 import { LegalPageLayout, LegalSection } from "@/components/legal/legal-page-layout";
 import { ShieldCheck, AlertTriangle, CheckCircle, HeartPulse, FileText, Info } from "lucide-react";
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
     title: `Regulatory Compliance & Safety — ${brand.name}`,
     description: "Equipment safety protocols, contraindications, and wellness compliance guidelines for GreenPulse Wellness.",
     type: "website",
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

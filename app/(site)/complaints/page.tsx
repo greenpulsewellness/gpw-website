@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DEFAULT_OG_IMAGE } from "@/lib/schema";
 import { brand, contact } from "@/data/home";
 import { LegalPageLayout, LegalSection } from "@/components/legal/legal-page-layout";
 import { AlertCircle, Clock, ShieldAlert, PhoneCall, Mail, CheckCircle2, UserCheck, Layers } from "lucide-react";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     title: `Complaints & Grievance Redressal — ${brand.name}`,
     description: "Multi-tier complaint escalation matrix and grievance resolution protocols for GreenPulse Wellness clients.",
     type: "website",
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

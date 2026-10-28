@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DEFAULT_OG_IMAGE } from "@/lib/schema";
 import { brand, contact } from "@/data/home";
 import { LegalPageLayout, LegalSection } from "@/components/legal/legal-page-layout";
 import { AlertCircle, CheckCircle, ShieldAlert, FileText } from "lucide-react";
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
     title: `Terms & Conditions — ${brand.name}`,
     description: "Official terms and conditions governing GreenPulse Wellness products and services.",
     type: "website",
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 

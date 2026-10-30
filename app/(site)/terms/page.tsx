@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   description:
     "Review the terms and conditions governing equipment orders, installation, warranty and safe use of GreenPulse Wellness products and services.",
   openGraph: {
+    url: "/terms",
     title: `Terms & Conditions — ${brand.name}`,
     description: "Official terms and conditions governing GreenPulse Wellness products and services.",
     type: "website",

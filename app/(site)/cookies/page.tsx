@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   description:
     "Understand how GreenPulse Wellness uses cookies, local storage, and tracking technologies to optimize website responsiveness, hardware catalog filtering, and digital performance.",
   openGraph: {
+    url: "/cookies",
     title: `Cookie Policy — ${brand.name}`,
     description: "Official Cookie Policy for GreenPulse Wellness.",
     type: "website",

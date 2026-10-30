@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description:
     "Official Grievance Redressal & Complaint Handling Policy for GreenPulse Wellness. Escalation tiers, technical breakdown reporting, SLAs, and Grievance Officer contact details.",
   openGraph: {
+    url: "/complaints",
     title: `Complaints & Grievance Redressal — ${brand.name}`,
     description: "Multi-tier complaint escalation matrix and grievance resolution protocols for GreenPulse Wellness clients.",
     type: "website",

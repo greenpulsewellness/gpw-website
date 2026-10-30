@@ -1,6 +1,6 @@
 /** Small builders for schema.org JSON-LD blocks shared across pages. */
 
-export const SITE_URL = "https://greenpulsewellness.com";
+export const SITE_URL = "https://www.greenpulsewellness.com";
 
 /** Default social share image: logo on white, 1200×630. Pages that set their own
  *  `openGraph` replace the layout's entirely, so they must list this explicitly. */

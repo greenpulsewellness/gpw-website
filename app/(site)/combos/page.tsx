@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DEFAULT_OG_IMAGE } from "@/lib/schema";
+import { DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/schema";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { brand } from "@/data/home";
 import { combos, comboSafetyNote, comboSegments, comboTiers, type ComboTier } from "@/data/combos";
@@ -9,13 +9,12 @@ import { ComboExplorer } from "@/components/combos/combo-explorer";
 import { TierPill } from "@/components/combos/combo-card";
 import { JsonLd } from "@/components/seo/json-ld";
 
-const SITE_URL = "https://greenpulsewellness.com";
-
 export const metadata: Metadata = {
   title: "Wellness Equipment Combos",
   description: `${combos.length} ready-made wellness and recovery equipment combos for gyms, spas, longevity centres, physio practices, senior living, corporate offices, sports teams and homecare. Supplied, installed and serviced across India by ${brand.name}.`,
   alternates: { canonical: "/combos" },
   openGraph: {
+    url: "/combos",
     title: `Wellness Equipment Combos — ${brand.name}`,
     description: "Ready-made heat, cold, light, oxygen and recovery bundles for every kind of wellness space.",
     type: "website",

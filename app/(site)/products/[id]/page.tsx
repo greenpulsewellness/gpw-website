@@ -81,23 +81,28 @@ export default async function ProductDetailPage({ params }: PageProps) {
     .map((relId) => products.find((p) => p.id === relId))
     .filter((p): p is typeof products[0] => Boolean(p));
 
-  // Structured data: Product (no price is published, so no Offer), FAQ and breadcrumbs.
+  // Structured data: Service, FAQ and breadcrumbs. Prices are quote-only, and Google flags Product
+  // markup without offers, review or aggregateRating as invalid, so each product is described as
+  // the supply-and-install service GreenPulse provides for it.
   const productUrl = `${SITE_URL}/products/${product.id}`;
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Product",
-        "@id": `${productUrl}#product`,
+        "@type": "Service",
+        "@id": `${productUrl}#service`,
         url: productUrl,
         name: product.name,
-        image: product.image.src ? [product.image.src] : undefined,
+        image: product.image.src ? [new URL(product.image.src, SITE_URL).href] : undefined,
         description: product.description,
+        serviceType: "Commercial wellness equipment supply and installation",
+        category: product.category,
         brand: {
           "@type": "Brand",
           name: product.brand || brand.name,
         },
-        category: product.category,
+        provider: { "@id": `${SITE_URL}/#organization` },
+        areaServed: { "@type": "Country", name: "India" },
       },
       breadcrumbSchema([
         { name: "Home", path: "/" },

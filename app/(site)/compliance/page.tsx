@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   description:
     "Official regulatory guidelines, equipment safety standards, contraindication protocols, and wellness classification disclaimers for GreenPulse Wellness hardware.",
   openGraph: {
+    url: "/compliance",
     title: `Regulatory Compliance & Safety — ${brand.name}`,
     description: "Equipment safety protocols, contraindications, and wellness compliance guidelines for GreenPulse Wellness.",
     type: "website",

@@ -13,19 +13,19 @@ import { CookieBanner } from "@/components/ui/cookie-banner";
 import { Analytics as GoogleAnalytics } from "@/components/analytics";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Analytics } from '@vercel/analytics/next';
-import { DEFAULT_OG_IMAGE } from "@/lib/schema";
+import { DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/schema";
 import { INTRO_HEAD_SCRIPT } from "@/lib/intro";
 
 const display = Outfit({ subsets: ["latin"], variable: "--font-outfit", display: "swap" });
 const sans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display: "swap" });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
 
-const SITE_URL = "https://greenpulsewellness.com";
+const HOME_TITLE = `${brand.name} | Recovery & Wellness Spaces in India`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${brand.name} — ${brand.tagline}`,
+    default: HOME_TITLE,
     template: `%s | ${brand.name}`,
   },
   description:
@@ -60,14 +60,14 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: SITE_URL,
     siteName: brand.name,
-    title: `${brand.name} — ${brand.tagline}`,
+    title: HOME_TITLE,
     description:
       "Designed. Equipped. Launched. Recovery and wellness spaces for centres, gyms, clinics, hotels and homes across India.",
     images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${brand.name} — ${brand.tagline}`,
+    title: HOME_TITLE,
     description:
       "Designed. Equipped. Launched. Recovery and wellness spaces across India.",
     images: [DEFAULT_OG_IMAGE],

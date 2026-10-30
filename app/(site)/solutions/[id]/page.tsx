@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import { brand } from "@/data/home";
+import { SITE_URL } from "@/lib/schema";
 import {
   getAllSolutions,
   getSolutionBySlug,
@@ -46,9 +47,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: "Solution Not Found",
     };
   }
-
-  const siteUrl = "https://greenpulsewellness.com";
-  const canonicalUrl = `${siteUrl}/solutions/${solution.slug}`;
+  const canonicalUrl = `${SITE_URL}/solutions/${solution.slug}`;
 
   return {
     title: `${solution.title} Commercial Equipment & Space Architecture`,
@@ -99,8 +98,6 @@ export default async function SolutionDetailPage({ params }: PageProps) {
     permanentRedirect(`/solutions/${solution.slug}`);
   }
 
-  const siteUrl = "https://greenpulsewellness.com";
-
   // Structured Data (Schema.org) for SEO
   const jsonLd = {
     "@context": "https://schema.org",
@@ -112,19 +109,19 @@ export default async function SolutionDetailPage({ params }: PageProps) {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: siteUrl,
+            item: SITE_URL,
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Solutions",
-            item: `${siteUrl}/#solutions`,
+            item: `${SITE_URL}/#solutions`,
           },
           {
             "@type": "ListItem",
             position: 3,
             name: solution.title,
-            item: `${siteUrl}/solutions/${solution.slug}`,
+            item: `${SITE_URL}/solutions/${solution.slug}`,
           },
         ],
       },
@@ -134,7 +131,7 @@ export default async function SolutionDetailPage({ params }: PageProps) {
         provider: {
           "@type": "Organization",
           name: brand.name,
-          url: siteUrl,
+          url: SITE_URL,
         },
         description: solution.tagline,
         serviceType: "Commercial Wellness Space Architecture & Hardware Commissioning",

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description:
     "Learn how GreenPulse Wellness collects, protects, processes, and safeguards personal and commercial data across our website, consultation desks, and after-sales support.",
   openGraph: {
+    url: "/privacy",
     title: `Privacy Policy — ${brand.name}`,
     description: "Official Privacy Policy for GreenPulse Wellness.",
     type: "website",
@@ -51,7 +52,7 @@ export default function PrivacyPage() {
               At <strong>{brand.name}</strong> (&quot;we&quot;, &quot;our&quot;, or &quot;Company&quot;), we believe privacy and data transparency are foundational to trusted commercial partnerships. Whether you are an individual exploring recovery equipment, a luxury wellness director outfitting a multi-station spa, or a healthcare institution inquiring about rehabilitation hardware, we treat your information with rigorous confidentiality.
             </p>
             <p className="text-sm leading-relaxed text-pine/80">
-              This Privacy Policy explains the nature of personal and commercial data we gather through our website (<code className="rounded bg-oat px-1.5 py-0.5 text-xs text-pine font-mono">greenpulsewellness.com</code>), digital inquiry forms, WhatsApp business integrations, and after-sales service interactions, and how that information is safeguarded in accordance with applicable data protection legislation.
+              This Privacy Policy explains the nature of personal and commercial data we gather through our website (<code className="rounded bg-oat px-1.5 py-0.5 text-xs text-pine font-mono">www.greenpulsewellness.com</code>), digital inquiry forms, WhatsApp business integrations, and after-sales service interactions, and how that information is safeguarded in accordance with applicable data protection legislation.
             </p>
           </section>
 

@@ -1,8 +1,8 @@
 # GreenPulse Wellness: Full Reference
 
-GreenPulse designs, equips and launches recovery and wellness spaces in India. This file summarises how we work and what we offer, for search and AI assistants. For product specifications, see the product pages at https://greenpulsewellness.com/products.
+GreenPulse designs, equips and launches recovery and wellness spaces in India. This file summarises how we work and what we offer, for search and AI assistants. For product specifications, see the product pages at https://www.greenpulsewellness.com/products.
 
-Website: https://greenpulsewellness.com
+Website: https://www.greenpulsewellness.com
 Contact: welcome@greenpulsewellness.com | WhatsApp: +91 75500 22504
 Region: India
 

@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
-import { DEFAULT_OG_IMAGE } from "@/lib/schema";
+import { DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/schema";
 import { brand } from "@/data/home";
 import { ProductCatalog } from "@/components/product/product-catalog";
 import { ProductPromotionalBanner } from "@/components/product/product-promotional-banner";
@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   description:
     "Explore our complete range of certified full-spectrum infrared saunas, hard-shell hyperbaric oxygen chambers, whole-body cryotherapy, robotic 4D massage chairs, chiropractic tables, and assistive mobility hardware.",
   openGraph: {
+    url: "/products",
     title: `Commercial Equipment Catalog — ${brand.name}`,
     description:
       "Purpose-led recovery, rehabilitation, and longevity hardware engineered for high-performance facilities and private sanctuaries.",
@@ -24,7 +25,7 @@ const catalogJsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   name: `Commercial Equipment Catalog — ${brand.name}`,
-  url: "https://greenpulsewellness.com/products",
+  url: `${SITE_URL}/products`,
   description:
     "Complete range of certified full-spectrum infrared saunas, hard-shell hyperbaric oxygen chambers, whole-body cryotherapy, robotic 4D massage chairs, chiropractic tables, and assistive mobility hardware.",
   mainEntity: {
@@ -35,37 +36,37 @@ const catalogJsonLd = {
         "@type": "ListItem",
         position: 1,
         name: "Full-Spectrum Infrared Saunas",
-        url: "https://greenpulsewellness.com/products#heat",
+        url: `${SITE_URL}/products#heat`,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Cold Plunge & Cryotherapy",
-        url: "https://greenpulsewellness.com/products#cold",
+        url: `${SITE_URL}/products#cold`,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Hyperbaric Oxygen Chambers (HBOT)",
-        url: "https://greenpulsewellness.com/products#air",
+        url: `${SITE_URL}/products#air`,
       },
       {
         "@type": "ListItem",
         position: 4,
         name: "Photobiomodulation (PBM) Red Light",
-        url: "https://greenpulsewellness.com/products#light",
+        url: `${SITE_URL}/products#light`,
       },
       {
         "@type": "ListItem",
         position: 5,
         name: "Compression Therapy & Robotic Massage",
-        url: "https://greenpulsewellness.com/products#relax",
+        url: `${SITE_URL}/products#relax`,
       },
       {
         "@type": "ListItem",
         position: 6,
         name: "Chiropractic Tables & Mobility Systems",
-        url: "https://greenpulsewellness.com/products#mobility",
+        url: `${SITE_URL}/products#mobility`,
       },
     ],
   },

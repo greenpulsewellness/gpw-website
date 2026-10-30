@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DEFAULT_OG_IMAGE } from "@/lib/schema";
+import { DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/schema";
 import { getAllCategories } from "@/data/blog";
 import { getPosts } from "@/lib/blog";
 import { brand } from "@/data/home";
@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   description:
     "Practical guides on saunas, cold plunges, light devices, compression and planning a recovery space for centres, gyms, clinics and hotels.",
   openGraph: {
+    url: "/blog",
     title: `The Journal — ${brand.name}`,
     description:
       "Practical guides on saunas, cold plunges, light devices, compression and planning a recovery space.",
@@ -28,19 +29,19 @@ export default async function BlogIndexPage() {
     "@context": "https://schema.org",
     "@type": "Blog",
     name: `The Journal — ${brand.name}`,
-    url: "https://greenpulsewellness.com/blog",
+    url: `${SITE_URL}/blog`,
     description:
       "Practical guides on saunas, cold plunges, light devices, compression and planning a recovery space.",
     publisher: {
       "@type": "Organization",
       name: brand.name,
-      logo: "https://greenpulsewellness.com/logo-horizontal.png",
+      logo: `${SITE_URL}/logo-horizontal.png`,
     },
     blogPost: posts.map((post) => ({
       "@type": "BlogPosting",
       headline: post.title,
       description: post.excerpt,
-      url: `https://greenpulsewellness.com/blog/${post.slug}`,
+      url: `${SITE_URL}/blog/${post.slug}`,
       datePublished: post.publishedAtISO || post.publishedAt,
       author: {
         "@type": "Person",

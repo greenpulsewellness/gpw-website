@@ -16,7 +16,7 @@ const csp = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://cdn.sanity.io https://greenpulsewellness.com https://*.greenpulsewellness.com https://*.google-analytics.com https://*.googletagmanager.com",
+  "img-src 'self' data: blob: https://cdn.sanity.io https://*.greenpulsewellness.com https://*.google-analytics.com https://*.googletagmanager.com",
   "media-src 'self' blob: data:",
   "font-src 'self' data:",
   "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
@@ -52,10 +52,6 @@ const nextConfig: NextConfig = {
     // 31 days. When replacing a photo in /public, give it a new file name so the old copy isn't served.
     minimumCacheTTL: 60 * 60 * 24 * 31,
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "greenpulsewellness.com",
-      },
       {
         protocol: "https",
         hostname: "*.greenpulsewellness.com",

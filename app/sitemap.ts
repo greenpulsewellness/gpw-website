@@ -1,16 +1,17 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/schema";
 import { getProducts } from "@/lib/products";
 import { getPosts } from "@/lib/blog";
 import { getAllSolutions } from "@/data/solutions-data";
 
 /**
  * Dynamic Next.js Sitemap
- * Generates https://greenpulsewellness.com/sitemap.xml
+ * Generates https://www.greenpulsewellness.com/sitemap.xml
  * lastModified is only set for blog posts (real publish dates); other pages omit it rather than report "now".
  * Enumerates all static landing pages, dynamic solution suites, equipment catalog items, and journal articles.
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://greenpulsewellness.com";
+  const baseUrl = SITE_URL;
 
   // Core static pages
   const staticRoutes: MetadataRoute.Sitemap = [

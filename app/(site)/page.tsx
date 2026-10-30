@@ -10,6 +10,7 @@ import { AmbientBackground } from "@/components/ui/ambient-background";
 import { LayoutPreloader } from "@/components/ui/layout-preloader";
 import { brand } from "@/data/home";
 import { JsonLd } from "@/components/seo/json-ld";
+import { SITE_URL } from "@/lib/schema";
 
 const homeJsonLd = {
   "@context": "https://schema.org",
@@ -17,8 +18,8 @@ const homeJsonLd = {
     {
       "@type": "ProfessionalService",
       name: brand.name,
-      image: "https://greenpulsewellness.com/logo-horizontal.png",
-      url: "https://greenpulsewellness.com",
+      image: `${SITE_URL}/logo-horizontal.png`,
+      url: SITE_URL,
       telephone: "+91 75500 22504",
       address: {
         "@type": "PostalAddress",
@@ -35,7 +36,7 @@ const homeJsonLd = {
             itemOffered: {
               "@type": "Service",
               name: "Recover & Restore Contrast Suites",
-              url: "https://greenpulsewellness.com/solutions/recover",
+              url: `${SITE_URL}/solutions/recover`,
               description: "Infrared saunas, cold plunges and compression for recovery floors.",
             },
           },
@@ -44,7 +45,7 @@ const homeJsonLd = {
             itemOffered: {
               "@type": "Service",
               name: "AgeWell Longevity & Cellular Suites",
-              url: "https://greenpulsewellness.com/solutions/agewell",
+              url: `${SITE_URL}/solutions/agewell`,
               description: "Comfort, mobility and light products for senior living and longevity centres.",
             },
           },
@@ -53,7 +54,7 @@ const homeJsonLd = {
             itemOffered: {
               "@type": "Service",
               name: "Rehabilitate Physical Medicine Suites",
-              url: "https://greenpulsewellness.com/solutions/rehabilitate",
+              url: `${SITE_URL}/solutions/rehabilitate`,
               description: "Practice tables, loungers and recovery tools for physio and chiropractic practices.",
             },
           },
@@ -62,7 +63,7 @@ const homeJsonLd = {
             itemOffered: {
               "@type": "Service",
               name: "Live Well Clinical & Homecare Convalescence",
-              url: "https://greenpulsewellness.com/solutions/live-well",
+              url: `${SITE_URL}/solutions/live-well`,
               description: "Recovery chairs and cold products for clinics, care settings and homes.",
             },
           },

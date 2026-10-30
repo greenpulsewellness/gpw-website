@@ -2,7 +2,7 @@
 
 > GreenPulse designs, equips and launches recovery and wellness spaces in India: layout planning, one catalogue of heat, cold, light and relaxation products, installation, team training and launch support. We work with wellness centres, gyms, clinics, hotel spas, senior living and homes.
 
-Website: https://greenpulsewellness.com
+Website: https://www.greenpulsewellness.com
 Contact: welcome@greenpulsewellness.com | WhatsApp: +91 75500 22504
 Region: India
 
@@ -20,10 +20,10 @@ Headline: Designed. Equipped. Launched.
 
 ## Four Ways We Equip a Space
 
-- **Recover & Restore**: https://greenpulsewellness.com/solutions/recover - Infrared saunas, cold plunges, compression and massage chairs for wellness centres, hotel spas and gyms.
-- **AgeWell**: https://greenpulsewellness.com/solutions/agewell - Comfortable seating and mobility products for senior living and care settings.
-- **Rehabilitate**: https://greenpulsewellness.com/solutions/rehabilitate - Practical equipment for physiotherapy and chiropractic practices.
-- **Live Well**: https://greenpulsewellness.com/solutions/live-well - Comfort and recovery products for clinics, care settings and homes.
+- **Recover & Restore**: https://www.greenpulsewellness.com/solutions/recover - Infrared saunas, cold plunges, compression and massage chairs for wellness centres, hotel spas and gyms.
+- **AgeWell**: https://www.greenpulsewellness.com/solutions/agewell - Comfortable seating and mobility products for senior living and care settings.
+- **Rehabilitate**: https://www.greenpulsewellness.com/solutions/rehabilitate - Practical equipment for physiotherapy and chiropractic practices.
+- **Live Well**: https://www.greenpulsewellness.com/solutions/live-well - Comfort and recovery products for clinics, care settings and homes.
 
 ---
 
@@ -40,8 +40,8 @@ Products appear in this order: Relax, Heat, Light, Cold, Air.
 - **Thrum, Ember, Aurora, Frostfire** - percussion, wraps and pads
 - **Glide, Rise** - mobility chairs and standing chairs
 
-Catalogue: https://greenpulsewellness.com/products
-Combos: https://greenpulsewellness.com/combos
+Catalogue: https://www.greenpulsewellness.com/products
+Combos: https://www.greenpulsewellness.com/combos
 
 ---
 
@@ -51,9 +51,9 @@ We describe products by what they are, their specifications and how they fit a s
 
 ## Pages
 
-- About: https://greenpulsewellness.com/about
-- Journal: https://greenpulsewellness.com/blog
-- Contact: https://greenpulsewellness.com/contact
-- Compliance & safety: https://greenpulsewellness.com/compliance
-- Terms: https://greenpulsewellness.com/terms
-- Privacy: https://greenpulsewellness.com/privacy
+- About: https://www.greenpulsewellness.com/about
+- Journal: https://www.greenpulsewellness.com/blog
+- Contact: https://www.greenpulsewellness.com/contact
+- Compliance & safety: https://www.greenpulsewellness.com/compliance
+- Terms: https://www.greenpulsewellness.com/terms
+- Privacy: https://www.greenpulsewellness.com/privacy

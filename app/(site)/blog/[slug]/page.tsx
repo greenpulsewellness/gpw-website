@@ -33,6 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     keywords: post.keywords?.length ? post.keywords : post.tags,
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
+      url: `/blog/${post.slug}`,
       title: `${post.title} — ${brand.name}`,
       description: post.excerpt,
       type: "article",

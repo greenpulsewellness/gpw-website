@@ -12,7 +12,7 @@ import { AboutComparison } from "@/components/about/about-comparison";
 import { AmbientBackground } from "@/components/ui/ambient-background";
 import { JsonLd } from "@/components/seo/json-ld";
 import { aboutData } from "@/data/about";
-import { faqSchema, DEFAULT_OG_IMAGE } from "@/lib/schema";
+import { faqSchema, DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: `About Us — Designed. Equipped. Launched.`,
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
       "We design, equip and launch recovery and wellness spaces, with the layout planned before you build.",
     type: "website",
     images: [DEFAULT_OG_IMAGE],
-    url: "https://greenpulsewellness.com/about",
+    url: `${SITE_URL}/about`,
   },
   alternates: {
     canonical: "/about",
@@ -37,14 +37,14 @@ const aboutJsonLd = {
     {
       "@type": "AboutPage",
       name: `About ${brand.name}`,
-      url: "https://greenpulsewellness.com/about",
+      url: `${SITE_URL}/about`,
       description:
         "Learn about GreenPulse Wellness: we design, equip and launch recovery and wellness spaces for centres, gyms, clinics, hotels, senior living and homes across India.",
       mainEntity: {
         "@type": "Organization",
         name: brand.name,
-        url: "https://greenpulsewellness.com",
-        logo: "https://greenpulsewellness.com/logo-horizontal.png",
+        url: SITE_URL,
+        logo: `${SITE_URL}/logo-horizontal.png`,
       },
     },
     {
@@ -52,7 +52,7 @@ const aboutJsonLd = {
       about: "GreenPulse Wellness compared with a typical equipment-only supplier",
       name: aboutData.comparison.headline,
       description: aboutData.comparison.caption,
-      url: "https://greenpulsewellness.com/about#about-comparison-heading",
+      url: `${SITE_URL}/about#about-comparison-heading`,
     },
     faqSchema(aboutData.faqs),
   ],

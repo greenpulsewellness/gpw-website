@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/schema";
 
 /**
  * Next.js Robots Metadata Route
@@ -7,7 +8,7 @@ import type { MetadataRoute } from "next";
  * - AI search engines & LLM retrieval agents (GPTBot, ClaudeBot, PerplexityBot, Applebot, Google-Extended, etc.)
  */
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://greenpulsewellness.com";
+  const baseUrl = SITE_URL;
 
   return {
     rules: [

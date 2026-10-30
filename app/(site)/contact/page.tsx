@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { DEFAULT_OG_IMAGE } from "@/lib/schema";
+import { DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/schema";
 import { brand, contact } from "@/data/home";
 import { ContactFormCard } from "@/components/contact/contact-form-card";
 import { JsonLd } from "@/components/seo/json-ld";
-
-const SITE_URL = "https://greenpulsewellness.com";
 
 export const metadata: Metadata = {
   title: `Contact & Commercial Project Consultation`,

@@ -1,6 +1,6 @@
 import { sendGAEvent } from "@next/third-parties/google";
 
-export const GA_MEASUREMENT_ID = "G-J2SWRMHRY5";
+export const GA_MEASUREMENT_ID = "G-9DE8WTGQZC";
 
 /** Shared with the cookie banner: "accepted" | "declined", absent until the visitor chooses. */
 export const CONSENT_STORAGE_KEY = "gpw-cookie-consent";

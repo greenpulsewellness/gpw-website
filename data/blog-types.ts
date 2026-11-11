@@ -70,6 +70,14 @@ export type BlogPost = {
   faqs?: BlogFaq[];
 };
 
+/**
+ * What lists, cards, related posts and the sitemap need: everything except the article body.
+ * The blog index and "Continue reading" use this so they never load full articles.
+ */
+export type BlogPostSummary = Omit<BlogPost, "sections" | "faqs" | "keywords" | "relatedEquipment" | "author"> & {
+  author: Pick<BlogAuthor, "name">;
+};
+
 export const AUTHORS: Record<string, BlogAuthor> = {
   "marcus-vance": {
     name: "Marcus Vance",

@@ -4,6 +4,9 @@ import { getProducts } from "@/lib/products";
 import { getPosts } from "@/lib/blog";
 import { getAllSolutions } from "@/data/solutions-data";
 
+// Safety-net refresh (24 h). Edits refresh straight away via /api/revalidate; see lib/blog.ts.
+export const revalidate = 86400;
+
 /**
  * Dynamic Next.js Sitemap
  * Generates https://www.greenpulsewellness.com/sitemap.xml

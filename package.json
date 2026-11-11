@@ -9,8 +9,6 @@
     "import:content": "sanity exec scripts/import-content.ts --with-user-token",
     "sanity:webhook": "node scripts/create-revalidate-webhook.mjs",
     "seed:supabase": "tsx --env-file=.env.local scripts/seed-supabase.ts",
-    "backup:content": "node --env-file=.env.local scripts/backup-content.mjs",
-    "restore:content": "node --env-file=.env.local scripts/restore-content.mjs",
     "typecheck": "tsc --noEmit",
     "optimize:images": "node scripts/optimize-public-images.mjs",
     "changelog:check": "tsx tools/changelog/check.ts"

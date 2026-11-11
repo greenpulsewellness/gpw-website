@@ -6,6 +6,9 @@ import { ArticleContent } from "@/components/blog/article-content";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbSchema, SITE_URL } from "@/lib/schema";
 
+// Safety-net refresh (24 h). Edits refresh straight away via /api/revalidate; see lib/blog.ts.
+export const revalidate = 86400;
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }

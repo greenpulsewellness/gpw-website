@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "@/components/ui/intent-link";
 import Image from "next/image";
-import type { BlogPost } from "@/data/blog";
+import type { BlogPost, BlogPostSummary } from "@/data/blog";
 import { isHiddenProductHref } from "@/data/home";
 import { BlogCard } from "./blog-card";
 import { Button } from "@/components/ui/button";
@@ -11,9 +11,9 @@ import { RichText } from "./rich-text";
 
 interface ArticleContentProps {
   post: BlogPost;
-  relatedPosts: BlogPost[];
+  relatedPosts: BlogPostSummary[];
   /** The pillar guide for this post's topic cluster (not set on the pillar itself). */
-  pillarPost?: BlogPost;
+  pillarPost?: BlogPostSummary;
 }
 
 export function ArticleContent({ post, relatedPosts, pillarPost }: ArticleContentProps) {

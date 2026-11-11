@@ -7,6 +7,9 @@ import { BlogHero } from "@/components/blog/blog-hero";
 import { BlogGrid } from "@/components/blog/blog-grid";
 import { JsonLd } from "@/components/seo/json-ld";
 
+// Safety-net refresh (24 h). Edits refresh straight away via /api/revalidate; see lib/blog.ts.
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: `The Journal — Planning Recovery Spaces`,
   description:

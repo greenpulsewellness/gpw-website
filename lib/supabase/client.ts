@@ -1,12 +1,22 @@
 import "server-only";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-/** Cache tags for product and blog queries — invalidated by /api/revalidate. */
-export const PRODUCTS_TAG = "products";
+/**
+ * Cache tags, invalidated by /api/revalidate (Supabase webhook + daily Vercel Cron).
+ * - BLOG_TAG:        the post list (blog index, related posts, pillar links, sitemap, static params)
+ * - BLOG_POSTS_TAG:  every cached article body (only refreshed when an author or cluster changes)
+ * - postTag(slug):   one article body
+ */
 export const BLOG_TAG = "blog";
+export const BLOG_POSTS_TAG = "blog:posts";
+export const postTag = (slug: string) => `post:${slug}`;
 
-/** Fallback refresh interval (seconds) if the revalidate webhook isn't configured. */
-export const CONTENT_REVALIDATE = 60;
+/**
+ * Safety-net refresh interval (seconds) for cached content. Edits refresh pages straight away through the
+ * webhook, so this only bounds staleness if a webhook call is missed. Keep it long: with on-demand refresh,
+ * database reads depend on edits, not on traffic. Route files repeat this as a literal (it must be static).
+ */
+export const CONTENT_REVALIDATE = 86400;
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -18,7 +28,7 @@ let publicClient: SupabaseClient | null | undefined;
 let adminClient: SupabaseClient | null | undefined;
 
 /**
- * Read-only client (anon key). Row Level Security limits it to published content.
+ * Read-only client (publishable key). Row Level Security limits it to published content.
  * Returns null when env vars are missing so callers can fall back to local data
  * instead of failing the build.
  */
@@ -29,7 +39,7 @@ export function getPublicClient(): SupabaseClient | null {
   return publicClient;
 }
 
-/** Full-access client (service-role key). Server-only — never import into client components. */
+/** Full-access client (secret key). Server-only — never import into client components. */
 export function getAdminClient(): SupabaseClient | null {
   if (adminClient === undefined) {
     adminClient = url && serviceKey ? createClient(url, serviceKey, stateless) : null;

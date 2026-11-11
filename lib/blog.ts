@@ -1,60 +1,113 @@
 import "server-only";
 import { cache } from "react";
-import { defineQuery } from "next-sanity";
-import { BLOG_POSTS, getPillarPost, pickRelatedPosts, type BlogPost } from "@/data/blog";
-import { products } from "@/data/home";
-import { BLOG_TAG, PRODUCTS_REVALIDATE, PRODUCTS_TAG, sanityClient } from "@/lib/sanity/client";
+import { unstable_cache } from "next/cache";
+import {
+  BLOG_POSTS,
+  getPillarPost,
+  pickRelatedPosts,
+  type BlogAuthor,
+  type BlogCluster,
+  type BlogPost,
+  type BlogPostSummary,
+} from "@/data/blog";
+import { getProducts } from "@/lib/products";
+import { BLOG_POSTS_TAG, BLOG_TAG, CONTENT_REVALIDATE, getPublicClient, postTag } from "@/lib/supabase/client";
 
 /**
- * Blog data source.
+ * Blog data source: Supabase (schema "content"), falling back to the local posts in data/blog-posts
+ * if Supabase is not configured, unreachable, or empty. A failed read is never cached.
  *
- * For now the blog lives in code (data/blog-posts/*), so Sanity is NOT read. When the posts have been moved to the
- * database (`npm run import:content`), flip USE_SANITY_BLOG to true: posts are then read from Sanity, falling back
- * to the local posts if Sanity is unreachable or has no posts yet.
+ * Built to keep database egress flat as traffic grows (docs/supabase-migration-plan.md, Phase 3a):
+ * - Visitors get pre-built pages. Supabase is read only when content changes (webhook) or once a day.
+ * - The post LIST (cards, related posts, pillar links, sitemap) selects card columns only, ~0.8 KB a post.
+ * - An article BODY is read only for its own page, cached per post (tag `post:<slug>`).
+ * - getPost() checks the list first, so made-up /blog/<slug> URLs never query the database.
  */
-const USE_SANITY_BLOG = false;
 
-type SanityPost = Omit<BlogPost, "publishedAt" | "publishedAtISO" | "author" | "relatedEquipment"> & {
-  publishedAt: string;
-  author: BlogPost["author"] | null;
-  relatedEquipment: NonNullable<BlogPost["relatedEquipment"]> | null;
+const LIST_COLUMNS =
+  "slug, title, excerpt, category, published_at, read_time, cover_image, cover_alt, featured, tags, key_takeaways, " +
+  "is_pillar, related_slugs, pillar:blog_pillars(slug)";
+
+type ListRow = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: BlogPost["category"];
+  published_at: string;
+  read_time: string;
+  cover_image: string;
+  cover_alt: string;
+  featured: boolean;
+  tags: string[] | null;
+  key_takeaways: string[] | null;
+  is_pillar: boolean;
+  related_slugs: string[] | null;
+  pillar: { slug: string } | null;
+  author: { name: string } | null;
 };
 
-// Posts dated in the future stay hidden until their publish date (checked on each revalidation).
-const POSTS_QUERY = defineQuery(`
-  *[_type == "post" && defined(slug.current) && publishedAt <= string::split(string(now()), "T")[0]] | order(publishedAt desc) {
-    "slug": slug.current,
-    title, excerpt, category, publishedAt,
-    "readTime": coalesce(readTime, ""),
-    "coverImage": coverImage.asset->url,
-    "coverAlt": coalesce(coverImage.alt, title),
-    "featured": coalesce(featured, false),
-    "tags": coalesce(tags, []),
-    "keyTakeaways": coalesce(keyTakeaways, []),
-    "author": author->{ name, "role": coalesce(role, ""), "avatar": coalesce(avatar.asset->url, ""), "bio": coalesce(bio, "") },
-    "sections": coalesce(sections[]{
-      "id": coalesce(id.current, _key),
-      heading,
-      "content": coalesce(content, []),
-      callout
-    }, []),
-    "relatedEquipment": relatedEquipment[]->{
-      name,
-      category,
-      "link": "/products/" + slug.current,
-      description
-    }
-  }
-`);
+type DetailRow = Omit<ListRow, "author"> & {
+  sections: BlogPost["sections"] | null;
+  faqs: NonNullable<BlogPost["faqs"]> | null;
+  keywords: string[] | null;
+  related_product_ids: string[] | null;
+  author: { name: string; role: string; avatar_url: string; bio: string } | null;
+};
 
-const fetchOptions = { next: { revalidate: PRODUCTS_REVALIDATE, tags: [BLOG_TAG, PRODUCTS_TAG] } };
-
-const FALLBACK_AUTHOR: BlogPost["author"] = {
+const FALLBACK_AUTHOR: BlogAuthor = {
   name: "GreenPulse Editorial",
   role: "GreenPulse Wellness",
   avatar: "",
   bio: "",
 };
+
+/** Today in UTC (YYYY-MM-DD): the same clock as the `published_at <= current_date` policy in Supabase. */
+const today = () => new Date().toISOString().slice(0, 10);
+
+/** Published posts dated today or earlier, newest first: list columns only. */
+const fetchListRows = unstable_cache(
+  async (): Promise<ListRow[]> => {
+    const db = getPublicClient();
+    if (!db) throw new Error("Supabase env vars are not set");
+    const { data, error } = await db
+      .schema("content")
+      .from("blog_posts")
+      .select(`${LIST_COLUMNS}, author:authors(name)`)
+      .eq("status", "published")
+      // RLS already hides future-dated posts; repeated so the query reads the same as the policy.
+      .lte("published_at", today())
+      .order("published_at", { ascending: false })
+      .order("slug");
+    if (error) throw error; // thrown, so a failed read is never cached
+    return (data ?? []) as unknown as ListRow[];
+  },
+  ["blog:list:v1"],
+  { tags: [BLOG_TAG], revalidate: CONTENT_REVALIDATE },
+);
+
+/** One published post with its body. Cached per slug. */
+function fetchDetailRow(slug: string): Promise<DetailRow | null> {
+  return unstable_cache(
+    async (): Promise<DetailRow | null> => {
+      const db = getPublicClient();
+      if (!db) throw new Error("Supabase env vars are not set");
+      const { data, error } = await db
+        .schema("content")
+        .from("blog_posts")
+        .select(
+          `${LIST_COLUMNS}, sections, faqs, keywords, related_product_ids, author:authors(name, role, avatar_url, bio)`,
+        )
+        .eq("slug", slug)
+        .eq("status", "published")
+        .lte("published_at", today())
+        .maybeSingle();
+      if (error) throw error;
+      return data as unknown as DetailRow | null;
+    },
+    ["blog:post:v1", slug],
+    { tags: [BLOG_POSTS_TAG, postTag(slug)], revalidate: CONTENT_REVALIDATE },
+  )();
+}
 
 /** "2026-05-28" → "May 28, 2026" (matches the format used across the site). */
 function formatDate(iso: string) {
@@ -64,43 +117,96 @@ function formatDate(iso: string) {
     : d.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric", timeZone: "UTC" });
 }
 
-function toPost(doc: SanityPost): BlogPost {
+function toSummary(row: ListRow | DetailRow): Omit<BlogPostSummary, "author"> {
   return {
-    ...doc,
-    publishedAt: formatDate(doc.publishedAt),
-    publishedAtISO: doc.publishedAt,
-    author: doc.author ?? FALLBACK_AUTHOR,
-    // Drop callouts left empty in the admin.
-    sections: doc.sections.map((s) => ({ ...s, callout: s.callout?.text ? s.callout : undefined })),
-    // Sanity product images are internal mockup collages; use the catalogue photo instead.
-    relatedEquipment: (doc.relatedEquipment ?? [])
-      .filter((eq) => eq?.name)
-      .map((eq) => ({ ...eq, image: products.find((p) => `/products/${p.id}` === eq.link)?.image.src ?? "" })),
+    slug: row.slug,
+    title: row.title,
+    excerpt: row.excerpt,
+    category: row.category,
+    publishedAt: formatDate(row.published_at),
+    publishedAtISO: row.published_at,
+    readTime: row.read_time,
+    coverImage: row.cover_image,
+    coverAlt: row.cover_alt || row.title,
+    featured: row.featured,
+    tags: row.tags ?? [],
+    keyTakeaways: row.key_takeaways ?? [],
+    // Topic cluster = pillar slug (heat, cold, light, ...); drives pillar links and related posts.
+    cluster: (row.pillar?.slug as BlogCluster | undefined) ?? undefined,
+    pillar: row.is_pillar || undefined,
+    relatedSlugs: row.related_slugs ?? [],
   };
 }
 
-/** All posts, newest first. Deduped per request. */
-export const getPosts = cache(async (): Promise<BlogPost[]> => {
-  if (!USE_SANITY_BLOG) return BLOG_POSTS;
-  try {
-    const docs = await sanityClient.fetch<SanityPost[]>(POSTS_QUERY, {}, fetchOptions);
-    if (docs?.length) return docs.map(toPost);
-  } catch (err) {
-    console.error("[blog] Sanity fetch failed, using local data:", err);
-  }
-  return BLOG_POSTS;
-});
-
-export async function getPost(slug: string): Promise<BlogPost | undefined> {
-  return (await getPosts()).find((p) => p.slug === slug);
+async function toPost(row: DetailRow): Promise<BlogPost> {
+  // Related-equipment cards are built from the product catalogue in code, so they never go stale.
+  const catalog = new Map((await getProducts()).map((p) => [p.id, p]));
+  return {
+    ...toSummary(row),
+    author: row.author
+      ? { name: row.author.name, role: row.author.role, avatar: row.author.avatar_url, bio: row.author.bio }
+      : FALLBACK_AUTHOR,
+    // Drop callouts left empty in the database.
+    sections: (row.sections ?? []).map((s) => ({ ...s, callout: s.callout?.text ? s.callout : undefined })),
+    keywords: row.keywords ?? [],
+    faqs: row.faqs ?? [],
+    relatedEquipment: (row.related_product_ids ?? []).flatMap((id) => {
+      const p = catalog.get(id);
+      return p ? [{ name: p.name, category: p.category, image: p.image.src ?? "", link: p.url, description: p.description }] : [];
+    }),
+  };
 }
 
+type PostList = { posts: BlogPostSummary[]; fromDatabase: boolean };
+
+/** The post list and where it came from. Deduped per request. */
+const getPostList = cache(async (): Promise<PostList> => {
+  if (getPublicClient()) {
+    try {
+      const rows = await fetchListRows();
+      if (rows.length) {
+        return {
+          fromDatabase: true,
+          posts: rows.map((row) => ({ ...toSummary(row), author: { name: row.author?.name ?? FALLBACK_AUTHOR.name } })),
+        };
+      }
+    } catch (err) {
+      console.error("[blog] Supabase list fetch failed, using local data:", err);
+    }
+  }
+  return { fromDatabase: false, posts: BLOG_POSTS };
+});
+
+/** All published posts, newest first, without article bodies. */
+export async function getPosts(): Promise<BlogPostSummary[]> {
+  return (await getPostList()).posts;
+}
+
+/** One full post, or undefined if it isn't published. Unknown slugs never reach the database. */
+export const getPost = cache(async (slug: string): Promise<BlogPost | undefined> => {
+  const { posts, fromDatabase } = await getPostList();
+  if (!posts.some((p) => p.slug === slug)) return undefined;
+  if (!fromDatabase) return BLOG_POSTS.find((p) => p.slug === slug);
+
+  try {
+    const row = await fetchDetailRow(slug);
+    if (row) return toPost(row);
+  } catch (err) {
+    console.error(`[blog] Supabase fetch failed for "${slug}":`, err);
+    const local = BLOG_POSTS.find((p) => p.slug === slug);
+    if (local) return local;
+    // Not in the local fallback either: fail this render so the last good page keeps being served.
+    throw err;
+  }
+  return undefined;
+});
+
 /** Hand-picked related posts first, then same cluster / category. */
-export async function getRelatedPosts(slug: string, count = 3): Promise<BlogPost[]> {
+export async function getRelatedPosts(slug: string, count = 3): Promise<BlogPostSummary[]> {
   return pickRelatedPosts(await getPosts(), slug, count);
 }
 
 /** The pillar guide for a post's topic cluster, if it has one. */
-export async function getPillar(post: BlogPost): Promise<BlogPost | undefined> {
+export async function getPillar(post: BlogPostSummary): Promise<BlogPostSummary | undefined> {
   return getPillarPost(post, await getPosts());
 }

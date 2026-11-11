@@ -1,8 +1,8 @@
 import Link from "@/components/ui/intent-link";
 import Image from "next/image";
-import type { BlogPost } from "@/data/blog";
+import type { BlogPostSummary } from "@/data/blog";
 
-export function BlogCard({ post }: { post: BlogPost }) {
+export function BlogCard({ post }: { post: BlogPostSummary }) {
   return (
     <article className="group relative flex flex-col overflow-hidden rounded-[20px] border border-white/10 bg-[#0d0d0d]/90 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]">
       <Link href={`/blog/${post.slug}`} className="relative aspect-[16/10] w-full overflow-hidden bg-oat">

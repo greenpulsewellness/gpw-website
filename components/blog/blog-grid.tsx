@@ -1,13 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { BlogPost } from "@/data/blog";
+import type { BlogPostSummary } from "@/data/blog";
 import { BlogCard } from "./blog-card";
 import { FeaturedPost } from "./featured-post";
 import { NewsletterCard } from "./newsletter-card";
 
 interface BlogGridProps {
-  posts: BlogPost[];
+  posts: BlogPostSummary[];
   categories: string[];
 }
 

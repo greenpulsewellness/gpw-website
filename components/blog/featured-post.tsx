@@ -1,9 +1,9 @@
 import Link from "@/components/ui/intent-link";
 import Image from "next/image";
-import type { BlogPost } from "@/data/blog";
+import type { BlogPostSummary } from "@/data/blog";
 import { Button } from "@/components/ui/button";
 
-export function FeaturedPost({ post }: { post: BlogPost }) {
+export function FeaturedPost({ post }: { post: BlogPostSummary }) {
   return (
     <article className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-[#0d0d0d]/90 shadow-[0_0_40px_rgba(0,0,0,0.4)] backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:shadow-[0_0_40px_rgba(255,255,255,0.12)] lg:grid lg:grid-cols-12 lg:gap-8">
       {/* Cover Image Container */}

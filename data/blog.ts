@@ -1,4 +1,4 @@
-import { CLUSTERS, type BlogPost } from "./blog-types";
+import { CLUSTERS, type BlogPost, type BlogPostSummary } from "./blog-types";
 import { BLOG_POSTS } from "./blog-posts";
 
 export * from "./blog-types";
@@ -20,12 +20,12 @@ export function getPostBySlug(slug: string): BlogPost | undefined {
  * Related posts: hand-picked slugs first, then the rest of the same cluster, then the same category, then anything.
  * Works on any post list so it can also serve posts that come from the CMS.
  */
-export function pickRelatedPosts(posts: BlogPost[], slug: string, count = 3): BlogPost[] {
+export function pickRelatedPosts<T extends BlogPostSummary>(posts: T[], slug: string, count = 3): T[] {
   const current = posts.find((p) => p.slug === slug);
   const others = posts.filter((p) => p.slug !== slug);
   if (!current) return others.slice(0, count);
-  const picked = new Map<string, BlogPost>();
-  const add = (list: (BlogPost | undefined)[]) => list.forEach((p) => p && !picked.has(p.slug) && picked.set(p.slug, p));
+  const picked = new Map<string, T>();
+  const add = (list: (T | undefined)[]) => list.forEach((p) => p && !picked.has(p.slug) && picked.set(p.slug, p));
   add((current.relatedSlugs ?? []).map((s) => others.find((p) => p.slug === s)));
   add(others.filter((p) => current.cluster && p.cluster === current.cluster));
   add(others.filter((p) => p.category === current.category));
@@ -38,7 +38,7 @@ export function getRelatedPosts(currentSlug: string, count = 3): BlogPost[] {
 }
 
 /** The pillar guide that anchors this post's topic cluster (undefined for posts without a cluster, or the pillar itself). */
-export function getPillarPost(post: BlogPost, posts: BlogPost[] = BLOG_POSTS): BlogPost | undefined {
+export function getPillarPost<T extends BlogPostSummary>(post: BlogPostSummary, posts: T[]): T | undefined {
   if (!post.cluster || post.pillar) return undefined;
   return posts.find((p) => p.slug === CLUSTERS[post.cluster!].pillar);
 }

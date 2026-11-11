@@ -25,6 +25,18 @@ steps are in [Cutover runbook](#cutover-runbook).
 - Backups decided: nightly JSON export to a private repo (Phase 2b). Scripts and job file are in this repo;
   the private repo still has to be created.
 
+**Status (2026-11-11, later): blog cut over in code; products stay in code; no backups.**
+- **Products are read from code (`data/`), not from Supabase or Sanity.** They change rarely, so they ship with
+  each deploy: product pages are fully static and cost zero database egress. `catalog.products` stays seeded as
+  a copy (refresh with `npm run seed:supabase -- --force` after editing `data/`); the site does not read it.
+  Side effect: the 61 product pages that still showed the pre-2026-10-22 Sanity wording now show the corrected copy.
+- **The blog is read from Supabase**, with every Phase 3a egress fix implemented and tested against the real
+  database (`lib/blog.ts`, `app/api/revalidate/route.ts`, `vercel.json`). Falls back to `data/` if Supabase is
+  unreachable or the env vars are missing, so deploying this is safe before the dashboard steps are done.
+- **No nightly backup** (decided by the owner to keep egress down). The backup job, scripts and template were removed.
+- Sanity is no longer read by the site. The Studio and packages remain until Phase 6.
+- Remaining: dashboard steps in the [go-live checklist](#cutover-runbook).
+
 Why now: the GreenPulse Blog Programme (about 30 articles a month, scheduled one per day) writes drafts
 straight into `content.blog_posts` with a future `published_at`, the same pattern as the ZaneProEd pipeline.
 
@@ -32,7 +44,8 @@ straight into `content.blog_posts` with a future `published_at`, the same patter
 
 | Decision | Choice | Why |
 |---|---|---|
-| Content source today | **Sanity** (unchanged) | Hand-curated products and a Studio UI the team can use. No reason to rush. |
+| Content source (from 2026-11-11) | **Products: code (`data/`). Blog: Supabase.** | Products change rarely: static pages, zero egress. The blog programme writes to the database daily. |
+| Backups | **None** (2026-11-11) | Owner's call, to keep egress down. Posts that also exist in `data/` can be re-seeded; database-only posts cannot. |
 | Target database | **Supabase Postgres**, split into **one schema per business domain** | Commerce and inventory can be added later without reshaping blog/catalog tables. |
 | Images | Stay as `/public` paths and Sanity CDN URLs for now; **Cloudflare R2** later | Image columns hold plain URLs, so R2 is a data change, not a schema change. |
 | Enquiries | Saved to Supabase `crm.enquiries` as soon as env vars exist | Independent of the content migration; today `notifyTeam` throws in production, so enquiries can be lost. |
@@ -75,7 +88,7 @@ supabase (Postgres)
    `anon` gets read-only on `catalog` and `content`; `crm` is service-role only.
 3. **PostgREST cannot embed across schemas.** `select('*, author:authors(...)')` works within `content`,
    but not `content` → `catalog`. That is why `blog_posts.related_product_ids` is `text[]` (product slugs),
-   resolved against the live catalog in code ([supabase/reference/lib-blog.ts](../supabase/reference/lib-blog.ts)).
+   resolved against the product catalogue in code ([lib/blog.ts](../lib/blog.ts)).
    Foreign keys across schemas are fine in Postgres; only the API embedding is limited.
 4. **Client usage:** `db.schema("catalog").from("products")`.
 5. If you later adopt the Supabase CLI, list the schemas under `[api] schemas` in `supabase/config.toml`.
@@ -87,13 +100,13 @@ supabase (Postgres)
 | [supabase/migrations/0001_schemas_catalog_content_crm.sql](../supabase/migrations/0001_schemas_catalog_content_crm.sql) | Phase 1 schema, grants, RLS | Ready. Validated in a local Postgres: runs, re-runs cleanly, anon can read only published rows and cannot touch `crm`. **Not yet run on a real Supabase project.** |
 | [supabase/migrations/drafts/0002_commerce_inventory.draft.sql](../supabase/migrations/drafts/0002_commerce_inventory.draft.sql) | E-commerce design sketch | Draft. Applies cleanly on top of 0001 but needs a business review before use (see §7). |
 | [scripts/seed-supabase.ts](../scripts/seed-supabase.ts) | Loads authors, products, posts from `data/` | Ready. `npm run seed:supabase -- --dry` works. Default never overwrites existing rows; `--force` does. |
-| [supabase/reference/lib-products.ts](../supabase/reference/lib-products.ts) | Supabase version of `lib/products.ts` | Parked. Typechecked, not imported. |
-| [supabase/reference/lib-blog.ts](../supabase/reference/lib-blog.ts) | Supabase version of `lib/blog.ts` | Parked. |
-| [supabase/reference/api-revalidate-route.ts](../supabase/reference/api-revalidate-route.ts) | Supabase webhook version of `app/api/revalidate/route.ts` | Parked. |
-| [lib/supabase/client.ts](../lib/supabase/client.ts) | Public (anon) and admin (service-role) clients; cache tags | Live but dormant: returns `null` when env vars are absent. |
+| [lib/products.ts](../lib/products.ts) | Products from `data/` only | Live (2026-11-11). No database or Sanity reads. |
+| [lib/blog.ts](../lib/blog.ts) | Blog from Supabase: cached list + per-post detail, local fallback | Live (2026-11-11). Reads Supabase once the env vars are set on Vercel. |
+| [app/api/revalidate/route.ts](../app/api/revalidate/route.ts) + [vercel.json](../vercel.json) | Supabase webhook (POST) and daily Vercel Cron (GET) | Live (2026-11-11). Needs `REVALIDATE_SECRET`, `CRON_SECRET` and the webhook. |
+| [lib/supabase/client.ts](../lib/supabase/client.ts) | Public (anon) and admin (service-role) clients; cache tags | Live: returns `null` when env vars are absent. |
 | [lib/enquiry-store.ts](../lib/enquiry-store.ts) + [app/api/enquiry/route.ts](../app/api/enquiry/route.ts) | Saves enquiries to `crm.enquiries` | Live but dormant: does nothing until `SUPABASE_SERVICE_ROLE_KEY` is set. Behaviour is identical to before while it is unset. |
 
-The live `lib/products.ts`, `lib/blog.ts` and `app/api/revalidate/route.ts` are the original Sanity versions.
+The `supabase/reference/*` parked copies were removed once their Supabase versions went live (2026-11-11).
 
 ## 4. Phases
 
@@ -130,49 +143,26 @@ Result: leads are stored even though content is still in Sanity.
   cutting over fixes that; until then, 61 product pages show the pre-2026-10-22 copy.
 - 4 products exist only in `data/` (the Cryo range and FrostFire wrap); the live site already merges them in.
 
-### Phase 2b: backups (before cutover)
-Once content lives in the database, edits are no longer in git history, and the free Supabase plan has no
-backups. The maintenance plan promises that any earlier version can be restored.
+### Phase 2b: backups — not used
+**Decided 2026-11-11: no backups.** A nightly export was planned (JSON to a private GitHub repo) but dropped to
+keep database egress down; its job file and the backup/restore scripts were removed (they are in git history,
+commit 983bc10, if ever needed).
 
-**Chosen (2026-11-11): nightly JSON export to a private GitHub repo.** Not a branch of `gpw-website`: that repo
-is public, and a backup there would publish draft posts and hidden products. A private repo also avoids
-GitHub switching off scheduled jobs after 60 quiet days (public repos only).
-
-How it works: at 02:00 IST a GitHub Action in the private repo fetches
-[scripts/backup-content.mjs](../scripts/backup-content.mjs) from `gpw-website`, dumps `catalog` and `content`
-(drafts included, `crm` excluded: it is customers' personal data) to `data/<schema>/<table>.json`, and commits
-only if something changed. One commit = one night's content edits; a failed run emails the repo owner. The
-daily query should also stop the free project pausing for inactivity. Uses ~1 Actions minute a night.
-
-Setup (needs someone with admin on the `greenpulsewellness` GitHub account):
-- [ ] Create a **private** repo `greenpulsewellness/gpw-content-backups` (with a README so it has a `main`).
-- [ ] Settings → Secrets and variables → Actions: add `SUPABASE_URL` (`https://dfiahrijuefewsprcfys.supabase.co`)
-      and `SUPABASE_SERVICE_ROLE_KEY` (the `sb_secret_…` key from `.env.local`).
-- [ ] Copy [supabase/backup/nightly-content-backup.yml](../supabase/backup/nightly-content-backup.yml) to
-      `.github/workflows/nightly-content-backup.yml` in that repo.
-- [ ] Actions → *Nightly content backup* → **Run workflow**; confirm a commit with `data/` appears.
-
-Note: the job runs whatever `scripts/backup-content.mjs` is on `gpw-website` main with the service key, so treat
-changes to that file like any change that touches production credentials.
-
-Restoring (run from this repo, with `.env.local` in place):
-```bash
-git clone https://github.com/greenpulsewellness/gpw-content-backups.git ../gpw-content-backups
-git -C ../gpw-content-backups checkout <commit>      # the night to go back to; `git log -- data/` lists them
-npm run restore:content -- ../gpw-content-backups/data                                   # preview
-npm run restore:content -- ../gpw-content-backups/data --apply --only content.blog_posts # write one table
-```
-Restore upserts rows by primary key; it does not delete rows created after the backup (remove those by hand).
-Tested 2026-11-11: two backups in a row are byte-identical, and a changed row was put back exactly.
-
-Upgrade path: Supabase Pro (~US$25/month, daily backups + point-in-time recovery), paid by GreenPulse Wellness,
-only with their written approval. The JSON export stays useful either way as readable history.
+What this means:
+- Products: safe. The source of truth is `data/` in git; `catalog.products` is only a copy.
+- Blog posts that also exist in `data/blog-posts`: safe, re-seed with `npm run seed:supabase -- --force`.
+- Posts that exist only in the database (the blog programme's output): **no copy**. A bad edit or deleted row
+  cannot be undone. Mitigation when the programme starts: the generator can keep its own copy of each article it
+  writes, or the client can upgrade to Supabase Pro (~US$25/month: daily backups + point-in-time recovery),
+  paid by GreenPulse Wellness, only with their written approval.
 
 ### Phase 3: cut over reads
-See the [runbook](#cutover-runbook). Reversible by restoring three files. **Do Phase 3a first**: the parked
-files as they stand would use far more database egress than needed.
+- [x] Products: switched to code only (`data/`). Nothing to do in Supabase.
+- [x] Blog: `lib/blog.ts` reads Supabase with the Phase 3a fixes; `npm run build` passes against the real
+      database (30 posts prerendered from Supabase).
+- [ ] Dashboard steps: see the [go-live checklist](#cutover-runbook).
 
-### Phase 3a: egress audit and fixes (before cutover)
+### Phase 3a: egress audit and fixes (implemented 2026-11-11)
 
 **Goal:** database egress stays flat no matter how much traffic the site gets. Visitors are served pre-built
 pages from Vercel; Supabase is read only when content changes (plus a small daily safety refresh).
@@ -208,7 +198,10 @@ Problems found:
 Already fine: product photos are served from `/public` (no Supabase Storage egress); enquiries are a single
 small insert per submit, rate-limited (5 per 10 min per IP) with a honeypot; indexes exist for every query below.
 
-#### Changes (implement in `supabase/reference/*` and `lib/supabase/client.ts`, then cut over)
+#### Changes (all implemented 2026-11-11; products went further: read from code, zero egress)
+
+Measured after implementation: post list 36 KB raw / 10 KB gzip for 30 posts (~1.2 KB a post, 2 MB reached at
+~1,700 posts); one article 7.6 KB raw / 3 KB gzip.
 
 | # | Change | Effect |
 |---|---|---|
@@ -229,19 +222,25 @@ when the catalog grows.
 
 | Source | Per month (raw, worst case) |
 |---|---|
-| Daily safety refresh: product + post lists (~80 KB) and, at most, every visited detail (~535 KB) | ~18 MB |
-| Content edits: ~60 KB per product edit, ~35 KB per post published | < 5 MB at normal editing |
-| Blog programme: 30 published posts | ~1 MB |
-| Nightly backup (whole catalog + content, service role) | ~23 MB |
-| **Total** | **~45 MB of the 5 GB free allowance (~1%)**, the same at 100 or 100,000 visits a day |
+| Products | **0** (read from code, never from the database) |
+| Daily safety refresh: post list (~36 KB) and, at most, every visited article (~8 KB each, 30 now) | ~8 MB |
+| Blog edits: ~45 KB per published or edited post (list + that article) | < 2 MB at normal editing |
+| Blog programme: 30 published posts a month (drafts and scheduled posts cost nothing) | ~1.5 MB |
+| Deploys: each build prerenders every article once (~0.3 MB at 30 posts) | ~2 MB at ~6 deploys |
+| **Total** | **~15 MB of the 5 GB free allowance (~0.3%)**, the same at 100 or 100,000 visits a day |
 
-The nightly backup is the largest reader, and it also keeps the free project from pausing for inactivity
-(with on-demand refresh the site itself may not query for days).
+Growth: the list grows ~1.2 KB per post and each deploy re-reads every article, so at 1,000 posts expect
+~60 MB/month (still ~1%). Free projects pause after a week with no activity; any daily visit to the blog
+after the 05:35 IST refresh, or any enquiry, keeps it awake.
 
 #### Verify after cutover
-- [ ] `npm run build` output lists `/products/[id]` and `/blog/[slug]` as SSG/ISR (●), not dynamic (ƒ).
+- [x] `npm run build` lists `/products/[id]` and `/blog/[slug]` as SSG (●), not dynamic (ƒ); products have no
+      revalidate at all, blog and sitemap 1 day (checked locally 2026-11-11).
+- [x] Locally against the real database: draft and future-dated webhooks ignored, product webhooks ignored,
+      a live edit refreshes only `blog` + `post:<slug>`, `/blog/<made-up>` 404s without a query, `/blog` carries no
+      article bodies.
 - [ ] Supabase → Reports → API: request count stays flat while browsing many pages; rises by ~2 after one edit.
-- [ ] Edit one product: its page and the catalog update within seconds; other product pages make no detail query.
+- [ ] Edit one live post: its page and `/blog` update on the next visits; other articles make no query.
 - [ ] Save a draft post: no API requests from Vercel.
 - [ ] Schedule a post for tomorrow (status `published`): hidden today, visible after 05:35 IST tomorrow.
 - [ ] Usage → Egress after a week: well under 100 MB.
@@ -301,30 +300,23 @@ Convert it to numbered migrations (`0002_…`, `0003_…`) per phase rather than
 
 ## 6. Cutover runbook
 
-Prerequisites: Phases 1 and 2 done.
+The code is already switched (2026-11-11). Until the steps below are done the blog quietly uses `data/`.
 
-```bash
-# 1. Swap the data layer to Supabase
-cp supabase/reference/lib-products.ts          lib/products.ts
-cp supabase/reference/lib-blog.ts              lib/blog.ts
-cp supabase/reference/api-revalidate-route.ts  app/api/revalidate/route.ts
+1. **Vercel → Settings → Environment Variables** (Production and Preview):
+   `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` (values from
+   `.env.local`), `REVALIDATE_SECRET` (any long random string), `CRON_SECRET` (another long random string).
+   Redeploy after adding them.
+2. **Supabase → Database → Webhooks → Create**: name `revalidate-blog`; table `content.blog_posts`; events
+   insert, update, delete; type HTTP request, `POST https://www.greenpulsewellness.com/api/revalidate`;
+   header `x-revalidate-secret: <REVALIDATE_SECRET>`. Repeat for `content.authors` and `content.blog_pillars`.
+   **Do not** add one for `catalog.products` (the site doesn't read it).
+3. **Vercel → Settings → Cron Jobs**: confirm `/api/revalidate` is listed at `5 0 * * *` (from `vercel.json`).
+4. **sanity.io/manage → API → Webhooks**: delete the old revalidate webhook (it now gets 401s).
+5. Check: edit a live post's excerpt in the table editor; `/blog` shows it on the second visit (first visit
+   triggers the rebuild). Then run the "Verify after cutover" list in Phase 3a.
 
-# 2. Check
-npx tsc --noEmit
-npm run dev        # visit /products, /products/<any>, /blog, /blog/<any>, /sitemap.xml
-npm run build
-```
-
-3. In Supabase → Database → Webhooks, create a webhook on tables `products`, `blog_posts`, `authors`
-   (insert/update/delete): `POST https://<domain>/api/revalidate`, header `x-revalidate-secret: <REVALIDATE_SECRET>`.
-4. Deploy a Vercel preview with the env vars, verify, then promote to production.
-5. Edit a product row in Supabase and confirm the live page updates within seconds.
-
-**Rollback:** `git checkout HEAD -- lib/products.ts lib/blog.ts app/api/revalidate/route.ts` and redeploy.
-Sanity data is never written to by this migration, so it is intact until Phase 6.
-
-**Side effect to expect:** the cutover reads `status = 'published'` only. Anything still in Sanity but not
-seeded will disappear from the site, so complete Phase 2's "export from Sanity" check first.
+**Rollback:** `git revert` the cutover commit and redeploy (Sanity data is untouched until Phase 6). Or, for the
+blog only, remove `NEXT_PUBLIC_SUPABASE_URL` on Vercel and redeploy: the blog falls back to `data/`.
 
 ## 7. Open decisions (needed before E1+)
 
@@ -350,6 +342,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon key>          # public; RLS limits it to pub
 SUPABASE_SERVICE_ROLE_KEY=<service role key>      # server only; never NEXT_PUBLIC_, never in client code
 # Phase 3+
 REVALIDATE_SECRET=<random string>                 # same value in the Supabase webhook header
+CRON_SECRET=<random string>                       # Vercel sends it to /api/revalidate on the daily cron
 # Phase 4+
 R2_ACCOUNT_ID= R2_ACCESS_KEY_ID= R2_SECRET_ACCESS_KEY= R2_BUCKET= NEXT_PUBLIC_CDN_URL=
 ```

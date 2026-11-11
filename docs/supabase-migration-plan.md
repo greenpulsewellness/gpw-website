@@ -169,7 +169,82 @@ Upgrade path: Supabase Pro (~US$25/month, daily backups + point-in-time recovery
 only with their written approval. The JSON export stays useful either way as readable history.
 
 ### Phase 3: cut over reads
-See the [runbook](#cutover-runbook). Reversible by restoring three files.
+See the [runbook](#cutover-runbook). Reversible by restoring three files. **Do Phase 3a first**: the parked
+files as they stand would use far more database egress than needed.
+
+### Phase 3a: egress audit and fixes (before cutover)
+
+**Goal:** database egress stays flat no matter how much traffic the site gets. Visitors are served pre-built
+pages from Vercel; Supabase is read only when content changes (plus a small daily safety refresh).
+
+#### Audit (2026-11-11, measured against the seeded database)
+
+Who reads content: the site layout (every page: `getProducts` feeds the menu, footer, enquiry form and catalog),
+`/products/[id]`, `/blog`, `/blog/[slug]`, `sitemap.xml`. All go through two cached queries in the parked files.
+
+| Query in parked code | Raw size | gzip | Used for |
+|---|---|---|---|
+| `catalog.products select *` (63 rows) | 365 KB | 134 KB | everything, incl. card lists that need ~15% of it |
+| product card columns only | 54 KB | 9 KB | what the layout, catalog, sitemap and related cards need |
+| `content.blog_posts select *` + author (30 rows) | 249 KB | 102 KB | everything, incl. the list and sitemap |
+| post list columns only | 24 KB | 7 KB | what `/blog`, related posts, pillar links and sitemap need |
+
+Problems found:
+1. **60-second refresh.** `CONTENT_REVALIDATE = 60` in `lib/supabase/client.ts` (Sanity today uses 24 h). In
+   this Next.js version the shortest interval on a route wins, and the layout reads products, so *every page*
+   becomes "refresh every minute while visited". Worst case with steady traffic: 1,440 refreshes/day × (365 +
+   249) KB ≈ 0.9 GB/day ≈ 26 GB/month raw, against the free plan's 5 GB. Egress would scale with traffic.
+2. **Over-fetching.** Every refresh downloads every product's full detail and every post's full body, although
+   only one product/post page needs its body at a time.
+3. **Blog cache will stop working as the programme grows.** Posts average ~8 KB; at ~30 a month the full post
+   list passes 2 MB in about 8 months. Next.js's data cache refuses entries over 2 MB, so from then on *every*
+   page render would query the database directly.
+4. **Scheduled posts need a daily nudge.** With on-demand refresh only, a post scheduled for tomorrow would not
+   appear until something else changes. The parked code also has no date filter of its own.
+5. **Webhook noise.** Writing a draft (the generator does this daily) would refresh the live blog for nothing.
+6. **Unknown URLs.** `/blog/<anything>` and `/products/<anything>` render on demand; a per-item query for a
+   made-up slug would hit the database each time. Bots do this.
+
+Already fine: product photos are served from `/public` (no Supabase Storage egress); enquiries are a single
+small insert per submit, rate-limited (5 per 10 min per IP) with a honeypot; indexes exist for every query below.
+
+#### Changes (implement in `supabase/reference/*` and `lib/supabase/client.ts`, then cut over)
+
+| # | Change | Effect |
+|---|---|---|
+| 1 | Refresh on demand: cached queries use `revalidate: 86400` (24 h safety net, same as Sanity today) instead of 60 s; the webhook refreshes immediately after edits. | Reads depend on edits, not traffic. |
+| 2 | Split each domain into a **list** query (card/list columns only, explicit `select`, not `*`) and a **detail** query cached **per item** (`product:<id>`, `post:<slug>` tags). Layout, catalog, sitemap, related cards, `generateStaticParams` use the list; only the detail page loads its own body. | A refresh moves ~80 KB instead of ~600 KB; editing one product re-reads ~60 KB. |
+| 3 | `getPost(slug)` / `getProductWithDetail(id)` check the cached list first and only query the detail if the item exists. | Made-up URLs never reach the database. |
+| 4 | Post list stays small as the blog grows (~0.8 KB per post vs ~8 KB with bodies). | 1,000 posts ≈ 0.8 MB: safely under the 2 MB cache limit for years. |
+| 5 | Webhook handler: refresh `products` list + `product:<id>` (or `blog` list + `post:<slug>`) for the changed row only; **ignore** changes where the row is a draft before and after. | Daily drafts cost nothing; one edit = one list + one item re-read. |
+| 6 | Daily Vercel Cron at 00:05 UTC (05:35 IST) calls `/api/revalidate` for the blog list, so scheduled posts go live on their date. RLS already hides them before then (0002); the list query adds the same date filter. | One ~25 KB read per day. |
+| 7 | Keep fallbacks: on a database error the site uses `data/` and the error is not cached. | Never renders empty. |
+
+Not changed now (noted for later): migrating `unstable_cache` to `'use cache'` (Next 16 recommends it, but it
+needs `cacheComponents` and touches every page; do it separately). The layout ships all product cards to the
+browser on every page (~50 KB of page weight, Vercel bandwidth rather than database egress); worth trimming
+when the catalog grows.
+
+#### Egress budget after the changes
+
+| Source | Per month (raw, worst case) |
+|---|---|
+| Daily safety refresh: product + post lists (~80 KB) and, at most, every visited detail (~535 KB) | ~18 MB |
+| Content edits: ~60 KB per product edit, ~35 KB per post published | < 5 MB at normal editing |
+| Blog programme: 30 published posts | ~1 MB |
+| Nightly backup (whole catalog + content, service role) | ~23 MB |
+| **Total** | **~45 MB of the 5 GB free allowance (~1%)**, the same at 100 or 100,000 visits a day |
+
+The nightly backup is the largest reader, and it also keeps the free project from pausing for inactivity
+(with on-demand refresh the site itself may not query for days).
+
+#### Verify after cutover
+- [ ] `npm run build` output lists `/products/[id]` and `/blog/[slug]` as SSG/ISR (●), not dynamic (ƒ).
+- [ ] Supabase → Reports → API: request count stays flat while browsing many pages; rises by ~2 after one edit.
+- [ ] Edit one product: its page and the catalog update within seconds; other product pages make no detail query.
+- [ ] Save a draft post: no API requests from Vercel.
+- [ ] Schedule a post for tomorrow (status `published`): hidden today, visible after 05:35 IST tomorrow.
+- [ ] Usage → Egress after a week: well under 100 MB.
 
 ### Phase 4: images to Cloudflare R2
 - [ ] Create the bucket, attach a custom domain (e.g. `cdn.<yourdomain>`), not the `r2.dev` URL.

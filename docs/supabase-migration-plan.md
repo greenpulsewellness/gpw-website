@@ -4,6 +4,30 @@
 Supabase is built and parked in this repo, but nothing is switched on. Migrate whenever you decide to; the
 steps are in [Cutover runbook](#cutover-runbook).
 
+**Status (2026-11-11): migration started.**
+- Supabase project `dfiahrijuefewsprcfys` created; keys are in `.env.local` using the new key format
+  (`sb_publishable_…` in `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `sb_secret_…` in `SUPABASE_SERVICE_ROLE_KEY`).
+  Both work with `supabase-js` as-is; the variable names were kept so no code changes are needed.
+- Verified: the keys reach the project. The database is empty: `catalog`, `content`, `crm` don't exist yet.
+- Supabase MCP server added to `.mcp.json` (project scope), so migrations and checks can be run from Claude Code
+  after authenticating once with `claude /mcp` in a regular terminal.
+- Ownership: the Supabase account was created through the GreenPulse Wellness GitHub account, so it belongs to
+  the client, as the maintenance plan requires.
+- Still to decide: how backups are handled (free plan has none; see Phase 2b).
+- `0001` run manually in the SQL Editor; `catalog`, `content`, `crm` exposed. Verified over the API: anon and
+  service role read `catalog`/`content`; anon gets "permission denied" on `crm`.
+- Sanity export compared field by field against `data/` (see "Seed source" under Phase 2). Seed source: `data/`.
+- `0002_blog_seo_fields_and_scheduling.sql` written: blog keywords/FAQs/related posts/clusters, scheduled
+  publishing in RLS, `set_updated_at` search_path. Seed and parked `lib-blog.ts` updated to match.
+- `0002` run manually; seeded. Verified with the public key: 63 products (3 hidden drafts invisible),
+  30 posts, 7 pillars, 3 authors; every post has its author, cluster, keywords, FAQs and related posts.
+  Next: Phase 1's env vars on Vercel + test enquiry, Phase 2b backup repo setup, then cutover (Phase 3).
+- Backups decided: nightly JSON export to a private repo (Phase 2b). Scripts and job file are in this repo;
+  the private repo still has to be created.
+
+Why now: the GreenPulse Blog Programme (about 30 articles a month, scheduled one per day) writes drafts
+straight into `content.blog_posts` with a future `published_at`, the same pattern as the ZaneProEd pipeline.
+
 ## 1. Decisions so far
 
 | Decision | Choice | Why |
@@ -78,8 +102,9 @@ Sanity live. Supabase artefacts parked. No action needed.
 
 ### Phase 1: Supabase project and enquiries (low risk, can be done on its own)
 - [ ] Create the Supabase project (pick the region nearest your customers).
-- [ ] Run `0001_schemas_catalog_content_crm.sql` in the SQL Editor.
-- [ ] Expose `catalog`, `content`, `crm` in the Data API settings.
+- [x] Run `0001_schemas_catalog_content_crm.sql` in the SQL Editor.
+- [x] Run `0002_blog_seo_fields_and_scheduling.sql` in the SQL Editor.
+- [x] Expose `catalog`, `content`, `crm` in the Data API settings.
 - [ ] Add env vars locally and on Vercel: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
       `SUPABASE_SERVICE_ROLE_KEY`, `REVALIDATE_SECRET`.
 - [ ] Submit a test enquiry; confirm a row appears in `crm.enquiries`.
@@ -87,12 +112,61 @@ Sanity live. Supabase artefacts parked. No action needed.
 Result: leads are stored even though content is still in Sanity.
 
 ### Phase 2: seed and verify content
-- [ ] `npm run seed:supabase -- --dry`, then `npm run seed:supabase`.
-- [ ] Table editor shows **3** authors, **62** products, **6** posts.
+- [x] `npm run seed:supabase -- --dry`, then `npm run seed:supabase` (2026-11-11).
+- [x] Table editor shows **3** authors, **66** products (63 published, 3 hidden as draft), **7** pillars,
+      **30** posts.
 - [ ] Decide the seed source. The script reads local `data/`, which is what the Sanity import originally used.
       **If anyone has edited or added content in the Studio, those changes are not in `data/`.** In that case
       export from Sanity first (the dataset is public; fetch with the GROQ queries in `lib/products.ts` and
       `lib/blog.ts`) and extend the seed to read that export.
+
+**Seed source (checked 2026-11-11): `data/`, not Sanity.** Export: 62 products, 6 posts, 3 authors, no drafts.
+- Blog: the site reads `data/` (`USE_SANITY_BLOG = false`). Sanity's 6 posts are an older set that is not on
+  the site; the site's 30 posts are not in Sanity. Seeding `data/` keeps the blog as it is today.
+- Products: Sanity text was imported on 2026-10-17 and never edited since (the one later change, 2026-10-23,
+  was an image patch, no text). `data/` was revised on 2026-10-22 (supplier model numbers and unverified
+  claims such as "patented"/"VGB"/"Canadian" removed, specs corrected). **The live site still shows the
+  older Sanity wording**, because Sanity wins over `data/` wherever it has a value. Seeding `data/` and
+  cutting over fixes that; until then, 61 product pages show the pre-2026-10-22 copy.
+- 4 products exist only in `data/` (the Cryo range and FrostFire wrap); the live site already merges them in.
+
+### Phase 2b: backups (before cutover)
+Once content lives in the database, edits are no longer in git history, and the free Supabase plan has no
+backups. The maintenance plan promises that any earlier version can be restored.
+
+**Chosen (2026-11-11): nightly JSON export to a private GitHub repo.** Not a branch of `gpw-website`: that repo
+is public, and a backup there would publish draft posts and hidden products. A private repo also avoids
+GitHub switching off scheduled jobs after 60 quiet days (public repos only).
+
+How it works: at 02:00 IST a GitHub Action in the private repo fetches
+[scripts/backup-content.mjs](../scripts/backup-content.mjs) from `gpw-website`, dumps `catalog` and `content`
+(drafts included, `crm` excluded: it is customers' personal data) to `data/<schema>/<table>.json`, and commits
+only if something changed. One commit = one night's content edits; a failed run emails the repo owner. The
+daily query should also stop the free project pausing for inactivity. Uses ~1 Actions minute a night.
+
+Setup (needs someone with admin on the `greenpulsewellness` GitHub account):
+- [ ] Create a **private** repo `greenpulsewellness/gpw-content-backups` (with a README so it has a `main`).
+- [ ] Settings → Secrets and variables → Actions: add `SUPABASE_URL` (`https://dfiahrijuefewsprcfys.supabase.co`)
+      and `SUPABASE_SERVICE_ROLE_KEY` (the `sb_secret_…` key from `.env.local`).
+- [ ] Copy [supabase/backup/nightly-content-backup.yml](../supabase/backup/nightly-content-backup.yml) to
+      `.github/workflows/nightly-content-backup.yml` in that repo.
+- [ ] Actions → *Nightly content backup* → **Run workflow**; confirm a commit with `data/` appears.
+
+Note: the job runs whatever `scripts/backup-content.mjs` is on `gpw-website` main with the service key, so treat
+changes to that file like any change that touches production credentials.
+
+Restoring (run from this repo, with `.env.local` in place):
+```bash
+git clone https://github.com/greenpulsewellness/gpw-content-backups.git ../gpw-content-backups
+git -C ../gpw-content-backups checkout <commit>      # the night to go back to; `git log -- data/` lists them
+npm run restore:content -- ../gpw-content-backups/data                                   # preview
+npm run restore:content -- ../gpw-content-backups/data --apply --only content.blog_posts # write one table
+```
+Restore upserts rows by primary key; it does not delete rows created after the backup (remove those by hand).
+Tested 2026-11-11: two backups in a row are byte-identical, and a changed row was put back exactly.
+
+Upgrade path: Supabase Pro (~US$25/month, daily backups + point-in-time recovery), paid by GreenPulse Wellness,
+only with their written approval. The JSON export stays useful either way as readable history.
 
 ### Phase 3: cut over reads
 See the [runbook](#cutover-runbook). Reversible by restoring three files.

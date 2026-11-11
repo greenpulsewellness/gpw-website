@@ -1,7 +1,7 @@
 import "server-only";
 import { cache } from "react";
 import { unstable_cache } from "next/cache";
-import { BLOG_POSTS, type BlogAuthor, type BlogPost } from "@/data/blog";
+import { BLOG_POSTS, getPillarPost, pickRelatedPosts, type BlogAuthor, type BlogCluster, type BlogPost } from "@/data/blog";
 import { getProducts } from "@/lib/products";
 import { BLOG_TAG, CONTENT_REVALIDATE, PRODUCTS_TAG, getPublicClient } from "@/lib/supabase/client";
 
@@ -27,6 +27,11 @@ type PostRow = {
   key_takeaways: string[] | null;
   sections: BlogPost["sections"] | null;
   related_product_ids: string[] | null;
+  keywords: string[] | null;
+  related_slugs: string[] | null;
+  faqs: NonNullable<BlogPost["faqs"]> | null;
+  is_pillar: boolean;
+  pillar: { slug: string } | null;
   author: { name: string; role: string; avatar_url: string; bio: string } | null;
 };
 
@@ -45,8 +50,10 @@ const fetchPostRows = unstable_cache(
     const { data, error } = await db
       .schema("content")
       .from("blog_posts")
-      .select("*, author:authors(name, role, avatar_url, bio)")
+      .select("*, author:authors(name, role, avatar_url, bio), pillar:blog_pillars(slug)")
       .eq("status", "published")
+      // RLS hides future-dated posts too; repeated here so the query reads the same as the policy.
+      .lte("published_at", new Date().toISOString().slice(0, 10))
       .order("published_at", { ascending: false });
     if (error) throw error; // thrown, so a failed read is never cached
     return (data ?? []) as unknown as PostRow[];
@@ -89,6 +96,12 @@ export const getPosts = cache(async (): Promise<BlogPost[]> => {
           : FALLBACK_AUTHOR,
         // Drop callouts left empty in the database.
         sections: (row.sections ?? []).map((s) => ({ ...s, callout: s.callout?.text ? s.callout : undefined })),
+        // Topic cluster = pillar slug (heat, cold, light, ...); drives pillar links and related posts.
+        cluster: (row.pillar?.slug as BlogCluster | undefined) ?? undefined,
+        pillar: row.is_pillar || undefined,
+        relatedSlugs: row.related_slugs ?? [],
+        keywords: row.keywords ?? [],
+        faqs: row.faqs ?? [],
         relatedEquipment: (row.related_product_ids ?? []).flatMap((id) => {
           const p = catalog.get(id);
           return p ? [{ name: p.name, category: p.category, image: p.image.src ?? "", link: p.url, description: p.description }] : [];
@@ -105,11 +118,12 @@ export async function getPost(slug: string): Promise<BlogPost | undefined> {
   return (await getPosts()).find((p) => p.slug === slug);
 }
 
-/** Other posts, same category first. */
+/** Hand-picked related posts first, then same cluster / category. */
 export async function getRelatedPosts(slug: string, count = 3): Promise<BlogPost[]> {
-  const posts = await getPosts();
-  const current = posts.find((p) => p.slug === slug);
-  const others = posts.filter((p) => p.slug !== slug);
-  if (!current) return others.slice(0, count);
-  return [...others.filter((p) => p.category === current.category), ...others.filter((p) => p.category !== current.category)].slice(0, count);
+  return pickRelatedPosts(await getPosts(), slug, count);
+}
+
+/** The pillar guide for a post's topic cluster, if it has one. */
+export async function getPillar(post: BlogPost): Promise<BlogPost | undefined> {
+  return getPillarPost(post, await getPosts());
 }

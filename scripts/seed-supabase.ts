@@ -1,19 +1,20 @@
 /**
  * One-time import: local content (/data) → Supabase.
- * Seeds authors, products, then blog posts (as published).
+ * Seeds authors, products, blog pillars (topic clusters), then blog posts (as published).
+ * Products hidden on the site (hiddenProductIds) are seeded as drafts, so they stay off the public API.
  *
  *   npm run seed:supabase              # insert rows that don't exist yet
  *   npm run seed:supabase -- --force   # overwrite existing rows too
  *   npm run seed:supabase -- --dry     # preview counts, no network
  *
  * Needs NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local, and the
- * schemas from supabase/migrations/0001_schemas_catalog_content_crm.sql (and exposing catalog, content, crm in the Data API settings). Safe to re-run: by default rows already
+ * schemas from supabase/migrations/0001_… and 0002_… (and exposing catalog, content, crm in the Data API settings). Safe to re-run: by default rows already
  * in the database are left untouched, so edits made there are never overwritten.
  * Image fields keep their current paths (/public files or full URLs).
  */
 import { createClient } from "@supabase/supabase-js";
-import { AUTHORS, BLOG_POSTS } from "../data/blog";
-import { products } from "../data/home";
+import { AUTHORS, BLOG_POSTS, CLUSTERS } from "../data/blog";
+import { hiddenProductIds, products } from "../data/home";
 import { getProductDetail } from "../data/products-data";
 
 const args = process.argv.slice(2);
@@ -58,7 +59,7 @@ const productRows = products.map((p, i) => {
     tiers: p.tiers,
     specs: p.specs,
     sort_order: i + 1,
-    status: "published",
+    status: hiddenProductIds.has(p.id) ? "draft" : "published",
     image: p.image.src ? { url: p.image.src, alt: p.image.alt } : null,
     gallery: (p.gallery ?? []).filter((g) => g.src).map((g) => ({ url: g.src, alt: g.alt })),
     subtitle: d.subtitle,
@@ -75,6 +76,12 @@ const productRows = products.map((p, i) => {
     related_product_ids: d.relatedProductIds.filter((rid) => productIds.has(rid) && rid !== p.id),
   };
 });
+
+const pillarRows = Object.entries(CLUSTERS).map(([slug, c]) => ({
+  slug,
+  title: c.label,
+  category: c.category,
+}));
 
 const droppedLinks: string[] = [];
 
@@ -101,6 +108,11 @@ const postRows = BLOG_POSTS.map((post) => {
     sections: post.sections,
     author_id: authorId,
     related_product_ids: related,
+    keywords: post.keywords ?? [],
+    related_slugs: post.relatedSlugs ?? [],
+    faqs: post.faqs ?? [],
+    is_pillar: Boolean(post.pillar),
+    cluster: post.cluster ?? null, // resolved to pillar_id in main(), once pillar ids are known
     status: "published",
   };
 });
@@ -121,7 +133,24 @@ async function main() {
   // Order matters: posts reference authors.
   await upsert("content", "authors", authorRows, "id");
   await upsert("catalog", "products", productRows, "id");
-  await upsert("content", "blog_posts", postRows, "slug");
+  await upsert("content", "blog_pillars", pillarRows, "slug");
+
+  // Pillars have generated uuids: look them up by slug to link each post to its cluster.
+  const pillarIds = new Map<string, string>();
+  if (db) {
+    const { data, error } = await db.schema("content").from("blog_pillars").select("id, slug");
+    if (error) throw new Error(`content.blog_pillars: ${error.message}`);
+    for (const r of data ?? []) pillarIds.set(r.slug, r.id);
+  }
+  const posts = postRows.map(({ cluster, ...row }) => ({
+    ...row,
+    pillar_id: cluster ? (pillarIds.get(cluster) ?? null) : null,
+  }));
+  if (db && posts.some((p, i) => postRows[i].cluster && !p.pillar_id)) throw new Error("A post's cluster has no pillar row.");
+  await upsert("content", "blog_posts", posts, "slug");
+
+  const hidden = productRows.filter((p) => p.status === "draft").map((p) => p.id);
+  if (hidden.length) console.log(`\n${hidden.length} product(s) hidden on the site, seeded as drafts:\n  ${hidden.join("\n  ")}`);
 
   const noImage = productRows.filter((p) => !p.image).map((p) => p.id);
   if (noImage.length) console.warn(`\n⚠ ${noImage.length} product(s) have no image path:\n  ${noImage.join("\n  ")}`);
